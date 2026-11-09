@@ -1,0 +1,23 @@
+{
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "usage",
+      "text": "Modal reports no per-sandbox cost or usage."
+    }
+  ],
+  "exclusions": [
+    "Network egress (new): from 2026-10-01 outbound traffic is $0.04 per GiB above a workspace-wide allowance of 1 TiB per billing cycle on Starter, 10 TiB on Team, 100 TiB on Enterprise; it counts container-to-container traffic and Cloud Bucket Mount uploads, not Volume reads and writes. Tracked from 2026-09-01 with no charge in September; the first bill with egress is 2026-11-01. The benchmarks send almost nothing, so this is $0 per hour at these sizes under any plan.",
+    "Per-creation fee: none listed on the pricing page or the Sandbox docs",
+    "Volumes: $0.09 / GiB / month, first 1 TiB / month free (not used by the benchmarks)",
+    "Sandbox filesystem and memory snapshots: retained 30 and 7 days; no price stated (not used)",
+    "Plan fee: Starter $0 / month + compute; Team $250 / month + compute. The sandbox rates are the same on both.",
+    "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
+    "Credits and discounts"
+  ],
+  "price_version": "modal@2026-10-20-061900Z",
+  "as_of": "2026-10-20T10:30:00Z"
+}

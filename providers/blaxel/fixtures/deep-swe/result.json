@@ -1,0 +1,295 @@
+{
+  "provider": "blaxel",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Snapshot storage $0.20 / GB-month (the state kept for a sandbox in standby)",
+    "Images $0.045 / GB-month (templated deployment images; unknown whether Blaxel's own blaxel/base-image is charged); recorded as image_storage and not counted in a sandbox's cost",
+    "Volumes $0.12 / GB-month provisioned, billed \"for as long as the volume exists, regardless of how much data you actually write in it\" (pricing page); recorded as volume_storage and not counted in a sandbox's cost",
+    "Sandbox filesystem: no separate charge. The writable layer is a tmpfs in the sandbox's RAM (about 50% of memory), which the memory rate already bills by allocation; the billing API lists only compute runtime, image storage and snapshot storage as sandbox dimensions. The docs' line that storage is charged while a sandbox is active names no rate and no dimension",
+    "Internet egress and internal traffic: Included. No per-creation fee published",
+    "Plan: Pay-as-you-go \"$0.00+ USAGE\". The pricing page lists one memory rate (\"$0.0000115 / GB RAM · second\") and does not tie it to a tier; the Custom plan is priced by quote (\"Contact us for a quote.\"). Which sizes it needs: Blaxel publishes no per-sandbox size cap by tier (the quotas page says higher tiers unlock 'higher sandbox and volume sizes'); tiers are reached by top-up ($20 / month Tier 1, $50 / month Tier 2, the rest unpublished) or a quota request. Optional add-ons: email support $800 / month + 3% of usage, dedicated support $1,600 / month + 10%, HIPAA $250 / month; custom domains: \"Fully-qualified domains\" \"$0.25 / domain · month\" and \"Wildcard domains\" \"$20 / domain · month\"; dedicated IPs, egress proxy free during beta",
+    "Plan allowance: Up to $200 in free credits (promotional credit does not count toward tier top-ups); Tier 0 is free with 10 sandboxes, Tier 1 needs a $20 / month top-up (50), Tier 2 $50 / month (200)",
+    "CPU: bundled with allocated memory; no separate CPU rate is published.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-10-19T16:15:47.388662Z",
+    "until": "2026-10-26T16:05:47.388662Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-10-19T16:15:47.388662Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 2,
+    "prices": "blaxel@2026-11-07-122300Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "blaxel",
+      "sandbox_id": null,
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 4,
+        "memory_mib": 8192,
+        "region": "blaxel:us-was-1",
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-19T16:05:13.827853+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-19T16:05:14.102740+00:00"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-19T16:05:45.157293+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-19T16:05:47.388662+00:00"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "created",
+          "at": {
+            "how": "the provider's field Blaxel event ai.blaxel.controlplane.api.create",
+            "source": "provider",
+            "value": "2026-10-19T16:05:13.870444+00:00"
+          },
+          "field": "Blaxel event ai.blaxel.controlplane.api.create",
+          "read": "after_destroy"
+        },
+        {
+          "kind": "ready",
+          "at": {
+            "how": "the provider's field Blaxel event ai.blaxel.controlplane.deployment.succeeded",
+            "source": "provider",
+            "value": "2026-10-19T16:05:14.044101+00:00"
+          },
+          "field": "Blaxel event ai.blaxel.controlplane.deployment.succeeded",
+          "read": "after_destroy"
+        },
+        {
+          "kind": "ready",
+          "at": {
+            "how": "the provider's field Blaxel event ai.blaxel.controlplane.api.delete",
+            "source": "provider",
+            "value": "2026-10-19T16:05:45.176882+00:00"
+          },
+          "field": "Blaxel event ai.blaxel.controlplane.api.delete",
+          "read": "after_destroy"
+        },
+        {
+          "kind": "ended",
+          "at": {
+            "how": "the provider's field Blaxel event ai.blaxel.controlplane.api.terminated",
+            "source": "provider",
+            "value": "2026-10-19T16:05:47.330381+00:00"
+          },
+          "field": "Blaxel event ai.blaxel.controlplane.api.terminated",
+          "read": "after_destroy"
+        },
+        {
+          "kind": "ready",
+          "at": {
+            "how": "the provider's field lastUsedAt",
+            "source": "provider",
+            "value": "2026-10-19T16:05:14+00:00"
+          },
+          "field": "lastUsedAt",
+          "read": "after_destroy"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {
+        "cpu_seconds": {
+          "value": 55.18,
+          "source": "measured",
+          "how": "/proc/stat user + nice + system + irq + softirq, the whole machine: each session's last reading, summed"
+        }
+      },
+      "provider_records": []
+    },
+    "times": {
+      "start": {
+        "value": "2026-10-19T16:05:13.870444Z",
+        "source": "provider",
+        "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.create."
+      },
+      "end": {
+        "value": "2026-10-19T16:05:47.330381Z",
+        "source": "provider",
+        "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.terminated."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-10-19T16:05:13.870444Z",
+      "source": "provider",
+      "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.create."
+    },
+    "sandbox_end": {
+      "value": "2026-10-19T16:05:47.330381Z",
+      "source": "provider",
+      "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.terminated."
+    },
+    "usage": {
+      "low": {
+        "provider": "blaxel",
+        "started": {
+          "at": "2026-10-19T16:05:13.870444Z",
+          "source": "provider",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.create."
+        },
+        "region": {
+          "name": "blaxel:us-was-1",
+          "source": "recorded",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "source": "recorded",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-19T16:05:47.388662Z",
+            "how": "Waiting for Blaxel's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "blaxel",
+        "started": {
+          "at": "2026-10-19T16:05:13.870444Z",
+          "source": "provider",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The provider's own time: Blaxel event ai.blaxel.controlplane.api.create."
+        },
+        "region": {
+          "name": "blaxel:us-was-1",
+          "source": "recorded",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "source": "recorded",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-19T16:05:47.388662Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-19T16:05:47.388662Z",
+            "how": "Waiting for Blaxel's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Snapshot storage $0.20 / GB-month (the state kept for a sandbox in standby)",
+          "Images $0.045 / GB-month (templated deployment images; unknown whether Blaxel's own blaxel/base-image is charged); recorded as image_storage and not counted in a sandbox's cost",
+          "Volumes $0.12 / GB-month provisioned, billed \"for as long as the volume exists, regardless of how much data you actually write in it\" (pricing page); recorded as volume_storage and not counted in a sandbox's cost",
+          "Sandbox filesystem: no separate charge. The writable layer is a tmpfs in the sandbox's RAM (about 50% of memory), which the memory rate already bills by allocation; the billing API lists only compute runtime, image storage and snapshot storage as sandbox dimensions. The docs' line that storage is charged while a sandbox is active names no rate and no dimension",
+          "Internet egress and internal traffic: Included. No per-creation fee published",
+          "Plan: Pay-as-you-go \"$0.00+ USAGE\". The pricing page lists one memory rate (\"$0.0000115 / GB RAM · second\") and does not tie it to a tier; the Custom plan is priced by quote (\"Contact us for a quote.\"). Which sizes it needs: Blaxel publishes no per-sandbox size cap by tier (the quotas page says higher tiers unlock 'higher sandbox and volume sizes'); tiers are reached by top-up ($20 / month Tier 1, $50 / month Tier 2, the rest unpublished) or a quota request. Optional add-ons: email support $800 / month + 3% of usage, dedicated support $1,600 / month + 10%, HIPAA $250 / month; custom domains: \"Fully-qualified domains\" \"$0.25 / domain · month\" and \"Wildcard domains\" \"$20 / domain · month\"; dedicated IPs, egress proxy free during beta",
+          "Plan allowance: Up to $200 in free credits (promotional credit does not count toward tier top-ups); Tier 0 is free with 10 sandboxes, Tier 1 needs a $20 / month top-up (50), Tier 2 $50 / month (200)",
+          "CPU: bundled with allocated memory; no separate CPU rate is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "blaxel@2026-11-07-122300Z",
+        "as_of": "2026-10-19T16:05:47.388662Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Snapshot storage $0.20 / GB-month (the state kept for a sandbox in standby)",
+          "Images $0.045 / GB-month (templated deployment images; unknown whether Blaxel's own blaxel/base-image is charged); recorded as image_storage and not counted in a sandbox's cost",
+          "Volumes $0.12 / GB-month provisioned, billed \"for as long as the volume exists, regardless of how much data you actually write in it\" (pricing page); recorded as volume_storage and not counted in a sandbox's cost",
+          "Sandbox filesystem: no separate charge. The writable layer is a tmpfs in the sandbox's RAM (about 50% of memory), which the memory rate already bills by allocation; the billing API lists only compute runtime, image storage and snapshot storage as sandbox dimensions. The docs' line that storage is charged while a sandbox is active names no rate and no dimension",
+          "Internet egress and internal traffic: Included. No per-creation fee published",
+          "Plan: Pay-as-you-go \"$0.00+ USAGE\". The pricing page lists one memory rate (\"$0.0000115 / GB RAM · second\") and does not tie it to a tier; the Custom plan is priced by quote (\"Contact us for a quote.\"). Which sizes it needs: Blaxel publishes no per-sandbox size cap by tier (the quotas page says higher tiers unlock 'higher sandbox and volume sizes'); tiers are reached by top-up ($20 / month Tier 1, $50 / month Tier 2, the rest unpublished) or a quota request. Optional add-ons: email support $800 / month + 3% of usage, dedicated support $1,600 / month + 10%, HIPAA $250 / month; custom domains: \"Fully-qualified domains\" \"$0.25 / domain · month\" and \"Wildcard domains\" \"$20 / domain · month\"; dedicated IPs, egress proxy free during beta",
+          "Plan allowance: Up to $200 in free credits (promotional credit does not count toward tier top-ups); Tier 0 is free with 10 sandboxes, Tier 1 needs a $20 / month top-up (50), Tier 2 $50 / month (200)",
+          "CPU: bundled with allocated memory; no separate CPU rate is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "blaxel@2026-11-07-122300Z",
+        "as_of": "2026-10-19T16:05:47.388662Z"
+      }
+    }
+  },
+  "as_of": "2026-10-19T16:05:47.388662Z"
+}

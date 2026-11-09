@@ -1,0 +1,223 @@
+# yaml-language-server: $schema=../../../schemas/price-version.schema.json
+provider: modal
+version: modal@2026-10-29-163500Z
+effective_from: '2026-10-11T09:12:49Z'
+retrieved_at: '2026-10-29T16:35:00Z'
+supersedes:
+- modal@2026-10-24-065000Z
+sources:
+- url: https://modal.com/pricing
+  quote: Modal Sandbox pricing | Compute costs | CPU (non-preemptible) Physical core (2 vCPU equivalent)
+    $0.00003942 / core / sec *minimum of 0.125 cores per container | Memory (non-preemptible) $0.00000667
+    / GiB / sec
+- url: https://modal.com/pricing
+  quote: CPU $0.0000131 / core / sec Physical core (2 vCPU equivalent) *minimum of 0.125 cores per container
+    Memory $0.00000222 / GiB / sec
+- url: https://modal.com/pricing
+  quote: 'How are CPU and memory usage metered? Modal continuously records CPU and memory consumption.
+    CPU usage is tracked in terms of fractional physical cores, allowing for higher utilization compared
+    to providers that set minimum thresholds for core charges. Note that each physical core is equivalent
+    to 2 vCPUs as offered by AWS or GCP. You''ll be charged based on whichever is higher: the amount you
+    request or the amount you actually use. Each container has a minimum request of 128 MiB of memory
+    and 0.125 CPU cores, which you can increase if you need more resources.'
+- url: https://modal.com/pricing
+  quote: Starter $0 + compute / month | $30 / month free credits | 3 workspace seats included | 100 containers
+    + 10 GPU concurrency | 1 TiB / month free network egress
+- url: https://modal.com/pricing
+  quote: Team $250 + compute / month | $100 / month free credits | Unlimited seats | 5000 containers +
+    50 GPU concurrency | 10 TiB / month free network egress
+- url: https://modal.com/pricing
+  quote: Volumes $0.09 / GiB / mo *includes 1 TiB / mo free | Network Egress $0.04 / GiB *See plan for
+    included usage / mo
+- url: https://modal.com/pricing
+  quote: Region selection | 1.15 - 1.75x base prices | 1.15 - 1.75x base prices | 1.15 - 1.75x base prices
+- url: https://modal.com/docs/guide/sandbox-resources
+  quote: The cpu parameter specifies physical CPU cores (1 core = 2 vCPUs), and memory specifies MiB
+- url: https://modal.com/docs/guide/sandbox-resources
+  quote: 'Modal Sandboxes are billed by the second based on whichever is higher: your resource request
+    or your actual usage. | You pay for max(request, actual) .'
+- url: https://modal.com/docs/guide/sandbox-resources
+  quote: Sandboxes have the same disk limits as other Modal containers, and their disk size cannot be
+    increased. On the VM runtime , the root filesystem is a fixed 512 GiB.
+- url: https://modal.com/docs/guide/resources
+  quote: Note that this value corresponds to physical cores, not vCPUs.
+- url: https://modal.com/docs/guide/resources
+  quote: For both CPU and memory, a maximum is enforced at Function or Sandbox creation time to ensure
+    your containers can be scheduled for execution. Requests exceeding the maximum will be rejected with
+    an InvalidError .
+- url: https://modal.com/docs/guide/resources
+  quote: 'For CPU and memory, you’ll be charged based on whichever is higher: your request or actual usage.
+    | Disk requests are billed by increasing the memory request at a 20:1 ratio.'
+- url: https://modal.com/docs/guide/resources
+  quote: Increased disk sizes can be requested with the ephemeral_disk parameter on @app.function().
+- url: https://modal.com/docs/guide/region-selection
+  quote: A multiplier on top of our base usage pricing will be applied to any Function or Sandbox that
+    has a container region defined. | Broad (e.g. us ) | 1.15x | Narrow (e.g. us-west ) | 1.75x
+- url: https://modal.com/docs/guide/region-selection
+  quote: 'Here’s an example: let’s say you have a Function or Sandbox container that uses 1 T4, 1 CPU
+    core, and 1GB memory. You’ve specified that it should run in us-west. The cost to run it for 1 hour
+    would be ((T4 hourly cost) + (CPU hourly cost for one core) + (Memory hourly cost for one GB)) * 1.75.'
+- url: https://modal.com/docs/guide/preemption
+  quote: Modal Sandboxes are not subject to preemption, except in the case where a gpu requirement is
+    specified.
+- url: https://modal.com/docs/guide/network-egress-billing
+  quote: Starting October 1, 2026, Modal charges for network egress. Network egress is outbound network
+    traffic measured from your Modal tasks. This includes traffic sent through a container’s network interface,
+    private network traffic sent directly to other Modal containers, and uploads through Cloud Bucket
+    Mounts . Reads from and writes to Modal Volumes do not count as network egress.
+- url: https://modal.com/docs/guide/network-egress-billing
+  quote: Plan | Included per billing cycle | Additional egress | Starter | 1 TiB | $0.04 per GiB | Team
+    | 10 TiB | $0.04 per GiB | Enterprise | 100 TiB | $0.04 per GiB
+- url: https://modal.com/docs/guide/network-egress-billing
+  quote: The allowance applies once to total egress across the entire Workspace. | Starting October 1,
+    2026, egress is charged. Your first bill including egress arrives on November 1, 2026.
+- url: https://modal.com/docs/guide/sandbox-snapshots
+  quote: Filesystem Snapshot 30 days after creation Directory Snapshot 30 days after creation Memory Snapshot
+    7 days after creation
+- url: https://modal.com/docs/guide/sandbox-snapshots
+  quote: Filesystem Snapshots and Directory Snapshots are Images and are automatically garbage collected
+    after their TTL expires (30 days by default). You can configure a custom TTL when creating a snapshot,
+    or opt out of expiry entirely to retain snapshots indefinitely. Memory Snapshots expire 7 days after
+    creation and cannot currently be extended.
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia B300 $0.001972 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia B200 $0.001736 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia H200 SXM $0.001261 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia H100 SXM5 $0.001097 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia RTX PRO 6000 $0.000842 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia A100, 80 GB $0.000694 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia A100, 40 GB $0.000583 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia L40S $0.000542 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia A10 $0.000306 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia L4 $0.000222 / sec
+- url: https://modal.com/pricing
+  quote: GPU Tasks | Nvidia T4 $0.000164 / sec
+- url: https://modal.com/pricing
+  quote: Sandboxes are billed at non-preemptible rates of 3x list price.
+classes:
+- name: default
+  default: true
+  covers:
+  - default
+  - vm
+  rates:
+    cpu:
+      usd: '0.00003942'
+      per: core-second
+      size_per_unit: '2'
+    memory:
+      usd: '0.00000667'
+      per: gib-second
+    egress:
+      usd: '0.04'
+      per: gib
+    gpu:
+      nvidia:b300:
+        usd: '0.001972'
+        per: gpu-second
+      nvidia:b200:
+        usd: '0.001736'
+        per: gpu-second
+      nvidia:h200:
+        usd: '0.001261'
+        per: gpu-second
+      nvidia:h100:
+        usd: '0.001097'
+        per: gpu-second
+      nvidia:rtx-pro-6000:
+        usd: '0.000842'
+        per: gpu-second
+      nvidia:a100-80gb:
+        usd: '0.000694'
+        per: gpu-second
+      nvidia:a100-40gb:
+        usd: '0.000583'
+        per: gpu-second
+      nvidia:l40s:
+        usd: '0.000542'
+        per: gpu-second
+      nvidia:a10:
+        usd: '0.000306'
+        per: gpu-second
+      nvidia:l4:
+        usd: '0.000222'
+        per: gpu-second
+      nvidia:t4:
+        usd: '0.000164'
+        per: gpu-second
+  meter:
+    cpu:
+      basis: larger_of_request_and_use
+      billed_states:
+      - running
+    memory:
+      basis: larger_of_request_and_use
+      billed_states:
+      - running
+    gpu:
+      basis: allocated
+      billed_states:
+      - running
+  region_multipliers:
+    us: '1.15'
+    us-west: '1.75'
+exclusions:
+- 'Network egress (new): from 2026-10-01 outbound traffic is $0.04 per GiB above a workspace-wide allowance
+  of 1 TiB per billing cycle on Starter, 10 TiB on Team, 100 TiB on Enterprise. It counts all traffic
+  sent through a container''s network interface, private network traffic sent directly to other Modal
+  containers and uploads through Cloud Bucket Mounts; Volume reads and writes do not count. Tracked from
+  2026-09-01 with no charge in September; the first bill with egress is 2026-11-01. A sandbox that sends
+  almost no traffic stays inside the allowance.'
+- 'Per-creation fee: none listed on the pricing page or the Sandbox docs'
+- 'Volumes: $0.09 / GiB / month, first 1 TiB / month free (not included in the hourly rates here)'
+- 'Sandbox snapshots: filesystem and directory snapshots expire 30 days after creation by default, and
+  the TTL can be set per snapshot or expiry turned off; memory snapshots expire 7 days after creation and
+  cannot currently be extended. No price stated (not included in the hourly rates here)'
+- 'Plan fee: Starter $0 / month + compute; Team $250 / month + compute. The sandbox rates are the same
+  on both.'
+- 'Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and
+  3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups
+  and academics up to $10k (by application)'
+open_questions:
+- No numeric maximum for cpu or memory is published.
+- 'Image pull: Modal''s pages do not say whether an image pull is billed. In a check against Modal''s hourly
+  per-App bill (providers/modal/evidence/2026-10-11-hourly-bill-batch.md), five cold public images whose
+  pulls took 20 to 133 s inside the create call were not billed: 620 s billed against 611 s from create
+  returned and 1,016 s from create sent.'
+- 'Whether idle time or scheduling time before the container runs is billed: the docs say per second at
+  max(request, actual) and document no idle discount. Confirm on the first monthly invoice'
+- 'GPU basis: Modal does not state whether a GPU is billed on allocation or use; this version assumes
+  allocation while running.'
+- 'Disk: Modal bills a Function''s disk request (ephemeral_disk) by raising its memory request at 20:1,
+  but a sandbox''s disk size cannot be increased, so a sandbox makes no disk request. Whether a sandbox''s
+  disk adds to its memory charge is not stated; this version prices memory at its request.'
+- Snapshot storage price is not published. The sandbox snapshots page, read 2026-10-20, states retention
+  periods and no price, and the pricing page does not list snapshots.
+- A third-party price list (ComputeSDK's pricing.json) shows memory at $0.00000672 / GiB-s against the
+  official $0.00000667 used here; this third-party figure is unverified.
+- 'Correction: this version supersedes modal@2026-10-20 from the same effective date; no rate changed.
+  It removes the rule that priced disk as memory (20 GiB of disk per GiB) from the default class. Modal''s resources
+  page ties the 20:1 rule to a Function''s ephemeral_disk request, and the sandbox resources page says a
+  sandbox''s disk size cannot be increased. With the rule, a sandbox recorded with the VM runtime''s fixed
+  512 GiB disk would be priced as 25.6 GiB of memory; now its memory is priced at the request and disk
+  adds nothing. It also cites the region-selection page''s worked example, which multiplies CPU, memory and GPU, in
+  place of an open question on memory; replaces the image pull question with the measured finding; states
+  the full egress scope and snapshot retention as the live pages give them; and notes that the GPU basis
+  is assumed.'
+- 'Spec classes: this version adds `covers` to the default class, so a usage record whose class is the spec
+  class `default` (gVisor) or `vm` is priced at the one Sandbox rate set. Read 2026-10-24: modal.com/pricing
+  lists one Sandbox rate and no VM-specific rate.
+  A usage class no price class covers is unknown. No rate changed.'
+- 'Correction: this version supersedes modal@2026-10-24-065000Z from the same effective date; no rate changed.
+  Read 2026-10-29: modal.com/pricing retitled the Sandbox section "Modal Sandbox pricing", labelled its CPU and
+  memory rows "non-preemptible" and says Sandboxes are billed at non-preemptible rates of 3x list price. The
+  CPU and memory figures are the ones used here, so only the first pricing-page quote changed.'

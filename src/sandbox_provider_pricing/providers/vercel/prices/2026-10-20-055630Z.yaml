@@ -1,0 +1,166 @@
+provider: vercel
+version: vercel@2026-10-20-055630Z
+effective_from: '2026-09-29T22:53:00Z'
+retrieved_at: '2026-10-20T05:56:30Z'
+supersedes:
+- vercel@2026-10-12
+- vercel@2026-10-20
+month_hours: '730'
+sources:
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Sandbox Active CPU | 5 hours/month | $0.128/hour | $0.128/hour |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Sandbox Provisioned Memory | 420 GB-hours/month | $0.0212/GB-hour | $0.0212/GB-hour |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: The Active CPU, Provisioned Memory, Sandbox Data Transfer, and Drive rates in this table apply
+    to the default iad1 region.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Rates for Active CPU, Provisioned Memory, Sandbox Data Transfer, Drive Storage, Drive Reads, and
+    Drive Writes vary by region.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Washington D.C., USA (iad1) | Resource | Price | Active CPU | $0.128 per hour | Provisioned Memory
+    | $0.0212 per GB-hr | Sandbox Data Transfer | $0.15 per GB |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Time spent waiting for I/O (such as network requests, database queries, or AI model calls) does
+    not count toward Active CPU.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: You can provision 1 or an even number of vCPUs between 2 and 32 depending on your plan . The
+    default is 2 vCPUs.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Each vCPU includes 2 GB of memory. Provisioned memory is billed in 1 minute minimum increments
+    to account for sandbox lifecycle management.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Quick test | 2 min | 1 | 2 GB | $0.0004 | $0.0014 | $0.0018 | | AI code validation | 5 min
+    | 2 | 4 GB | $0.0021 | $0.0071 | $0.0092 | | Build and test | 30 min | 4 | 8 GB | $0.0256 | $0.0848
+    | $0.1104 | | Long-running task | 2 hr | 8 | 16 GB | $0.2048 | $0.6784 | $0.8832 |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Plan | Maximum vCPUs | Maximum memory | Maximum open ports | Disk size | Hobby | 4 | 8GB | 15
+    | 64 GB | Pro | 8 | 16GB | 15 | 64 GB | Enterprise | 32 | 64GB | 15 | 64 GB
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Sandbox Creations | 5,000/month | $0.60/1M | $0.60/1M |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Sandbox Data Transfer | 20 GB/month | Included in Flat Rate CDN | $0.15/GB |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Data your sandbox sends to the internet, plus all traffic to and from exposed ports, is billable
+    and measured in GB. Data your sandbox downloads from the internet, such as packages, Git repositories,
+    artifacts, and datasets, is free.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Snapshot Storage | 15 GB (lifetime) | $0.08/GB-month | $0.08/GB-month |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: is automatically provisioned 64 GB of ephemeral NVMe storage.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: You will not be charged for any additional usage.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Enterprise plans have custom pricing and quotas.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: Once you exceed the quotas, sandbox creation is paused until 30 days have passed since you first
+    used the feature.
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Concurrent Sandboxes | 10 | 10,000 | 10,000 |'
+- url: https://vercel.com/docs/sandbox/pricing
+  quote: '| Max Session Duration | 45 minutes | 24 hours | 24 hours |'
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: $20/month Pro platform fee
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: $20/month in usage credit
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: 'Monthly credit: Every Pro plan has $20 in monthly credit.'
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: Your credit expires at the end of the month if you don't use it, and resets at the beginning of
+    the following month.
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: 'Flat Rate CDN: Pro includes the lowest capacity tier at no extra cost, with a capacity of 1 million
+    CDN requests and 1 TB of data transfer each month.'
+- url: https://vercel.com/docs/plans/pro-plan
+  quote: Additional paid seats ( Owner or Member roles) for $20/month each
+- url: https://vercel.com/docs/sandbox/concepts/regions
+  quote: The default region is iad1.
+- url: https://vercel.com/docs/sandbox/concepts/regions
+  quote: '| iad1 | us-east-1 | Washington, D.C., USA |'
+- url: https://vercel.com/docs/rest-api/sandboxes/create-a-named-sandbox-1
+  quote: The number of virtual CPUs to allocate to the sandbox. Must be 1, or an even number.
+- url: https://vercel.com/docs/rest-api/sandboxes/create-a-named-sandbox-1
+  quote: The amount of memory in megabytes to allocate to the sandbox. Must equal vcpus * 2048.
+- url: https://vercel.com/pricing
+  quote: Sandbox Active CPU | 5 hours / month included | Starting at $0.128 per hour | Custom | Sandbox
+    Provisioned Memory | 420 GB-hrs / month included | Starting at $0.0212 per GB-hr | Custom
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.128'
+      per: vcpu-hour
+    memory:
+      usd: '0.0212'
+      per: gb-hour
+      size_per_unit: '1'
+    creation:
+      usd: '0.60'
+      per: million-creations
+    egress:
+      usd: '0.15'
+      per: gb
+    snapshot_storage:
+      usd: '0.08'
+      per: gb-month
+  meter:
+    cpu:
+      basis: active
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+      increment_seconds: 60
+    snapshot_storage:
+      billed_states:
+      - stopped
+exclusions:
+- 'Disk: 64 GB ephemeral NVMe per sandbox is included; no separate disk charge (SDK 3.0.0+ or custom image;
+  32 GB for deprecated runtimes).'
+- 'Network: data the sandbox sends to the internet and all traffic on exposed ports is billable, downloads
+  are free. Priced at the iad1 list rate, $0.15/GB. Plan allowances are not deducted: Hobby includes 20
+  GB/month, and the plan table lists Pro data transfer as included in Flat Rate CDN, whose lowest tier,
+  included with Pro, has a capacity of 1 TB of data transfer each month. A sandbox that sends almost no
+  data pays almost nothing here.'
+- 'Drives (not included in the hourly rates here): $0.05/GB-month storage, $0.0015/GB reads, $0.004/GB
+  writes at iad1.'
+- 'Plan fee: Pro $20/month platform fee (1 deploying seat and $20/month usage credit, which expires monthly),
+  extra seats $20/month each. Hobby $0. Pro and Enterprise list the same rates except data transfer, and
+  Enterprise plans have custom pricing; Hobby usage is never billed. The list-price basis is Pro, with data
+  transfer at the iad1 rate; 1/2, 2/4 and 4/8 also run on Hobby (free within quota, then creation is paused); 8/16
+  needs Pro.'
+- 'Plan allowance: Hobby, per month: 5 active CPU-hours, 420 GB-hours, 5,000 creations, 20 GB data transfer,
+  15 GB snapshot storage (lifetime); 10 concurrent sandboxes, 45-minute sessions, at most 4 vCPU / 8 GB;
+  past the quota creation is paused, never billed. At 2 vCPU / 4 GiB that is 105 sandbox-hours of memory
+  or 2.5 h of full CPU (25 h at 10% active). Pro: the $20/month credit applies to sandbox usage.'
+open_questions:
+- GB vs GiB is not defined by Vercel. The billed quantity is not in doubt (4 GB for a 2 vCPU sandbox,
+  matching all four of the page's worked examples), so total_usd holds either way; only the per-GiB normalization
+  rests on 1 GB = 1 GiB = 1024 MB, inferred from the REST 2048 MB per 2 GB and MemTotal 4283 MiB.
+- 'Regional rates: the page''s per-region table is an interactive selector and the fetched text shows
+  only the default (iad1) rows. The base rates the page says apply to iad1 are used here. vercel.com/pricing
+  says Sandbox rates are ''Starting at'' these, so other regions may cost more.'
+- '''Active CPU'' is per vCPU only by the page''s worked examples (the metric text does not say); its
+  sampling granularity and any minimum are not stated. The REST response reports totalActiveCpuDurationMs,
+  which can measure it once a charge is compared.'
+- Only memory has a documented 1 minute minimum; whether CPU has one is not stated.
+- The Pro plan is the list-price basis. On the Hobby plan usage is free within quota.
+- 'Correction: this version supersedes vercel@2026-10-12 and vercel@2026-10-20 from vercel@2026-10-12''s
+  effective date (no rate changed between them), and prices data
+  transfer at $0.15/GB instead of $0. The earlier version read the plan table''s "Included in Flat Rate
+  CDN" for Pro as free. The regional rate table lists $0.15 per GB for iad1 with no plan qualifier, Flat
+  Rate CDN on Pro is a tier with a fixed monthly capacity, and a billing charges export priced one data
+  transfer row at $0.15 per GB. All other rates are unchanged.'
+- An earlier price version used 4.295 GB for memory (0.0911); the current page bills 4 GB (0.0848).
+- 'Range: the lower bound is memory only and the upper bound is memory plus all vCPUs fully active; the
+  numeric bounds depend on sandbox size.'
+snapshot_storage:
+  usd: '0.08'
+  per: gb-month
+  rate_source: published_snapshot_rate
+  source_url: https://vercel.com/docs/sandbox/pricing
+  checked_at: '2026-10-20T05:56:30Z'
+  note: Published snapshot storage rate; GB is decimal for customer reservation.

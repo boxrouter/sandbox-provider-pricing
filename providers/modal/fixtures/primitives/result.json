@@ -1,0 +1,238 @@
+{
+  "provider": "modal",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Network egress (new): from 2026-10-01 outbound traffic is $0.04 per GiB above a workspace-wide allowance of 1 TiB per billing cycle on Starter, 10 TiB on Team, 100 TiB on Enterprise. It counts all traffic sent through a container's network interface, private network traffic sent directly to other Modal containers and uploads through Cloud Bucket Mounts; Volume reads and writes do not count. Tracked from 2026-09-01 with no charge in September; the first bill with egress is 2026-11-01. A sandbox that sends almost no traffic stays inside the allowance.",
+    "Per-creation fee: none listed on the pricing page or the Sandbox docs",
+    "Volumes: $0.09 / GiB / month, first 1 TiB / month free; recorded as volume_storage and not counted in a sandbox's cost",
+    "Sandbox snapshots: filesystem and directory snapshots expire 30 days after creation by default, and the TTL can be set per snapshot or expiry turned off; memory snapshots expire 7 days after creation and cannot currently be extended. No price stated (not included in the hourly rates here)",
+    "Plan fee: Starter $0 / month + compute; Team $250 / month + compute. The sandbox rates are the same on both.",
+    "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-10-11T16:13:09.896781Z",
+    "until": "2026-10-18T16:03:09.896781Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-10-11T16:13:09.896781Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 4,
+    "prices": "modal@2026-11-05-065701Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "modal",
+      "sandbox_id": null,
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": "us",
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:02:57.679627+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:02:57.832118+00:00"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:09.688865+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:09.896781+00:00"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {
+        "cpu_seconds": {
+          "value": 5.52,
+          "source": "measured",
+          "how": "cgroup v1 cpuacct.usage: each session's last reading, summed"
+        }
+      },
+      "provider_records": []
+    },
+    "times": {
+      "start": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-10-11T16:02:57.832118Z",
+      "source": "recorded",
+      "how": "When the provider's create call returned."
+    },
+    "sandbox_end": {
+      "value": "2026-10-11T16:03:09.896781Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "modal",
+        "started": {
+          "at": "2026-10-11T16:02:57.832118Z",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "us",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-11T16:03:09.896781Z",
+            "how": "Waiting for Modal's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "modal",
+        "started": {
+          "at": "2026-10-11T16:02:57.832118Z",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "us",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-11T16:03:09.896781Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-11T16:03:09.896781Z",
+            "how": "Waiting for Modal's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Network egress (new): from 2026-10-01 outbound traffic is $0.04 per GiB above a workspace-wide allowance of 1 TiB per billing cycle on Starter, 10 TiB on Team, 100 TiB on Enterprise. It counts all traffic sent through a container's network interface, private network traffic sent directly to other Modal containers and uploads through Cloud Bucket Mounts; Volume reads and writes do not count. Tracked from 2026-09-01 with no charge in September; the first bill with egress is 2026-11-01. A sandbox that sends almost no traffic stays inside the allowance.",
+          "Per-creation fee: none listed on the pricing page or the Sandbox docs",
+          "Volumes: $0.09 / GiB / month, first 1 TiB / month free; recorded as volume_storage and not counted in a sandbox's cost",
+          "Sandbox snapshots: filesystem and directory snapshots expire 30 days after creation by default, and the TTL can be set per snapshot or expiry turned off; memory snapshots expire 7 days after creation and cannot currently be extended. No price stated (not included in the hourly rates here)",
+          "Plan fee: Starter $0 / month + compute; Team $250 / month + compute. The sandbox rates are the same on both.",
+          "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
+          "Credits and discounts"
+        ],
+        "price_version": "modal@2026-11-05-065701Z",
+        "as_of": "2026-10-11T16:03:09.896781Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Network egress (new): from 2026-10-01 outbound traffic is $0.04 per GiB above a workspace-wide allowance of 1 TiB per billing cycle on Starter, 10 TiB on Team, 100 TiB on Enterprise. It counts all traffic sent through a container's network interface, private network traffic sent directly to other Modal containers and uploads through Cloud Bucket Mounts; Volume reads and writes do not count. Tracked from 2026-09-01 with no charge in September; the first bill with egress is 2026-11-01. A sandbox that sends almost no traffic stays inside the allowance.",
+          "Per-creation fee: none listed on the pricing page or the Sandbox docs",
+          "Volumes: $0.09 / GiB / month, first 1 TiB / month free; recorded as volume_storage and not counted in a sandbox's cost",
+          "Sandbox snapshots: filesystem and directory snapshots expire 30 days after creation by default, and the TTL can be set per snapshot or expiry turned off; memory snapshots expire 7 days after creation and cannot currently be extended. No price stated (not included in the hourly rates here)",
+          "Plan fee: Starter $0 / month + compute; Team $250 / month + compute. The sandbox rates are the same on both.",
+          "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
+          "Credits and discounts"
+        ],
+        "price_version": "modal@2026-11-05-065701Z",
+        "as_of": "2026-10-11T16:03:09.896781Z"
+      }
+    }
+  },
+  "as_of": "2026-10-11T16:03:09.896781Z"
+}

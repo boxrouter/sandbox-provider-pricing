@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: boxd
+version: boxd@2026-11-02-082924Z
+effective_from: '2026-11-02T00:00:00Z'
+retrieved_at: '2026-11-02T08:29:24Z'
+supersedes:
+- boxd@2026-11-02
+sources:
+- url: https://boxd.sh/llms-full.txt
+  quote: 'vCPU: EUR 0.039 / USD 0.047 per vCPU-hour, on CPU time actually used (not
+    the machine''s vCPU count): a machine busy 10% of an hour on 2 vCPU pays for 0.2
+    vCPU-hours'
+- url: https://boxd.sh/llms-full.txt
+  quote: 'RAM: EUR 0.012 / USD 0.014 per GiB-hour, on memory actually resident (not
+    the provisioned 8 GiB), while running or in standby'
+- url: https://boxd.sh/llms-full.txt
+  quote: 'Disk: EUR 0.00008 / USD 0.000096 per GiB-hour, on disk written to (not the
+    provisioned 100 GiB), in every state; hibernated and stopped machines pay for
+    disk only'
+- url: https://boxd.sh/llms-full.txt
+  quote: Usage is metered every second and settled every 15 minutes
+- url: https://boxd.sh/llms-full.txt
+  quote: No monthly plan, no per-seat fee.
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.047'
+      per: vcpu-hour
+    memory:
+      usd: '0.014'
+      per: gib-hour
+    disk:
+      usd: '0.000096'
+      per: gib-hour
+  meter:
+    cpu:
+      basis: active
+      billed_states:
+      - running
+      increment_seconds: 1
+    memory:
+      basis: active
+      billed_states:
+      - running
+      - paused
+      increment_seconds: 1
+    disk:
+      basis: active
+      billed_states:
+      - running
+      - paused
+      - stopped
+      increment_seconds: 1
+exclusions:
+- Organization credits, discounts, taxes and custom or self-host licence pricing are
+  outside per-machine USD list cost.
+- No monthly plan or per-seat fee is published for pay as you go; no paid-plan minimum
+  is required.
+- Organization settlements round each resource up to a millionth every 15 minutes;
+  that account rounding is not attributed to a machine.
+- Snapshot and custom-domain charges are not stated by the provider on the checked
+  pricing pages; absent rates are not zero.
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://boxd.sh/llms-full.txt
+    note: Billed per vCPU-hour of CPU time used; the quote assumes full use.
+  memory:
+    treatment: in_quote
+    source: https://boxd.sh/llms-full.txt
+    note: Billed per GiB-hour while running and paused.
+  disk:
+    treatment: in_quote
+    source: https://boxd.sh/llms-full.txt
+    note: Billed per GiB-hour of disk written, in every state.
+  creation:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: No per-creation fee is listed; state transitions cost nothing (providers/boxd/evidence/2026-11-02-pricing.txt).
+      Not published on the pages checked; treated as possibly billable, never as free.
+  egress:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: No egress charge is listed. Not published on the pages checked; treated as possibly billable,
+      never as free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: Snapshot storage is not stated. Not published on the pages checked; treated as possibly billable,
+      never as free.
+  image_storage:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: Image pulls and storage are not stated. Not published on the pages checked; treated as possibly
+      billable, never as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: No volume charge is listed. Not published on the pages checked; treated as possibly billable,
+      never as free.
+  requests:
+    treatment: unbounded
+    source: https://boxd.sh/llms-full.txt
+    note: Custom-domain and request charges are not stated. Not published on the pages checked; treated
+      as possibly billable, never as free.
+open_questions:
+- No fixed per-size list price exists. CPU time used, resident RAM and written disk
+  determine cost; use machines.usage(id).cost_micro only after complete is true and
+  USD rates match this version, never an allocation estimate.
+- Paused means standby or suspend-to-RAM, which bills resident RAM and written disk;
+  hibernation and stopped machines bill disk only. The generic stopped state represents
+  disk-only retention, not deletion.
+- Machine usage cost_micro is the provider's estimate at current rates, not an invoiced
+  charge; organization billing activity is the charged amount. Retention and late
+  corrections need measurement.
+- Snapshot storage, custom-domain fees, image pulls and exact billing edges are not
+  stated by the provider on the checked pages.
+- 'Correction: this version supersedes boxd@2026-11-02 from the same effective date; no rate, class or
+  source changed, and no page was read again. It adds `coverage`, which states each billable charge as
+  in the reservation quote, not billed, or unbounded, so a quote can say what it leaves out. retrieved_at
+  is the superseded version''s plus one second, so this version orders after it and the pages'' read date
+  stays as it was.'

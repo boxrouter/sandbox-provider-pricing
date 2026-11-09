@@ -1,0 +1,280 @@
+{
+  "provider": "boat",
+  "label": "reported",
+  "total": {
+    "low": "0.00288",
+    "high": "0.00288"
+  },
+  "lines": [],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "provider_reported",
+  "reported": {
+    "usd": "0.00288",
+    "source": "provider",
+    "how": "Boat's usage record for sandbox bx_redacted: dollars at list price."
+  },
+  "excluded": [
+    "Boat's own meter weights machine-seconds by size (0.5, 1, 2 and 50/9 for small, default, large and xlarge) at $0.036 per hour of default (secondsPerDollar 100000); the flat per-size machine rates above are the same prices. The weighted-second form is what the usage record reports; per-sandbox cost comes from Boat's reported dollars.",
+    "Plan commitment: $20, $100, $500 or $2000 per month per seat; the plan price is not a fee and returns as VM time at the list rates. Included VM time expires at the end of the billing period; the plan also sets concurrent sandboxes (100, 300, 1,000, 2,000) and included starts.",
+    "Extra starts: create, fork and resume each count as one start; above the plan's included starts a start costs $0.03 to $0.07, paid from the wallet.",
+    "Saved snapshots above the included count (10 per $20 of plan per seat, never fewer than 10): $0.056 per snapshot per day, charged while sandboxes are stopped too. Automatic snapshots are kept while a sandbox runs and for 14 days after it stops, at no cost.",
+    "AI credentials proxy: $1 for each day it is on, plus $1 per 1,000 requests, paid from the wallet; it also charges while sandboxes are stopped.",
+    "Wallet payments of $200 or more get a bonus of 2% to 25%. The 7-day free trial (card required) limits compute, concurrency and sizes.",
+    "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-01T04:05:19Z",
+    "until": "2026-11-01T04:20:04Z",
+    "interval_s": 300,
+    "next_read_at": "2026-11-01T04:10:20Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 1,
+    "prices": "boat@2026-11-01-052001Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "boat",
+      "sandbox_id": "bx_redacted",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 4,
+        "memory_mib": 8192,
+        "disk_mib": 52224,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-01T04:00:00Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-01T04:00:12Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-01T04:05:00Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-01T04:05:04Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "created",
+          "at": {
+            "value": "2026-11-01T04:00:10Z",
+            "source": "provider",
+            "how": "the sandbox's creation time in its usage record window"
+          },
+          "field": "since"
+        },
+        {
+          "kind": "stopped",
+          "at": {
+            "value": "2026-11-01T04:04:58Z",
+            "source": "provider",
+            "how": "the sandbox's stop time in its usage record window"
+          },
+          "field": "until"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [
+        {
+          "source": "boat.sandboxes.usage",
+          "read_at": "2026-11-01T04:05:20Z",
+          "body": {
+            "ok": true,
+            "type": "sandbox.usage",
+            "sandboxId": "bx_redacted",
+            "sandboxType": "default",
+            "billingMultiplier": 1,
+            "since": "2026-11-01T04:00:10Z",
+            "until": "2026-11-01T04:05:20Z",
+            "seconds": 288,
+            "dollars": 0.00288,
+            "secondsPerDollar": 100000,
+            "running": false
+          }
+        }
+      ],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-01T04:00:10Z",
+        "source": "provider",
+        "how": "The provider's own time: since."
+      },
+      "end": {
+        "value": "2026-11-01T04:04:58Z",
+        "source": "provider",
+        "how": "The provider's own time: until."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-01T04:00:10Z",
+      "source": "provider",
+      "how": "The provider's own time: since."
+    },
+    "sandbox_end": {
+      "value": "2026-11-01T04:04:58Z",
+      "source": "provider",
+      "how": "The provider's own time: until."
+    },
+    "usage": {
+      "low": {
+        "provider": "boat",
+        "started": {
+          "at": "2026-11-01T04:00:10Z",
+          "source": "provider",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The provider's own time: since."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 52224,
+          "source": "recorded",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-01T04:05:20Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      },
+      "high": {
+        "provider": "boat",
+        "started": {
+          "at": "2026-11-01T04:00:10Z",
+          "source": "provider",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The provider's own time: since."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 52224,
+          "source": "recorded",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-01T04:05:20Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-01T04:05:20Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Boat's own meter weights machine-seconds by size (0.5, 1, 2 and 50/9 for small, default, large and xlarge) at $0.036 per hour of default (secondsPerDollar 100000); the flat per-size machine rates above are the same prices. The weighted-second form is what the usage record reports; per-sandbox cost comes from Boat's reported dollars.",
+          "Plan commitment: $20, $100, $500 or $2000 per month per seat; the plan price is not a fee and returns as VM time at the list rates. Included VM time expires at the end of the billing period; the plan also sets concurrent sandboxes (100, 300, 1,000, 2,000) and included starts.",
+          "Extra starts: create, fork and resume each count as one start; above the plan's included starts a start costs $0.03 to $0.07, paid from the wallet.",
+          "Saved snapshots above the included count (10 per $20 of plan per seat, never fewer than 10): $0.056 per snapshot per day, charged while sandboxes are stopped too. Automatic snapshots are kept while a sandbox runs and for 14 days after it stops, at no cost.",
+          "AI credentials proxy: $1 for each day it is on, plus $1 per 1,000 requests, paid from the wallet; it also charges while sandboxes are stopped.",
+          "Wallet payments of $200 or more get a bonus of 2% to 25%. The 7-day free trial (card required) limits compute, concurrency and sizes.",
+          "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
+          "Credits and discounts"
+        ],
+        "price_version": "boat@2026-11-01-052001Z",
+        "as_of": "2026-11-01T04:05:20Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Boat's own meter weights machine-seconds by size (0.5, 1, 2 and 50/9 for small, default, large and xlarge) at $0.036 per hour of default (secondsPerDollar 100000); the flat per-size machine rates above are the same prices. The weighted-second form is what the usage record reports; per-sandbox cost comes from Boat's reported dollars.",
+          "Plan commitment: $20, $100, $500 or $2000 per month per seat; the plan price is not a fee and returns as VM time at the list rates. Included VM time expires at the end of the billing period; the plan also sets concurrent sandboxes (100, 300, 1,000, 2,000) and included starts.",
+          "Extra starts: create, fork and resume each count as one start; above the plan's included starts a start costs $0.03 to $0.07, paid from the wallet.",
+          "Saved snapshots above the included count (10 per $20 of plan per seat, never fewer than 10): $0.056 per snapshot per day, charged while sandboxes are stopped too. Automatic snapshots are kept while a sandbox runs and for 14 days after it stops, at no cost.",
+          "AI credentials proxy: $1 for each day it is on, plus $1 per 1,000 requests, paid from the wallet; it also charges while sandboxes are stopped.",
+          "Wallet payments of $200 or more get a bonus of 2% to 25%. The 7-day free trial (card required) limits compute, concurrency and sizes.",
+          "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
+          "Credits and discounts"
+        ],
+        "price_version": "boat@2026-11-01-052001Z",
+        "as_of": "2026-11-01T04:05:20Z"
+      }
+    }
+  },
+  "as_of": "2026-11-01T04:05:20Z"
+}

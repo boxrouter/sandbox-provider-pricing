@@ -1,0 +1,454 @@
+{
+  "blaxel-early-report-falsely-matures-039": [
+    {
+      "as_of": "2026-09-29T19:40:03+00:00",
+      "actual_report_observed_at": "2026-09-29T19:40:03+00:00",
+      "evidence": {
+        "provider": "blaxel",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "2026-09-29T19:40:03Z",
+          "cost": {
+            "status": "available",
+            "reason": null,
+            "readings": [
+              {
+                "amount": "0.25",
+                "currency": "USD",
+                "meter": "hourly_cost",
+                "interval_start": "2026-09-29T18:39:03+00:00",
+                "interval_end": "2026-09-29T19:39:03+00:00",
+                "scope": "sandbox",
+                "source": "Blaxel account metrics API"
+              }
+            ]
+          }
+        },
+        "provider_records": [],
+        "provider_times": [
+          {
+            "kind": "created",
+            "at": {
+              "value": "2026-09-29T18:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          },
+          {
+            "kind": "stopped",
+            "at": {
+              "value": "2026-09-29T19:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          }
+        ]
+      }
+    },
+    {
+      "as_of": "2026-09-29T19:49:04+00:00",
+      "actual_report_observed_at": "2026-09-29T19:40:03+00:00",
+      "evidence": {
+        "provider": "blaxel",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "2026-09-29T19:49:04Z",
+          "cost": {
+            "status": "available",
+            "reason": null,
+            "readings": [
+              {
+                "amount": "0.25",
+                "currency": "USD",
+                "meter": "hourly_cost",
+                "interval_start": "2026-09-29T18:39:03+00:00",
+                "interval_end": "2026-09-29T19:39:03+00:00",
+                "scope": "sandbox",
+                "source": "Blaxel account metrics API"
+              }
+            ]
+          }
+        },
+        "provider_records": [],
+        "provider_times": [
+          {
+            "kind": "created",
+            "at": {
+              "value": "2026-09-29T18:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          },
+          {
+            "kind": "stopped",
+            "at": {
+              "value": "2026-09-29T19:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          }
+        ]
+      }
+    },
+    {
+      "as_of": "9000-01-01T00:00:00.000001+00:00",
+      "actual_report_observed_at": "2026-09-29T19:40:03+00:00",
+      "evidence": {
+        "provider": "blaxel",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "9000-01-01T00:00:00.000001Z",
+          "cost": {
+            "status": "available",
+            "reason": null,
+            "readings": [
+              {
+                "amount": "0.25",
+                "currency": "USD",
+                "meter": "hourly_cost",
+                "interval_start": "2026-09-29T18:39:03+00:00",
+                "interval_end": "2026-09-29T19:39:03+00:00",
+                "scope": "sandbox",
+                "source": "Blaxel account metrics API"
+              }
+            ]
+          }
+        },
+        "provider_records": [],
+        "provider_times": [
+          {
+            "kind": "created",
+            "at": {
+              "value": "2026-09-29T18:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          },
+          {
+            "kind": "stopped",
+            "at": {
+              "value": "2026-09-29T19:39:03+00:00",
+              "source": "provider",
+              "how": "Provider-reported lifecycle time"
+            },
+            "field": "Provider-reported lifecycle time"
+          }
+        ]
+      }
+    }
+  ],
+  "no-report-039-moving-input": [
+    {
+      "as_of": "2026-10-19T18:39:03+00:00",
+      "evidence": {
+        "provider": "e2b",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "2026-10-19T18:39:03Z"
+        },
+        "provider_records": [],
+        "provider_times": []
+      }
+    },
+    {
+      "as_of": "9000-01-01T00:00:00.000001+00:00",
+      "evidence": {
+        "provider": "e2b",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "9000-01-01T00:00:00.000001Z"
+        },
+        "provider_records": [],
+        "provider_times": []
+      }
+    }
+  ],
+  "usage-report-039-moving-input": [
+    {
+      "as_of": "2026-10-19T18:39:03+00:00",
+      "evidence": {
+        "provider": "e2b",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "2026-10-19T18:39:03Z",
+          "usage": {
+            "status": "available",
+            "readings": [],
+            "reason": null,
+            "records": [
+              {
+                "id": "created",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.created",
+                "readings": [],
+                "times": [
+                  {
+                    "kind": "created",
+                    "at": "2026-10-20T12:00:00+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "paused",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.paused",
+                "readings": [
+                  {
+                    "meter": "cpu",
+                    "value": "1",
+                    "unit": "vCPU",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "memory",
+                    "value": "512",
+                    "unit": "MiB",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "execution_time",
+                    "value": "0",
+                    "unit": "ms",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  }
+                ],
+                "times": [
+                  {
+                    "kind": "paused",
+                    "at": "2026-10-20T12:00:12+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "resumed",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.resumed",
+                "readings": [],
+                "times": [
+                  {
+                    "kind": "resumed",
+                    "at": "2026-10-20T12:00:22+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "killed",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.killed",
+                "readings": [
+                  {
+                    "meter": "cpu",
+                    "value": "4",
+                    "unit": "vCPU",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "memory",
+                    "value": "2048",
+                    "unit": "MiB",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "execution_time",
+                    "value": "0",
+                    "unit": "ms",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  }
+                ],
+                "times": [
+                  {
+                    "kind": "ended",
+                    "at": "2026-10-20T12:00:31+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              }
+            ],
+            "observed_at": "2026-10-20T12:01:00+00:00",
+            "retention_seconds": 604800
+          }
+        },
+        "provider_records": [],
+        "provider_times": []
+      }
+    },
+    {
+      "as_of": "9000-01-01T00:00:00.000001+00:00",
+      "evidence": {
+        "provider": "e2b",
+        "sandbox_id": "native",
+        "calls": [],
+        "provider_reports": {
+          "read_at": "9000-01-01T00:00:00.000001Z",
+          "usage": {
+            "status": "available",
+            "readings": [],
+            "reason": null,
+            "records": [
+              {
+                "id": "created",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.created",
+                "readings": [],
+                "times": [
+                  {
+                    "kind": "created",
+                    "at": "2026-10-20T12:00:00+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "paused",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.paused",
+                "readings": [
+                  {
+                    "meter": "cpu",
+                    "value": "1",
+                    "unit": "vCPU",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "memory",
+                    "value": "512",
+                    "unit": "MiB",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "execution_time",
+                    "value": "0",
+                    "unit": "ms",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  }
+                ],
+                "times": [
+                  {
+                    "kind": "paused",
+                    "at": "2026-10-20T12:00:12+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "resumed",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.resumed",
+                "readings": [],
+                "times": [
+                  {
+                    "kind": "resumed",
+                    "at": "2026-10-20T12:00:22+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              },
+              {
+                "id": "killed",
+                "scope": "session",
+                "source": "E2B event sandbox.lifecycle.killed",
+                "readings": [
+                  {
+                    "meter": "cpu",
+                    "value": "4",
+                    "unit": "vCPU",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "memory",
+                    "value": "2048",
+                    "unit": "MiB",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  },
+                  {
+                    "meter": "execution_time",
+                    "value": "0",
+                    "unit": "ms",
+                    "interval_start": null,
+                    "interval_end": null,
+                    "scope": "session",
+                    "source": "provider field"
+                  }
+                ],
+                "times": [
+                  {
+                    "kind": "ended",
+                    "at": "2026-10-20T12:00:31+00:00",
+                    "source": "provider timestamp"
+                  }
+                ],
+                "related_id": "exec",
+                "final": true
+              }
+            ],
+            "observed_at": "2026-10-20T12:01:00+00:00",
+            "retention_seconds": 604800
+          }
+        },
+        "provider_records": [],
+        "provider_times": []
+      }
+    }
+  ]
+}

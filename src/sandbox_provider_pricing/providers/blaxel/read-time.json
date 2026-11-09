@@ -1,0 +1,45 @@
+{
+  "contract": 1,
+  "settles": "bounded",
+  "uses": [
+    {
+      "file": "src/sandbox_provider_pricing/providers/blaxel/rules.py",
+      "function": "billable",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Name:as_of",
+        "Name:read_at",
+        "Name:read_at",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/blaxel/rules.py",
+      "function": "_from_core_report",
+      "kind": "bounded comparison",
+      "offset": "record read_at versus input end + revisit.after_s",
+      "uses": [
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at_text",
+        "arg:read_at_text"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/blaxel/rules.py",
+      "function": "_from_metrics",
+      "kind": "bounded comparison",
+      "offset": "record read_at versus input end + revisit.after_s",
+      "uses": [
+        "Constant:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at"
+      ]
+    }
+  ]
+}

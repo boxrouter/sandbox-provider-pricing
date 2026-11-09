@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Vercel
+website: https://vercel.com/docs/sandbox
+rules_version: 2
+
+status:
+  best_label: calculated
+  why_not_higher: Vercel reports usage per session but no cost per sandbox, and the memory billing boundary is unchecked.
+  would_raise: A check that billed memory and snapshot storage in the charges API match session times and snapshot sizeBytes.
+revisit:
+  after_s: 120
+  until_s: 604800
+  interval_s: 3600
+  rationale: Vercel documents neither how late records arrive nor how long they are kept, so retries stop after 7 days.
+  unverified_default: true
+reported_at_list_price:
+  value: false
+  source: providers/vercel/evidence/2026-10-11-session-edges.md#verdict
+reported_under_account_rate:
+  value: false
+  source: providers/vercel/evidence/2026-10-11-session-edges.md#verdict (Vercel reports no per-sandbox cost; the cost is calculated from rates)
+
+summary: >-
+  Vercel's session records give each session's duration, active CPU time and bytes sent, and its snapshot records give each snapshot's sizeBytes. Memory is priced in whole minutes, and CPU, creations, egress and snapshot storage at list rates. A missing record leaves the cost unknown.
+formula: >-
+  GB of memory × run time in whole minutes × memory rate + active CPU hours × CPU rate + creations × creation fee + GB sent × egress rate + snapshot GB-months × storage rate.
+
+rules:
+  billed_on:
+    answer: >-
+      Memory as provisioned (2 GB per vCPU), CPU as active use (I/O wait is not counted).
+      Whether Active CPU is per vCPU or per sandbox, and whether GB is 1,000 or 1,024 MB, is
+      not stated.
+    sources: [https://vercel.com/docs/sandbox/pricing, https://vercel.com/docs/rest-api/sandboxes/create-a-named-sandbox-1]
+  starts:
+    answer: >-
+      Not stated. In five samples the session startedAt fell inside our create call; no bill was
+      compared.
+    sources: [https://vercel.com/docs/sandbox/pricing, providers/vercel/evidence/2026-10-11-session-edges.md#verdict]
+  ends:
+    answer: >-
+      Not stated. In five samples stoppedAt came before our destroy call and duration equalled
+      stoppedAt minus startedAt; no bill was compared.
+    sources: [https://vercel.com/docs/sandbox/pricing, providers/vercel/evidence/2026-10-11-session-edges.md#verdict]
+  rounding:
+    answer: >-
+      Provisioned memory is billed in 1-minute minimum increments. No rule is published for
+      Active CPU. Creations are counted per call.
+    sources: [https://vercel.com/docs/sandbox/pricing]
+  idle_and_paused:
+    answer: >-
+      Not stated for starting, stopping or stopped sessions. A stopped persistent sandbox keeps
+      a snapshot, billed as snapshot storage; deleting the sandbox does not delete it.
+    sources: [https://vercel.com/docs/sandbox/pricing, https://vercel.com/docs/sandbox/concepts/persistent-sandboxes, https://vercel.com/docs/sandbox/concepts/snapshots]
+  image_pull:
+    answer: >-
+      Not stated. Creation waits until the sandbox is ready, and restoring an uncached snapshot
+      is included in creation time. We did not test cold against cached images.
+    sources: [https://vercel.com/docs/sandbox/concepts/snapshots, https://vercel.com/docs/sandbox/concepts/images]
+  extra_charges:
+    answer: >-
+      Creation {rate.creation.amount} per million. Network: data sent out and all exposed-port
+      traffic, {rate.egress} in iad1. Snapshots {storage.snapshot}. Disk (64 GB) is included. Not
+      stated: GPU.
+    sources: [https://vercel.com/docs/sandbox/pricing, src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055630Z.yaml, providers/vercel/evidence/2026-10-12-charges-rates-check.md]
+  left_out:
+    answer: >-
+      Plan fees and allowances, other regions than iad1, enterprise pricing, taxes, Drives,
+      container registry storage and the snapshot kept after the last stop (30 days after last
+      use by default).
+    sources: [https://vercel.com/docs/sandbox/pricing, https://vercel.com/docs/plans/pro-plan, https://vercel.com/docs/container-registry/limits-and-pricing]
+  per_sandbox_data:
+    answer: >-
+      Usage per session after a clean stop: duration, activeCpuDurationMs, network bytes,
+      sizeBytes for snapshots. No cost per sandbox; charges are per project per day. Not stated:
+      delay or retention.
+    sources: [https://vercel.com/docs/rest-api/sandboxes/get-a-session, https://vercel.com/docs/rest-api/billing/list-focus-billing-charges, providers/vercel/evidence/2026-10-12-charges-rates-check.md]
+
+checks:
+  - date: '2026-10-12'
+    title: Billing charges export against the price version's rates
+    file: evidence/2026-10-12-charges-rates-check.md
+    result: 25 of 26 daily charge rows equal quantity times the price version's rate; one small data-transfer row was charged $0.15 per GB, not $0. Checks rates and units only, not billing edges.
+  - date: '2026-10-11'
+    title: Session start and stop times against our call edges
+    file: evidence/2026-10-11-session-edges.md
+    result: In five sessions, startedAt fell inside the create call, stoppedAt preceded the destroy call, and duration equalled stoppedAt minus startedAt. No bill was compared, so the billed memory boundary is unsettled.
+
+open_questions:
+  - question: Does Vercel bill provisioned memory from startedAt to stoppedAt, or from another moment?
+    how: Compare billed memory from the charges API with session duration, in a project running nothing else that day.
+  - question: Is a snapshot's sizeBytes the quantity billed as snapshot storage?
+    how: Compare the day's snapshot storage quantity with sizeBytes of the only snapshot in an idle project.
+  - question: Should a sandbox's cost include the snapshot kept after its last stop?
+    how: Measure its sizeBytes and the day's storage quantity before and after the stop, then decide if it belongs to the sandbox or the account.
+  - question: Where does a session end after a timeout, failure or direct delete?
+    how: Repeat the session-edge check with those stops and see if stoppedAt, duration and active CPU remain.
+  - question: Is Active CPU counted per vCPU or per sandbox, and is there a minimum?
+    how: Compare activeCpuDurationMs with billed Active CPU for 1 and 4 vCPU sandboxes running the same busy loop.
+  - question: Is GB in provisioned memory 1,000 or 1,024 MB?
+    how: Compare billed GB-hours for known memory and duration with 2 GB per vCPU as 2,000 and 2,048 MB.
+  - question: Is loading an uncached image billed?
+    how: Compare billed memory for a large image on first and second use over the same duration.
+  - question: Why was one data-transfer row charged $0.15 per GB while six others were $0?
+    how: Export the charges again with project tags kept to see whether the row belongs to another plan or project.
+
+price_sheet:
+  active_time_priced: {value: true, source_url: https://vercel.com/docs/sandbox/pricing}
+  benchmark_region: {value: iad1, source_url: https://vercel.com/docs/sandbox/concepts/regions}
+  states:
+    idle: {rule: memory, note: Only memory is billed while idle., source_url: https://vercel.com/docs/sandbox/pricing}
+    paused: {rule: none, note: Paused usage is not billed., source_url: https://vercel.com/docs/sandbox/pricing}
+  class_overrides: {}
+  storage:
+    - {kind: image, status: unpublished, source_url: https://vercel.com/docs/sandbox/pricing}
+    - {kind: disk, status: included, source_url: https://vercel.com/docs/sandbox/pricing}
+    - {kind: snapshot, status: pending, source_url: https://vercel.com/docs/sandbox/pricing}
+    - {kind: volume, status: pending, source_url: https://vercel.com/docs/sandbox/pricing}

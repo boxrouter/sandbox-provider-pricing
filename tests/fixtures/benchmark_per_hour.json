@@ -1,0 +1,146 @@
+{
+  "source": {
+    "note": "Per-hour figures independently recalculated from the retained 2026-10-20 price versions. total_usd is rounded to six decimals; per_hour is compared after rounding its exact answer to six decimals, half up."
+  },
+  "providers": {
+    "e2b": {
+      "sizes": {
+        "1x2": {
+          "availability": "listed",
+          "total_usd": "0.082800"
+        },
+        "2x4": {
+          "availability": "listed",
+          "total_usd": "0.165600"
+        },
+        "4x8": {
+          "availability": "listed",
+          "total_usd": "0.331200"
+        },
+        "8x16": {
+          "availability": "listed",
+          "total_usd": "0.662400"
+        },
+        "2x8": {
+          "availability": "listed",
+          "total_usd": "0.230400"
+        }
+      }
+    },
+    "modal": {
+      "sizes": {
+        "1x2": {
+          "availability": "listed",
+          "total_usd": "0.136827",
+          "before_region_total_usd": "0.118980"
+        },
+        "2x4": {
+          "availability": "listed",
+          "total_usd": "0.273654",
+          "before_region_total_usd": "0.237960"
+        },
+        "4x8": {
+          "availability": "listed",
+          "total_usd": "0.547308",
+          "before_region_total_usd": "0.475920"
+        },
+        "8x16": {
+          "availability": "listed",
+          "total_usd": "1.094616",
+          "before_region_total_usd": "0.951840"
+        },
+        "2x8": {
+          "availability": "listed",
+          "total_usd": "0.384109",
+          "before_region_total_usd": "0.334008"
+        }
+      },
+      "region": "us",
+      "region_note": "total_usd includes his billing.region_multiplier 1.15 (Modal's broad region, `us`); before_region_total_usd is the same size without it"
+    },
+    "daytona": {
+      "sizes": {
+        "1x2": {
+          "availability": "listed",
+          "total_usd": "0.082800"
+        },
+        "2x4": {
+          "availability": "listed",
+          "total_usd": "0.165600"
+        },
+        "4x8": {
+          "availability": "listed",
+          "total_usd": "0.331200"
+        },
+        "8x16": {
+          "availability": "listed",
+          "total_usd": "0.662400"
+        },
+        "2x8": {
+          "availability": "listed",
+          "total_usd": "0.230400"
+        }
+      }
+    },
+    "vercel": {
+      "sizes": {
+        "1x2": {
+          "availability": "listed",
+          "total_usd": "0.170400",
+          "low_usd": "0.042400"
+        },
+        "2x4": {
+          "availability": "listed",
+          "total_usd": "0.340800",
+          "low_usd": "0.084800"
+        },
+        "4x8": {
+          "availability": "listed",
+          "total_usd": "0.681600",
+          "low_usd": "0.169600"
+        },
+        "8x16": {
+          "availability": "listed",
+          "total_usd": "1.363200",
+          "low_usd": "0.339200"
+        },
+        "2x8": {
+          "availability": "listed",
+          "total_usd": "0.425600",
+          "low_usd": "0.169600"
+        }
+      },
+      "low_note": "low_usd is his range_usd.low: memory only, no CPU used"
+    },
+    "blaxel": {
+      "sizes": {
+        "1x2": {
+          "availability": "listed",
+          "total_usd": "0.082800",
+          "low_usd": "0.000000"
+        },
+        "2x4": {
+          "availability": "listed",
+          "total_usd": "0.165600",
+          "low_usd": "0.000000"
+        },
+        "4x8": {
+          "availability": "listed",
+          "total_usd": "0.331200",
+          "low_usd": "0.000000"
+        },
+        "8x16": {
+          "availability": "listed",
+          "total_usd": "0.662400",
+          "low_usd": "0.000000"
+        },
+        "2x8": {
+          "availability": "listed",
+          "total_usd": "0.331200",
+          "low_usd": "0.000000"
+        }
+      },
+      "low_note": "low_usd is 0: his billing.range.lower reads '$0 of compute: with no active connection a sandbox drops to standby in about 15 seconds and memory is not billed'; his Price code in page.py gives Blaxel no range_usd, so its low equals its high there"
+    }
+  }
+}

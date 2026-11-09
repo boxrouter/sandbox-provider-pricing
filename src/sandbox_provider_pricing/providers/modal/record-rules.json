@@ -1,0 +1,25 @@
+[
+  {
+    "if": {
+      "properties": {"source": {"const": "Modal Workspace.billing.report"}},
+      "required": ["source"]
+    },
+    "then": {
+      "properties": {
+        "body": {
+          "properties": {
+            "interval": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["start", "end"],
+              "properties": {
+                "start": {"$ref": "#/$defs/timestamp"},
+                "end": {"$ref": "#/$defs/timestamp"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "as_of": "2026-10-20T15:00:00Z",
+  "cloud": {
+    "reads": [
+      {
+        "cost": {
+          "readings": [],
+          "reason": "no_report",
+          "status": "unknown"
+        },
+        "read_at": "2026-10-20T12:45:00Z"
+      },
+      {
+        "cost": {
+          "readings": [
+            {
+              "amount": "0.25",
+              "currency": "USD",
+              "interval_end": "2026-10-20T13:00:00+00:00",
+              "interval_start": "2026-10-20T12:00:00+00:00",
+              "meter": "hourly_cost",
+              "scope": "sandbox",
+              "source": "Blaxel account metrics API"
+            }
+          ],
+          "reason": null,
+          "status": "available"
+        },
+        "read_at": "2026-10-20T14:00:00Z"
+      },
+      {
+        "cost": {
+          "readings": [],
+          "reason": "no_report",
+          "status": "unknown"
+        },
+        "read_at": "2026-10-20T15:00:00Z"
+      }
+    ],
+    "record": {
+      "calls": [
+        {
+          "at": "2026-10-20T12:04:58Z",
+          "edge": "sent",
+          "how": "create sent",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T12:05:01Z",
+          "edge": "returned",
+          "how": "create returned",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T12:38:01Z",
+          "edge": "sent",
+          "how": "destroy sent",
+          "name": "destroy"
+        },
+        {
+          "at": "2026-10-20T12:38:03Z",
+          "edge": "returned",
+          "how": "destroy returned",
+          "name": "destroy"
+        }
+      ],
+      "provider": "blaxel",
+      "provider_times": [
+        {
+          "at": {
+            "how": "Sandbox.createdAt",
+            "source": "provider",
+            "value": "2026-10-20T12:05:00Z"
+          },
+          "field": "Sandbox.createdAt",
+          "kind": "created"
+        },
+        {
+          "at": {
+            "how": "Sandbox.terminatedAt",
+            "source": "provider",
+            "value": "2026-10-20T12:38:00Z"
+          },
+          "field": "Sandbox.terminatedAt",
+          "kind": "stopped"
+        },
+        {
+          "at": {
+            "how": "Sandbox.updatedAt",
+            "source": "provider",
+            "value": "2026-10-20T12:30:00Z"
+          },
+          "field": "Sandbox.updatedAt",
+          "kind": "updated"
+        }
+      ],
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": "us-pdx-1"
+      },
+      "sandbox_id": "native"
+    }
+  },
+  "description": "Blaxel: an early read found no report, the next found the hour's cost, a later one found nothing again.",
+  "ended_at": "2026-10-20T12:38:00Z",
+  "expect": {
+    "label": "reported",
+    "total": {
+      "high": "0.25",
+      "low": "0.25"
+    }
+  },
+  "runner": {
+    "record": {
+      "provider": "blaxel",
+      "provider_times": [
+        {
+          "at": {
+            "how": "Sandbox.createdAt",
+            "source": "provider",
+            "value": "2026-10-20T12:05:00Z"
+          },
+          "field": "Sandbox.createdAt",
+          "kind": "created"
+        },
+        {
+          "at": {
+            "how": "Sandbox.terminatedAt",
+            "source": "provider",
+            "value": "2026-10-20T12:38:00Z"
+          },
+          "field": "Sandbox.terminatedAt",
+          "kind": "stopped"
+        },
+        {
+          "at": {
+            "how": "Sandbox.requestedAt",
+            "source": "provider",
+            "value": "2026-10-20T12:04:58Z"
+          },
+          "field": "Sandbox.requestedAt",
+          "kind": "requested",
+          "sandbox": 1
+        }
+      ],
+      "reports": {
+        "cost": {
+          "readings": [
+            {
+              "amount": "0.25",
+              "currency": "USD",
+              "interval_end": "2026-10-20T13:00:00+00:00",
+              "interval_start": "2026-10-20T12:00:00+00:00",
+              "meter": "hourly_cost",
+              "scope": "sandbox",
+              "source": "Blaxel account metrics API"
+            }
+          ],
+          "reason": null,
+          "status": "available"
+        },
+        "read_at": "2026-10-20T15:00:00Z",
+        "read_times": {
+          "cost": "2026-10-20T14:00:00Z"
+        }
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": "blaxel:us-pdx-1"
+      },
+      "sandbox_id": "native"
+    }
+  }
+}

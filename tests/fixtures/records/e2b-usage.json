@@ -1,0 +1,403 @@
+{
+  "as_of": "2026-10-23T12:00:00Z",
+  "cloud": {
+    "reads": [
+      {
+        "read_at": "2026-10-22T00:00:00Z",
+        "usage": {
+          "observed_at": "2026-10-22T00:00:00Z",
+          "readings": [],
+          "reason": null,
+          "records": [
+            {
+              "final": true,
+              "id": "event-0",
+              "readings": [],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.created",
+              "times": [
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "created",
+                  "source": "E2B event sandbox.lifecycle.created.timestamp"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-1",
+              "readings": [
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "cpu",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.vcpu_count",
+                  "unit": "vCPU",
+                  "value": "2"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "memory",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.memory_mb",
+                  "unit": "MiB",
+                  "value": "512"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "execution_time",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.execution_time",
+                  "unit": "ms",
+                  "value": "2000"
+                }
+              ],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.paused",
+              "times": [
+                {
+                  "at": "2026-10-20T00:01:00Z",
+                  "kind": "paused",
+                  "source": "E2B event sandbox.lifecycle.paused.timestamp"
+                },
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "started",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.started_at"
+                }
+              ]
+            }
+          ],
+          "retention_seconds": 604800,
+          "status": "available"
+        }
+      },
+      {
+        "read_at": "2026-10-23T12:00:00Z",
+        "usage": {
+          "observed_at": "2026-10-23T12:00:00Z",
+          "readings": [],
+          "reason": null,
+          "records": [
+            {
+              "final": true,
+              "id": "event-0",
+              "readings": [],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.created",
+              "times": [
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "created",
+                  "source": "E2B event sandbox.lifecycle.created.timestamp"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-1",
+              "readings": [
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "cpu",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.vcpu_count",
+                  "unit": "vCPU",
+                  "value": "2"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "memory",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.memory_mb",
+                  "unit": "MiB",
+                  "value": "512"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "execution_time",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.execution_time",
+                  "unit": "ms",
+                  "value": "2000"
+                }
+              ],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.paused",
+              "times": [
+                {
+                  "at": "2026-10-20T00:01:00Z",
+                  "kind": "paused",
+                  "source": "E2B event sandbox.lifecycle.paused.timestamp"
+                },
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "started",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.started_at"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-2",
+              "readings": [],
+              "related_id": "exec-1",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.resumed",
+              "times": [
+                {
+                  "at": "2026-10-20T00:02:00Z",
+                  "kind": "resumed",
+                  "source": "E2B event sandbox.lifecycle.resumed.timestamp"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-3",
+              "readings": [
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "cpu",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.vcpu_count",
+                  "unit": "vCPU",
+                  "value": "4"
+                },
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "memory",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.memory_mb",
+                  "unit": "MiB",
+                  "value": "1024"
+                },
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "execution_time",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.execution_time",
+                  "unit": "ms",
+                  "value": "0"
+                }
+              ],
+              "related_id": "exec-1",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.killed",
+              "times": [
+                {
+                  "at": "2026-10-20T00:03:00Z",
+                  "kind": "ended",
+                  "source": "E2B event sandbox.lifecycle.killed.timestamp"
+                },
+                {
+                  "at": "2026-10-20T00:02:00Z",
+                  "kind": "started",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.started_at"
+                }
+              ]
+            }
+          ],
+          "retention_seconds": 604800,
+          "status": "available"
+        }
+      }
+    ],
+    "record": {
+      "calls": [
+        {
+          "at": "2026-10-19T23:59:59.920Z",
+          "edge": "sent",
+          "how": "create sent",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T00:00:00.030Z",
+          "edge": "returned",
+          "how": "create returned",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T00:03:00.100Z",
+          "edge": "sent",
+          "how": "destroy sent",
+          "name": "destroy"
+        },
+        {
+          "at": "2026-10-20T00:03:00.200Z",
+          "edge": "returned",
+          "how": "destroy returned",
+          "name": "destroy"
+        }
+      ],
+      "provider": "e2b",
+      "sandbox_id": "box"
+    }
+  },
+  "description": "E2B events: Cloud read two pages of the usage report; the runner kept one read (its tests' provider-reports/e2b.json).",
+  "ended_at": "2026-10-20T00:03:00Z",
+  "expect": {
+    "label": "calculated",
+    "total": {
+      "high": "0.005445",
+      "low": "0.005445"
+    }
+  },
+  "runner": {
+    "record": {
+      "provider": "e2b",
+      "reports": {
+        "read_at": "2026-10-23T12:00:00Z",
+        "usage": {
+          "observed_at": "2026-10-23T12:00:00Z",
+          "readings": [],
+          "reason": null,
+          "records": [
+            {
+              "final": true,
+              "id": "event-0",
+              "readings": [],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.created",
+              "times": [
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "created",
+                  "source": "E2B event sandbox.lifecycle.created.timestamp"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-1",
+              "readings": [
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "cpu",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.vcpu_count",
+                  "unit": "vCPU",
+                  "value": "2"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "memory",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.memory_mb",
+                  "unit": "MiB",
+                  "value": "512"
+                },
+                {
+                  "interval_end": "2026-10-20T00:01:00Z",
+                  "interval_start": "2026-10-20T00:00:00Z",
+                  "meter": "execution_time",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.execution_time",
+                  "unit": "ms",
+                  "value": "2000"
+                }
+              ],
+              "related_id": "exec-0",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.paused",
+              "times": [
+                {
+                  "at": "2026-10-20T00:01:00Z",
+                  "kind": "paused",
+                  "source": "E2B event sandbox.lifecycle.paused.timestamp"
+                },
+                {
+                  "at": "2026-10-20T00:00:00Z",
+                  "kind": "started",
+                  "source": "E2B event sandbox.lifecycle.paused.execution.started_at"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-2",
+              "readings": [],
+              "related_id": "exec-1",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.resumed",
+              "times": [
+                {
+                  "at": "2026-10-20T00:02:00Z",
+                  "kind": "resumed",
+                  "source": "E2B event sandbox.lifecycle.resumed.timestamp"
+                }
+              ]
+            },
+            {
+              "final": true,
+              "id": "event-3",
+              "readings": [
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "cpu",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.vcpu_count",
+                  "unit": "vCPU",
+                  "value": "4"
+                },
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "memory",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.memory_mb",
+                  "unit": "MiB",
+                  "value": "1024"
+                },
+                {
+                  "interval_end": "2026-10-20T00:03:00Z",
+                  "interval_start": "2026-10-20T00:02:00Z",
+                  "meter": "execution_time",
+                  "scope": "session",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.execution_time",
+                  "unit": "ms",
+                  "value": "0"
+                }
+              ],
+              "related_id": "exec-1",
+              "scope": "session",
+              "source": "E2B event sandbox.lifecycle.killed",
+              "times": [
+                {
+                  "at": "2026-10-20T00:03:00Z",
+                  "kind": "ended",
+                  "source": "E2B event sandbox.lifecycle.killed.timestamp"
+                },
+                {
+                  "at": "2026-10-20T00:02:00Z",
+                  "kind": "started",
+                  "source": "E2B event sandbox.lifecycle.killed.execution.started_at"
+                }
+              ]
+            }
+          ],
+          "retention_seconds": 604800,
+          "status": "available"
+        }
+      },
+      "sandbox_id": "box"
+    }
+  }
+}

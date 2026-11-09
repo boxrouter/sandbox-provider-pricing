@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: E2B
+website: https://e2b.dev
+rules_version: 2
+status:
+  best_label: calculated
+  why_not_higher: E2B reports no per-sandbox cost or billed usage, only lifecycle events, which are priced at list rates.
+  would_raise: A per-sandbox cost or billed usage from E2B that matches the list-price calculation on measured sandboxes.
+revisit:
+  after_s: 15
+  until_s: 604800
+  interval_s: 3600
+  rationale: E2B's events API keeps events for 7 days by default, so retries stop before they expire.
+  unverified_default: false
+reported_at_list_price:
+  value: false
+  source: providers/e2b/evidence/2026-10-11-billing-boundary.md#verdict
+reported_under_account_rate:
+  value: false
+  source: providers/e2b/evidence/2026-10-11-billing-boundary.md#verdict (E2B reports no per-sandbox cost; the cost is calculated from rates)
+summary: >-
+  E2B reports no cost. Each running period lasts from a created or resumed event to the next paused or killed event, and is priced at the list rates per second, with the size from the event's execution object when it has one. The events API keeps events for 7 days by default, so store them. The cost is calculated, not E2B's own figure.
+formula: >-
+  For each running period, from a created or resumed event to the next paused or killed event: seconds × (vCPUs × CPU rate + GiB of memory × memory rate).
+rules:
+  billed_on:
+    answer: >-
+      vCPU-seconds and GiB-seconds of memory as allocated, while running. Disk is included in
+      the plan (10 GiB Hobby, 20 GiB Pro), not a meter. Sandboxes are CPU-only.
+    sources: [https://e2b.dev/pricing, https://docs.e2b.dev/faq/calculate-sandbox-price, https://docs.e2b.dev/billing, https://docs.e2b.dev/faq/gpu-support]
+  starts:
+    answer: >-
+      Not stated. The calculator uses E2B's created event, which fell inside the create call
+      on five sandboxes. This does not show E2B bills from it.
+    sources: [https://docs.e2b.dev/billing, providers/e2b/evidence/2026-10-11-billing-boundary.md#verdict]
+  ends:
+    answer: >-
+      Billing stops immediately on pause, kill or timeout. The calculator uses the killed
+      event, which fell inside the destroy call on five sandboxes.
+    sources: [https://docs.e2b.dev/billing, providers/e2b/evidence/2026-10-11-billing-boundary.md#verdict]
+  rounding:
+    answer: Billed per second. No minimum duration or rounding increment is published.
+    sources: [https://e2b.dev/pricing, https://docs.e2b.dev/billing, https://docs.e2b.dev/faq/calculate-sandbox-price]
+  idle_and_paused:
+    answer: >-
+      Only running time is billed. Paused sandboxes are kept with no time limit and are not
+      billed. Whether pausing itself is billed has not been tested.
+    sources: [https://docs.e2b.dev/billing]
+  image_pull:
+    answer: >-
+      Not stated. A cold large image's created event came 9.7 s after create was sent, inside
+      the create call; we did not isolate an image-load charge.
+    sources: [https://e2b.dev/pricing, https://docs.e2b.dev/billing, providers/e2b/evidence/2026-10-11-billing-boundary.md#results]
+  extra_charges:
+    answer: >-
+      None published: no creation fee, no paused-state or template storage charge. Network is
+      not mentioned on the pricing or billing pages.
+    sources: [https://e2b.dev/pricing, https://docs.e2b.dev/billing]
+  left_out:
+    answer: >-
+      Plan fees (Pro $150 per month, concurrency add-ons, Enterprise minimum), the one-time
+      $100 Hobby credit and taxes. Plans cap vCPU and memory (8 each), and runtime (1 hour
+      Hobby, 24 hours Pro).
+    sources: [https://e2b.dev/pricing, https://docs.e2b.dev/billing]
+  per_sandbox_data:
+    answer: >-
+      No cost. Killed and paused events, from the events API or webhooks, carry the allocated
+      vCPUs, memory and runtime. The console's usage tab shows totals only. The first killed
+      event arrived within 15 s. Running time comes from event timestamps, not execution_time,
+      which can under-report after a snapshot.
+    sources: [https://docs.e2b.dev/sandbox/lifecycle-events-api, https://docs.e2b.dev/sandbox/lifecycle-events-webhooks, https://docs.e2b.dev/faq/calculate-sandbox-price, providers/e2b/evidence/2026-10-11-billing-boundary.md#event-latency]
+checks:
+  - date: '2026-10-11'
+    title: Billing boundary against E2B lifecycle events
+    file: evidence/2026-10-11-billing-boundary.md
+    result: On five sandboxes the created and killed events fell inside the matching create and destroy calls, including a cold large image; it did not compare against a billed figure or test pause.
+open_questions:
+  - question: Are paused sandboxes free, and is the pause operation itself billed?
+    how: Pause one sandbox for a measured period and compare account usage before and after.
+  - question: Is loading a cold image billed?
+    how: Compare account usage for a cold large image against a cached one at known durations.
+  - question: Does E2B bill from its created and killed events, and does event execution time equal billed time?
+    how: Compare dashboard usage for a known set of sandboxes with event-derived running time.
+  - question: Do killed and paused events from the events API carry the execution fields? The docs example shows eventData null.
+    how: Read the events of a killed sandbox from the events API and check for the execution fields.
+  - question: How long are events kept? The events API page says 7 days; the webhooks example shows events_ttl_days 30.
+    how: Read events_ttl_days on webhook deliveries, then read a finished sandbox's events after 1, 7 and 30 days.
+  - question: Default memory? Pricing page marks 4 GiB default; billing page and price FAQ say 512 MiB.
+    how: Create a sandbox without a size and read its memory from inside it.
+  - question: What do the updated and snapshot events mean for billing? The calculator ignores them.
+    how: Update and snapshot one sandbox, read its events, and compare account usage with event-derived running time.
+  - question: Does the console usage tab show one project or the whole workspace? Is Pro disk above 20 GiB charged?
+    how: Run sandboxes in two projects and check the tab; check the Pro disk rate on the pricing and billing pages after a size above 20 GiB is requested.
+
+price_sheet:
+  active_time_priced: {value: false, source_url: https://docs.e2b.dev/billing}
+  benchmark_region: {value: us, source_url: https://e2b.dev/pricing}
+  states:
+    idle: {rule: running, note: Idle usage is billed as running., source_url: https://docs.e2b.dev/billing}
+    paused: {rule: none, note: Paused usage is not billed., source_url: https://docs.e2b.dev/billing}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: included, source_url: https://e2b.dev/pricing}
+    - {kind: snapshot, status: included, source_url: https://docs.e2b.dev/billing}
+    - {kind: image, status: unpublished, source_url: https://docs.e2b.dev/billing}
+    - {kind: volume, status: unknown, source_url: https://e2b.dev/pricing}

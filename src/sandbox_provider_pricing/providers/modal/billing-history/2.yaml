@@ -1,0 +1,75 @@
+name: Modal
+website: https://modal.com
+rules_version: 2
+
+status:
+  best_label: unknown
+  why_not_higher: Modal reports no per-sandbox cost or usage; App and tag totals cannot establish one sandbox's cost.
+  would_raise: Modal's expected per-sandbox cost API, checked at list price.
+revisit:
+  after_s: 600
+  until_s: 604800
+  interval_s: 3600
+  rationale: Final values appeared 59–315 seconds after end across 325 sandboxes sampled every 5 minutes; a 600-second first read provides margin. The hourly cadence and 7-day stop remain operational defaults because longer retention and finality are unknown.
+  unverified_default: true
+reported_at_list_price:
+  value: false
+  source: src/sandbox_provider_pricing/providers/modal/evidence/2026-10-11-hourly-bill-batch.md#verdict
+
+summary: >-
+  Modal bills the larger of requested and actual CPU and memory, with burst use. It reports costs per App and tag by hour, not per sandbox, so a sandbox's cost is unknown. A per-sandbox cost API is expected; the rate card remains available for hourly quotes.
+formula: >-
+  Unknown: Modal reports no per-sandbox cost or usage. Revisit when its per-sandbox cost API is available.
+
+rules:
+  billed_on:
+    answer: CPU (physical cores, 1 core = 2 vCPUs) and memory (GiB), each on the larger of requested and actual use. No sandbox cost is calculated from the request. Minimum request 0.125 cores and 128 MiB.
+    sources: [https://modal.com/pricing, https://modal.com/docs/guide/sandbox-resources, https://modal.com/docs/guide/resources]
+  starts:
+    answer: Measured on 2026-10-11, not complete. Billing starts at about when Modal sets the sandbox's creation time, 20 to 70 ms before the create call returns. It does not start when the call is sent.
+    sources: [src/sandbox_provider_pricing/providers/modal/evidence/2026-10-11-hourly-bill-batch.md#verdict]
+  ends:
+    answer: Not settled. Destroy sent and destroy returned (0.15 to 0.5 s apart) cannot be told apart in an hourly bill. The cached bill was 1.3% below, and the cold bill 1.5% above, the shortest edge-based total, for an unknown reason.
+    unknown_how: Repeat with a destroy that takes several seconds, so the two edges differ by more than the bill's resolution.
+  rounding:
+    answer: Billed per second, and Modal's billing page lists no minimum time increment. How a partial second is rounded is not stated.
+    sources: [https://modal.com/pricing, https://modal.com/docs/guide/billing]
+  idle_and_paused:
+    answer: Not stated for sandboxes. The pricing page bills a 60-second default keep-alive for applications that take inputs; whether it applies to sandboxes is not stated. Sandboxes have a timeout (5 minutes default, up to 24 hours) and an optional idle timeout; neither is tied to billing. We have not measured this.
+    sources: [https://modal.com/pricing, https://modal.com/docs/guide/sandbox-resources, https://modal.com/docs/guide/sandboxes]
+  image_pull:
+    answer: Modal's pages do not say. In our check, five cold images with pulls of 20 to 133 s were not billed (620 s billed against 611 s from create returned and 1,016 s from create sent).
+    sources: [https://modal.com/pricing, src/sandbox_provider_pricing/providers/modal/evidence/2026-10-11-hourly-bill-batch.md#results]
+  extra_charges:
+    answer: Region multiplier on CPU, memory and GPU of 1.15 (broad region) or 1.75 (narrow region). Egress $0.04 per GiB above a workspace allowance, billed from 2026-10-01. Volumes $0.09 per GiB-month. GPUs per second by model. No snapshot or image storage price is stated.
+    sources: [https://modal.com/docs/guide/region-selection, https://modal.com/docs/guide/network-egress-billing, https://modal.com/pricing, https://modal.com/docs/guide/sandbox-snapshots]
+  left_out:
+    answer: Plan fees (Starter $0, Team $250 per month), monthly free credits, credit programs, discounts, taxes, and the egress allowance. The list-price figure also leaves out volumes, snapshot retention and egress.
+    sources: [https://modal.com/pricing, src/sandbox_provider_pricing/providers/modal/prices/2026-10-20-061900Z.yaml]
+  per_sandbox_data:
+    answer: No cost and no actual use per sandbox. Cost is reported per App and tag, by hour (Workspace.billing API, modal billing CLI), which is not a per-sandbox record. The dashboard shows use only as percentiles across an App's sandboxes.
+    sources: [https://modal.com/docs/guide/billing, https://modal.com/docs/guide/sandbox-resources, src/sandbox_provider_pricing/providers/modal/evidence/2026-10-11-hourly-bill-batch.md#limits]
+
+checks:
+  - date: '2026-10-11'
+    title: Billing boundary against the hourly per-App bill
+    file: evidence/2026-10-11-hourly-bill-batch.md
+    result: 20 cached and 5 cold sandboxes. Image pulls were not billed and billing starts at about create returned. The end edge is unresolved, and the bill is 1.3% below (cached) and 1.5% above (cold) the shortest edge-based total.
+
+open_questions:
+  - question: Does a sandbox ever use more CPU or memory than it requests, and how much would that add to its bill?
+    how: Run sandboxes that use more than they request, each in its own App and hour, and compare the bill with the minimum.
+  - question: Does billing end at destroy sent or destroy returned?
+    how: Use a workload whose destroy call takes several seconds so the two edges differ by more than the bill's resolution.
+  - question: What explains the bill being 1.3% below (cached) and 1.5% above (cold) the shortest edge-based total?
+    how: Repeat the batch in a region with no multiplier, and compare CPU-only and memory-heavy sandboxes.
+  - question: Is time before the container runs, or after termination begins, billed, and does idle time count?
+    how: Compare the bill of a sandbox before and after it idles, using a per-sandbox App and an isolated hour.
+  - question: Does the 60-second keep-alive described for applications apply to sandboxes?
+    how: Compare a sandbox's billed seconds with its create-to-terminate span after it has been idle for over 60 s.
+  - question: Are paused or stopped sandboxes billed, and is snapshot storage billed?
+    how: Compare a sandbox's bill before and after pause or termination, and look for a snapshot price in Modal's documentation.
+  - question: Do a GPU sandbox's CPU and memory bill at the Sandbox rate or the standard rate?
+    how: Compare the hourly bill of a per-App GPU sandbox with its CPU and memory priced at each rate.
+  - question: How late does the hourly report show an hour after it ends, and how long are old hours kept?
+    how: Read the report repeatedly after a sandbox ends and record when its hour appears and how long it stays readable.

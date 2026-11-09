@@ -1,0 +1,256 @@
+{
+  "provider": "daytona",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "class",
+      "text": "The provider did not report the class."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "no per-sandbox creation fee, egress charge or plan fee is listed on the pricing page (absence of a listing, not a statement that none exist); network limits are applied by billing tier",
+    "snapshots made from a sandbox remain billed for storage; the snapshot storage rate is not published",
+    "which plan the rates need: none. The pricing page lists one set of rates and no tier-specific rates; Tier 1 (email verified) allows sandboxes up to the 4 vCPU / 8 GiB per-sandbox maximum, but its organization pool is 10 vCPU and 10 GiB of RAM in one table (20 GiB in another), so one such sandbox fits, and a second only if the 20 GiB figure is the right one.",
+    "not priced here: Windows (the pricing page lists \"OS Windows $0.0858/vCPU/h\"). GPU sandboxes are priced per GPU model in each class.",
+    "Plan allowance: $200 in free compute, no credit card for the trial (free credits do not cover GPU sandboxes); Tier 1 (email verified) limits the whole organization to 10 vCPU and 30 GiB storage (RAM 10 or 20 GiB, see open_questions); Tier 2 (card + $25 top-up) 100 vCPU; Tier 3 ($500) 250 vCPU; Tier 4 ($2,000 every 30 days) 500 vCPU; startups: up to $50k credits",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-10-19T19:41:04Z",
+    "until": "2026-10-22T19:39:04Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-10-19T21:00:00Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 2,
+    "prices": "daytona@2026-10-24-065001Z"
+  },
+  "steps": {
+    "evidence": {
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 1024,
+        "region": "daytona:us",
+        "options": {},
+        "disk_mib": 5120
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-10-19T18:39:02Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-10-19T18:39:03Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-10-19T19:39:03Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-10-19T19:39:04Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {},
+      "provider_records": [
+        {
+          "source": "core.cost",
+          "read_at": "2026-10-19T20:00:00Z",
+          "body": {
+            "status": "available",
+            "reason": null,
+            "readings": [
+              {
+                "amount": "0.04104105",
+                "currency": "USD",
+                "meter": "total",
+                "interval_start": "2026-10-19T18:39:03Z",
+                "interval_end": "2026-10-19T19:00:00Z",
+                "scope": "sandbox",
+                "source": "Daytona GET /organization/{organizationId}/usage/sandbox"
+              }
+            ]
+          }
+        }
+      ],
+      "provider": "daytona",
+      "sandbox_id": "daytona-sandbox-redacted"
+    },
+    "times": {
+      "start": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-10-19T18:39:03Z",
+      "source": "recorded",
+      "how": "When the provider's create call returned."
+    },
+    "sandbox_end": {
+      "value": "2026-10-19T19:39:04Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "daytona",
+        "started": {
+          "at": "2026-10-19T18:39:03Z",
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "daytona:us",
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 1024,
+          "disk_mib": 5120,
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-19T20:00:00Z",
+            "how": "Waiting for Daytona's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "daytona",
+        "started": {
+          "at": "2026-10-19T18:39:03Z",
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "daytona:us",
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 1024,
+          "disk_mib": 5120,
+          "source": "recorded",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-19T20:00:00Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-19T20:00:00Z",
+            "how": "Waiting for Daytona's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "class",
+            "text": "The provider did not report the class."
+          }
+        ],
+        "exclusions": [
+          "no per-sandbox creation fee, egress charge or plan fee is listed on the pricing page (absence of a listing, not a statement that none exist); network limits are applied by billing tier",
+          "snapshots made from a sandbox remain billed for storage; the snapshot storage rate is not published",
+          "which plan the rates need: none. The pricing page lists one set of rates and no tier-specific rates; Tier 1 (email verified) allows sandboxes up to the 4 vCPU / 8 GiB per-sandbox maximum, but its organization pool is 10 vCPU and 10 GiB of RAM in one table (20 GiB in another), so one such sandbox fits, and a second only if the 20 GiB figure is the right one.",
+          "not priced here: Windows (the pricing page lists \"OS Windows $0.0858/vCPU/h\"). GPU sandboxes are priced per GPU model in each class.",
+          "Plan allowance: $200 in free compute, no credit card for the trial (free credits do not cover GPU sandboxes); Tier 1 (email verified) limits the whole organization to 10 vCPU and 30 GiB storage (RAM 10 or 20 GiB, see open_questions); Tier 2 (card + $25 top-up) 100 vCPU; Tier 3 ($500) 250 vCPU; Tier 4 ($2,000 every 30 days) 500 vCPU; startups: up to $50k credits",
+          "Credits and discounts"
+        ],
+        "price_version": "daytona@2026-10-24-065001Z",
+        "as_of": "2026-10-19T20:00:00Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "class",
+            "text": "The provider did not report the class."
+          }
+        ],
+        "exclusions": [
+          "no per-sandbox creation fee, egress charge or plan fee is listed on the pricing page (absence of a listing, not a statement that none exist); network limits are applied by billing tier",
+          "snapshots made from a sandbox remain billed for storage; the snapshot storage rate is not published",
+          "which plan the rates need: none. The pricing page lists one set of rates and no tier-specific rates; Tier 1 (email verified) allows sandboxes up to the 4 vCPU / 8 GiB per-sandbox maximum, but its organization pool is 10 vCPU and 10 GiB of RAM in one table (20 GiB in another), so one such sandbox fits, and a second only if the 20 GiB figure is the right one.",
+          "not priced here: Windows (the pricing page lists \"OS Windows $0.0858/vCPU/h\"). GPU sandboxes are priced per GPU model in each class.",
+          "Plan allowance: $200 in free compute, no credit card for the trial (free credits do not cover GPU sandboxes); Tier 1 (email verified) limits the whole organization to 10 vCPU and 30 GiB storage (RAM 10 or 20 GiB, see open_questions); Tier 2 (card + $25 top-up) 100 vCPU; Tier 3 ($500) 250 vCPU; Tier 4 ($2,000 every 30 days) 500 vCPU; startups: up to $50k credits",
+          "Credits and discounts"
+        ],
+        "price_version": "daytona@2026-10-24-065001Z",
+        "as_of": "2026-10-19T20:00:00Z"
+      }
+    }
+  },
+  "as_of": "2026-10-19T20:00:00Z"
+}

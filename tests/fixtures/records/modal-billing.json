@@ -1,0 +1,172 @@
+{
+  "as_of": "2026-10-20T12:29:23Z",
+  "cloud": {
+    "reads": [
+      {
+        "read_at": "2026-10-20T12:16:53Z",
+        "target": {
+          "identities": [
+            {
+              "id": "{\"environment\":\"main\",\"workspace\":\"boxrouter-internal\"}",
+              "scope": "account"
+            }
+          ],
+          "sandbox_id": "sb-test"
+        }
+      }
+    ],
+    "record": {
+      "calls": [
+        {
+          "at": "2026-10-20T12:16:52.940Z",
+          "edge": "sent",
+          "how": "create sent",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T12:16:53.020Z",
+          "edge": "returned",
+          "how": "create returned",
+          "name": "create"
+        },
+        {
+          "at": "2026-10-20T12:17:23.100Z",
+          "edge": "sent",
+          "how": "destroy sent",
+          "name": "destroy"
+        },
+        {
+          "at": "2026-10-20T12:17:23.180Z",
+          "edge": "returned",
+          "how": "destroy returned",
+          "name": "destroy"
+        }
+      ],
+      "provider": "modal",
+      "provider_records": [
+        {
+          "body": {
+            "app_id": "ap-test",
+            "namespace": {
+              "environment": "main",
+              "workspace": "boxrouter-internal"
+            },
+            "rows": [
+              {
+                "cost": "0.00004500",
+                "cost_by_resource": {
+                  "CPU": "0.00003000",
+                  "Memory": "0.00001500"
+                },
+                "environment": "main",
+                "interval_start": "2026-10-20T12:00:00+00:00",
+                "object_id": "ap-test"
+              }
+            ],
+            "sandbox_ids": [
+              "sb-test"
+            ]
+          },
+          "read_at": "2026-10-20T12:29:23Z",
+          "source": "Modal Workspace.billing.report"
+        }
+      ],
+      "provider_times": [
+        {
+          "at": {
+            "how": "Sandbox created_at",
+            "source": "provider",
+            "value": "2026-10-20T12:16:53Z"
+          },
+          "field": "Sandbox created_at",
+          "kind": "created"
+        },
+        {
+          "at": {
+            "how": "Sandbox terminated_at",
+            "source": "provider",
+            "value": "2026-10-20T12:17:23Z"
+          },
+          "field": "Sandbox terminated_at",
+          "kind": "ended"
+        }
+      ],
+      "sandbox_id": "sb-test"
+    }
+  },
+  "description": "Modal: the sandbox's own App held one billing hour; Cloud kept the target and the record as separate facts.",
+  "ended_at": "2026-10-20T12:17:23Z",
+  "expect": {
+    "label": "reported",
+    "total": {
+      "high": "0.00004500",
+      "low": "0.00004500"
+    }
+  },
+  "runner": {
+    "record": {
+      "provider": "modal",
+      "provider_records": [
+        {
+          "body": {
+            "app_id": "ap-test",
+            "namespace": {
+              "environment": "main",
+              "workspace": "boxrouter-internal"
+            },
+            "rows": [
+              {
+                "cost": "0.00004500",
+                "cost_by_resource": {
+                  "CPU": "0.00003000",
+                  "Memory": "0.00001500"
+                },
+                "environment": "main",
+                "interval_start": "2026-10-20T12:00:00+00:00",
+                "object_id": "ap-test"
+              }
+            ],
+            "sandbox_ids": [
+              "sb-test"
+            ]
+          },
+          "read_at": "2026-10-20T12:29:23Z",
+          "source": "Modal Workspace.billing.report"
+        }
+      ],
+      "provider_times": [
+        {
+          "at": {
+            "how": "Sandbox created_at",
+            "source": "provider",
+            "value": "2026-10-20T12:16:53Z"
+          },
+          "field": "Sandbox created_at",
+          "kind": "created"
+        },
+        {
+          "at": {
+            "how": "Sandbox terminated_at",
+            "source": "provider",
+            "value": "2026-10-20T12:17:23Z"
+          },
+          "field": "Sandbox terminated_at",
+          "kind": "ended"
+        }
+      ],
+      "reports": {
+        "read_at": "2026-10-20T12:29:23Z",
+        "target": {
+          "identities": [
+            {
+              "id": "{\"environment\":\"main\",\"workspace\":\"boxrouter-internal\"}",
+              "scope": "account"
+            }
+          ],
+          "sandbox_id": "sb-test"
+        }
+      },
+      "sandbox_id": "sb-test"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# owner/repo release source tree asset sha256
+# wheels/<asset> is the exact release wheel built from the named repository tree.
+# The committed asset hash is verified locally by .github/actions/pinned-artifacts.
+boxrouter/sandbox-provider-benchmarks 74b8dc2428e9506fddce07ffa662c7116e0a0a36 sandbox_benchmark_verifier-0.4.341-py3-none-any.whl f16692197f90ef4759561866e524db8b91d2b1e4f000d7faaa85389a7039ea09

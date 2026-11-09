@@ -1,0 +1,63 @@
+{
+  "sources": [
+    "We charge per second of a running sandbox.",
+    "vCPUs Plan Costs 1 Hobby / Pro $0.000016/s 2 [Default] Hobby / Pro $0.000028/s 4 Hobby / Pro $0.000056/s 6 Hobby / Pro $0.000084/s 8 Hobby / Pro $0.000112/s",
+    "Memory (GiB) Plan Costs 1 Hobby / Pro $0.0000045/s 2 Hobby / Pro $0.0000090/s 4 [Default] Hobby / Pro $0.0000180/s 8 Hobby / Pro $0.0000360/s",
+    "Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free",
+    "Hobby FREE /$100 of usage in credits + Usage Costs",
+    "$100 one-time usage credit Sessions up to 1 hour 20 concurrent sandboxes Default sandbox CPU and RAM",
+    "pro $150 /month + Usage Costs",
+    "Everything in Hobby, usage billed by the second Sessions up to 24 hours 100 concurrent sandboxes, expandable to 1,100 Custom sandbox CPU and RAM",
+    "Pro+ \u2014 600 concurrent+$500/mo Pro++ \u2014 1,100 concurrent+$1,000/mo",
+    "Enterprise requires $3,000/mo minimum."
+  ],
+  "classes": [
+    {
+      "name": "default",
+      "default": true,
+      "rates": {
+        "cpu": {
+          "usd": "0.000016",
+          "per": "vcpu-second"
+        },
+        "memory": {
+          "usd": "0.0000045",
+          "per": "gib-second"
+        }
+      },
+      "meter": {
+        "cpu": {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ]
+        },
+        "memory": {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ]
+        }
+      }
+    }
+  ],
+  "exclusions": [
+    "Plan fee: Hobby $0/month; Pro $150/month; Enterprise custom with a $3,000/month minimum. Usage is billed on top; upgrading to Pro grants no additional credits. The rates above are the same on Hobby and Pro.",
+    "Which plan each size needs: 1/2, 2/4, 4/8 and 2/8 fit Hobby (max 8 vCPU, 8 GiB; sessions up to 1 hour). 8/16 exceeds Hobby's 8 GiB and needs Pro or higher with a raised memory limit.",
+    "Concurrency add-ons on Pro: Pro+ 600 concurrent sandboxes +$500/month; Pro++ 1,100 concurrent +$1,000/month.",
+    "Storage: free, 10 GiB disk on Hobby and 20+ GiB on Pro; no separate storage rate is published.",
+    "Sandbox creation: no per-creation fee is published. Creation rate limit is 1 per second on Hobby and 5 per second on Pro.",
+    "Network egress: no charge is published on the pricing page or the billing docs.",
+    "Paused sandboxes: not billed and retained indefinitely; no charge is published for retention.",
+    "Every size here needs a custom template (cpuCount, memoryMB); no template build or template storage charge is published.",
+    "Plan allowance: Hobby: $0/month with a one-time $100 usage credit (about 603.9 sandbox-hours at 2 vCPU / 4 GiB), 20 concurrent sandboxes, 1-hour continuous runtime, up to 8 vCPU and 8 GiB, 10 GiB disk; when credits run out the account is blocked until a payment method is added."
+  ],
+  "open_questions": [
+    "Default size contradicts itself: the pricing page marks 2 vCPU / 4 GiB as [Default], while the billing docs still say default resources are 2 vCPU / 512 MiB RAM and a sandbox from E2B's default template reported MemTotal about 478 MiB. That default would cost about $0.1089 per hour (2 x 0.0504 + 0.5 x 0.0162). This entry prices the benchmark's own templates.",
+    "8/16: whether E2B grants 16 GiB on Pro on request, and at the linear rate; no 16 GiB row is published.",
+    "The pages never say in words whether the meter is allocated or used CPU and RAM; both price tables are keyed by configured size, so allocation is assumed.",
+    "Whether the $100 Hobby credit expires: it is described only as one-time.",
+    "Charges for egress, template builds and template storage are not published anywhere read; absence is not confirmation that they are free.",
+    "The concurrency add-on amounts come from the pricing page's calculator text (+$500/mo, +$1,000/mo); the billing docs do not list them."
+  ]
+}

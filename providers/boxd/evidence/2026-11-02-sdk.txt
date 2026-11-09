@@ -1,0 +1,24 @@
+Source: boxd==0.2.22 source distribution, src/boxd/models.py:957-1024
+Package: https://pypi.org/project/boxd/0.2.22/
+Retrieved: 2026-11-02
+Method: static source inspection, no live machine or billing measurement.
+
+UsageRates: micro-units (1e-6) of the org's currency per unit-hour.
+Fields: vcpu_hour_micro, ram_gib_hour_micro, disk_gib_hour_micro (integers).
+MachineUsageReport: machine_id, status, resources, seconds, vcpu_hours,
+ram_gib_hours, disk_gib_hours, cost_micro, complete, period, currency, rates.
+Currency is lower-case ISO 4217: "eur" or "usd".
+UsagePeriod has start and end (exclusive), in 15-minute buckets.
+
+Verbatim cost_micro documentation:
+Estimated cost at current rates, micro-units of the currency
+(``cost_micro / 1e6`` is the amount). Billing activity is what was charged.
+
+Verbatim complete documentation:
+All of this machine's usage in the window has been metered, so the
+figures won't grow. Metering lags by up to ~25 minutes: a machine read
+right after ``delete()`` is not complete yet, and one that still exists
+never is in a window that runs to now. Store a cost once this is True.
+
+Limits: synthetic fixtures test record interpretation only. They do not prove
+billing reconciliation, retention or finality on a live account.

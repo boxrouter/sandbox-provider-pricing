@@ -1,0 +1,285 @@
+{
+  "provider": "boxd",
+  "label": "reported",
+  "total": {
+    "low": "0.03932",
+    "high": "0.03932"
+  },
+  "lines": [],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "provider_reported",
+  "reported": {
+    "usd": "0.03932",
+    "source": "provider",
+    "how": "boxd's complete machine usage cost_micro in USD, with rates checked against list price; not an invoice settlement."
+  },
+  "excluded": [
+    "Organization credits, discounts, taxes and custom or self-host licence pricing are outside per-machine USD list cost.",
+    "No monthly plan or per-seat fee is published for pay as you go; no paid-plan minimum is required.",
+    "Organization settlements round each resource up to a millionth every 15 minutes; that account rounding is not attributed to a machine.",
+    "Snapshot and custom-domain charges are not stated by the provider on the checked pricing pages; absent rates are not zero.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-02T01:25:01Z",
+    "until": "2026-11-09T01:00:01Z",
+    "interval_s": 900,
+    "next_read_at": "2026-11-02T01:45:00Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 1,
+    "prices": "boxd@2026-11-02-082924Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "boxd",
+      "sandbox_id": "machine_synthetic",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "Synthetic fixture; no live machine was created."
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 8192,
+        "disk_mib": 102400,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-02T01:00:00Z",
+            "source": "recorded",
+            "how": "Synthetic destroy call."
+          },
+          "returned_at": {
+            "value": "2026-11-02T01:00:01Z",
+            "source": "recorded",
+            "how": "Synthetic destroy return."
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "created",
+          "at": {
+            "value": "2026-11-02T00:00:00Z",
+            "source": "provider",
+            "how": "Synthetic provider creation time."
+          },
+          "field": "created_at"
+        },
+        {
+          "kind": "ended",
+          "at": {
+            "value": "2026-11-02T01:00:00Z",
+            "source": "provider",
+            "how": "Synthetic provider deletion time."
+          },
+          "field": "deleted_at"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [
+        {
+          "source": "boxd.machines.usage",
+          "read_at": "2026-11-02T01:30:00Z",
+          "body": {
+            "machine_id": "machine_synthetic",
+            "name": "synthetic",
+            "status": "deleted",
+            "resources": {
+              "vcpu": 2,
+              "memory_bytes": 8589934592,
+              "disk_bytes": 107374182400
+            },
+            "seconds": {
+              "running": 3600,
+              "standby": 0,
+              "hibernated": 0,
+              "stopped": 0
+            },
+            "vcpu_hours": 0.2,
+            "ram_gib_hours": 2,
+            "disk_gib_hours": 20,
+            "cost_micro": 39320,
+            "complete": true,
+            "currency": "usd",
+            "period": {
+              "start": "2026-11-02T00:00:00Z",
+              "end": "2026-11-02T01:15:00Z"
+            },
+            "rates": {
+              "vcpu_hour_micro": 47000,
+              "ram_gib_hour_micro": 14000,
+              "disk_gib_hour_micro": 96
+            }
+          }
+        }
+      ],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-02T00:00:00Z",
+        "source": "provider",
+        "how": "The provider's own time: created_at."
+      },
+      "end": {
+        "value": "2026-11-02T01:00:00Z",
+        "source": "provider",
+        "how": "The provider's own time: deleted_at."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-02T00:00:00Z",
+      "source": "provider",
+      "how": "The provider's own time: created_at."
+    },
+    "sandbox_end": {
+      "value": "2026-11-02T01:00:00Z",
+      "source": "provider",
+      "how": "The provider's own time: deleted_at."
+    },
+    "usage": {
+      "low": {
+        "provider": "boxd",
+        "started": {
+          "at": "2026-11-02T00:00:00Z",
+          "source": "provider",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The provider's own time: created_at."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 8192,
+          "disk_mib": 102400,
+          "source": "recorded",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-02T01:30:00Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      },
+      "high": {
+        "provider": "boxd",
+        "started": {
+          "at": "2026-11-02T00:00:00Z",
+          "source": "provider",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The provider's own time: created_at."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 8192,
+          "disk_mib": 102400,
+          "source": "recorded",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-02T01:30:00Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-02T01:30:00Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the cpu time used."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Organization credits, discounts, taxes and custom or self-host licence pricing are outside per-machine USD list cost.",
+          "No monthly plan or per-seat fee is published for pay as you go; no paid-plan minimum is required.",
+          "Organization settlements round each resource up to a millionth every 15 minutes; that account rounding is not attributed to a machine.",
+          "Snapshot and custom-domain charges are not stated by the provider on the checked pricing pages; absent rates are not zero.",
+          "Credits and discounts"
+        ],
+        "price_version": "boxd@2026-11-02-082924Z",
+        "as_of": "2026-11-02T01:30:00Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the cpu time used."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Organization credits, discounts, taxes and custom or self-host licence pricing are outside per-machine USD list cost.",
+          "No monthly plan or per-seat fee is published for pay as you go; no paid-plan minimum is required.",
+          "Organization settlements round each resource up to a millionth every 15 minutes; that account rounding is not attributed to a machine.",
+          "Snapshot and custom-domain charges are not stated by the provider on the checked pricing pages; absent rates are not zero.",
+          "Credits and discounts"
+        ],
+        "price_version": "boxd@2026-11-02-082924Z",
+        "as_of": "2026-11-02T01:30:00Z"
+      }
+    }
+  },
+  "as_of": "2026-11-02T01:30:00Z"
+}

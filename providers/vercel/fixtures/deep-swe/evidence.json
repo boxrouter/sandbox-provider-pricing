@@ -1,0 +1,83 @@
+{
+  "provider": "vercel",
+  "sandbox_id": null,
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 4,
+    "memory_mib": 8192,
+    "region": "vercel:iad1",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:08:23.163544+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:08:24.585077+00:00"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:09:41.715779+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:09:41.889985+00:00"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [
+    {
+      "kind": "created",
+      "at": {
+        "how": "the provider's field createdAt",
+        "source": "provider",
+        "value": "2026-10-11T16:08:24.574000+00:00"
+      },
+      "field": "createdAt",
+      "read": "before_destroy"
+    },
+    {
+      "kind": "started",
+      "at": {
+        "how": "the provider's field requestedAt",
+        "source": "provider",
+        "value": "2026-10-11T16:08:23.215000+00:00"
+      },
+      "field": "requestedAt",
+      "read": "before_destroy"
+    },
+    {
+      "kind": "started",
+      "at": {
+        "how": "the provider's field startedAt",
+        "source": "provider",
+        "value": "2026-10-11T16:08:23.244000+00:00"
+      },
+      "field": "startedAt",
+      "read": "before_destroy"
+    }
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 143.60649,
+      "source": "measured",
+      "how": "cgroup v2 cpu.stat usage_usec: each session's last reading, summed"
+    }
+  },
+  "provider_records": []
+}

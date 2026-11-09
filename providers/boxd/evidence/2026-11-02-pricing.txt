@@ -1,0 +1,20 @@
+Source: https://boxd.sh/pricing
+Retrieved: 2026-11-02
+Verbatim excerpts:
+
+There is no monthly plan and no per-seat fee.
+
+Actual, for all three. vCPU bills on the CPU time a machine uses, sampled every second, not on its
+vCPU count: a 2 vCPU machine busy 10% of an hour pays for 0.2 vCPU-hours. It bills nothing
+hibernated or stopped, and next to nothing in standby, where its vCPUs are paused. RAM bills on the
+memory a machine has resident, sampled every second, while it is running or in standby, not on the 8
+GiB it was provisioned with. Disk bills on the disk you have written to, in every state, not on the
+100 GiB provisioned: a machine that has written 20 GiB pays for 20 GiB.
+
+Only for disk, and only for the space you have written to, not the 100 GiB provisioned. A machine
+hibernates on its own when its network traffic stops: its memory is written to disk, and the next
+request wakes it. If you need it back faster, standby keeps memory warm and resumes in under a
+millisecond, and a machine in standby pays for memory and disk. CPU is billed only while a machine
+runs.
+
+Moving between states costs nothing, and a machine with no network traffic hibernates on its own.

@@ -1,0 +1,39 @@
+{
+  "contract": 1,
+  "settles": "bounded",
+  "uses": [
+    {
+      "file": "src/sandbox_provider_pricing/providers/e2b/rules.py",
+      "function": "billable",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:observed_at",
+        "Name:as_of",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/e2b/rules.py",
+      "function": "_apply_execution_sizes",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:observed_at",
+        "Constant:observed_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/e2b/rules.py",
+      "function": "_core_events",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:read_at",
+        "Name:observed_at",
+        "Name:observed_at"
+      ]
+    }
+  ]
+}

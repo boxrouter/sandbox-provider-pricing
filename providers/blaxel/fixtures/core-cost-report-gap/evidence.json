@@ -1,0 +1,77 @@
+{
+  "provider": "blaxel",
+  "sandbox_id": "blaxel-sandbox-redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "blaxel:us-pdx-1",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-19T18:39:02Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T18:39:03Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-19T19:39:03Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T19:39:04Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [],
+  "provider_reports": {
+    "read_at": "2026-10-19T20:00:00Z",
+    "cost": {
+      "status": "available",
+      "reason": null,
+      "readings": [
+        {
+          "amount": "0.00182",
+          "currency": "USD",
+          "meter": "hourly_cost",
+          "interval_start": "2026-10-19T18:00:00Z",
+          "interval_end": "2026-10-19T19:00:00Z",
+          "scope": "sandbox",
+          "source": "Blaxel account metrics API"
+        },
+        {
+          "amount": "0.00178",
+          "currency": "USD",
+          "meter": "hourly_cost",
+          "interval_start": "2026-10-19T21:00:00Z",
+          "interval_end": "2026-10-19T22:00:00Z",
+          "scope": "sandbox",
+          "source": "Blaxel account metrics API"
+        }
+      ]
+    }
+  }
+}

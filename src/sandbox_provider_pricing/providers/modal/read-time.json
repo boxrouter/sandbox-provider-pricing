@@ -1,0 +1,58 @@
+{
+  "contract": 1,
+  "settles": "bounded",
+  "uses": [
+    {
+      "file": "src/sandbox_provider_pricing/providers/modal/rules.py",
+      "function": "billable",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Name:as_of",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/modal/rules.py",
+      "function": "billed_hours",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Name:as_of",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/modal/rules.py",
+      "function": "_accepted",
+      "kind": "bounded comparison",
+      "offset": "record read_at forwarded to _settled_span; for an image preparation a missing hour's end must not be after read_at",
+      "uses": [
+        "Constant:read_at",
+        "Constant:read_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/modal/rules.py",
+      "function": "_settled_span",
+      "kind": "bounded comparison",
+      "offset": "record read_at versus input end + revisit.after_s; Modal also compares read_at to observation",
+      "uses": [
+        "Constant:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at",
+        "Name:read_at_text",
+        "arg:read_at_text"
+      ]
+    }
+  ]
+}

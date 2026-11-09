@@ -1,0 +1,127 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Daytona
+website: https://www.daytona.io
+rules_version: 2
+status:
+  best_label: reported
+  why_not_higher: Nothing. In three samples the first read of a price was 2.73% to 4.25% below a later read, so the price is read again until 72 hours after the sandbox ends.
+  would_raise: Nothing. Without Daytona's per-sandbox analytics record the cost is unknown.
+revisit:
+  after_s: 120
+  until_s: 259200
+  interval_s: 3600
+  rationale: A finished sandbox's analytics row arrived at most 68.2 s after destroy returned in 10 measured sandboxes, so the first read waits 120 s. Reported prices rose on later reads within 72 hours of the sandbox's end, so reads continue that long.
+  unverified_default: false
+reported_at_list_price:
+  value: true
+  source: providers/daytona/evidence/2026-10-05-reported-vs-list-price.md#verdict (in all 13 sandboxes measured, Daytona's price was its billed periods multiplied by the list rates in src/sandbox_provider_pricing/providers/daytona/prices, with all reserved disk charged)
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported sandbox price on an account with a negotiated rate against list rates; the 2026-10-05 measurement was on a list-rate account
+summary: >-
+  Daytona's analytics API returns a price and billed periods for each sandbox. Those prices matched list rates in our checks and are labelled reported; without a record the cost is unknown. Early reads ran low, so re-read until 72 hours after the sandbox ends.
+formula: >-
+  Daytona's own price for the sandbox. Check: billed seconds × (vCPUs × CPU rate + GiB of memory × memory rate + GiB of disk × disk rate).
+rules:
+  billed_on:
+    answer: CPU, memory and disk as reserved, not as used. Disk is charged in full; the pricing page says "after first 5 free", but the reported prices we measured deducted none.
+    sources:
+      - https://www.daytona.io/pricing
+      - https://www.daytona.io/docs/en/billing/
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#price-against-list-rates
+  starts:
+    answer: At create returned, measured on seven sandboxes. Daytona's first period began 14 to 86 ms earlier, within network and clock error.
+    sources:
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#verdict
+  ends:
+    answer: At destroy sent, measured on seven sandboxes. Daytona's last period ended 28 to 68 ms later.
+    sources:
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#verdict
+  rounding:
+    answer: Not stated beyond "calculated per second". Billed periods have millisecond edges, and a 247 ms period was priced at its exact length.
+    sources:
+      - https://www.daytona.io/pricing
+      - https://www.daytona.io/docs/en/billing/
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#results
+  idle_and_paused:
+    answer: Stopped and paused (VM only) are billed for disk only. Archived (container only) and deleted are not billed. Creating, starting, stopping and pausing bill like started. Paused and archived were not measured.
+    sources:
+      - https://www.daytona.io/docs/en/billing/
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#results
+  image_pull:
+    answer: Not stated. One 27.9 s create that built or pulled an image was not billed; only one long create was measured.
+    sources:
+      - https://www.daytona.io/docs/en/billing/
+      - providers/daytona/evidence/2026-10-11-billing-boundary.md#results
+  extra_charges:
+    answer: Not stated for network or creation. GPU is priced per GPU-hour (for example H100 {rate.gpu.nvidia:h100.amount} on-demand) and Windows at $0.0858 per vCPU-hour. Snapshots made from a sandbox stay billed after deletion, with no published rate.
+    sources:
+      - https://www.daytona.io/pricing
+      - https://www.daytona.io/docs/en/billing/
+      - https://www.daytona.io/docs/en/sandboxes/
+  left_out:
+    answer: Free credit, plan or tier fees, taxes, discounts, GPU and Windows sandboxes, snapshot and image storage, and any network charge. Volumes are included at no extra cost.
+    sources:
+      - https://www.daytona.io/pricing
+      - https://www.daytona.io/docs/en/billing/
+      - https://www.daytona.io/docs/en/volumes/
+  per_sandbox_data:
+    answer: Yes. The analytics API gives each sandbox's price and billed periods. The billing page says charges can take up to 48 hours to appear; whether this applies to the API is not stated.
+    sources:
+      - https://analytics.app.daytona.io/swagger/index.html
+      - https://www.daytona.io/docs/en/billing/
+      - providers/daytona/evidence/2026-10-05-reported-vs-list-price.md#verdict
+checks:
+  - date: '2026-10-24'
+    title: How soon a finished sandbox's analytics row arrives
+    file: evidence/2026-10-24-analytics-row-latency.md
+    result: On 10 sandboxes that ran 5 to 300 s, each row was readable at most 9.4 to 68.2 s after destroy returned, already final for the next 20 minutes, and priced at list rates. One organization, one size.
+  - date: '2026-10-11'
+    title: Billing boundary against Daytona's billed periods
+    file: evidence/2026-10-11-billing-boundary.md
+    result: On seven sandboxes Daytona's billed periods began just before create returned and ended just after destroy was sent, and every price matched list rates. One organization, container sandboxes only.
+  - date: '2026-10-05'
+    title: Reported price against the list-price calculation
+    file: evidence/2026-10-05-reported-vs-list-price.md
+    result: On three 5-second sandboxes our list-price calculation was 1.06% to 1.80% below Daytona's price. The first read of each price was 2.73% to 4.25% lower than a later one; the cause is unknown.
+open_questions:
+  - question: Is the "first 5 GiB free" disk allowance per sandbox, per organization or only on the invoice? Measured prices charged all disk.
+    how: Compare a sandbox's reported price with the organization's invoice for a period with several sandboxes.
+  - question: Why were first reads of the per-sandbox price 2.73% to 4.25% lower than later reads?
+    how: Read the per-sandbox endpoint repeatedly after a sandbox ends until the price stops changing.
+  - question: Is a larger cold image build or pull also unbilled, in other sizes and regions?
+    how: Repeat the boundary check with fresh images of several sizes and compare the first billed period with create returned.
+  - question: How are paused VM and archived container sandboxes billed in practice?
+    how: Pause a VM sandbox and archive a container sandbox, then compare their billed periods with the billing page.
+  - question: At what rate are snapshots made from a sandbox billed?
+    how: Compare an invoice before and after creating a snapshot.
+  - question: Do per-sandbox figures change after the first 20 minutes, and how long are they kept?
+    how: Read a finished sandbox at set intervals up to 72 hours, then after 30 and 90 days. Arrival was measured on 2026-10-24 (at most 68.2 s after destroy returned).
+
+price_sheet:
+  active_time_priced: {value: false, source_url: https://www.daytona.io/pricing}
+  benchmark_region: {value: us, source_url: https://www.daytona.io/pricing}
+  states:
+    idle: {rule: running, note: Idle usage is billed as running., source_url: https://www.daytona.io/docs/en/billing/}
+    paused: {rule: disk, note: Only reserved disk is billed while paused., source_url: https://www.daytona.io/docs/en/billing/}
+  class_overrides:
+    container:
+      label: Container
+      states:
+        paused: {rule: disk, note: 'Only reserved disk is billed while stopped.', source_url: https://www.daytona.io/docs/en/billing/}
+      rules:
+        archive: {text: 'Archived: not billed.', source_url: https://www.daytona.io/docs/en/billing/}
+    vm:
+      label: VM
+      states:
+        paused: {rule: disk, note: 'Only reserved disk is billed while paused, and memory is kept.', source_url: https://www.daytona.io/docs/en/billing/}
+      rules:
+        archive: {text: 'Not supported: a VM sandbox cannot be archived.', source_url: https://www.daytona.io/docs/en/billing/}
+  storage:
+    - {kind: image, status: unpublished, source_url: https://www.daytona.io/pricing}
+    - {kind: snapshot, status: unpublished, source_url: https://www.daytona.io/docs/en/billing/}
+    - {kind: volume, status: included, source_url: https://www.daytona.io/docs/en/volumes/}
+    - kind: disk
+      status: priced
+      source_url: https://www.daytona.io/pricing
+      price_version_rate: {resource: disk, per: gib-hour, multiply_by_month_hours: true, included_gb: 5, included_unit: GiB}

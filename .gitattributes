@@ -1,0 +1,4 @@
+# Generated; GitHub collapses these in diffs. See `make docs` and `make update-fixtures`.
+providers/*/README.md linguist-generated
+providers/*/fixtures/*/result.json linguist-generated
+uv.lock linguist-generated

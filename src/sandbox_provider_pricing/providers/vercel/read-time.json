@@ -1,0 +1,107 @@
+{
+  "contract": 1,
+  "settles": "bounded",
+  "uses": [
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "Session",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Name:read_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "billable",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:observed_at",
+        "Name:as_of",
+        "Name:observed_at",
+        "Name:observed_at",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_sessions",
+      "kind": "compared with input",
+      "offset": "none; choose among fixed input read times",
+      "uses": [
+        "Constant:read_at",
+        "Constant:read_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_session",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:read_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_intervals",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Attribute:read_at",
+        "Attribute:read_at",
+        "Attribute:read_at",
+        "Attribute:read_at",
+        "Constant:observed_at",
+        "Constant:observed_at",
+        "Constant:observed_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_apply_sessions",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Attribute:read_at",
+        "Constant:observed_at",
+        "Constant:observed_at",
+        "Constant:observed_at",
+        "Constant:observed_at",
+        "Constant:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_core_sessions",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:read_at",
+        "Constant:read_at",
+        "Name:observed_at",
+        "Name:observed_at",
+        "Name:observed_at"
+      ]
+    },
+    {
+      "file": "src/sandbox_provider_pricing/providers/vercel/rules.py",
+      "function": "_snapshot_fact",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Constant:observed_at",
+        "Name:observed_at",
+        "arg:observed_at"
+      ]
+    }
+  ]
+}

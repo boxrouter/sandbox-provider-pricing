@@ -1,0 +1,52 @@
+{
+  "provider": "e2b",
+  "sandbox_id": null,
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "e2b:us",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:03.460513+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:04.030256+00:00"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:05.347107+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:05.500767+00:00"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 3.05,
+      "source": "measured",
+      "how": "/proc/stat user + nice + system + irq + softirq, the whole machine: each session's last reading, summed"
+    }
+  },
+  "provider_records": []
+}

@@ -1,0 +1,132 @@
+provider: e2b
+version: e2b@2026-10-29-203000Z
+effective_from: '2026-10-11T09:12:49Z'
+retrieved_at: '2026-10-29T20:30:00Z'
+supersedes:
+- e2b@2026-10-20-061802Z
+- e2b@2026-10-20
+sources:
+- url: https://e2b.dev/pricing
+  quote: We charge per second of a running sandbox.
+- url: https://e2b.dev/pricing
+  quote: vCPUs Plan Costs 1 Hobby / Pro $0.000014/s 2 [Default] Hobby / Pro $0.000028/s 4 Hobby / Pro
+    $0.000056/s 6 Hobby / Pro $0.000084/s 8 Hobby / Pro $0.000112/s
+- url: https://e2b.dev/pricing
+  quote: Memory (GiB) Plan Costs 1 Hobby / Pro $0.0000045/s 2 Hobby / Pro $0.0000090/s 4 [Default] Hobby
+    / Pro $0.0000180/s 8 Hobby / Pro $0.0000360/s
+- url: https://e2b.dev/pricing
+  quote: Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free
+- url: https://e2b.dev/pricing
+  quote: Hobby FREE /$100 in credits (+usage costs)
+- url: https://e2b.dev/pricing
+  quote: $100 one-time usage credit Sessions up to 1 hour 20 concurrent sandboxes | Default sandbox CPU and
+    RAM
+- url: https://e2b.dev/pricing
+  quote: pro $150 /month (+usage costs)
+- url: https://e2b.dev/pricing
+  quote: Everything in Hobby, usage billed by the second Sessions up to 24 hours 100 concurrent sandboxes,
+    expandable to 1,100 Custom sandbox CPU and RAM
+- url: https://e2b.dev/pricing
+  quote: Pro+ — 600 concurrent +$500/mo Pro++ — 1,100 concurrent +$1,000/mo
+- url: https://e2b.dev/pricing
+  quote: Enterprise requires $3,000/mo minimum.
+- url: https://docs.e2b.dev/billing
+  quote: You pay per second for compute resources while your sandbox is running.
+- url: https://docs.e2b.dev/billing
+  quote: Do I pay for stopped sandboxes? No. You only pay while a sandbox is actively running. Once a
+    sandbox is paused, killed or times out, billing stops immediately.
+- url: https://docs.e2b.dev/billing
+  quote: Base price $0/month $150/month Custom Free credits $100 (one-time) No additional credits Custom
+    Max vCPUs 8 8+ Custom Max memory 8 GiB 8+ GiB Custom Disk size 10 GiB 20+ GiB Custom Max continuous
+    runtime 1 hour 24 hours Custom
+- url: https://docs.e2b.dev/billing
+  quote: Sandbox creation rate 1 / sec 5 / sec Custom Paused sandbox retention Unlimited Unlimited Unlimited
+- url: https://docs.e2b.dev/billing
+  quote: Upgrading to the Pro tier does not grant additional credits. It only increases the limits available
+    to your project (such as concurrent sandboxes, continuous runtime, and resource ceilings).
+- url: https://docs.e2b.dev/billing
+  quote: You can customize allocated CPU and RAM when building custom templates by specifying cpuCount
+    and memoryMB in the build configuration.
+- url: https://docs.e2b.dev/billing
+  quote: Need higher CPU or RAM limits? Contact support@e2b.dev for more information.
+- url: https://docs.e2b.dev/billing
+  quote: Allocate only what you need - Start with default resources (2 vCPU, 512 MiB RAM) and increase
+    only if necessary
+- url: https://docs.e2b.dev/billing
+  quote: When am I charged? Automatically at the start of the month for the previous month’s usage. What
+      happens when I run out of credits? If you have no payment method, every project in your workspace
+      is blocked shortly afterwards. Add a payment method to continue using E2B. Can I set spending limits?
+      Yes, you can set spending limits on the budget page in your dashboard.
+- url: https://docs.e2b.dev/faq/calculate-sandbox-price
+  quote: E2B bills per second, only while a sandbox is running, based on the vCPU and RAM allocated to
+    it.
+- url: https://docs.e2b.dev/faq/calculate-sandbox-price
+  quote: The rate depends on how much compute the sandbox has allocated, not on how much it actually uses.
+- url: https://docs.e2b.dev/faq/calculate-sandbox-price
+  quote: A default sandbox has 2 vCPU and 512 MiB (0.5 GiB) of RAM.
+- url: https://docs.e2b.dev/api-reference/templates/create-template-v3.md
+  quote: 'CPUCount: type: integer format: int32 minimum: 1 description: CPU cores for the sandbox MemoryMB:
+    type: integer format: int32 minimum: 128 description: Memory for the sandbox in MiB'
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.000014'
+      per: vcpu-second
+    memory:
+      usd: '0.0000045'
+      per: gib-second
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+exclusions:
+- 'Plan fee: Hobby $0/month; Pro $150/month; Enterprise custom with a $3,000/month minimum. Usage is billed
+  on top; upgrading to Pro grants no additional credits. The rates above are the same on Hobby and Pro.'
+- 'Plan size limits: the billing page lists "Max vCPUs 8 8+ Custom" and "Max memory 8 GiB 8+ GiB Custom"
+  for Hobby, Pro and Enterprise. The pricing page lists "Sessions up to 1 hour" and "Default sandbox CPU
+  and RAM" for Hobby, and "Custom sandbox CPU and RAM" for Pro. For more, E2B says "Need higher
+  CPU or RAM limits? Contact support@e2b.dev for more information."'
+- 'Concurrency add-ons on Pro: Pro+ 600 concurrent sandboxes +$500/mo; Pro++ 1,100 concurrent +$1,000/mo.'
+- 'Storage: the pricing page lists "Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free"; the billing page
+  lists "Disk size 10 GiB 20+ GiB Custom". Neither page states a charge for disk above 20 GiB on Pro; no
+  separate storage rate is published.'
+- 'Sandbox creation: no per-creation fee is published. Creation rate limit is 1 per second on Hobby and
+  5 per second on Pro.'
+- 'Network egress: no charge is published on the pricing page or the billing docs.'
+- 'Paused sandboxes: not billed and retained indefinitely; no charge is published for retention.'
+- 'Templates: E2B says "You can customize allocated CPU and RAM when building custom templates by specifying
+  cpuCount and memoryMB in the build configuration." No template build or template storage charge is
+  published.'
+- 'Plan allowance: Hobby: $0/month with a one-time $100 usage credit, 20 concurrent sandboxes, 1-hour
+  continuous runtime, up to 8 vCPU and 8 GiB, 10 GiB disk; when credits run out and there is no payment
+  method, projects in the workspace are blocked until one is added.'
+open_questions:
+- 'Default size contradicts itself: the pricing page marks 2 vCPU / 4 GiB as [Default], while the billing
+  docs say default resources are 2 vCPU / 512 MiB RAM and the price FAQ says "A default sandbox has 2
+  vCPU and 512 MiB (0.5 GiB) of RAM." That default would cost about $0.1089 per hour (2 x 0.0504 + 0.5
+  x 0.0162).'
+- 'Sizes above the price table: Pro lists "8+" vCPUs and "8+ GiB" of memory, but the price tables stop
+  at 8 vCPUs and 8 GiB; whether larger sizes are charged at the same per-unit rates is not stated.'
+- 'Whether the $100 Hobby credit expires: it is described only as one-time.'
+- Charges for egress, template builds and template storage are not published on the pages checked; absence
+  is not confirmation that they are free.
+- The concurrency add-on amounts come from the pricing page's calculator text (+$500/mo, +$1,000/mo);
+  the billing docs do not list them.
+- 'Correction: this version supersedes e2b@2026-10-20 from the same effective date; no rate or class changed.
+  It replaces the assumption that CPU and RAM are billed on allocation with E2B''s price FAQ, which says
+  billing is based on the vCPU and RAM allocated to a sandbox. It restates plan size limits from E2B''s
+  plan tables in place of text about sandbox sizes this version does not define, and removes a memory
+  reading of the default template that no committed evidence records. It states disk only as the pricing
+  and billing pages list it, instead of calling disk above 20 GiB on Pro free, and quotes the template
+  API''s memory field in full.'
+- 'Correction: this version supersedes e2b@2026-10-20-061802Z from the same effective date; no rate or class
+  changed. Read 2026-10-29: e2b.dev/pricing now writes the plan prices as "Hobby FREE /$100 in credits (+usage
+  costs)" and "pro $150 /month (+usage costs)", and a tooltip sits between "20 concurrent sandboxes" and
+  "Default sandbox CPU and RAM" in the Hobby list. Only those three quotes changed; every rate quote is as before.'

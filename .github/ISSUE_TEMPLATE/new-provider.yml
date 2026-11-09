@@ -1,0 +1,41 @@
+name: New provider
+description: Propose adding a sandbox provider.
+labels: ["new-provider"]
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      description: Name and link to its public pricing page.
+    validations:
+      required: true
+  - type: textarea
+    id: reports
+    attributes:
+      label: What the provider reports per sandbox
+      description: >-
+        A per-sandbox cost, per-sandbox usage, or only aggregates (per project, per day)? Link the
+        API or page if you know it. "Not known" is a fine answer.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources
+      description: Pricing, billing and usage documentation that the provider page would cite.
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your relationship to the provider
+      options:
+        - I speak for the provider
+        - I am a customer
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: work
+    attributes:
+      label: Who will do the work
+      options:
+        - label: I plan to open a pull request following docs/adding-a-provider.md.

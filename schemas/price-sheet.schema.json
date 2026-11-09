@@ -1,0 +1,660 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:price-sheet",
+  "title": "BoxRouter provider price sheet",
+  "description": "The current, provider-sourced sandbox price display data and billing rules.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "pricing_release_version",
+    "providers",
+    "billing_rule_titles",
+    "unit_names",
+    "panels",
+    "pages",
+    "content_criteria",
+    "default_size",
+    "sizes"
+  ],
+  "properties": {
+    "$schema": {"const": "urn:boxrouter:sandbox-provider-pricing:price-sheet"},
+    "schema_version": {"const": "2.4.0"},
+    "pages": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pricing": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {"type": "string", "minLength": 1, "maxLength": 64},
+            "sections": {"type": "string", "minLength": 1, "maxLength": 64},
+            "machine_size": {"type": "string", "minLength": 1, "maxLength": 64},
+            "summary": {
+              "allOf": [{"$ref": "#/$defs/sentence"}],
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "summary", "title", "sections", "machine_size"
+          ]
+        }
+      },
+      "required": ["pricing"]
+    },
+    "panels": {
+      "type": "object",
+      "propertyNames": {"enum": ["active-use", "inactive-use", "image-storage", "disk-storage"]},
+      "additionalProperties": {"$ref": "#/$defs/panel_text"},
+      "properties": {
+        "active-use": {
+          "$ref": "#/$defs/panel_text"
+        },
+        "inactive-use": {
+          "$ref": "#/$defs/panel_text"
+        },
+        "image-storage": {
+          "$ref": "#/$defs/panel_text"
+        },
+        "disk-storage": {
+          "$ref": "#/$defs/panel_text"
+        }
+      },
+      "required": [
+        "active-use",
+        "inactive-use",
+        "image-storage",
+        "disk-storage"
+      ]
+    },
+    "billing_rule_titles": {
+      "description": "Each billing rule's key and heading, in the order a page lists them.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "title"],
+        "properties": {
+          "key": {"type": "string", "pattern": "^[a-z_]+$"},
+          "title": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "unit_names": {
+      "description": "The display name of every unit a storage row is priced or billed in, such as GiB-month for gib-month.",
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "hourly": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seconds_per_hour"],
+      "properties": {"seconds_per_hour": {"const": 3600}}
+    },
+    "excludes": {"type": "array", "items": {"enum": ["discounts", "credits", "plan fees"]}, "uniqueItems": true},
+    "default_size": {"$ref": "#/$defs/size_label"},
+    "sizes": {"type": "array", "items": {"$ref": "#/$defs/size_label"}, "minItems": 1},
+    "pricing_release_version": {"type": "string", "minLength": 1},
+    "providers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/provider"}
+    }
+  ,
+    "content_criteria": {"type": "object"}
+  },
+  "$defs": {
+    "sentence": {"type": "string", "minLength": 8, "maxLength": 300, "pattern": "^[A-Z](?=[\\s\\S]*\\b(?:is|are|uses?|shows?|means?|assumes?|includes?|excludes?|follows?|follow|compares?|incurs?|adds?|estimates?|multiply|set|choose|can|does|do|covers?|counts?|determines?|determine)\\b)[\\s\\S]*\\.$"},
+    "panel_text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "summary",
+        "caption",
+        "axis_measure",
+        "how_it_is_measured",
+        "how_to_read",
+        "limits",
+        "metric"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "caption": {
+          "allOf": [{"$ref": "#/$defs/sentence"}],
+          "maxLength": 300
+        },
+        "axis_measure": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "summary": {
+          "allOf": [{"$ref": "#/$defs/sentence"}],
+          "maxLength": 140
+        },
+        "how_it_is_measured": {
+          "allOf": [{"$ref": "#/$defs/sentence"}],
+          "maxLength": 300
+        },
+        "how_to_read": {
+          "allOf": [{"$ref": "#/$defs/sentence"}],
+          "maxLength": 300
+        },
+        "limits": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "allOf": [{"$ref": "#/$defs/sentence"}],
+            "maxLength": 200
+          }
+        },
+        "metric": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "quantity",
+            "unit",
+            "per",
+            "direction"
+          ],
+          "properties": {
+            "quantity": {
+              "const": "price"
+            },
+            "unit": {
+              "enum": [
+                "USD",
+                "USD/GiB-month"
+              ]
+            },
+            "per": {
+              "enum": [
+                "active hour",
+                "hour",
+                "GiB-month"
+              ]
+            },
+            "direction": {
+              "const": "lower_is_better"
+            }
+          }
+        }
+      }
+    },
+    "size_label": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vcpu", "memory_gib", "label"],
+      "properties": {
+        "vcpu": {"type": "integer", "minimum": 1},
+        "memory_gib": {"type": "integer", "minimum": 1},
+        "label": {"type": "string", "minLength": 1}
+      }
+    },
+    "figure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["low", "high", "source_url", "checked_at"],
+      "properties": {
+        "low": {"type": "number", "minimum": 0},
+        "high": {"type": "number", "minimum": 0},
+        "source_url": {"type": ["string", "null"], "format": "uri"},
+        "checked_at": {"type": "string", "format": "date"}
+      }
+    },
+    "answer": {
+      "type": "object",
+      "required": ["answer"],
+      "properties": {
+        "answer": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "items": {"type": "string"}},
+        "unknown_how": {"type": "string"}
+      }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "class", "name", "price_version", "region", "region_multiplier", "region_note",
+        "region_source_url", "region_checked_at", "basis", "billing_mode", "active_time_priced", "compute_rates", "unit_rates",
+        "class_rules", "configs", "storage", "source_url", "checked_at", "billing_rules", "billing_rules_source",
+        "pricing_release_version", "display_name"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "class": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "display_name": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "minLength": 1},
+        "class_rules": {
+          "type": "object",
+          "additionalProperties": {"type": "string", "minLength": 1},
+          "propertyNames": {"enum": ["disk", "archive"]}
+        },
+        "name": {"type": "string", "minLength": 1},
+        "price_version": {"type": "string", "minLength": 1},
+        "region": {"type": ["string", "null"], "minLength": 1},
+        "region_multiplier": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "region_note": {"type": ["string", "null"]},
+        "region_source_url": {"type": ["string", "null"], "format": "uri"},
+        "region_checked_at": {"type": ["string", "null"], "format": "date"},
+        "basis": {"type": "string", "minLength": 1},
+        "billing_mode": {
+          "description": "The one meter basis every running-billed compute resource shares, or mixed when they differ: allocated is the size the sandbox has, active only while the resource is in use, larger_of_request_and_use whichever is greater. Taken from the price version's meter rules.",
+          "enum": ["allocated", "active", "larger_of_request_and_use", "mixed"]
+        },
+        "active_time_priced": {
+          "description": "True when the running figures are the upper end of the range, the rate a fully used resource pays (the provider bills only active time). False when a meter billed only while in use runs from no use to full use.",
+          "type": "boolean"
+        },
+        "compute_rates": {
+          "description": "Each compute resource charged while the sandbox runs, with the meter's basis and billed states and the provider's own rate and unit. A flat per-size machine rate has usd null; the sized figures carry its amounts.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["resource", "basis", "billed_states", "per", "usd", "size_per_unit"],
+            "properties": {
+              "resource": {"enum": ["cpu", "memory", "machine"]},
+              "basis": {"enum": ["allocated", "active", "larger_of_request_and_use"]},
+              "billed_states": {
+                "type": "array", "minItems": 1, "uniqueItems": true,
+                "items": {"enum": ["running", "paused", "stopped"]}
+              },
+              "per": {
+                "description": "The provider's own rate unit, as in the price version.",
+                "enum": [
+                  "vcpu-second", "vcpu-hour", "core-second", "core-hour",
+                  "gib-second", "gib-hour", "gb-second", "gb-hour",
+                  "machine-second", "machine-hour"
+                ]
+              },
+              "usd": {"type": ["number", "null"], "minimum": 0, "description": "List price per unit, before any region multiplier."},
+              "size_per_unit": {"type": ["number", "null"], "exclusiveMinimum": 0, "description": "vCPUs one core covers, or GiB one GB covers; null for a vCPU or GiB unit."}
+            }
+          }
+        },
+        "unit_rates": {
+          "description": "The hourly price of one vCPU and of one GiB of memory, the upper end of an hour of running at the benchmark region, so vCPUs times cpu_per_vcpu_hour plus GiB times memory_per_gib_hour is a size's running price. Null for a flat per-size machine rate.",
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["cpu_per_vcpu_hour", "memory_per_gib_hour"],
+          "properties": {
+            "cpu_per_vcpu_hour": {"type": ["number", "null"], "minimum": 0, "description": "Null where memory is the only compute meter and the CPU is billed with it."},
+            "memory_per_gib_hour": {"type": "number", "minimum": 0}
+          }
+        },
+        "source_url": {"type": "string", "format": "uri"},
+        "checked_at": {"type": "string", "format": "date"},
+        "pricing_release_version": {"type": "string", "minLength": 1},
+        "billing_rules_source": {"type": "string", "minLength": 1},
+        "configs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "size", "status", "reason", "idle_note", "paused_note", "running_per_hour_usd", "cpu_per_hour_usd",
+              "memory_per_hour_usd", "idle_per_hour_usd", "paused_per_hour_usd"
+            ],
+            "properties": {
+              "size": {
+                "type": "object", "additionalProperties": false,
+                "required": ["vcpu", "memory_gib"],
+                "properties": {
+                  "vcpu": {"type": "integer", "minimum": 1},
+                  "memory_gib": {"type": "integer", "minimum": 1}
+                }
+              },
+              "status": {"enum": ["priced", "in_development"]},
+              "reason": {"type": ["string", "null"]},
+              "idle_note": {"type": "string", "minLength": 1},
+              "paused_note": {"type": "string", "minLength": 1},
+              "running_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "cpu_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "memory_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "idle_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "paused_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "idle_cpu_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]},
+              "idle_memory_per_hour_usd": {"oneOf": [{"$ref": "#/$defs/figure"}, {"type": "null"}]}
+            }
+          }
+        },
+        "storage": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["kind", "status", "status_text", "usd", "per", "source_usd", "source_per", "included_gb", "included_unit", "source_url", "checked_at"],
+            "properties": {
+              "kind": {"enum": ["image", "disk", "snapshot", "volume"]},
+              "status": {"enum": ["priced", "included", "pending", "unpublished", "unknown"]},
+              "status_text": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["word", "hover"],
+                "properties": {
+                  "word": {"type": "string", "minLength": 1},
+                  "hover": {"type": "string", "minLength": 1, "maxLength": 180, "description": "The status reason fragment used by ranking footers."}
+                }
+              },
+              "usd": {"type": ["number", "null"], "minimum": 0},
+              "per": {"enum": ["gib-month", null]},
+              "source_usd": {"type": ["number", "null"], "minimum": 0},
+              "source_per": {"enum": ["gb-month", "gib-month", "gib-hour", null]},
+              "included_gb": {"type": ["number", "null"], "minimum": 0},
+              "included_unit": {"type": ["string", "null"], "enum": ["GiB", null]},
+              "source_url": {"type": ["string", "null"], "format": "uri"},
+              "checked_at": {"type": "string", "format": "date"}
+            }
+          }
+        },
+        "billing_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "best_cost_label", "billed_on", "starts", "ends", "rounding", "idle_and_paused", "image_pull",
+            "extra_charges", "left_out", "per_sandbox_data", "sources"
+          ],
+          "properties": {
+            "best_cost_label": {"enum": ["reported", "calculated", "unknown"]},
+            "billed_on": {"$ref": "#/$defs/answer"},
+            "starts": {"$ref": "#/$defs/answer"},
+            "ends": {"$ref": "#/$defs/answer"},
+            "rounding": {"$ref": "#/$defs/answer"},
+            "idle_and_paused": {"$ref": "#/$defs/answer"},
+            "image_pull": {"$ref": "#/$defs/answer"},
+            "extra_charges": {"$ref": "#/$defs/answer"},
+            "left_out": {"$ref": "#/$defs/answer"},
+            "per_sandbox_data": {"$ref": "#/$defs/answer"},
+            "sources": {"type": "object"}
+          }
+        }
+      }
+    }
+  },
+  "x-content-criteria": {
+    "schema": "boxrouter.pricing.content-criteria/1",
+    "slots": {
+      "title": {
+        "form": "canonical",
+        "min_length": 1,
+        "max_length": 40
+      },
+      "description": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 140,
+        "max_sentences": 1,
+        "source": "summary"
+      },
+      "caption": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 160,
+        "max_sentences": 2,
+        "source": "caption"
+      },
+      "axis-title": {
+        "form": "label",
+        "min_length": 1,
+        "max_length": 80,
+        "source": "axis_measure"
+      },
+      "details.how-its-measured": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 300,
+        "max_sentences": 2,
+        "source": "how_it_is_measured"
+      },
+      "details.how-to-read-it": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 300,
+        "max_sentences": 3,
+        "source": "how_to_read"
+      },
+      "details.limits": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 200,
+        "max_sentences": 1,
+        "min_items": 1,
+        "max_items": 3,
+        "source": "limits"
+      },
+      "details.latest-result": {
+        "form": "sentence",
+        "min_length": 8,
+        "max_length": 240,
+        "max_sentences": 2,
+        "runtime_fields": [
+          "provider",
+          "value",
+          "unit"
+        ]
+      },
+      "details.sources": {
+        "form": "link",
+        "min_length": 1,
+        "max_length": 240,
+        "runtime_fields": [
+          "source_url",
+          "checked_at"
+        ]
+      }
+    },
+    "required_slots": [
+      "title",
+      "description",
+      "caption",
+      "axis-title",
+      "details.how-its-measured",
+      "details.how-to-read-it",
+      "details.limits",
+      "details.latest-result",
+      "details.sources"
+    ],
+    "details_order": [
+      "details.how-its-measured",
+      "details.how-to-read-it",
+      "details.limits",
+      "details.latest-result",
+      "details.sources"
+    ],
+    "placeholders": {
+      "source": "param:path",
+      "runtime": [
+        "idle",
+        "paused",
+        "state",
+        "direction"
+      ],
+      "numbers": "param",
+      "prices": "data-only",
+      "units": "metric.unit",
+      "axis": "metric-derived",
+      "metric": "metric:field"
+    },
+    "directions": {
+      "lower_is_better": "Lower is better."
+    },
+    "fact_scope": {
+      "page": [
+        "region",
+        "machine_size",
+        "provider_list"
+      ],
+      "panel": [
+        "price",
+        "billing_state",
+        "storage_kind"
+      ],
+      "forbidden_panel_runtime_fields": [
+        "region",
+        "machine_size",
+        "provider_list"
+      ]
+    },
+    "hover_slots": {
+      "price-info": {
+        "owner": "pricing",
+        "form": "sentence",
+        "template": "{description}",
+        "criteria_slot": "tooltip",
+        "runtime_fields": ["description"]
+      },
+      "price-bar": {
+        "owner": "pricing",
+        "form": "sentence",
+        "template": "The published price for {provider} is {value} {unit}.",
+        "criteria_slot": "tooltip",
+        "runtime_fields": ["provider", "value", "unit"]
+      },
+      "billing-rule": {
+        "owner": "pricing",
+        "form": "sentence",
+        "template": "{description}",
+        "criteria_slot": "tooltip",
+        "runtime_fields": ["description"]
+      },
+      "price-status": {
+        "owner": "pricing",
+        "form": "sentence",
+        "template": "{reason}",
+        "criteria_slot": "tooltip",
+        "runtime_fields": ["reason"]
+      },
+      "source": {
+        "owner": "pricing",
+        "form": "sentence",
+        "template": "The rate comes from the linked public pricing source.",
+        "criteria_slot": "tooltip",
+        "runtime_fields": []
+      }
+    },
+    "unique_slots": [
+      "description",
+      "details.how-its-measured",
+      "details.how-to-read-it"
+    ]
+  },
+  "x-text": {
+    "storage_statuses": {
+      "priced": {
+        "word": "Priced",
+        "hover_template": "A separate price is listed for the {kind} storage item.",
+        "runtime_fields": ["kind"]
+      },
+      "included": {
+        "word": "Included",
+        "hover_template": "The {kind} storage item is listed as included.",
+        "runtime_fields": ["kind"]
+      },
+      "pending": {
+        "word": "Pending",
+        "hover_template": "The price for the {kind} storage item is pending.",
+        "runtime_fields": ["kind"]
+      },
+      "unpublished": {
+        "word": "Unpublished",
+        "hover_template": "No separate price is listed for the {kind} storage item.",
+        "runtime_fields": ["kind"]
+      },
+      "unknown": {
+        "word": "Unknown",
+        "hover_template": "The separate price status for the {kind} storage item is not known.",
+        "runtime_fields": ["kind"]
+      }
+    },
+    "shared": {
+      "storage-measurement": "Storage list prices are normalized to the comparison unit while the table retains the original source unit.",
+      "storage-reading": "The table shows the provider’s quoted unit; the chart uses the normalized comparison unit.",
+      "list-limit": "The comparison excludes {param:pricing.excludes}.",
+      "storage-limit": "The listed rate does not establish whether a particular snapshot or volume is billable.",
+      "chart-caption": "Bars show {metric:label}{state}. {direction}",
+      "axis-measure": "{metric:quantity} ({metric:unit})",
+      "axis-rate-unit": "{metric:unit}/{metric:per}",
+      "axis-periods": {"active hour": "hour"}
+    },
+    "pages": {
+      "pricing": {
+        "title": "Provider Pricing",
+        "sections": "Pricing Sections",
+        "machine_size": "Machine Size",
+        "summary": "This page compares providers’ public list prices for sandbox use, idle time and storage."
+      }
+    },
+    "panels": {
+      "active-use": {
+        "title": "Active Use",
+        "summary": "The hourly price for an active sandbox is based on published CPU and memory rates.",
+        "how_it_is_measured": "Separate per-second CPU and memory rates are added and multiplied by {param:pricing.hourly.seconds_per_hour} seconds per hour.",
+        "how_to_read": "A range shows the lowest and highest published prices for the same configuration.",
+        "limits": [
+          "@list-limit"
+        ],
+        "metric": {
+          "quantity": "price",
+          "unit": "USD",
+          "per": "active hour",
+          "direction": "lower_is_better"
+        }
+      },
+      "inactive-use": {
+        "title": "Inactive Use",
+        "summary": "Idle and paused billing rules determine the listed cost when a sandbox is inactive.",
+        "caption_state": " at {idle}% idle and {paused}% paused",
+        "how_it_is_measured": "Each state’s hourly price is weighted by its selected time share before the rates are combined.",
+        "how_to_read": "Set the share of time spent in each state to compare its effect on the charge.",
+        "limits": [
+          "@list-limit"
+        ],
+        "metric": {
+          "quantity": "price",
+          "unit": "USD",
+          "per": "hour",
+          "direction": "lower_is_better"
+        }
+      },
+      "image-storage": {
+        "title": "Image Storage",
+        "summary": "The price for keeping stored images is the provider’s published storage charge.",
+        "how_it_is_measured": "@storage-measurement",
+        "how_to_read": "@storage-reading",
+        "limits": [
+          "@storage-limit"
+        ],
+        "metric": {
+          "quantity": "price",
+          "unit": "USD/GiB-month",
+          "per": "GiB-month",
+          "direction": "lower_is_better"
+        }
+      },
+      "disk-storage": {
+        "title": "Disk Storage",
+        "summary": "The price for keeping disks, snapshots and volumes is the provider’s published storage charge.",
+        "how_it_is_measured": "@storage-measurement",
+        "how_to_read": "@storage-reading",
+        "limits": [
+          "@storage-limit"
+        ],
+        "metric": {
+          "quantity": "price",
+          "unit": "USD/GiB-month",
+          "per": "GiB-month",
+          "direction": "lower_is_better"
+        }
+      }
+    }
+  }
+}

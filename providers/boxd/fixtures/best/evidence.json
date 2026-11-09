@@ -1,0 +1,27 @@
+{
+  "provider": "boxd",
+  "sandbox_id": "machine_synthetic",
+  "sandbox_made": {"value": true, "source": "recorded", "how": "Synthetic fixture; no live machine was created."},
+  "requested": {"cpu": 2, "memory_mib": 8192, "disk_mib": 102400, "region": null, "options": {}},
+  "calls": [
+    {"name": "destroy", "sent_at": {"value": "2026-11-02T01:00:00Z", "source": "recorded", "how": "Synthetic destroy call."}, "returned_at": {"value": "2026-11-02T01:00:01Z", "source": "recorded", "how": "Synthetic destroy return."}, "outcome": "returned"}
+  ],
+  "provider_times": [
+    {"kind": "created", "at": {"value": "2026-11-02T00:00:00Z", "source": "provider", "how": "Synthetic provider creation time."}, "field": "created_at"},
+    {"kind": "ended", "at": {"value": "2026-11-02T01:00:00Z", "source": "provider", "how": "Synthetic provider deletion time."}, "field": "deleted_at"}
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "provider_records": [
+    {"source": "boxd.machines.usage", "read_at": "2026-11-02T01:30:00Z", "body": {
+      "machine_id": "machine_synthetic", "name": "synthetic", "status": "deleted",
+      "resources": {"vcpu": 2, "memory_bytes": 8589934592, "disk_bytes": 107374182400},
+      "seconds": {"running": 3600, "standby": 0, "hibernated": 0, "stopped": 0},
+      "vcpu_hours": 0.2, "ram_gib_hours": 2, "disk_gib_hours": 20,
+      "cost_micro": 39320, "complete": true, "currency": "usd",
+      "period": {"start": "2026-11-02T00:00:00Z", "end": "2026-11-02T01:15:00Z"},
+      "rates": {"vcpu_hour_micro": 47000, "ram_gib_hour_micro": 14000, "disk_gib_hour_micro": 96}
+    }}
+  ],
+  "measured": {}
+}
