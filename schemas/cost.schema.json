@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:cost",
+  "title": "Cost",
+  "description": "A provider-sourced sandbox cost. Unknown has a null total; known totals are exact decimal strings. Hourly rate-card quotes may be ranges.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["label", "total", "lines", "held_back_by", "exclusions", "price_version", "as_of"],
+  "properties": {
+    "label": {
+      "description": "reported: a provider amount verified at list price; calculated: provider usage priced at stored list rates; unknown: required provider evidence or a rate is missing.",
+      "enum": ["reported", "calculated", "unknown"]
+    },
+    "total": {
+      "description": "An exact USD amount, low equal to high, or null for unknown.",
+      "anyOf": [{ "$ref": "#/$defs/total_range" }, { "type": "null" }]
+    },
+    "lines": {
+      "description": "The working: one line per charged resource. Empty when the provider's own figure is all we have, or when nothing could be worked out.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["what", "quantity", "unit", "rate", "amount", "quantity_source"],
+        "properties": {
+          "what": { "enum": ["cpu", "memory", "disk", "gpu", "machine", "creation", "egress", "snapshot_storage"] },
+          "quantity": {
+            "$ref": "#/$defs/decimal"
+          },
+          "unit": {
+            "description": "The price version's unit for this rate, for example vcpu-second.",
+            "type": "string",
+            "minLength": 1
+          },
+          "rate": {
+            "description": "US dollars per unit, as the price version states it.",
+            "$ref": "#/$defs/decimal"
+          },
+          "amount": {
+            "$ref": "#/$defs/decimal"
+          },
+          "quantity_source": {
+            "description": "The source of the usage facts the quantity came from; the least certain one when it came from several.",
+            "$ref": "#/$defs/source"
+          }
+        }
+      }
+    },
+    "held_back_by": {
+      "description": "The reasons the label is not better, with a stable code and resource. Empty for `reported` and `calculated`.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/held_back" }
+    },
+    "exclusions": {
+      "description": "What the figure leaves out, such as plan fees, credits and discounts.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "price_version": {
+      "description": "The id of the price version used, which carries the quotes (for example e2b@2026-10-20-061802Z, or modal@2026-10-20-061900Z when more than one version was read that day). Null when none was in effect.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z][a-z0-9-]*@[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-([01][0-9]|2[0-3])[0-5][0-9][0-5][0-9]Z)?$"
+    },
+    "as_of": {
+      "description": "When the cost was worked out, so the cost of a sandbox that is still running reads as the cost so far.",
+      "$ref": "#/$defs/timestamp"
+    },
+    "per_hour": {
+      "description": "US dollars per hour while the sandbox keeps running, for a running sandbox only.",
+      "$ref": "#/$defs/money_range"
+    },
+    "reported_figure": {
+      "description": "Where a `reported` total came from. Present exactly when the label is `reported`.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "observed_at", "how"],
+      "properties": {
+        "source": { "$ref": "#/$defs/source", "const": "provider" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": {
+          "description": "The API call that returned the figure.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "label": { "const": "unknown" } }, "required": ["label"] },
+      "then": { "properties": { "total": { "type": "null" } } },
+      "else": { "properties": { "total": { "type": "object" } } }
+    },
+    {
+      "if": { "properties": { "label": { "const": "reported" } }, "required": ["label"] },
+      "then": { "required": ["reported_figure"] },
+      "else": { "not": { "required": ["reported_figure"] } }
+    }
+  ],
+  "$defs": {
+    "held_back": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "resource", "text"],
+      "properties": {
+        "code": { "enum": ["unreported_quantity", "no_rate", "missing_input"] },
+        "resource": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "text": { "type": "string", "minLength": 1 }
+      }
+    },
+    "source": {
+      "description": "Where a fact came from. The same six values as the usage record's source; a test keeps the two lists equal.",
+      "type": "string",
+      "enum": ["provider", "published", "measured", "recorded", "calculated", "unknown"]
+    },
+    "timestamp": {
+      "description": "A UTC time, ending in Z.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?Z$"
+    },
+    "decimal": {
+      "description": "A non-negative decimal number as a string, in plain notation without an exponent.",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+    },
+    "decimal_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["low", "high"],
+      "properties": {
+        "low": { "$ref": "#/$defs/decimal" },
+        "high": { "$ref": "#/$defs/decimal" }
+      }
+    },
+    "total_range": {
+      "description": "Exact USD total: low equals high.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["low", "high"],
+      "properties": {
+        "low": { "$ref": "#/$defs/decimal" },
+        "high": { "$ref": "#/$defs/decimal" }
+      }
+    },
+    "money_range": {
+      "description": "US dollars as a range; low equals high when the amount is exact.",
+      "$ref": "#/$defs/decimal_range"
+    }
+  }
+}

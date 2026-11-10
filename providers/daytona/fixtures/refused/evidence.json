@@ -1,0 +1,28 @@
+{
+  "provider": "daytona",
+  "sandbox_id": null,
+  "sandbox_made": {
+    "value": false,
+    "source": "recorded",
+    "how": "the create was refused or never sent"
+  },
+  "requested": {
+    "cpu": 4,
+    "memory_mib": 8192,
+    "disk_mib": 10240,
+    "region": "daytona:us",
+    "options": {}
+  },
+  "calls": [],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 0,
+      "source": "recorded",
+      "how": "the create was refused or never sent, so no sandbox ran"
+    }
+  },
+  "provider_records": []
+}

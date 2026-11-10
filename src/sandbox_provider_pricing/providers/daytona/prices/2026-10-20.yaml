@@ -1,0 +1,233 @@
+provider: daytona
+version: daytona@2026-10-20
+effective_from: '2026-10-18T08:06:00Z'
+retrieved_at: '2026-10-20T05:47:33Z'
+supersedes:
+- daytona@2026-10-18-080600Z
+sources:
+- url: https://www.daytona.io/pricing
+  quote: Compute vCPU $0.0504/h | Memory GiB $0.0162/h | Storage GiB $0.000108/h * Price per GiB after
+    first 5 free
+- url: https://www.daytona.io/pricing
+  quote: All billing is calculated per second. | $200 in free compute included. | Sign up for a free trial
+    - no credit card required
+- url: https://www.daytona.io/docs/en/billing/
+  quote: 'Sandboxes are billed for the resources reserved: vCPU , RAM , and disk , depending on the sandbox
+    lifecycle state . | Started | ✓ | ✓ | ✓ | Billed for all reserved resources.'
+- url: https://www.daytona.io/docs/en/billing/
+  quote: Creating Starting Stopping Pausing | ✓ | ✓ | ✓ | Billed the same as started. Resources remain
+    reserved during these transitions, so reduced billing applies once the sandbox reaches the stopped
+    or paused state, not when the stop or pause operation begins.
+- url: https://www.daytona.io/docs/en/billing/
+  quote: Stopped | ✗ | ✗ | ✓ | Billed for reserved disk only. | Paused | ✗ | ✗ | ✓ | Billed for reserved
+    disk only. The preserved memory state is not billed. Supported for VM sandboxes only. | Archived |
+    ✗ | ✗ | ✗ | Not billed. Supported for container sandboxes only. | Deleted | ✗ | ✗ | ✗ | Not billed.
+    Snapshots created from sandbox remain billed for storage.
+- url: https://www.daytona.io/docs/en/sandboxes/
+  quote: Sandboxes have 1 vCPU , 1GB RAM , and 3GiB disk by default. Organizations get a maximum sandbox
+    resource limit of 4 vCPUs , 8GB RAM , and 10GB disk .
+- url: https://www.daytona.io/docs/en/sandboxes/
+  quote: Resource | Unit | Default | Minimum | Maximum | CPU | vCPU | 1 | 1 | 4 | Memory | GiB | 1 | 1
+    | 8 | Disk | GiB | 3 | 1 | 10
+- url: https://www.daytona.io/docs/en/snapshots/
+  quote: daytona-small | 1 | 1GiB | 3GiB | | Container | daytona-medium | 2 | 4GiB | 8GiB | | Container
+    | daytona-large | 4 | 8GiB | 10GiB | | Container
+- url: https://www.daytona.io/docs/en/limits/
+  quote: 'Disk quota and sandbox billing are separate: a sandbox can be billed for reserved disk without
+    counting against your organization’s storage limit.'
+- url: https://www.daytona.io/docs/en/limits/
+  quote: Tier | Resources (vCPU / RAM / Storage) | Access Requirements | Tier 1 | 10 / 10GiB / 30GiB |
+    Email verified | Tier 2 | 100 / 200GiB / 300GiB | Credit card linked, $25 top-up | Tier 3 | 250 /
+    500GiB / 2000GiB | $500 top-up | Tier 4 | 500 / 1000GiB / 5000GiB | $2000 top-up every 30 days | Custom
+    | Custom | Contact support@daytona.io
+- url: https://www.daytona.io/docs/en/limits/
+  quote: 'Sandbox limits provides an overview of resource limits per sandbox. | Compute : the maximum
+    number of vCPUs per sandbox | Memory : the maximum amount of memory per sandbox in GiB | Storage :
+    the maximum amount of storage per sandbox in GiB'
+- url: https://www.daytona.io/docs/en/sandboxes/
+  quote: Resource | Unit | Default | Minimum | Maximum | CPU | vCPU | 1 | 1 | 4 | Memory | GiB | 1 | 1
+    | 8
+- url: https://www.daytona.io/pricing
+  quote: $6.25/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia B300 | $4.08/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia B200 | $3.59/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | AMD MI355X | $3.44/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia H200 | $2.61/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia H100 | $2.27/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia RTX PRO 6000 | $1.74/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia RTX 5090 | $0.74/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | Preemptible ($/hour) | Nvidia RTX 4090 | $0.57/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia B300 | $6.25/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia B200 | $6.25/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | AMD MI355X | $5.99/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia H200 | $4.54/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia H100 | $3.95/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia RTX PRO 6000 | $3.03/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia RTX 5090 | $1.29/h
+- url: https://www.daytona.io/pricing
+  quote: GPU | On-demand ($/hour) | Nvidia RTX 4090 | $0.99/h
+classes:
+- name: preemptible
+  default: true
+  rates:
+    cpu:
+      usd: '0.0504'
+      per: vcpu-hour
+    memory:
+      usd: '0.0162'
+      per: gib-hour
+    disk:
+      usd: '0.000108'
+      per: gib-hour
+    gpu:
+      nvidia:b300:
+        usd: '4.08'
+        per: gpu-hour
+      nvidia:b200:
+        usd: '3.59'
+        per: gpu-hour
+      amd:mi355x:
+        usd: '3.44'
+        per: gpu-hour
+      nvidia:h200:
+        usd: '2.61'
+        per: gpu-hour
+      nvidia:h100:
+        usd: '2.27'
+        per: gpu-hour
+      nvidia:rtx-pro-6000:
+        usd: '1.74'
+        per: gpu-hour
+      nvidia:rtx-5090:
+        usd: '0.74'
+        per: gpu-hour
+      nvidia:rtx-4090:
+        usd: '0.57'
+        per: gpu-hour
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+    disk:
+      basis: allocated
+      billed_states:
+      - running
+      - paused
+      - stopped
+    gpu:
+      basis: allocated
+      billed_states:
+      - running
+- name: on-demand
+  rates:
+    cpu:
+      usd: '0.0504'
+      per: vcpu-hour
+    memory:
+      usd: '0.0162'
+      per: gib-hour
+    disk:
+      usd: '0.000108'
+      per: gib-hour
+    gpu:
+      nvidia:b300:
+        usd: '6.25'
+        per: gpu-hour
+      nvidia:b200:
+        usd: '6.25'
+        per: gpu-hour
+      amd:mi355x:
+        usd: '5.99'
+        per: gpu-hour
+      nvidia:h200:
+        usd: '4.54'
+        per: gpu-hour
+      nvidia:h100:
+        usd: '3.95'
+        per: gpu-hour
+      nvidia:rtx-pro-6000:
+        usd: '3.03'
+        per: gpu-hour
+      nvidia:rtx-5090:
+        usd: '1.29'
+        per: gpu-hour
+      nvidia:rtx-4090:
+        usd: '0.99'
+        per: gpu-hour
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+    disk:
+      basis: allocated
+      billed_states:
+      - running
+      - paused
+      - stopped
+    gpu:
+      basis: allocated
+      billed_states:
+      - running
+exclusions:
+- no per-sandbox creation fee, egress charge or plan fee is listed on the pricing page (absence of a listing,
+  not a statement that none exist); network limits are applied by billing tier
+- snapshots made from a sandbox remain billed for storage; the snapshot storage rate is not published
+- 'which plan the rates need: none. Rates are the same for every tier; Tier 1 (email verified) is enough
+  for the sizes up to 4/8 per sandbox, but its organization pool is 10 vCPU and 10 GiB of RAM in one table
+  (20 GiB in another), so one 4/8 sandbox fits, and a second only if the 20 GiB figure is the right one.'
+- 'not applicable to these sizes: Windows +$0.0858 per vCPU-hour, GPU sandboxes (separate hourly prices)'
+- 'Plan allowance: $200 in free compute, no credit card for the trial (free credits do not cover GPU sandboxes);
+  Tier 1 (email verified) limits the whole organization to 10 vCPU and 30 GiB storage (RAM 10 or 20 GiB,
+  see open_questions); Tier 2 (card + $25 top-up) 100 vCPU; Tier 3 ($500) 250 vCPU; Tier 4 ($2,000 every
+  30 days) 500 vCPU; startups: up to $50k credits'
+open_questions:
+- is the 'first 5 GiB free' per sandbox or per organization? The pricing page footnote and the billing,
+  limits, sandboxes and snapshots docs do not say; it moves the hour by at most $0.00054 at 2/4 (0.000864
+  vs 0.000324) and $0.00108 at 4/8
+- '8/16: Daytona documents a 4 vCPU / 8 GiB per-sandbox maximum and a Custom tier through support, but
+  publishes no larger size or price'
+- whether a smaller disk can be requested at the preset sizes was not tested
+- no regional multiplier is published; not verified for regions other than us
+- snapshot storage rate is unpublished
+- Daytona's limits page gives Tier 1 RAM as 10 GiB in one table and 20 GiB in another; irrelevant to price
+- the exact wording of any per-second rounding is not documented (the pricing page says only that billing
+  is calculated per second)
+- 'GPU: as checked on 2026-10-03, the on-demand Nvidia B300 is $6.25 per GPU-hour (source quote: $6.25/h),
+  corrected from $7.10. The schema has no GPU-model field, so this value is not represented as an unqualified
+  gpu rate.'
+- 'GPU class: the pricing page publishes both preemptible and on-demand rates; usage must record which
+  schedule applied. When no class is recorded, the default is preemptible, matching the existing Daytona
+  GPU price.'
+snapshot_storage:
+  usd: '0.000108'
+  per: gib-hour
+  rate_source: published_disk_rate_proxy
+  source_url: https://www.daytona.io/pricing
+  checked_at: '2026-10-20T05:47:33Z'
+  note: Daytona's published disk rate. Daytona does not publish a snapshot rate, so the disk rate is used
+    as an assumed rate until a bill confirms or refutes it.

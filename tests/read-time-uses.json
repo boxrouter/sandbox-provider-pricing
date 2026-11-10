@@ -1,0 +1,406 @@
+[
+  {
+    "file": "src/sandbox_provider_pricing/calculator/documents.py",
+    "function": "cost",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Name:as_of",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/calculator/documents.py",
+    "function": "_document",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:as_of",
+      "Name:as_of",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/calculator/documents.py",
+    "function": "_latest_observation",
+    "kind": "compared with input",
+    "offset": "none; choose among fixed input observation times",
+    "uses": [
+      "Constant:observed_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/evidence.py",
+    "function": "_without_read_times",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at",
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/evidence.py",
+    "function": "_core_provider_records",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/evidence.py",
+    "function": "_bundle_read_time",
+    "kind": "copied verbatim",
+    "offset": "none; explicit bundle read_at, else the usage report's observed_at (0.4.39 form); never a clock",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Constant:read_at",
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/evidence.py",
+    "function": "normalize_evidence",
+    "kind": "copied verbatim",
+    "offset": "none; copy fixed per-kind input times, else the shared input time from _bundle_read_time; never a clock",
+    "uses": [
+      "Constant:read_at",
+      "Name:read_at",
+      "Name:read_at",
+      "Name:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/evidence.py",
+    "function": "core_report",
+    "kind": "compared with input",
+    "offset": "none; choose among fixed input read times",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "price",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Name:as_of",
+      "arg:as_of",
+      "keyword:as_of",
+      "keyword:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "reproduce",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:as_of",
+      "keyword:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "_result",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:as_of",
+      "Constant:as_of",
+      "Constant:as_of",
+      "Constant:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "_revisit",
+    "kind": "bounded comparison",
+    "offset": "revisit.after_s + revisit.until_s + revisit.interval_s",
+    "uses": [
+      "Constant:next_read_at",
+      "Name:as_of",
+      "arg:as_of",
+      "keyword:last_read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "_finality",
+    "kind": "bounded comparison",
+    "offset": "revisit.until_s (strict comparison covered by margin)",
+    "uses": [
+      "Name:as_of",
+      "arg:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/read_time.py",
+    "function": "<module>",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/revisit.py",
+    "function": "RevisitPolicy.next_read",
+    "kind": "bounded comparison",
+    "offset": "revisit.after_s + revisit.until_s + revisit.interval_s",
+    "uses": [
+      "Constant:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "Name:last_read_at",
+      "arg:last_read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/revisit.py",
+    "function": "RevisitPolicy.may_change",
+    "kind": "bounded comparison",
+    "offset": "revisit.until_s (strict comparison covered by margin)",
+    "uses": [
+      "Constant:as_of",
+      "Name:as_of",
+      "Name:as_of",
+      "Name:as_of",
+      "Name:as_of",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/rules/default.py",
+    "function": "billable",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Name:as_of",
+      "arg:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/types.py",
+    "function": "Cost",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Name:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "observation",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at",
+      "Name:as_of",
+      "Name:as_of",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "unavailable",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:observed_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "default_billable",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Name:as_of",
+      "Name:observed_at",
+      "Name:observed_at",
+      "Name:observed_at",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "_usage_base",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Name:observed_at",
+      "Name:observed_at",
+      "Name:observed_at",
+      "Name:observed_at",
+      "Name:observed_at",
+      "arg:observed_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "record_reason",
+    "kind": "bounded comparison",
+    "offset": "revisit.until_s (strict comparison covered by margin)",
+    "uses": [
+      "Name:as_of",
+      "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "_provider_timeline",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:observed_at",
+      "Name:observed_at",
+      "arg:observed_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "waiting_for_record",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:observed_at",
+      "Name:as_of",
+      "Name:observed_at",
+      "Name:observed_at",
+      "arg:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "latest_record",
+    "kind": "compared with input",
+    "offset": "none; choose among fixed input read times",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "read_core_report",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/providers/vercel/conformance.py",
+    "function": "records",
+    "kind": "copied verbatim",
+    "offset": "none; synthetic fixture constant, not an observation clock",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/compose.py",
+    "function": "_counted_twice",
+    "kind": "copied verbatim",
+    "offset": "none; each part's recorded as_of is forwarded unchanged to its provider rule",
+    "uses": [
+      "Constant:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/record.py",
+    "function": "merge_reports",
+    "kind": "compared with input",
+    "offset": "none; choose among fixed input read times, never a clock",
+    "uses": [
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/record.py",
+    "function": "_read_order",
+    "kind": "compared with input",
+    "offset": "none; orders fixed input read times",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/record.py",
+    "function": "_reports",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/record.py",
+    "function": "_observed",
+    "kind": "compared with input",
+    "offset": "none; choose the newest of fixed input read times",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:read_at",
+      "Constant:read_at",
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/compose.py",
+    "function": "compose",
+    "kind": "compared with input",
+    "offset": "none; the latest of the parts' fixed observation times",
+    "uses": [
+      "Constant:as_of",
+      "Constant:as_of",
+      "Constant:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/reads.py",
+    "function": "next_read",
+    "kind": "copied verbatim",
+    "offset": "none; the result's own scheduled time, or a time before it computed from the given now",
+    "uses": [
+      "Constant:next_read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "read_before_end",
+    "kind": "compared with input",
+    "offset": "none; compares two fixed input times and returns the read's own time",
+    "uses": [
+      "Constant:read_at",
+      "Constant:read_at"
+    ]
+  }
+]

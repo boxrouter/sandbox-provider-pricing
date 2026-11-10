@@ -1,0 +1,76 @@
+{
+  "provider": "daytona",
+  "sandbox_id": "daytona-sandbox-redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 1024,
+    "region": "daytona:us",
+    "options": {},
+    "disk_mib": 5120
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-19T18:39:02Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T18:39:03Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-19T19:39:03Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T19:39:04Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [
+    {
+      "source": "Daytona usage API",
+      "read_at": "2026-10-19T20:00:00Z",
+      "body": [
+        {
+          "cpu": 2,
+          "diskGB": 5,
+          "endAt": "2026-10-19T19:00:00Z",
+          "gpu": 0,
+          "price": 0.04104105,
+          "ramGB": 1,
+          "startAt": "2026-10-19T18:39:03Z"
+        },
+        {
+          "cpu": 2,
+          "diskGB": 5,
+          "endAt": "2026-10-19T19:39:03Z",
+          "gpu": 0,
+          "price": 0.07649895,
+          "ramGB": 1,
+          "startAt": "2026-10-19T19:00:00Z"
+        }
+      ]
+    }
+  ]
+}

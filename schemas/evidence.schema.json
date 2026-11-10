@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:evidence",
+  "title": "Sandbox evidence",
+  "description": "Requested resources and lifecycle evidence for one sandbox, kept separate from its billing rules and prices.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["provider", "sandbox_made", "requested", "calls", "provider_times", "last_seen_alive", "noticed_gone", "measured", "provider_records"],
+  "properties": {
+    "provider": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "sandbox_id": {"type": ["string", "null"]},
+    "sandbox_made": {"$ref": "#/$defs/boolean_fact"},
+    "requested": {"$ref": "#/$defs/requested"},
+    "calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "sent_at", "returned_at", "outcome"],
+        "properties": {
+          "name": {"enum": ["create", "pause", "resume", "destroy"]},
+          "sent_at": {"anyOf": [{"$ref": "#/$defs/edge_time"}, {"type": "null"}]},
+          "returned_at": {"anyOf": [{"$ref": "#/$defs/edge_time"}, {"type": "null"}]},
+          "outcome": {"type": "string", "minLength": 1},
+          "keeps": {"enum": ["memory", "files"]}
+        },
+        "if": {"properties": {"name": {"const": "pause"}}, "required": ["name"]},
+        "then": {"required": ["keeps"]}
+      }
+    },
+    "provider_times": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "at", "field"],
+        "properties": {
+          "kind": {"$ref": "#/$defs/time_point"},
+          "at": {"$ref": "#/$defs/time_fact"},
+          "field": {"type": "string", "minLength": 1},
+          "read": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "last_seen_alive": {"anyOf": [{"$ref": "#/$defs/time_fact"}, {"type": "null"}]},
+    "noticed_gone": {"anyOf": [{"$ref": "#/$defs/time_fact"}, {"type": "null"}]},
+    "report_target": {
+      "description": "Core UsageTarget.to_dict(): the sandbox a provider report is about and the opaque identities the adapter attached to it. sandbox_id is null for a report about work with no sandbox, such as an image preparation, which its identities name.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sandbox_id", "identities"],
+      "properties": {
+        "sandbox_id": {"anyOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "created_at": {"type": ["string", "null"]},
+        "identities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scope", "id"],
+            "properties": {
+              "scope": {"type": "string", "minLength": 1},
+              "id": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "deadline": {"anyOf": [{"$ref": "#/$defs/time_fact"}, {"type": "null"}]},
+    "operations": {
+      "description": "Work done for this sandbox besides its lifecycle calls, as the consumer recorded it. An `image.prepare` that ran (any outcome but `not_reached`) has a cost this evidence cannot show, so the sandbox's cost is unknown.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "outcome"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "outcome": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "measured": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cpu_seconds": {"$ref": "#/$defs/value_fact"}
+      }
+    },
+    "provider_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "read_at", "body"],
+        "properties": {
+          "source": {"type": "string", "minLength": 1},
+          "read_at": {"$ref": "#/$defs/timestamp"},
+          "body": {}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "provider_reports": {
+      "description": "Optional Core transport envelope accepted by normalize_evidence before normalized evidence validation. Times record when each report was actually read, never the pricing clock.",
+      "type": "object",
+      "properties": {
+        "read_at": {"$ref": "#/$defs/timestamp"},
+        "read_times": {"type": "object", "additionalProperties": false, "properties": {"cost": {"$ref": "#/$defs/timestamp"}, "size": {"$ref": "#/$defs/timestamp"}, "usage": {"$ref": "#/$defs/timestamp"}}},
+        "cost": {"type": "object", "required": ["status"], "properties": {"status": {"enum": ["available", "unknown", "unavailable"]}}},
+        "size": {"type": "object", "required": ["status"], "properties": {"status": {"enum": ["available", "unknown", "unavailable"]}}},
+        "usage": {"type": "object", "required": ["status"], "properties": {"status": {"enum": ["available", "unknown", "unavailable"]}}},
+        "target": {"type": "object", "description": "Core UsageTarget, preserved as report_target."}
+      },
+      "allOf": [
+        {"if": {"required": ["cost"]}, "then": {"anyOf": [{"required": ["read_at"]}, {"required": ["read_times"], "properties": {"read_times": {"required": ["cost"]}}}, {"required": ["usage"], "properties": {"usage": {"required": ["observed_at"], "properties": {"observed_at": {"$ref": "#/$defs/timestamp"}}}}}]}},
+        {"if": {"required": ["read_times"], "properties": {"read_times": {"required": ["cost"]}}}, "then": {"required": ["cost"]}},
+        {"if": {"required": ["size"]}, "then": {"anyOf": [{"required": ["read_at"]}, {"required": ["read_times"], "properties": {"read_times": {"required": ["size"]}}}, {"required": ["usage"], "properties": {"usage": {"required": ["observed_at"], "properties": {"observed_at": {"$ref": "#/$defs/timestamp"}}}}}]}},
+        {"if": {"required": ["read_times"], "properties": {"read_times": {"required": ["size"]}}}, "then": {"required": ["size"]}},
+        {"if": {"required": ["usage"]}, "then": {"anyOf": [{"required": ["read_at"]}, {"required": ["read_times"], "properties": {"read_times": {"required": ["usage"]}}}, {"required": ["usage"], "properties": {"usage": {"required": ["observed_at"], "properties": {"observed_at": {"$ref": "#/$defs/timestamp"}}}}}]}},
+        {"if": {"required": ["read_times"], "properties": {"read_times": {"required": ["usage"]}}}, "then": {"required": ["usage"]}}
+      ]
+    },
+    "time_point": {
+      "enum": [
+        "create_sent", "create_returned", "pause_sent", "pause_returned",
+        "resume_sent", "resume_returned", "destroy_sent", "destroy_returned",
+        "last_seen_alive", "noticed_gone", "created", "started", "ready",
+        "paused", "resumed", "stopped", "ended", "billed_start", "billed_end"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": ["provider", "published", "measured", "recorded", "calculated", "unknown"]
+    },
+    "how": {"type": "string", "minLength": 1},
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"
+    },
+    "edge_time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source"],
+      "properties": {
+        "value": {"anyOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]},
+        "source": {"$ref": "#/$defs/source"},
+        "how": {"$ref": "#/$defs/how"}
+      },
+      "if": {"properties": {"source": {"const": "unknown"}}, "required": ["source"]},
+      "then": {"properties": {"value": {"type": "null"}}},
+      "else": {"properties": {"value": {"$ref": "#/$defs/timestamp"}}}
+    },
+    "time_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source", "how"],
+      "properties": {
+        "value": {"anyOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]},
+        "source": {"$ref": "#/$defs/source"},
+        "how": {"$ref": "#/$defs/how"}
+      },
+      "if": {"properties": {"source": {"const": "unknown"}}, "required": ["source"]},
+      "then": {"properties": {"value": {"type": "null"}}},
+      "else": {"properties": {"value": {"$ref": "#/$defs/timestamp"}}}
+    },
+    "value_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source", "how"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "source": {"$ref": "#/$defs/source"},
+        "how": {"$ref": "#/$defs/how"}
+      },
+      "if": {"properties": {"source": {"const": "unknown"}}, "required": ["source"]},
+      "then": {"properties": {"value": {"type": "null"}}},
+      "else": {"properties": {"value": {"not": {"type": "null"}}}}
+    },
+    "boolean_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source", "how"],
+      "properties": {
+        "value": {"type": ["boolean", "null"]},
+        "source": {"$ref": "#/$defs/source"},
+        "how": {"$ref": "#/$defs/how"}
+      },
+      "if": {"properties": {"source": {"const": "unknown"}}, "required": ["source"]},
+      "then": {"properties": {"value": {"type": "null"}}},
+      "else": {"properties": {"value": {"type": "boolean"}}}
+    },
+    "requested": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["options"],
+      "properties": {
+        "cpu": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "memory_mib": {"type": ["integer", "null"], "minimum": 1},
+        "disk_mib": {"type": ["integer", "null"], "minimum": 1},
+        "gpu": {"type": ["integer", "null"], "minimum": 1},
+        "gpu_model": {"type": ["string", "null"], "minLength": 1},
+        "region": {"type": ["string", "null"], "minLength": 1},
+        "class": {
+          "description": "The spec class the sandbox was created in (Core's resolved class, such as Modal's `vm`), which picks the price class that covers it. If absent or null, it may be priced only when the price version has exactly one class; otherwise the cost is unknown.",
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "options": {"type": "object"}
+      },
+      "allOf": [
+        {"if": {"required": ["gpu"]}, "then": {"required": ["gpu_model"]}},
+        {"if": {"required": ["gpu_model"]}, "then": {"required": ["gpu"]}}
+      ]
+    }
+  }
+}

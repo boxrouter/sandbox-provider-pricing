@@ -1,0 +1,657 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:billing",
+  "title": "Provider billing rules",
+  "description": "Provider billing rules, provider-sourced cost label and record retry window.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "website",
+    "rules_version",
+    "status",
+    "revisit",
+    "reported_at_list_price",
+    "summary",
+    "formula",
+    "rules",
+    "checks",
+    "open_questions"
+  ],
+  "properties": {
+    "name": {
+      "description": "The provider's display name.",
+      "type": "string",
+      "minLength": 1
+    },
+    "website": {
+      "description": "The provider's home page.",
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "rules_version": {
+      "description": "Version of this provider's billing rules.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "best_label",
+        "why_not_higher",
+        "would_raise"
+      ],
+      "properties": {
+        "best_label": {
+          "description": "The strongest cost label the currently available inputs support.",
+          "enum": [
+            "reported",
+            "calculated",
+            "unknown"
+          ]
+        },
+        "why_not_higher": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "would_raise": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        }
+      }
+    },
+    "revisit": {
+      "description": "Operational retry schedule from canonical sandbox end, not a provider guarantee of finality. Defaults and rationale are documented per provider; an unverified default must be marked.",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "after_s",
+            "until_s",
+            "interval_s",
+            "rationale",
+            "unverified_default"
+          ],
+          "properties": {
+            "after_s": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "until_s": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "interval_s": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "unpriced_window_s": {
+              "description": "For this long after a sandbox ends, a read that still finds no price is repeated sooner than interval_s. Default 1800.",
+              "type": "integer",
+              "minimum": 1
+            },
+            "unpriced_first_s": {
+              "description": "The shortest wait between those sooner reads. Default 15.",
+              "type": "integer",
+              "minimum": 1
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "unverified_default": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "reported_at_list_price": {
+      "description": "Whether a provider-reported per-sandbox cost is verified to represent list-price usage on our own account at list prices. It decides whether the figure is labelled reported. What a reported figure means under an account rate card is stated by reported_under_account_rate.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unknown_how": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "source"
+          ],
+          "not": {
+            "required": [
+              "unknown_how"
+            ]
+          }
+        },
+        {
+          "required": [
+            "unknown_how"
+          ],
+          "not": {
+            "required": [
+              "source"
+            ]
+          }
+        }
+      ]
+    },
+    "reported_under_account_rate": {
+      "description": "What a provider-reported per-sandbox cost is under an account rate card (a partner discount). true: the provider reports what the account is charged, so the figure is BoxRouter's supplier cost only and the customer charge is priced from list rates. false: the provider reports the public list cost whatever the account pays, so the figure may also set the customer charge. null: unverified, treated as true. A provider that reports no per-sandbox cost states false. Optional in rules versions that predate it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unknown_how": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "source"
+          ],
+          "not": {
+            "required": [
+              "unknown_how"
+            ]
+          }
+        },
+        {
+          "required": [
+            "unknown_how"
+          ],
+          "not": {
+            "required": [
+              "source"
+            ]
+          }
+        }
+      ]
+    },
+    "price_sheet": {
+      "description": "Provider-sourced facts used to build the shared price display.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_time_priced",
+        "benchmark_region",
+        "states",
+        "class_overrides",
+        "storage"
+      ],
+      "properties": {
+        "active_time_priced": {
+          "$ref": "#/$defs/price_sheet_boolean_fact"
+        },
+        "benchmark_region": {
+          "$ref": "#/$defs/price_sheet_string_fact"
+        },
+        "states": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "idle",
+            "paused"
+          ],
+          "properties": {
+            "idle": {
+              "$ref": "#/$defs/price_sheet_state"
+            },
+            "paused": {
+              "$ref": "#/$defs/price_sheet_state"
+            }
+          }
+        },
+        "class_overrides": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "states": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "idle": {
+                    "$ref": "#/$defs/price_sheet_state"
+                  },
+                  "paused": {
+                    "$ref": "#/$defs/price_sheet_state"
+                  }
+                }
+              },
+              "rules": {
+                "type": "object",
+                "propertyNames": {
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "additionalProperties": {
+                  "$ref": "#/$defs/price_sheet_text_fact"
+                }
+              }
+            }
+          }
+        },
+        "storage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "status",
+              "source_url"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "image",
+                  "disk",
+                  "snapshot",
+                  "volume"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "priced",
+                  "included",
+                  "pending",
+                  "unpublished",
+                  "unknown"
+                ]
+              },
+              "source_url": {
+                "$ref": "#/$defs/price_sheet_url"
+              },
+              "price_version_rate": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "resource",
+                  "per",
+                  "multiply_by_month_hours"
+                ],
+                "properties": {
+                  "resource": {
+                    "enum": [
+                      "disk"
+                    ]
+                  },
+                  "per": {
+                    "const": "gib-hour"
+                  },
+                  "multiply_by_month_hours": {
+                    "type": "boolean"
+                  },
+                  "included_gb": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "included_unit": {
+                    "enum": [
+                      "GiB"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "description": "Two to four plain sentences: how a sandbox's cost is worked out for this provider, and how far it can be trusted.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600
+    },
+    "formula": {
+      "description": "The cost in one line, in words, with the meters and what multiplies them.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "rules": {
+      "description": "The billing rules a reader needs, one short answer each.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "billed_on",
+        "starts",
+        "ends",
+        "rounding",
+        "idle_and_paused",
+        "image_pull",
+        "extra_charges",
+        "left_out",
+        "per_sandbox_data"
+      ],
+      "properties": {
+        "billed_on": {
+          "description": "What each meter charges for: the size requested, use while busy, the larger of the two, or included in another meter.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "starts": {
+          "description": "When billing starts, relative to the create call or a provider timestamp, and whether we measured it.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "ends": {
+          "description": "When billing ends, relative to the destroy call or a provider timestamp, and whether we measured it.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "rounding": {
+          "description": "Minimum durations, billing increments and how partial seconds are counted.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "idle_and_paused": {
+          "description": "What an idle, standby, paused, stopped or archived sandbox pays.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "image_pull": {
+          "description": "Whether pulling or loading the sandbox image is billed.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "extra_charges": {
+          "description": "Charges billed separately from running time: disk, network, creation fees, snapshot, image and volume storage.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "left_out": {
+          "description": "What the figure leaves out: plan fees, free credits and allowances, discounts, commitments, taxes.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        },
+        "per_sandbox_data": {
+          "description": "What the provider itself reports about one sandbox (its cost, its usage, or only coarser totals), where, and how late.",
+          "$ref": "#/$defs/answer",
+          "properties": {
+            "answer": {
+              "maxLength": 350
+            }
+          }
+        }
+      }
+    },
+    "checks": {
+      "description": "Our measurements of this provider's billing, newest first. Each names an evidence file in this provider's evidence/ folder.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "date",
+          "title",
+          "file",
+          "result"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "description": "Path under providers/<name>/, such as evidence/2026-10-11-billing-boundary.md.",
+            "type": "string",
+            "pattern": "^evidence/[a-z0-9.-]+\\.md$"
+          },
+          "result": {
+            "description": "One or two sentences: what the check showed, including what it could not settle.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        }
+      }
+    },
+    "open_questions": {
+      "description": "What is still unknown, and the experiment or question that would settle it.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question",
+          "how"
+        ],
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "how": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        }
+      },
+      "maxItems": 8
+    }
+  },
+  "$defs": {
+    "price_sheet_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "price_sheet_boolean_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "source_url"
+      ],
+      "properties": {
+        "value": {
+          "type": "boolean"
+        },
+        "source_url": {
+          "$ref": "#/$defs/price_sheet_url"
+        }
+      }
+    },
+    "price_sheet_string_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "source_url"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "source_url": {
+          "$ref": "#/$defs/price_sheet_url"
+        }
+      }
+    },
+    "price_sheet_text_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "source_url"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "$ref": "#/$defs/price_sheet_url"
+        }
+      }
+    },
+    "price_sheet_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule",
+        "note",
+        "source_url"
+      ],
+      "properties": {
+        "rule": {
+          "enum": [
+            "running",
+            "active",
+            "memory",
+            "none",
+            "disk",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "$ref": "#/$defs/price_sheet_url"
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answer"
+      ],
+      "properties": {
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^(https://\\S+|(providers|template|src/sandbox_provider_pricing/providers)/\\S+|METHOD\\.md\\S*|COMPARING\\.md\\S*)$"
+          }
+        },
+        "unknown_how": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "sources"
+          ],
+          "not": {
+            "required": [
+              "unknown_how"
+            ]
+          }
+        },
+        {
+          "required": [
+            "unknown_how"
+          ],
+          "not": {
+            "required": [
+              "sources"
+            ]
+          }
+        }
+      ],
+      "description": "An answer with its sources (web pages, or files in this repository), or with how to find out when it is unknown. Write 'Not stated' answers with the pages that were read as sources."
+    }
+  }
+}

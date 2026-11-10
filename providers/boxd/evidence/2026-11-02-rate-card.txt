@@ -1,0 +1,16 @@
+Source: https://boxd.sh/llms-full.txt
+Retrieved: 2026-11-02
+Verbatim pricing excerpt:
+
+Every account is an organization: invite your team, share machines, draw from one credit balance. No monthly plan, no per-seat fee.
+
+Rate card. Billing is in euros or US dollars; an organization's currency is
+set when the organization is created, and the rates differ per currency:
+
+- vCPU: EUR 0.039 / USD 0.047 per vCPU-hour, on CPU time actually used (not the machine's vCPU count): a machine busy 10% of an hour on 2 vCPU pays for 0.2 vCPU-hours
+- RAM: EUR 0.012 / USD 0.014 per GiB-hour, on memory actually resident (not the provisioned 8 GiB), while running or in standby
+- Disk: EUR 0.00008 / USD 0.000096 per GiB-hour, on disk written to (not the provisioned 100 GiB), in every state; hibernated and stopped machines pay for disk only
+
+vCPU bills on CPU time used, RAM on memory in use and disk on what you have written to, sampled every second, never on provisioned size.
+
+Usage is metered every second and settled every 15 minutes: each settlement sums the organization's vCPU, RAM and disk for that window and charges each component rounded up to the next millionth of the organization's currency. There is no minimum charge per machine; a partly used window bills only the seconds used.

@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: boxd
+website: https://boxd.sh
+rules_version: 1
+status:
+  best_label: reported
+  why_not_higher: Nothing. Only a complete USD machine usage record with matching machine identity and stored list rates counts.
+  would_raise: Nothing. Missing, incomplete, non-USD or mismatched records leave cost unknown.
+revisit:
+  after_s: 1500
+  until_s: 604800
+  interval_s: 900
+  rationale: The SDK documents metering lag up to about 25 minutes; the seven-day correction window and 15-minute retry cadence are chosen defaults, not measured finality.
+  unverified_default: true
+reported_at_list_price:
+  value: true
+  source: https://boxd.sh/llms-full.txt (accepted only when the record's USD resource rates match the stored version; cost_micro is provider-reported current-rate list cost, not an invoice)
+reported_under_account_rate:
+  value: true
+  source: https://boxd.sh/llms-full.txt (cost_micro is the current rate the machine's account is charged, and the record states those rates; with an account rate card, the rates must match that card)
+summary: CPU time used, resident RAM and written disk are metered every second. Cost comes from machines.usage(id).cost_micro, never from the provisioned machine size.
+formula: A complete USD machines.usage(id) record for this machine, with rates matching the stored list version, reports cost_micro divided by one million. Otherwise unknown; no calculated fallback.
+rules:
+  billed_on:
+    answer: '{rate.cpu} of CPU time used, {rate.memory} of resident RAM while running or in standby, and {rate.disk} of written disk in every state; never provisioned size.'
+    sources: [https://boxd.sh/llms-full.txt]
+  starts:
+    answer: Not stated where metering begins within create or resume calls; only the provider's usage record supplies cost.
+    sources: [https://boxd.sh/pricing]
+  ends:
+    answer: Hibernated and stopped machines still bill written disk; stopping alone does not end all charges. Exact deletion billing edges are not stated by the provider.
+    sources: [https://boxd.sh/llms-full.txt]
+  rounding:
+    answer: Metered every second, settled every 15 minutes, with no minimum per machine. Each organization settlement rounds each resource up to the next millionth of its currency; this is not per-machine rounding.
+    sources: [https://boxd.sh/llms-full.txt]
+  idle_and_paused:
+    answer: Idle CPU bills only time used; standby or suspend-to-RAM bills resident RAM and written disk. Hibernation and stopped machines bill written disk only; generic paused represents standby, not hibernation.
+    sources: [https://boxd.sh/pricing, https://boxd.sh/llms-full.txt]
+  image_pull:
+    answer: Not stated whether image pull and restore work is included in the machine meter.
+    unknown_how: Compare provider usage records for cold and cached images, without substituting call duration.
+  extra_charges:
+    answer: State transitions cost nothing; separate snapshot and custom-domain fees are not stated by the provider on the checked pricing pages. Do not treat unpublished fees as zero.
+    sources: [https://boxd.sh/pricing, https://boxd.sh/llms-full.txt]
+  left_out:
+    answer: No monthly plan, paid-plan minimum or per-seat fee is published for pay as you go. Credits, taxes, custom pricing and annual self-host licences are outside the per-machine USD list cost.
+    sources: [https://boxd.sh/pricing, https://boxd.sh/llms-full.txt]
+  per_sandbox_data:
+    answer: machines.usage(id) returns machine_id, currency, cost_micro, complete, usage quantities and rates; the SDK calls cost_micro an estimate at current rates, not the invoiced settlement. Accept only complete USD records whose identity and rates match.
+    sources: [https://pypi.org/project/boxd/0.2.22/, providers/boxd/evidence/2026-11-02-sdk.txt]
+checks: []
+open_questions:
+- question: Can complete records be corrected later, and how long are deleted-machine records retained?
+  how: Re-read a deleted machine's complete usage over days and compare with organization billing activity.
+- question: Are snapshots and custom domains charged separately?
+  how: Obtain a published rate or a provider charge record before adding a price; do not infer that they are free.
+- question: Does current-rate cost_micro remain at historical rates when the public rate card changes?
+  how: Compare retained records and their rates across a published rate change; rate mismatches remain unknown.
+price_sheet:
+  active_time_priced: {value: false, source_url: https://boxd.sh/llms-full.txt}
+  benchmark_region: {value: eu-fra, source_url: 'https://github.com/boxrouter/sandbox-provider-spec/blob/v0.3.161/providers/boxd/declaration.yaml#L27'}
+  states:
+    idle: {rule: running, note: 'Actual CPU used, resident RAM and written disk are billed; no fixed idle-size price exists.', source_url: https://boxd.sh/pricing}
+    paused: {rule: unknown, note: Standby or suspend-to-RAM bills resident RAM and written disk; hibernation bills disk only. No allocation-based pause price exists., source_url: https://boxd.sh/pricing}
+  class_overrides: {}
+  storage:
+  - {kind: disk, status: priced, source_url: https://boxd.sh/llms-full.txt, price_version_rate: {resource: disk, per: gib-hour, multiply_by_month_hours: true}}
+  - {kind: snapshot, status: unknown, source_url: https://boxd.sh/pricing}
+  - {kind: image, status: unknown, source_url: https://boxd.sh/pricing}
+  - {kind: volume, status: unknown, source_url: https://boxd.sh/pricing}

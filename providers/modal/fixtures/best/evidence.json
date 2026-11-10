@@ -1,0 +1,113 @@
+{
+  "provider": "modal",
+  "sandbox_id": "sb-01M5NS7HS82KH89F8J5KTDEYN2",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "Modal sandbox create succeeded."
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "us",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-24T01:43:29.281+00:00",
+        "source": "recorded"
+      },
+      "returned_at": {
+        "value": "2026-10-24T01:43:29.343+00:00",
+        "source": "recorded"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-24T01:45:29.343+00:00",
+        "source": "recorded"
+      },
+      "returned_at": {
+        "value": "2026-10-24T01:45:29.539+00:00",
+        "source": "recorded"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [
+    {
+      "kind": "created",
+      "at": {
+        "value": "2026-10-24T01:43:29.326784+00:00",
+        "source": "provider",
+        "how": "Modal sandbox listing created_at."
+      },
+      "field": "Modal sandbox listing created_at",
+      "read": "after_terminate"
+    },
+    {
+      "kind": "ended",
+      "at": {
+        "value": "2026-10-24T01:45:29.522000+00:00",
+        "source": "provider",
+        "how": "Modal sandbox listing finished_at."
+      },
+      "field": "Modal sandbox listing finished_at",
+      "read": "after_terminate"
+    }
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [
+    {
+      "source": "Modal App.stop",
+      "read_at": "2026-10-24T01:45:29.686+00:00",
+      "body": {
+        "app_id": "ap-lWZkAcuA3y5Tn3B2RsXP8e",
+        "stopped_at": "2026-10-24T01:45:29.686+00:00"
+      }
+    },
+    {
+      "source": "Modal Workspace.billing.report",
+      "read_at": "2026-10-24T04:05:03+00:00",
+      "body": {
+        "namespace": {
+          "workspace": "boxrouter-internal",
+          "environment": "main"
+        },
+        "app_id": "ap-lWZkAcuA3y5Tn3B2RsXP8e",
+        "sandbox_ids": [
+          "sb-01M5NS7HS82KH89F8J5KTDEYN2"
+        ],
+        "rows": [
+          {
+            "object_id": "ap-lWZkAcuA3y5Tn3B2RsXP8e",
+            "description": "bench-cost-ma1024-11",
+            "environment": "main",
+            "interval_start": "2026-10-24T01:00:00+00:00",
+            "cost": "0.01431635",
+            "cost_by_resource": {
+              "Memory": "0.00361867",
+              "CPU": "0.01069769"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "report_target": {
+    "sandbox_id": "sb-01M5NS7HS82KH89F8J5KTDEYN2",
+    "created_at": "2026-10-24T01:43:29.326784Z",
+    "identities": [
+      {
+        "scope": "account",
+        "id": "{\"environment\":\"main\",\"workspace\":\"boxrouter-internal\"}"
+      }
+    ]
+  }
+}

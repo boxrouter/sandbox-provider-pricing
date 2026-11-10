@@ -1,0 +1,247 @@
+{
+  "provider": "e2b",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Plan fee: Hobby $0/month; Pro $150/month; Enterprise custom, starting at a $2,000/month commit with 500 concurrent sandboxes included. Usage is billed on top; upgrading to Pro grants no additional credits. The rates above are the same on Hobby and Pro.",
+    "Plan size limits: the billing page lists \"Max vCPUs 8 8+ Custom\" and \"Max memory 8 GiB 8+ GiB Custom\" for Hobby, Pro and Enterprise. The pricing page lists \"Sessions up to 1 hour\" and \"Default sandbox CPU and RAM\" for Hobby, and \"Custom sandbox CPU and RAM\" for Pro. For more, E2B says \"Need higher CPU or RAM limits? Contact support@e2b.dev for more information.\"",
+    "Concurrency add-ons on Pro: Pro+ 600 concurrent sandboxes +$500/mo; Pro++ 1,100 concurrent +$1,000/mo.",
+    "Storage: the pricing page lists \"Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free\"; the billing page lists \"Disk size 10 GiB 20+ GiB Custom\". Neither page states a charge for disk above 20 GiB on Pro; no separate storage rate is published.",
+    "Sandbox creation: no per-creation fee is published. Creation rate limit is 1 per second on Hobby and 5 per second on Pro.",
+    "Network egress: no charge is published on the pricing page or the billing docs.",
+    "Paused sandboxes: not billed and retained indefinitely; no charge is published for retention.",
+    "Templates: E2B says \"You can customize allocated CPU and RAM when building custom templates by specifying cpuCount and memoryMB in the build configuration.\" No template build or template storage charge is published.",
+    "Plan allowance: Hobby: $0/month with a one-time $100 usage credit, 20 concurrent sandboxes, 1-hour continuous runtime, up to 8 vCPU and 8 GiB, 10 GiB disk; when credits run out and there is no payment method, projects in the workspace are blocked until one is added.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-10-11T16:03:20.500767Z",
+    "until": "2026-10-18T16:03:05.500767Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-10-11T16:03:20.500767Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 2,
+    "prices": "e2b@2026-10-31-015029Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "e2b",
+      "sandbox_id": null,
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": "e2b:us",
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:03.460513+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:04.030256+00:00"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:05.347107+00:00"
+          },
+          "returned_at": {
+            "source": "recorded",
+            "value": "2026-10-11T16:03:05.500767+00:00"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {
+        "cpu_seconds": {
+          "value": 3.05,
+          "source": "measured",
+          "how": "/proc/stat user + nice + system + irq + softirq, the whole machine: each session's last reading, summed"
+        }
+      },
+      "provider_records": []
+    },
+    "times": {
+      "start": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-10-11T16:03:04.030256Z",
+      "source": "recorded",
+      "how": "When the provider's create call returned."
+    },
+    "sandbox_end": {
+      "value": "2026-10-11T16:03:05.500767Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "e2b",
+        "started": {
+          "at": "2026-10-11T16:03:04.030256Z",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "e2b:us",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-11T16:03:05.500767Z",
+            "how": "Waiting for E2B's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "e2b",
+        "started": {
+          "at": "2026-10-11T16:03:04.030256Z",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": "e2b:us",
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-10-11T16:03:05.500767Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-10-11T16:03:05.500767Z",
+            "how": "Waiting for E2B's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Plan fee: Hobby $0/month; Pro $150/month; Enterprise custom, starting at a $2,000/month commit with 500 concurrent sandboxes included. Usage is billed on top; upgrading to Pro grants no additional credits. The rates above are the same on Hobby and Pro.",
+          "Plan size limits: the billing page lists \"Max vCPUs 8 8+ Custom\" and \"Max memory 8 GiB 8+ GiB Custom\" for Hobby, Pro and Enterprise. The pricing page lists \"Sessions up to 1 hour\" and \"Default sandbox CPU and RAM\" for Hobby, and \"Custom sandbox CPU and RAM\" for Pro. For more, E2B says \"Need higher CPU or RAM limits? Contact support@e2b.dev for more information.\"",
+          "Concurrency add-ons on Pro: Pro+ 600 concurrent sandboxes +$500/mo; Pro++ 1,100 concurrent +$1,000/mo.",
+          "Storage: the pricing page lists \"Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free\"; the billing page lists \"Disk size 10 GiB 20+ GiB Custom\". Neither page states a charge for disk above 20 GiB on Pro; no separate storage rate is published.",
+          "Sandbox creation: no per-creation fee is published. Creation rate limit is 1 per second on Hobby and 5 per second on Pro.",
+          "Network egress: no charge is published on the pricing page or the billing docs.",
+          "Paused sandboxes: not billed and retained indefinitely; no charge is published for retention.",
+          "Templates: E2B says \"You can customize allocated CPU and RAM when building custom templates by specifying cpuCount and memoryMB in the build configuration.\" No template build or template storage charge is published.",
+          "Plan allowance: Hobby: $0/month with a one-time $100 usage credit, 20 concurrent sandboxes, 1-hour continuous runtime, up to 8 vCPU and 8 GiB, 10 GiB disk; when credits run out and there is no payment method, projects in the workspace are blocked until one is added.",
+          "Credits and discounts"
+        ],
+        "price_version": "e2b@2026-10-31-015029Z",
+        "as_of": "2026-10-11T16:03:05.500767Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Plan fee: Hobby $0/month; Pro $150/month; Enterprise custom, starting at a $2,000/month commit with 500 concurrent sandboxes included. Usage is billed on top; upgrading to Pro grants no additional credits. The rates above are the same on Hobby and Pro.",
+          "Plan size limits: the billing page lists \"Max vCPUs 8 8+ Custom\" and \"Max memory 8 GiB 8+ GiB Custom\" for Hobby, Pro and Enterprise. The pricing page lists \"Sessions up to 1 hour\" and \"Default sandbox CPU and RAM\" for Hobby, and \"Custom sandbox CPU and RAM\" for Pro. For more, E2B says \"Need higher CPU or RAM limits? Contact support@e2b.dev for more information.\"",
+          "Concurrency add-ons on Pro: Pro+ 600 concurrent sandboxes +$500/mo; Pro++ 1,100 concurrent +$1,000/mo.",
+          "Storage: the pricing page lists \"Storage (GiB) Plan Costs 10 Hobby Free 20 Pro Free\"; the billing page lists \"Disk size 10 GiB 20+ GiB Custom\". Neither page states a charge for disk above 20 GiB on Pro; no separate storage rate is published.",
+          "Sandbox creation: no per-creation fee is published. Creation rate limit is 1 per second on Hobby and 5 per second on Pro.",
+          "Network egress: no charge is published on the pricing page or the billing docs.",
+          "Paused sandboxes: not billed and retained indefinitely; no charge is published for retention.",
+          "Templates: E2B says \"You can customize allocated CPU and RAM when building custom templates by specifying cpuCount and memoryMB in the build configuration.\" No template build or template storage charge is published.",
+          "Plan allowance: Hobby: $0/month with a one-time $100 usage credit, 20 concurrent sandboxes, 1-hour continuous runtime, up to 8 vCPU and 8 GiB, 10 GiB disk; when credits run out and there is no payment method, projects in the workspace are blocked until one is added.",
+          "Credits and discounts"
+        ],
+        "price_version": "e2b@2026-10-31-015029Z",
+        "as_of": "2026-10-11T16:03:05.500767Z"
+      }
+    }
+  },
+  "as_of": "2026-10-11T16:03:05.500767Z"
+}

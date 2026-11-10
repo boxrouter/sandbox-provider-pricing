@@ -1,0 +1,106 @@
+{
+  "provider": "blaxel",
+  "sandbox_id": "bx-7f3a9c2e",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "blaxel:us-was-1",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-19T17:59:55Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T18:00:00Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-19T19:59:55Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-19T20:00:00Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [
+    {
+      "source": "Blaxel metrics API",
+      "read_at": "2026-10-19T22:00:00Z",
+      "body": {
+        "summary": {
+          "totalCost": 0.0075
+        },
+        "resolution": "hourly",
+        "startTime": "2026-10-19T18:00:00Z",
+        "endTime": "2026-10-19T20:00:00Z",
+        "data": [
+          {
+            "workspace": "example-workspace",
+            "resourceType": "sandbox",
+            "resourceName": "bx-7f3a9c2e",
+            "resourceUuid": "6b1f0c52-3a58-4c0e-9a2d-1d7e5f0b8c11",
+            "summary": {
+              "cost": 0.0036
+            },
+            "timeseries": [
+              {
+                "timestamp": "2026-10-19T18:00:00Z",
+                "cost": 0.0021
+              },
+              {
+                "timestamp": "2026-10-19T19:00:00Z",
+                "cost": 0.0015
+              }
+            ]
+          },
+          {
+            "workspace": "example-workspace",
+            "resourceType": "sandbox",
+            "resourceName": "bx-0d41e8b6",
+            "resourceUuid": "c24a7e90-5d3b-47f1-8e66-0a9b3c4d2e77",
+            "summary": {
+              "cost": 0.0039
+            },
+            "timeseries": [
+              {
+                "timestamp": "2026-10-19T18:00:00Z",
+                "cost": 0.0039
+              },
+              {
+                "timestamp": "2026-10-19T19:00:00Z",
+                "cost": 0
+              }
+            ]
+          }
+        ],
+        "meta": {
+          "hasMore": false
+        }
+      }
+    }
+  ]
+}

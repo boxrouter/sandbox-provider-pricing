@@ -1,0 +1,111 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Blaxel
+website: https://blaxel.ai
+rules_version: 2
+status:
+  best_label: reported
+  why_not_higher: Nothing. In our checks Blaxel's per-sandbox cost matched list price, with compute in whole seconds and standby snapshot storage at its listed rate.
+  would_raise: Nothing. Until Blaxel's metrics record arrives, the cost is unknown.
+revisit:
+  after_s: 600
+  until_s: 604800
+  interval_s: 3600
+  rationale: We watched costs stay unchanged for 30 minutes only, and how long Blaxel keeps them, or when they are final, is not verified, so retries stop after 7 days.
+  unverified_default: true
+reported_at_list_price:
+  value: true
+  source: 'providers/blaxel/evidence/2026-10-11-billing-boundary.md#verdict (every per-sandbox metrics cost was a whole number of seconds at $0.0000115 per GB-second, the list rate in src/sandbox_provider_pricing/providers/blaxel/prices) and providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict (standby snapshot storage at $0.20 per GB-month, the listed rate)'
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported sandbox cost on an account with a negotiated rate against list rates; the 2026-10-11 check was on a list-rate account
+summary: >-
+  Blaxel's Billing Explorer metrics API reports each sandbox's cost, including standby snapshot storage. Those amounts matched list rates in our checks and are labelled reported. A missing or early record leaves the cost unknown until a later read.
+formula: >-
+  Blaxel's own cost for the sandbox. Check: active seconds × GB of memory × memory rate (CPU is included), plus snapshot GB × seconds in standby × snapshot rate.
+rules:
+  billed_on:
+    answer: Memory allocated at creation, per GB-second. CPU is not charged separately; it is allocated from the memory size. Our 4096 MiB sandbox was billed as 4 GB.
+    sources:
+      - https://blaxel.ai/pricing
+      - https://docs.blaxel.ai/Sandboxes/Overview
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#method
+  starts:
+    answer: Measured at create returned. Create sent is not ruled out for creates of 0.2 to 0.4 s; the one 2.13 s create fitted create returned only.
+    sources:
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#verdict
+  ends:
+    answer: Measured at destroy returned. Destroy sent is ruled out, as it would make the batch 1.8% shorter than billed.
+    sources:
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#verdict
+  rounding:
+    answer: Compute in whole seconds, truncated; every compute cost was a whole number of seconds at the list rate. Standby snapshot storage is added per second, so a total is not always whole seconds. No minimum or increment is stated on the pricing page.
+    sources:
+      - https://blaxel.ai/pricing
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#verdict
+      - providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict
+  idle_and_paused:
+    answer: Active is billed. Without an active connection a sandbox enters standby, where memory is not billed but snapshot storage is. Blaxel's pages say about 5 s or 15 s to standby, and we measured 22.7 to 34.8 s. Archived is "you stop paying for it". Paused and stopped are not stated.
+    sources:
+      - https://docs.blaxel.ai/Sandboxes/Overview
+      - https://blaxel.ai/pricing
+      - https://docs.blaxel.ai/Sandboxes/Archive
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#standby-earlier-batch-same-day
+      - providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict
+  image_pull:
+    answer: Unknown for a cold, large custom image; not stated. Our check used a cached standard image and Blaxel's base image (creates took 0.2 to 0.4 s, one 2.13 s). A brought image must be built in the workspace.
+    unknown_how: Build a large custom image in the workspace, create sandboxes from it and compare billed seconds with create sent and create returned.
+  extra_charges:
+    answer: Snapshots {storage.snapshot.amount}, deployment images {storage.image.amount} and volumes {storage.volume.amount}, each per {storage.unit}. The sandbox's own disk has no separate charge, because its writable layer lives in the allocated memory that is billed. No creation fee or GPU price is stated. Egress is listed as included.
+    sources:
+      - https://blaxel.ai/pricing
+      - https://blaxel.ai/platform/storage
+      - https://docs.blaxel.ai/api-reference/billing
+  left_out:
+    answer: Up to $200 free credits, tier top-ups (prepaid usage), support add-ons, custom domains, image and volume storage, and taxes. Standby snapshot storage is included in the reported cost. Whether free credit is drawn at list rates is not stated.
+    sources:
+      - https://blaxel.ai/pricing
+      - https://docs.blaxel.ai/Security/Quotas
+  per_sandbox_data:
+    answer: Yes. The metrics API gives each sandbox's cost by billing dimension, in hourly buckets at finest. Blaxel says figures take "a few minutes, sometimes longer". Ours appeared about 50 s after create and were final 45 to 113 s after destroy, then unchanged for over 30 minutes. Read every page of the response.
+    sources:
+      - https://docs.blaxel.ai/api-reference/billing
+      - https://docs.blaxel.ai/Security/Billing-Explorer-API
+      - providers/blaxel/evidence/2026-10-11-billing-boundary.md#method
+      - providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict
+checks:
+  - date: '2026-10-11'
+    title: Billing boundary and standby against per-sandbox metrics
+    file: evidence/2026-10-11-billing-boundary.md
+    result: 25 sandboxes fit create returned to destroy returned, whole seconds truncated, at list rate. 21 rows fit one by one and 4 differed by under 0.7 s. Standby time was billed for less than the sandbox's life. No cold large image was tested, and create sent is not ruled out.
+  - date: '2026-10-20'
+    title: Time to standby and metrics lag against per-sandbox metrics
+    file: evidence/2026-10-20-standby-and-metrics-lag.md
+    result: 8 idle sandboxes were billed compute for 22.7 to 34.8 s after their last command, then standby; standby billed snapshot storage at the listed rate. Each cost was final 45 to 113 s after destroy and then unchanged.
+open_questions:
+  - question: Is loading a cold, large custom image billed as sandbox time?
+    how: Build a large image into the workspace, create sandboxes from it and compare billed seconds with create sent and create returned.
+  - question: Does billing start at create sent or create returned?
+    how: Repeat with creates of several seconds so the two edges differ by more than whole-second truncation.
+  - question: Which instants count as active for the standby discount?
+    how: Hold sandboxes with timed connections and idle gaps, then compare billed seconds with connected time.
+  - question: How long does the metrics API keep a sandbox's figure, and does it settle later under load?
+    how: Read figures for sandboxes of several ages up to the API's 7-day window, and repeat the lag timing on a busy hour.
+  - question: Does a sandbox's reported cost include image storage? Standby snapshot storage was included; no image storage row appeared.
+    how: Read metrics with groupBy=resource_uuid,billing_dimension for a sandbox made from a custom image.
+  - question: How many CPU cores does a 16 GB sandbox get? The overview says 6; the API reference formula gives 8.
+    how: Create a 16 GB sandbox and count its cores.
+  - question: Is the stored filesystem of an archived sandbox billed?
+    how: Archive a sandbox and read its billing dimensions over the following days.
+
+price_sheet:
+  active_time_priced: {value: true, source_url: https://blaxel.ai/pricing}
+  benchmark_region: {value: us-was-1, source_url: https://blaxel.ai/pricing}
+  states:
+    idle: {rule: active, note: Idle usage is billed as running while a connection is open., source_url: https://docs.blaxel.ai/Sandboxes/Overview}
+    paused: {rule: none, note: 'Compute is not billed in standby.', source_url: https://docs.blaxel.ai/Sandboxes/Overview}
+  class_overrides: {}
+  storage:
+    - {kind: image, status: priced, source_url: https://blaxel.ai/pricing}
+    - {kind: disk, status: included, source_url: https://docs.blaxel.ai/Sandboxes/Overview}
+    - {kind: snapshot, status: priced, source_url: https://blaxel.ai/pricing}
+    - {kind: volume, status: priced, source_url: https://blaxel.ai/pricing}

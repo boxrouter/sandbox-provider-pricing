@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:usage",
+  "title": "Usage record",
+  "description": "What one sandbox used, as a collector saw it. One record is one coherent set of inputs for the calculator; where two sources disagree, a collector builds one record per source. Every fact carries where it came from, when it was observed and how. A fact nobody could establish has source `unknown` and a null value; it is never left out or filled with a default. `provider`, the record's key, is the only value without provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["provider", "started", "region", "size", "intervals", "creations"],
+  "properties": {
+    "provider": {
+      "description": "The provider that ran the sandbox, as named in its price versions.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "class": {
+      "description": "The sandbox's class or runtime (Modal's gVisor or VM, a Daytona class), which picks the rate set in the price version. If absent, it may be priced only when the price version has exactly one class; otherwise the cost is unknown.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source", "observed_at", "how"],
+      "properties": {
+        "name": { "type": ["string", "null"], "minLength": 1 },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "name": { "type": "null" } } },
+      "else": { "properties": { "name": { "type": "string" } } }
+    },
+    "started": {
+      "description": "When the sandbox started. It picks the price version in effect.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["at", "source", "observed_at", "how"],
+      "properties": {
+        "at": { "type": ["string", "null"] },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "at": { "type": "null" } } },
+      "else": { "properties": { "at": { "$ref": "#/$defs/timestamp" } } }
+    },
+    "region": {
+      "description": "The region the sandbox ran in, as the provider names it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source", "observed_at", "how"],
+      "properties": {
+        "name": { "type": ["string", "null"], "minLength": 1 },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "name": { "type": "null" } } },
+      "else": { "properties": { "name": { "type": "string" } } }
+    },
+    "size": {
+      "description": "What the sandbox got. Each field is optional because a source may give only some of them; at least one is present unless the source is `unknown`. When GPUs are present, `gpu` and `gpu_model` are both recorded; without a GPU, both are absent.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "observed_at", "how"],
+      "properties": {
+        "cpu": { "description": "vCPUs.", "type": "number", "exclusiveMinimum": 0 },
+        "memory_mib": { "type": "integer", "minimum": 1 },
+        "disk_mib": { "type": "integer", "minimum": 1 },
+        "gpu": { "description": "Number of allocated GPUs.", "type": "integer", "minimum": 1 },
+        "gpu_model": {
+          "description": "The allocated model's gpu-registry identifier.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$"
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": {
+        "not": {
+          "anyOf": [
+            { "required": ["cpu"] },
+            { "required": ["memory_mib"] },
+            { "required": ["disk_mib"] },
+            { "required": ["gpu"] },
+            { "required": ["gpu_model"] }
+          ]
+        }
+      },
+      "else": {
+        "anyOf": [
+          { "required": ["cpu"] },
+          { "required": ["memory_mib"] },
+          { "required": ["disk_mib"] },
+          { "required": ["gpu"] }
+        ]
+      },
+      "allOf": [
+        {
+          "if": { "required": ["gpu"] },
+          "then": { "required": ["gpu_model"] }
+        },
+        {
+          "if": { "required": ["gpu_model"] },
+          "then": { "required": ["gpu"] }
+        }
+      ]
+    },
+    "intervals": {
+      "description": "Time in each billed state, one entry per period, in time order. A price version's minimum and increment rules apply to each entry.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["state", "seconds", "source", "observed_at", "how"],
+        "properties": {
+          "size": { "$ref": "#/properties/size" },
+          "snapshot_storage": { "$ref": "#/properties/snapshot_storage" },
+          "state": { "enum": ["running", "paused", "stopped"] },
+          "seconds": {
+            "description": "Exact seconds, or a range when a change was noticed late and the period is only bounded.",
+            "oneOf": [
+              { "type": "number", "minimum": 0 },
+              { "$ref": "#/$defs/range" },
+              { "type": "null" }
+            ]
+          },
+          "source": { "$ref": "#/$defs/source" },
+          "observed_at": { "$ref": "#/$defs/timestamp" },
+          "how": { "$ref": "#/$defs/how" }
+        },
+        "if": { "$ref": "#/$defs/is_unknown" },
+        "then": { "properties": { "seconds": { "type": "null" } } },
+        "else": { "properties": { "seconds": { "type": ["number", "object"] } } }
+      }
+    },
+    "creations": {
+      "description": "How many times the sandbox was created: 1, plus any restores that the provider charges as a creation.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "source", "observed_at", "how"],
+      "properties": {
+        "count": { "type": ["integer", "null"], "minimum": 0 },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "count": { "type": "null" } } },
+      "else": { "properties": { "count": { "type": "integer" } } }
+    },
+    "active_cpu": {
+      "description": "Seconds of CPU the sandbox actually used, for providers that bill active CPU. Absent where the provider does not bill it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seconds", "source", "observed_at", "how"],
+      "properties": {
+        "seconds": { "type": ["number", "null"], "minimum": 0 },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "seconds": { "type": "null" } } },
+      "else": { "properties": { "seconds": { "type": "number" } } }
+    },
+    "egress": {
+      "description": "Bytes the sandbox sent out. Absent where the provider does not bill it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bytes", "source", "observed_at", "how"],
+      "properties": {
+        "bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "source": { "$ref": "#/$defs/source" },
+        "observed_at": { "$ref": "#/$defs/timestamp" },
+        "how": { "$ref": "#/$defs/how" }
+      },
+      "if": { "$ref": "#/$defs/is_unknown" },
+      "then": { "properties": { "bytes": { "type": "null" } } },
+      "else": { "properties": { "bytes": { "type": "integer" } } }
+    },
+    "snapshot_storage": {
+      "description": "The stored snapshot size, or its known maximum when the provider does not report the actual size.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "observed_at",
+        "how"
+      ],
+      "properties": {
+        "gb": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max_gb": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "observed_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "how": {
+          "$ref": "#/$defs/how"
+        },
+        "bytes": {
+          "description": "Provider snapshot sizeBytes, kept as an exact integer.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "if": {
+        "$ref": "#/$defs/is_unknown"
+      },
+      "then": {
+        "properties": {
+          "gb": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "anyOf": [
+          {
+            "required": [
+              "gb"
+            ],
+            "properties": {
+              "gb": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "required": [
+              "bytes"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "description": "Where a fact came from. provider: the provider's API told us, about this sandbox. published: the provider's docs or pricing page, not about this sandbox in particular. measured: BoxRouter checked it itself with a clock or inside its own benchmark sandboxes. recorded: BoxRouter's own record of something it did or saw. calculated: worked out from other facts, each with its own source. unknown: nobody told us and we could not check.",
+      "type": "string",
+      "enum": ["provider", "published", "measured", "recorded", "calculated", "unknown"]
+    },
+    "timestamp": {
+      "description": "A UTC time, ending in Z.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?Z$"
+    },
+    "how": {
+      "description": "How the fact was obtained: the API call, the page URL, the record, or why it is unknown.",
+      "type": "string",
+      "minLength": 1
+    },
+    "range": {
+      "description": "A bounded quantity.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["low", "high"],
+      "properties": {
+        "low": { "type": "number", "minimum": 0 },
+        "high": { "type": "number", "minimum": 0 }
+      }
+    },
+    "is_unknown": {
+      "properties": { "source": { "const": "unknown" } },
+      "required": ["source"]
+    }
+  }
+}

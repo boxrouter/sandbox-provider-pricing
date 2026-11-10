@@ -1,0 +1,40 @@
+name: Price correction
+description: A price, meter rule or billing statement in this repository is wrong or out of date.
+labels: ["price-correction"]
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      placeholder: e2b
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: The value, file and version as published here, and what it should be.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Public source
+      description: >-
+        A link to the provider's public page with a verbatim quote, or a measurement you can
+        share with its method. If the provider documents nothing, say so; the answer is then
+        recorded as not stated, or as unknown with the check that would settle it.
+    validations:
+      required: true
+  - type: input
+    id: effective
+    attributes:
+      label: Effective from
+      description: The date the correct value took effect, if known.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is about the provider's list price, not my own bill, and it contains no credentials or personal data.
+          required: true

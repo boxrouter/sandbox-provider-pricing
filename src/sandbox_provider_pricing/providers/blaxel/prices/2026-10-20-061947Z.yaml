@@ -1,0 +1,163 @@
+provider: blaxel
+version: blaxel@2026-10-20-061947Z
+effective_from: '2026-10-18T08:06:36Z'
+retrieved_at: '2026-10-20T06:19:47Z'
+supersedes:
+- blaxel@2026-10-11
+- blaxel@2026-10-20
+sources:
+- url: https://blaxel.ai/pricing
+  quote: 'Active CPU | Time the sandbox spends actively running, billed by its allocated memory (CPU scales
+    automatically). The runtime auto-suspends when idle: suspended time does not count towards active
+    CPU. | $0.0000115 / GB RAM · second'
+- url: https://blaxel.ai/pricing
+  quote: Snapshots storage | Memory and filesystem snapshots that keep suspended sandboxes ready to resume.
+    | $0.20 / GB · month
+- url: https://blaxel.ai/pricing
+  quote: Images | Templated deployment images stored for fast and repeatable creation. | $0.045 / GB ·
+    month
+- url: https://blaxel.ai/pricing
+  quote: Provisioned capacity | Billed on the volume size you provision, for as long as the volume exists,
+    regardless of how much data you actually write in it. | $0.12 / GB · month
+- url: https://blaxel.ai/pricing
+  quote: Internet egress traffic | Outbound traffic from your workloads to the internet. | Included
+- url: https://blaxel.ai/pricing
+  quote: Pay as-you-go | Usage-based pricing with infinite scalability. | $0.00+ USAGE | Up to $200 in
+    free credits
+- url: https://blaxel.ai/pricing
+  quote: 'Custom | For dedicated and custom deployments. | Contact us for a quote. | All features of Pay-as-you-go,
+    plus: | Up to 256 GB RAM per sandbox or job'
+- url: https://blaxel.ai/pricing
+  quote: Tier | Minimum top-up required | Sandbox limit | Tier 0 | Free | 10 | Tier 1 | $20 / month |
+    50 | Tier 2 | $50 / month | 200 | … 7 more tiers … | Tier 9 | Contact us | 100,000+
+- url: https://blaxel.ai/pricing
+  quote: Email support [ADD-ON] $800/ MONTH + 3% OF USAGE | Dedicated support [ADD-ON] $1,600/ MONTH +
+    10% OF USAGE | HIPAA [ADD-ON] $250/ MONTH
+- url: https://blaxel.ai/pricing
+  quote: Fully-qualified domains | A validated domain that points to one specific app, such as myapp.acme.co.
+    | $0.25 / domain · month
+- url: https://blaxel.ai/pricing
+  quote: Wildcard domains | A validated wildcard that covers every subdomain, such as *.acme.co. | $20
+    / domain · month
+- url: https://blaxel.ai/pricing
+  quote: Sandboxes scale to zero after about 5 seconds of inactivity and resume from standby in roughly
+    25ms, even after months of being suspended.
+- url: https://docs.blaxel.ai/Sandboxes/Overview
+  quote: You are charged for memory (based on how much you allocated at sandbox creation) and storage
+    while a sandbox is in active mode. CPU resources are allocated accordingly by Blaxel based on your
+    selected memory allocation and are not charged separately. For example, a sandbox with 8 GB memory
+    is allocated 4 CPU cores, while one with 16 GB memory is allocated 6 CPU cores.
+- url: https://docs.blaxel.ai/Sandboxes/Overview
+  quote: If a sandbox does not have an active connection, it automatically transitions to a warm standby
+    mode (also called scale-to-zero). This transition happens in approximately 15 seconds.
+- url: https://docs.blaxel.ai/Sandboxes/Overview
+  quote: You are not charged for memory while a sandbox is in standby mode. However, you are charged for
+    the storage of the snapshot and/or the volumes.
+- url: https://docs.blaxel.ai/Sandboxes/Overview
+  quote: Due to this, Blaxel sandboxes reserve, when possible, approximately 50% of the available memory
+    for the tmpfs filesystem.
+- url: https://docs.blaxel.ai/Sandboxes/Templates.md
+  quote: 'memory: 8192, // Memory in MB (default: 4096)'
+- url: https://docs.blaxel.ai/Security/Quotas
+  quote: Higher tiers have access to higher limits such as more standby/concurrent sandboxes, more concurrent
+    jobs, higher sandbox and volume sizes, longer sandbox TTLs.
+- url: https://docs.blaxel.ai/Security/Quotas
+  quote: Promotional credits (such as startup program grants) and previously accumulated balances automatically
+    apply toward your active infrastructure costs. However, they do not count toward the 30-day top-up
+    volume required to unlock or maintain a quota tier.
+- url: https://docs.blaxel.ai/api-reference/compute/create-sandbox.md
+  quote: Memory allocation in megabytes. Also determines CPU allocation (CPU cores = memory in MB / 2048,
+    e.g., 4096MB = 2 CPUs).
+- url: https://docs.blaxel.ai/Sandboxes/Overview
+  quote: 'memory: 4096, // in MB'
+- url: https://blaxel.ai/platform/storage
+  quote: All sizes are binary gigabytes (GiB), where 1 GB = 2^30 bytes.
+classes:
+- name: default
+  default: true
+  rates:
+    memory:
+      usd: '0.0000115'
+      per: gb-second
+      size_per_unit: '1'
+  meter:
+    memory:
+      basis: active
+      billed_states:
+      - running
+      memory_steps_mib:
+      - 2048
+      - 4096
+      - 8192
+      - 16384
+      - 32768
+exclusions:
+- Snapshot storage $0.20 / GB-month (the state kept for a sandbox in standby)
+- Images $0.045 / GB-month (templated deployment images; unknown whether Blaxel's own blaxel/base-image
+  is charged)
+- Volumes $0.12 / GB-month provisioned, billed "for as long as the volume exists, regardless of how much
+  data you actually write in it" (pricing page)
+- Docs say storage is charged while a sandbox is active; no rate for the sandbox's own filesystem is published
+  (it is a tmpfs in RAM, about 50% of memory)
+- 'Internet egress and internal traffic: Included. No per-creation fee published'
+- 'Plan: Pay-as-you-go "$0.00+ USAGE". The pricing page lists one memory rate ("$0.0000115 / GB RAM ·
+  second") and does not tie it to a tier; the Custom plan is priced by quote ("Contact us for a quote.").
+  Which sizes it needs: Blaxel publishes no per-sandbox size cap by tier (the quotas page says higher
+  tiers unlock ''higher sandbox and volume sizes''); tiers are reached by top-up ($20 / month Tier 1,
+  $50 / month Tier 2, the rest unpublished) or a quota request. Optional add-ons: email
+  support $800 / month + 3% of usage, dedicated support $1,600 / month + 10%, HIPAA $250 / month; custom
+  domains: "Fully-qualified domains" "$0.25 / domain · month" and "Wildcard domains" "$20 / domain · month";
+  dedicated IPs, egress proxy free during beta'
+- 'Plan allowance: Up to $200 in free credits (promotional credit does not count toward tier top-ups);
+  Tier 0 is free with 10 sandboxes, Tier 1 needs a $20 / month top-up (50), Tier 2 $50 / month (200)'
+- 'CPU: bundled with allocated memory; no separate CPU rate is published.'
+open_questions:
+- 'Which sandbox sizes each tier can create is not published; the quotas page says only that higher tiers
+  unlock ''higher sandbox and volume sizes''.'
+- 'GB vs GiB: the rate says GB and the API memory is in MB. Blaxel''s storage page (blaxel.ai/platform/storage)
+  says "All sizes are binary gigabytes (GiB), where 1 GB = 2^30 bytes." The billing check in providers/blaxel/evidence/2026-10-11-billing-boundary.md
+  found every per-sandbox cost of a 4096 MiB sandbox to be a whole number of seconds at 4 GB; 4.096 GB
+  did not fit. So 4096 MiB bills as 4 GB ($0.1656 / h, not $0.1696 / h). The storage page states the definition
+  for storage sizes; Blaxel does not state it for memory.'
+- 'CPU at each memory size: the web docs give only 8 GB -> 4 and 16 GB -> 6 cores; the 2 GB and 4 GB rows
+  rest on the SDK docstring (MB / 2048) and a live nproc check in a test sandbox, and cores may be a share
+  rather than a reservation'
+- 'Billing granularity and minimum charge per sandbox: not published'
+- 'Whether the sandbox''s root filesystem storage is billed while active, and at what rate: not published'
+- Whether the free-credit balance is drawn down at these list rates (assumed)
+- No page shows an update date; the pricing page was read once on the retrieval date above
+- 'Range: lower bound $0 of compute, because with no active connection a sandbox drops to standby and
+  memory is not billed. Blaxel gives two times for that: "approximately 15 seconds" (Sandboxes overview)
+  and "about 5 seconds of inactivity" (pricing page FAQ). The time measured in providers/blaxel/evidence/2026-10-11-billing-boundary.md
+  was longer: 23.5 to 33 s in probes (7 of 10 trials that waited 30 s, and 9 of 9 that waited 60 to 300
+  s) and 30 to 60 s in further runs; the probe data is not in this repository. In standby the cost is
+  only snapshot storage ($0.000274 per snapshot GB-hour). Upper bound: every figure above, with the sandbox
+  active (a connection is open, or keep-alive holds it) for the whole hour. Blaxel bills allocated memory
+  only while the sandbox is active, not CPU use, so one hour of one sandbox costs anywhere from the snapshot
+  storage to the full figure depending on how much of the hour it has a connection. An hour is priced
+  here at the upper end; an idle WebSocket/TCP connection keeps billing for up to 15 minutes (docs: 15-minute
+  idle timeout).'
+- The public pricing and sandbox pages say memory is billed by the allocated amount and the SDK takes
+  MB, but do not publish discrete memory tier boundaries. The 2048, 4096, 8192, 16384 and 32768 MiB steps
+  are an unverified assumption carried over from earlier price data; confirm with Blaxel before using
+  them for bill reconciliation.
+- 'Correction: this version supersedes blaxel@2026-10-20 from its effective date (no rate changed) and
+  corrects its notes. Volumes are billed for as long as the volume exists, not only when attached. GB
+  is binary by Blaxel''s storage page and by the measured 4 GB bill for 4096 MiB, where the earlier note
+  said Blaxel does not define it. The fully-qualified domain fee was missing. The pricing page does not
+  tie the memory rate to a tier, where the earlier note said the rate is the same at every tier. Blaxel
+  gives two times to standby, not one. Two quotes were re-copied as the live pages read them ("$0.00+
+  USAGE", "scale-to-zero)"). It also supersedes blaxel@2026-10-11: it has the same effective date, read
+  time and rates as blaxel@2026-10-11-131500Z, its same-day correction, and only the order of the version
+  list decided between them. Size notes that rested on an unrecorded test and a third-party card are
+  removed. blaxel@2026-10-11-131500Z now applies alone from 2026-10-11T09:12:49Z until
+  blaxel@2026-10-18-080600Z.'
+snapshot_storage:
+  usd: '0.20'
+  per: gib-month
+  rate_source: published_snapshot_rate
+  source_url: https://blaxel.ai/pricing
+  checked_at: '2026-10-20T06:19:47Z'
+  note: Published as GB-month; Blaxel defines all storage sizes as binary GiB (1 GB = 2^30 bytes), so the
+    rate is recorded per GiB-month. This corrects an earlier version that treated the figure as decimal
+    GB.

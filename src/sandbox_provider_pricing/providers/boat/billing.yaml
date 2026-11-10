@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Boat
+website: https://boat.dev
+rules_version: 1
+status:
+  best_label: reported
+  why_not_higher: Nothing. The figure counts when the usage record names this sandbox and running is false, or is the last read before Boat deleted the record; that read can fall short by the seconds before the delete.
+  would_raise: Nothing. A missing usage record, a record that names another sandbox, or a read of a sandbox with no known end whose meter still moves leaves the cost unknown.
+revisit:
+  after_s: 15
+  until_s: 900
+  interval_s: 300
+  rationale: The usage endpoint stops answering the moment a sandbox is deleted, so no later read can improve the last one taken before the delete; the short window only covers a read that failed or was lost, and is a chosen default.
+  unverified_default: true
+reported_at_list_price:
+  value: true
+  source: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage (dollars is documented as "seconds at list price (seconds / secondsPerDollar), whatever plan, trial or gift actually paid for it"; not yet verified against a billed record)
+reported_under_account_rate:
+  value: false
+  source: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage (dollars is documented as seconds at list price, whatever plan, trial or gift actually paid for it); the figure is list even when the account pays less
+summary: >-
+  Boat reports a per-sandbox cost: GET /sandboxes/{id}/usage returns billable machine-seconds
+  weighted by size (small 0.5, default 1, large 2, xlarge 50/9) and dollars at list price. The
+  meter runs only while the sandbox runs. A stopped sandbox keeps its disk free for at least 14
+  days before it becomes eligible for retention cleanup. The list price is a flat per-hour rate per size with no published per-unit
+  split, carried in the price version as a per-size machine rate.
+formula: >-
+  The sandbox's usage record, read with the meter stopped (running: false) or last read before
+  Boat deleted the sandbox and its record (as of that read): its dollars at list price. No
+  record, another sandbox's, or a moving meter with no known end is unknown.
+rules:
+  billed_on:
+    answer: >-
+      Billable machine-seconds, weighted by size multiplier (0.5, 1, 2, 50/9 for small, default,
+      large, xlarge), at {rate.machine.default.amount} per hour of default size (secondsPerDollar
+      100000), while the sandbox runs. Published as a flat per-hour rate per size: small
+      {rate.machine.small.amount}, default {rate.machine.default.amount}, large
+      {rate.machine.large.amount}, xlarge {rate.machine.xlarge.amount}. No size has a GPU.
+    sources: [https://docs.boat.dev/pricing, https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage]
+  starts:
+    answer: >-
+      Not stated where the meter starts inside a create, resume or fork call. The usage record's
+      seconds is the billed quantity, so the edge is Boat's own meter, not a call boundary.
+    sources: [https://docs.boat.dev/billing, https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage]
+  ends:
+    answer: >-
+      A stop ends machine billing: stopped time is never counted, and time past a refused stop is
+      excluded. Auto-stop ends a sandbox after its deadline (1 hour by default).
+    sources: [https://docs.boat.dev/billing, https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage]
+  rounding:
+    answer: >-
+      Billed per second. The usage API returns whole billable machine-seconds and dollars to six
+      decimals; no minimum duration or rounding increment is published.
+    sources: [https://docs.boat.dev/pricing, https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage]
+  idle_and_paused:
+    answer: >-
+      There is no pause; an idle sandbox bills as running until it stops or auto-stops. A stopped
+      sandbox costs no machine time and keeps its disk free for at least 14 days. After that it is
+      eligible for automated retention cleanup. The provider currently documents the production
+      cleanup job as reporting candidates without deleting them.
+    sources: [https://docs.boat.dev/pricing, https://docs.boat.dev/billing]
+  image_pull:
+    answer: Not stated; environment or image load time is not broken out on the billing pages.
+    unknown_how: Compare billable seconds for a sandbox created from a cold environment against a cached one at known durations.
+  extra_charges:
+    answer: >-
+      Extra starts cost $0.03 to $0.07 each. Create, fork and resume count. The wallet pays
+      first. An opted-in invoice can pay when the wallet is empty. Extra saved snapshots cost
+      $0.056 each per day. The AI proxy costs $1 per enabled day plus $1 per 1,000 requests.
+      Snapshot and proxy charges draw from the wallet. Egress is free.
+    sources: [https://docs.boat.dev/pricing, https://docs.boat.dev/billing, https://docs.boat.dev/limits]
+  left_out:
+    answer: >-
+      Plan commitments ($20/$100/$500/$2000 per month per seat, returned as VM time at list
+      rates), included starts and concurrency limits, the wallet bonus of 2% to 25% on payments
+      of $200 or more, the 7-day free trial's limits, the $100-plan requirement for xlarge, and
+      taxes.
+    sources: [https://docs.boat.dev/pricing, https://docs.boat.dev/billing]
+  per_sandbox_data:
+    answer: >-
+      GET /sandboxes/{id}/usage reports weighted seconds, list-priced dollars, running state
+      and the size. After deletion the sandbox's usage record is unavailable. The last
+      pre-delete read may omit time before deletion. List include=cost returns an aggregate
+      deletedCost, without a per-sandbox breakdown.
+    sources: [https://docs.boat.dev/billing, https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage]
+checks: []
+open_questions:
+  - question: For how long does the list include=cost deletedCost aggregate keep a deleted sandbox, and is that line attributable per sandbox?
+    how: After delete, re-read the list include=cost deletedCost line at intervals and compare it with the last per-sandbox usage read.
+  - question: Can dollars be corrected after running turns false?
+    how: Re-read a stopped sandbox's usage over days and compare figures; check whether the dashboard's month cost ever revises a closed sandbox.
+  - question: Is the reported dollars figure exactly the published per-hour size rate on real sandboxes?
+    how: Compare usage.dollars against seconds times the stored rate on several sizes; the docs state the identity but no billed record has been checked.
+  - question: Are starts (paid $0.03 to $0.07 above the included count) attributable to a sandbox or start event?
+    how: Exceed included starts on a funded account and look for a per-start or per-sandbox charge record.
+  - question: Is image pull or restore time billed?
+    how: Compare billable seconds for a cold environment against a cached one at known durations.
+  - question: Does the usage record survive a refused stop, and does resume with a new size change the multiplier mid-life?
+    how: Refuse a stop, resume on a different size, and read the record's sandboxType and seconds across the change.
+
+price_sheet:
+  active_time_priced: {value: false, source_url: https://docs.boat.dev/pricing}
+  benchmark_region: {value: null, source_url: https://docs.boat.dev/pricing}
+  states:
+    idle: {rule: running, note: Idle usage is billed as running., source_url: https://docs.boat.dev/pricing}
+    paused: {rule: not_applicable, note: There is no paused state; a stopped sandbox costs no machine time and keeps its disk free for at least 14 days., source_url: https://docs.boat.dev/billing}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: included, source_url: https://docs.boat.dev/billing}
+    - {kind: snapshot, status: unpublished, source_url: https://docs.boat.dev/pricing}
+    - {kind: image, status: unpublished, source_url: https://docs.boat.dev/pricing}
+    - {kind: volume, status: unknown, source_url: https://docs.boat.dev/pricing}

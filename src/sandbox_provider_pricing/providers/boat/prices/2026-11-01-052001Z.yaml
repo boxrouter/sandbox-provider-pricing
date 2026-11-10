@@ -1,0 +1,207 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: boat
+version: boat@2026-11-01-052001Z
+effective_from: '2026-11-01T00:00:00Z'
+retrieved_at: '2026-11-01T05:20:01Z'
+supersedes:
+- boat@2026-11-01
+sources:
+- url: https://docs.boat.dev/pricing
+  quote: You pay per second, only while a sandbox runs. A stopped sandbox costs no
+    machine time.
+- url: https://docs.boat.dev/pricing
+  quote: Size Per hour CPU RAM Disk small $0.018 2 vCPU 4 GB 51 GB default $0.036
+    4 vCPU 8 GB 51 GB large $0.072 8 vCPU 16 GB 111 GB xlarge * $0.200 16 vCPU 32
+    GB 251 GB
+- url: https://docs.boat.dev/pricing
+  quote: xlarge needs the $100 plan or higher. Subscribe from Dashboard > Billing,
+    then pass --type xlarge. You do not need to contact us.
+- url: https://docs.boat.dev/pricing
+  quote: A stopped sandbox keeps its disk for 14 days. Then boat deletes the data,
+    and the sandbox cannot resume.
+- url: https://docs.boat.dev/pricing
+  quote: Automatic snapshots of your sandboxes, with no count limit. boat keeps them
+    while a sandbox runs and for 14 days after it stops. Then it deletes them.
+- url: https://docs.boat.dev/pricing
+  quote: 'Saved snapshots included with your plan: 10 for every $20 of plan per seat,
+    never fewer than 10. A saved snapshot has no auto-deletion date. You cannot save
+    one during the free trial.'
+- url: https://docs.boat.dev/pricing
+  quote: Network traffic. boat does not bill egress.
+- url: https://docs.boat.dev/pricing
+  quote: A plan is a monthly price that your card pays. It is not a fee. Every dollar
+    comes back as VM time at the rates above.
+- url: https://docs.boat.dev/pricing
+  quote: Plan Run at once Included starts per min / hour / day VM time included Saved
+    snapshots included $20/mo 100 12 / 60 / 200 555 h of default ($20) 10 $100/mo
+    300 30 / 210 / 840 2,777 h of default ($100) 50 $500/mo 1,000 65 / 420 / 1,680
+    13,888 h of default ($500) 250 $2000/mo 2,000 90 / 600 / 2,400 55,555 h of default
+    ($2000) 1,000
+- url: https://docs.boat.dev/pricing
+  quote: Create, fork and resume each count as one start. Above your included starts,
+    a start costs $0.03 to $0.07.
+- url: https://docs.boat.dev/pricing
+  quote: Included VM time expires at the end of the billing period. boat does not
+    carry it over.
+- url: https://docs.boat.dev/pricing
+  quote: VM time past the included time $0.036 per hour of default. small $0.018,
+    large $0.072, xlarge $0.200
+- url: https://docs.boat.dev/pricing
+  quote: Saved snapshots past the included count $0.056 per snapshot per day ($1.68
+    for 30 days)
+- url: https://docs.boat.dev/pricing
+  quote: AI credentials proxy $1 for each day it is on, plus $1 per 1,000 requests
+- url: https://docs.boat.dev/pricing
+  quote: Saved snapshots and the AI proxy also charge while your sandboxes are stopped.
+    Delete a saved snapshot to stop its charge.
+- url: https://docs.boat.dev/billing
+  quote: Every sandbox meters its own machine time. A platform can bill its own users
+    from the same numbers that your plan and your wallet pay.
+- url: https://docs.boat.dev/billing
+  quote: One Deleted sandboxes line holds the machine time of sandboxes you deleted
+    this month.
+- url: https://docs.boat.dev/billing
+  quote: A stopped sandbox keeps its disk for free for 14 days only.
+- url: https://docs.boat.dev/billing
+  quote: boat never counts stopped time.
+- url: https://docs.boat.dev/billing
+  quote: boat does not count time after a refused stop.
+- url: https://docs.boat.dev/billing
+  quote: If a billing month ends while a sandbox runs, boat splits that stretch between
+    the two months.
+- url: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage
+  quote: Rate at which this sandbox consumes machine time. 0.5 for small, 1 for default,
+    2 for large, and 50/9 (about 5.56) for xlarge.
+- url: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage
+  quote: 'Billable machine-seconds inside the window, the type multiplier already
+    applied: a large sandbox that ran ten minutes reads 1200. Includes a running sandbox''s
+    time up to until. Time while stopped is never counted and time past a refused
+    stop is excluded.'
+- url: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage
+  quote: seconds at list price (seconds / secondsPerDollar), whatever plan, trial
+    or gift actually paid for it. Up to six decimals.
+- url: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage
+  quote: 'The meter is still moving: the sandbox is up and no refused stop is holding
+    it paused. Read again after it stops for the final figure.'
+classes:
+- name: default
+  default: true
+  rates:
+    machine:
+      small:
+        usd: '0.018'
+        per: machine-hour
+        cpu: '2'
+        memory_gib: '4'
+      default:
+        usd: '0.036'
+        per: machine-hour
+        cpu: '4'
+        memory_gib: '8'
+      large:
+        usd: '0.072'
+        per: machine-hour
+        cpu: '8'
+        memory_gib: '16'
+      xlarge:
+        usd: '0.200'
+        per: machine-hour
+        cpu: '16'
+        memory_gib: '32'
+        note: xlarge needs the $100 plan or higher.
+    disk:
+      usd: '0'
+      per: gib-hour
+  meter:
+    machine:
+      basis: allocated
+      billed_states:
+      - running
+    disk:
+      basis: allocated
+      billed_states:
+      - stopped
+exclusions:
+- 'Boat''s own meter weights machine-seconds by size (0.5, 1, 2 and 50/9 for small,
+  default, large and xlarge) at $0.036 per hour of default (secondsPerDollar 100000);
+  the flat per-size machine rates above are the same prices. The weighted-second form
+  is what the usage record reports; per-sandbox cost comes from Boat''s reported dollars.'
+- 'Plan commitment: $20, $100, $500 or $2000 per month per seat; the plan price is
+  not a fee and returns as VM time at the list rates. Included VM time expires at
+  the end of the billing period; the plan also sets concurrent sandboxes (100, 300,
+  1,000, 2,000) and included starts.'
+- 'Extra starts: create, fork and resume each count as one start; above the plan''s
+  included starts a start costs $0.03 to $0.07, paid from the wallet.'
+- 'Saved snapshots above the included count (10 per $20 of plan per seat, never fewer
+  than 10): $0.056 per snapshot per day, charged while sandboxes are stopped too.
+  Automatic snapshots are kept while a sandbox runs and for 14 days after it stops,
+  at no cost.'
+- 'AI credentials proxy: $1 for each day it is on, plus $1 per 1,000 requests, paid
+  from the wallet; it also charges while sandboxes are stopped.'
+- Wallet payments of $200 or more get a bonus of 2% to 25%. The 7-day free trial (card
+  required) limits compute, concurrency and sizes.
+- 'Egress: not billed ("Network traffic. boat does not bill egress.").'
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://docs.boat.dev/pricing
+    note: Priced by the per-size machine rate, which includes the CPU.
+  memory:
+    treatment: in_quote
+    source: https://docs.boat.dev/pricing
+    note: Priced by the per-size machine rate, which includes the memory.
+  disk:
+    treatment: not_billed
+    source: https://docs.boat.dev/pricing
+    note: Each size lists its disk in the machine rate; a stopped sandbox keeps its disk free for 14 days.
+  creation:
+    treatment: unbounded
+    source: https://docs.boat.dev/pricing
+    note: Create, fork and resume each count as a start; above the plan's included starts a start costs
+      $0.03 to $0.07.
+  egress:
+    treatment: not_billed
+    source: https://docs.boat.dev/pricing
+    note: The pricing page says boat does not bill egress.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://docs.boat.dev/pricing
+    note: Saved snapshots above the plan's count cost $0.056 per snapshot per day, also while stopped.
+  image_storage:
+    treatment: unbounded
+    source: https://docs.boat.dev/pricing
+    note: No image storage charge is listed. Not published on the pages checked; treated as possibly billable,
+      never as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://docs.boat.dev/pricing
+    note: No volume charge is listed. Not published on the pages checked; treated as possibly billable,
+      never as free.
+  requests:
+    treatment: unbounded
+    source: https://docs.boat.dev/pricing
+    note: The AI credentials proxy costs $1 per day on plus $1 per 1,000 requests, also while sandboxes
+      are stopped.
+open_questions:
+- The machine bundle has no published per-vCPU or per-GiB split, and xlarge's weighted-second
+  multiplier (50/9) is not proportional to its vCPUs, memory or disk; `rates.machine` therefore
+  carries the flat per-size price as published, keyed by size name, and GB is read as GiB per
+  the format's convention. The recorded disk rate of $0 is the published free retention of a
+  stopped sandbox's disk for 14 days, metered in the stopped state; per-sandbox cost comes
+  from Boat's reported dollars.
+- Whether a deleted sandbox's usage stays retrievable per sandbox; the billing page
+  lists one aggregate Deleted sandboxes line per month and the usage endpoint documents
+  a 404 response.
+- How long a usage record is kept and whether dollars can be corrected after running
+  turns false; the docs say only "read again after it stops for the final figure".
+- Whether image pull or restore time is billed is not stated and has not been measured.
+- Where the meter starts and stops inside the create and stop calls is not stated;
+  the API reports the billed total, not its edges.
+- GB versus GiB for RAM and disk sizes is not defined on the pricing pages.
+- 'Seats: an organization pays the plan price once per seat; each seat adds the full
+  limits on the $2000 plan and 20% of them below, per the seats docs.'
+- 'Correction: this version supersedes boat@2026-11-01 from the same effective date; no rate, class or
+  source changed, and no page was read again. It adds `coverage`, which states each billable charge as
+  in the reservation quote, not billed, or unbounded, so a quote can say what it leaves out. retrieved_at
+  is the superseded version''s plus one second, so this version orders after it and the pages'' read date
+  stays as it was.'

@@ -1,0 +1,66 @@
+{
+  "provider": "vercel",
+  "sandbox_id": null,
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "disk_mib": null,
+    "region": "iad1",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-12T12:00:00.000Z",
+        "source": "recorded"
+      },
+      "returned_at": {
+        "value": "2026-10-12T12:00:01.400Z",
+        "source": "recorded"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-12T12:02:00.500Z",
+        "source": "recorded"
+      },
+      "returned_at": {
+        "value": "2026-10-12T12:02:01.000Z",
+        "source": "recorded"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 18.9,
+      "source": "measured",
+      "how": "cgroup cpu.stat"
+    }
+  },
+  "provider_records": [
+    {
+      "source": "vercel.sessions.get",
+      "read_at": "2026-10-12T12:07:00.000Z",
+      "body": {
+        "startedAt": "2026-10-12T12:00:00.500Z",
+        "stoppedAt": "2026-10-12T12:02:00.500Z",
+        "activeCpuDurationMs": 11040,
+        "networkTransfer": {
+          "egress": 0
+        }
+      }
+    }
+  ]
+}

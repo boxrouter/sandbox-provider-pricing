@@ -1,0 +1,13 @@
+# Shared linter settings.
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "I", "UP", "B", "TID251", "TID252", "PLC0415"]
+
+[lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[lint.flake8-tidy-imports.banned-api]
+"sys.path".msg = "Install packages instead of changing import paths."
+"unittest".msg = "Use pytest and pytest-mock."

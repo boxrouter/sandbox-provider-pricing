@@ -1,0 +1,88 @@
+{
+  "provider": "boat",
+  "sandbox_id": "bx_redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 4,
+    "memory_mib": 8192,
+    "disk_mib": 52224,
+    "region": null,
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-11-01T04:00:00Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-01T04:00:12Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-11-01T04:05:00Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-01T04:05:04Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [
+    {
+      "kind": "created",
+      "at": {
+        "value": "2026-11-01T04:00:10Z",
+        "source": "provider",
+        "how": "the sandbox's creation time in its usage record window"
+      },
+      "field": "since"
+    },
+    {
+      "kind": "stopped",
+      "at": {
+        "value": "2026-11-01T04:04:58Z",
+        "source": "provider",
+        "how": "the sandbox's stop time in its usage record window"
+      },
+      "field": "until"
+    }
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "provider_records": [
+    {
+      "source": "boat.sandboxes.usage",
+      "read_at": "2026-11-01T04:05:20Z",
+      "body": {
+        "ok": true,
+        "type": "sandbox.usage",
+        "sandboxId": "bx_redacted",
+        "sandboxType": "default",
+        "billingMultiplier": 1,
+        "since": "2026-11-01T04:00:10Z",
+        "until": "2026-11-01T04:05:20Z",
+        "seconds": 288,
+        "dollars": 0.00288,
+        "secondsPerDollar": 100000,
+        "running": false
+      }
+    }
+  ],
+  "measured": {}
+}

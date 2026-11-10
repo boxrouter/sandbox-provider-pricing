@@ -1,0 +1,52 @@
+{
+  "provider": "modal",
+  "sandbox_id": null,
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "us",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:02:57.679627+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:02:57.832118+00:00"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:09.688865+00:00"
+      },
+      "returned_at": {
+        "source": "recorded",
+        "value": "2026-10-11T16:03:09.896781+00:00"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 5.52,
+      "source": "measured",
+      "how": "cgroup v1 cpuacct.usage: each session's last reading, summed"
+    }
+  },
+  "provider_records": []
+}

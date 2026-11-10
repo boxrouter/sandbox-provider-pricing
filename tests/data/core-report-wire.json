@@ -1,0 +1,117 @@
+{
+  "cost": {
+    "available": {
+      "readings": [
+        {
+          "amount": "0.25",
+          "currency": "USD",
+          "interval_end": "2026-10-24T12:00:00+00:00",
+          "interval_start": "2026-10-24T11:00:00+00:00",
+          "meter": "hourly_cost",
+          "scope": "sandbox",
+          "source": "Blaxel account metrics API"
+        }
+      ],
+      "reason": null,
+      "records": [],
+      "status": "available"
+    },
+    "unknown": {
+      "readings": [],
+      "reason": "provider_events_pending_or_expired",
+      "records": [],
+      "status": "unknown"
+    },
+    "unavailable": {
+      "readings": [],
+      "reason": "no_report_source",
+      "records": [],
+      "status": "unavailable"
+    }
+  },
+  "size": {
+    "available": {
+      "readings": [
+        {
+          "resource": "cpu",
+          "source": "Provider reported allocation",
+          "unit": "vCPU",
+          "value": "2"
+        }
+      ],
+      "reason": null,
+      "status": "available"
+    },
+    "unknown": {
+      "status": "unknown",
+      "readings": [],
+      "reason": "provider_events_pending_or_expired"
+    },
+    "unavailable": {
+      "status": "unavailable",
+      "readings": [],
+      "reason": "no_report_source"
+    }
+  },
+  "usage": {
+    "available_observed": {
+      "observed_at": "2026-10-24T12:01:00.123456+00:00",
+      "readings": [
+        {
+          "interval_end": "2026-10-24T12:00:00+00:00",
+          "interval_start": "2026-10-24T11:00:00+00:00",
+          "meter": "cpu",
+          "scope": "session",
+          "source": "Provider reported allocation",
+          "unit": "vCPU",
+          "value": "2"
+        }
+      ],
+      "reason": null,
+      "records": [],
+      "status": "available"
+    },
+    "available_null": {
+      "readings": [
+        {
+          "interval_end": "2026-10-24T12:00:00+00:00",
+          "interval_start": "2026-10-24T11:00:00+00:00",
+          "meter": "cpu",
+          "scope": "session",
+          "source": "Provider reported allocation",
+          "unit": "vCPU",
+          "value": "2"
+        }
+      ],
+      "reason": null,
+      "records": [],
+      "status": "available"
+    },
+    "unknown_observed": {
+      "observed_at": "2026-10-24T12:01:00.123456+00:00",
+      "readings": [],
+      "reason": "provider_events_pending_or_expired",
+      "records": [],
+      "status": "unknown"
+    },
+    "unknown_null": {
+      "readings": [],
+      "reason": "provider_events_pending_or_expired",
+      "records": [],
+      "status": "unknown"
+    },
+    "unavailable_observed": {
+      "observed_at": "2026-10-24T12:01:00.123456+00:00",
+      "readings": [],
+      "reason": "no_report_source",
+      "records": [],
+      "status": "unavailable"
+    },
+    "unavailable_null": {
+      "readings": [],
+      "reason": "no_report_source",
+      "records": [],
+      "status": "unavailable"
+    }
+  }
+}

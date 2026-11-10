@@ -1,0 +1,37 @@
+{
+  "provider": "e2b",
+  "started": {
+    "at": "2026-10-20T18:39:03Z",
+    "source": "recorded",
+    "observed_at": "2026-10-20T18:39:03Z",
+    "how": "the create request the caller sent"
+  },
+  "region": {
+    "name": null,
+    "source": "unknown",
+    "observed_at": "2026-10-20T18:39:04Z",
+    "how": "E2B's sandbox info returns no region"
+  },
+  "size": {
+    "cpu": 2,
+    "memory_mib": 1024,
+    "source": "provider",
+    "observed_at": "2026-10-20T18:39:04Z",
+    "how": "E2B GET /sandboxes/{id}"
+  },
+  "intervals": [
+    {
+      "state": "running",
+      "seconds": 1800,
+      "source": "provider",
+      "observed_at": "2026-10-20T19:09:03Z",
+      "how": "Provider lifecycle event timestamp difference."
+    }
+  ],
+  "creations": {
+    "count": 1,
+    "source": "recorded",
+    "observed_at": "2026-10-20T18:39:03Z",
+    "how": "the create request the caller sent"
+  }
+}

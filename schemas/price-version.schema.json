@@ -1,0 +1,459 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:price-version",
+  "title": "Price version",
+  "description": "What one provider charged from one date: unit rates, how each is metered, the pages they were read from, what the list leaves out and what is still unknown. Rates are decimal strings, never JSON numbers. A rate that is absent was not published, which is not the same as free: a published free rate is `\"0\"`. Stored status, effective_to, first_seen_at, last_confirmed_at and content_hash belong to the database, not to this document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider",
+    "version",
+    "effective_from",
+    "retrieved_at",
+    "sources",
+    "classes",
+    "exclusions",
+    "open_questions"
+  ],
+  "properties": {
+    "provider": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "version": {
+      "description": "The id every cost names: the provider, an @, and the UTC date the version was read, for example e2b@2026-10-20-061802Z. If a provider gets more than one version on one day, append the UTC time as HHMMSSZ, for example modal@2026-10-20-061900Z. The provider part equals `provider`.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*@[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-([01][0-9]|2[0-3])[0-5][0-9][0-5][0-9]Z)?$"
+    },
+    "effective_from": {
+      "description": "When this price starts applying: the provider's announced date if it gave one, else when it was first seen.",
+      "$ref": "#/$defs/timestamp"
+    },
+    "retrieved_at": {
+      "description": "When the pages below were read.",
+      "$ref": "#/$defs/timestamp"
+    },
+    "boundary": {
+      "description": "Legacy: where billing starts and ends, kept so documents published before 0.2 stay byte-identical. Code ignores it; the provider's billing.yaml is the source.",
+      "$ref": "#/$defs/boundary"
+    },
+    "supersedes": {
+      "description": "Earlier price version ids corrected by this document. Selectors ignore these versions when the bundled price files include this document.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/properties/version" }
+    },
+    "month_hours": {
+      "description": "The price version's hours per calendar month for monthly rates, such as 730 for 365/12 days.",
+      "$ref": "#/$defs/positive_decimal"
+    },
+    "snapshot_storage": {
+      "description": "Independent retained snapshot storage price; absent means unpriced. A disk rate proxy must say so explicitly.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/positive_decimal" },
+        "per": { "enum": ["gb-month", "gib-month", "gib-hour"] },
+        "rate_source": { "enum": ["published_snapshot_rate", "published_disk_rate_proxy"] },
+        "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+        "checked_at": { "$ref": "#/$defs/timestamp" },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "image_storage": {
+      "description": "Independent price of storing a deployment image the provider keeps for fast, repeatable creation; absent means unpriced. Not a sandbox's own cost: no usage record carries image size.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/positive_decimal" },
+        "per": { "enum": ["gb-month", "gib-month"] },
+        "rate_source": { "const": "published_image_rate" },
+        "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+        "checked_at": { "$ref": "#/$defs/timestamp" },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "volume_storage": {
+      "description": "Independent price of a provider volume, billed on its provisioned size for as long as it exists; absent means unpriced. Not a sandbox's own cost: no usage record carries volume size.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/positive_decimal" },
+        "per": { "enum": ["gb-month", "gib-month"] },
+        "rate_source": { "const": "published_volume_rate" },
+        "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+        "checked_at": { "$ref": "#/$defs/timestamp" },
+        "included_gb": {
+          "description": "Volume storage the provider includes before the rate applies, in included_unit (Modal: 1 TiB a month, written 1024 GiB).",
+          "$ref": "#/$defs/positive_decimal"
+        },
+        "included_unit": { "const": "GiB" },
+        "note": { "type": "string", "minLength": 1 }
+      },
+      "dependentRequired": { "included_gb": ["included_unit"], "included_unit": ["included_gb"] }
+    },
+    "sources": {
+      "description": "The pages the rates and rules were read from, each with a verbatim quote.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "quote"],
+        "properties": {
+          "url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+          "quote": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "classes": {
+      "description": "One rate set per class or runtime the provider prices differently (Modal's gVisor and VM, a Daytona class). Exactly one is the default, which applies when a usage record names no class. Class names are unique.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/class" },
+      "contains": { "type": "object", "required": ["default"] },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "exclusions": {
+      "description": "Charges outside a sandbox's own cost that the rates do not cover: plan fees, concurrency add-ons, credits, storage that is not priced from a sandbox's size.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "coverage": {
+      "description": "Every billable charge of a managed sandbox, one entry per kind, each stated as `in_quote`, `not_billed` or `unbounded`. `reservation_quote` returns `bounded` only when every kind is stated and none of cpu, memory or disk is `unbounded`; a missing kind makes the quote `unknown`, and so does a version without this block. Kinds: cpu, memory, disk, creation, egress, snapshot_storage, image_storage, volume_storage, requests (per-request or per-use charges such as starts, proxies and drive reads).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cpu": { "$ref": "#/$defs/coverage_entry" },
+        "memory": { "$ref": "#/$defs/coverage_entry" },
+        "disk": { "$ref": "#/$defs/coverage_entry" },
+        "creation": { "$ref": "#/$defs/coverage_entry" },
+        "egress": { "$ref": "#/$defs/coverage_entry" },
+        "snapshot_storage": { "$ref": "#/$defs/coverage_entry" },
+        "image_storage": { "$ref": "#/$defs/coverage_entry" },
+        "volume_storage": { "$ref": "#/$defs/coverage_entry" },
+        "requests": { "$ref": "#/$defs/coverage_entry" }
+      }
+    },
+    "open_questions": {
+      "description": "What the pages leave unclear, so a reader knows which rule is an assumption.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "coverage_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["treatment", "source", "note"],
+      "properties": {
+        "treatment": {
+          "description": "`in_quote`: priced into a reservation quote (time-bounded, or the creation fee). `not_billed`: the provider does not bill it on managed sandboxes. `unbounded`: billable or possibly billable, but no ceiling follows from a size and a duration (egress, retained storage, request- or use-based); it is outside the quote and settled from the provider's own cost.",
+          "enum": ["in_quote", "not_billed", "unbounded"]
+        },
+        "source": {
+          "description": "Where the treatment was read: a URL listed in `sources`, or a repo-relative path to committed evidence under `providers/`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "description": "The reason, in one sentence. For a charge the provider does not publish, say so: unpublished is never free.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "checked"],
+      "properties": {
+        "start": {"enum": ["create_sent", "create_returned", "destroy_sent", "destroy_returned", "provider", "unknown"]},
+        "end": {"enum": ["create_sent", "create_returned", "destroy_sent", "destroy_returned", "provider", "unknown"]},
+        "checked": {"type": "boolean"},
+        "evidence": {"type": ["string", "null"], "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"checked": {"const": true}}, "required": ["checked"]},
+          "then": {
+            "required": ["evidence"],
+            "properties": {"evidence": {"type": "string", "minLength": 1}}
+          }
+        }
+      ]
+    },
+    "class": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "rates", "meter"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "default": { "description": "Present, and true, on the default class only.", "const": true },
+        "covers": {
+          "description": "The spec classes this rate set prices (Modal's default covers default and vm; Daytona's on-demand covers container and vm). A usage record's class names a spec class. Absent, the class covers only the spec class of its own name. No spec class is covered by two classes of one version.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
+        },
+        "rates": { "$ref": "#/$defs/rates" },
+        "meter": { "$ref": "#/$defs/meter" },
+        "region_multipliers": {
+          "description": "A multiplier on every rate of this class for sandboxes in the named region (Modal's 1.15 for a broad region). A region that is not listed is charged at the base rate.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+          "additionalProperties": { "$ref": "#/$defs/positive_decimal" }
+        }
+      }
+    },
+    "rates": {
+      "description": "Unit rates, each optional. A rate is a price and the unit it is a price per, as the provider publishes it.",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "cpu": { "$ref": "#/$defs/cpu_rate" },
+        "memory": { "$ref": "#/$defs/gib_rate" },
+        "disk": { "$ref": "#/$defs/gib_rate" },
+        "gpu": {
+          "description": "Rates by GPU model, keyed by gpu-registry identifiers.",
+          "$ref": "#/$defs/gpu_rates"
+        },
+        "machine": { "$ref": "#/$defs/machine_rates" },
+        "creation": { "$ref": "#/$defs/creation_rate" },
+        "egress": { "$ref": "#/$defs/egress_rate" },
+        "snapshot_storage": { "$ref": "#/$defs/storage_rate" }
+      }
+    },
+    "cpu_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "enum": ["vcpu-second", "vcpu-hour", "core-second", "core-hour"] },
+        "size_per_unit": {
+          "description": "vCPUs one core covers. Required for a core unit, which is not a vCPU (Modal's physical core), and absent for a vCPU unit.",
+          "$ref": "#/$defs/positive_decimal"
+        }
+      },
+      "if": { "properties": { "per": { "enum": ["core-second", "core-hour"] } }, "required": ["per"] },
+      "then": { "required": ["size_per_unit"] },
+      "else": { "not": { "required": ["size_per_unit"] } }
+    },
+    "gib_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "enum": ["gib-second", "gib-hour", "gb-second", "gb-hour"] },
+        "size_per_unit": {
+          "description": "GiB one GB covers: 1 where the provider's GB is read as a GiB, as Vercel's and Blaxel's examples do. Required for a GB unit and absent for a GiB unit.",
+          "$ref": "#/$defs/positive_decimal"
+        }
+      },
+      "if": { "properties": { "per": { "enum": ["gb-second", "gb-hour"] } }, "required": ["per"] },
+      "then": { "required": ["size_per_unit"] },
+      "else": { "not": { "required": ["size_per_unit"] } }
+    },
+    "gpu_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "enum": ["gpu-second", "gpu-hour"] }
+      }
+    },
+    "gpu_rates": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": { "$ref": "#/$defs/gpu_rate" }
+    },
+    "machine_rates": {
+      "description": "Flat per-size machine rates, keyed by the provider's own size name. Each entry prices one published bundle: a sandbox whose size matches the entry's cpu and memory_gib is billed the flat rate while the meter runs it. A sandbox size that matches no entry has no machine price. Used where the provider sells a bundle with no published per-unit split.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+      "additionalProperties": { "$ref": "#/$defs/machine_rate" }
+    },
+    "machine_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per", "cpu", "memory_gib"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "enum": ["machine-second", "machine-hour"] },
+        "cpu": {
+          "description": "vCPUs the published size gives.",
+          "$ref": "#/$defs/positive_decimal"
+        },
+        "memory_gib": {
+          "description": "GiB of memory the published size gives; where the provider quotes GB it is read as a GiB.",
+          "$ref": "#/$defs/positive_decimal"
+        },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "creation_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "enum": ["creation", "million-creations"] }
+      }
+    },
+    "egress_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": {
+          "description": "gib is 2^30 bytes; gb is 10^9 bytes.",
+          "enum": ["gib", "gb"]
+        }
+      }
+    },
+    "storage_rate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "per"],
+      "properties": {
+        "usd": { "$ref": "#/$defs/decimal" },
+        "per": { "const": "gb-month" }
+      }
+    },
+    "meter": {
+      "description": "How each time-billed resource is metered. A resource with a rate and no meter rule cannot be priced.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(cpu|gpu|machine)$": { "$ref": "#/$defs/time_meter" },
+        "^memory$": { "$ref": "#/$defs/memory_meter" },
+        "^disk$": { "$ref": "#/$defs/disk_meter" },
+        "^snapshot_storage$": { "$ref": "#/$defs/storage_meter" }
+      }
+    },
+    "storage_meter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["billed_states"],
+      "properties": {
+        "billed_states": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["running", "paused", "stopped"] }
+        }
+      }
+    },
+    "time_meter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "billed_states"],
+      "properties": {
+        "basis": {
+          "description": "allocated: the size the sandbox has. active: only while the resource is in use (Vercel's CPU). larger_of_request_and_use: whichever is greater (Modal).",
+          "enum": ["allocated", "active", "larger_of_request_and_use"]
+        },
+        "billed_states": {
+          "description": "The sandbox states in which this resource is charged.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["running", "paused", "stopped"] }
+        },
+        "minimum_seconds": {
+          "description": "The least that is charged for each period in a billed state.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "increment_seconds": {
+          "description": "Each period in a billed state is rounded up to a multiple of this.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "free_quantity": {
+          "description": "An allowance that is free for every sandbox, in the resource's size unit (vCPUs, GiB, GPUs). An allowance shared across an account is an exclusion, not a meter rule.",
+          "$ref": "#/$defs/decimal"
+        }
+      }
+    },
+    "memory_meter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "billed_states"],
+      "properties": {
+        "basis": {
+          "description": "allocated: the size the sandbox has; active: only while the resource is in use; larger_of_request_and_use: whichever is greater.",
+          "enum": ["allocated", "active", "larger_of_request_and_use"]
+        },
+        "billed_states": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["running", "paused", "stopped"] }
+        },
+        "minimum_seconds": { "type": "integer", "minimum": 1 },
+        "increment_seconds": { "type": "integer", "minimum": 1 },
+        "free_quantity": { "$ref": "#/$defs/decimal" },
+        "memory_steps_mib": {
+          "description": "Discrete billed memory sizes in MiB. A request rounds up to the next listed size; a request above every tier has no price.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "disk_meter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "billed_states"],
+      "properties": {
+        "basis": {
+          "enum": ["allocated", "active", "larger_of_request_and_use"]
+        },
+        "billed_states": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["running", "paused", "stopped"] }
+        },
+        "minimum_seconds": { "type": "integer", "minimum": 1 },
+        "increment_seconds": { "type": "integer", "minimum": 1 },
+        "free_quantity": { "$ref": "#/$defs/decimal" },
+        "disk_gib_per_memory_gib": {
+          "description": "Set where the provider charges disk by raising the memory it bills: how many GiB of disk count as one GiB of memory (Modal's 20). The class then has no disk rate.",
+          "$ref": "#/$defs/positive_decimal"
+        }
+      }
+    },
+    "timestamp": {
+      "description": "A UTC time, ending in Z.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?Z$"
+    },
+    "decimal": {
+      "description": "A non-negative decimal number as a string, in plain notation without an exponent.",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+    },
+    "positive_decimal": {
+      "description": "A decimal string greater than zero.",
+      "type": "string",
+      "pattern": "^(0\\.[0-9]*[1-9][0-9]*|[1-9][0-9]*(\\.[0-9]+)?)$"
+    }
+  }
+}

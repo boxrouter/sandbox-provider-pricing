@@ -1,0 +1,131 @@
+{
+  "provider": "e2b",
+  "sandbox_id": "e2b-sandbox-redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": "e2b:us",
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-10-11T16:03:20Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-11T16:03:30Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "pause",
+      "sent_at": {
+        "value": "2026-10-11T16:03:39Z",
+        "source": "recorded",
+        "how": "the pause request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-11T16:03:41Z",
+        "source": "recorded",
+        "how": "the pause request returned"
+      },
+      "outcome": "returned",
+      "keeps": "memory"
+    },
+    {
+      "name": "resume",
+      "sent_at": {
+        "value": "2026-10-11T16:03:49Z",
+        "source": "recorded",
+        "how": "the resume request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-11T16:03:51Z",
+        "source": "recorded",
+        "how": "the resume request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-10-11T16:03:58Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-10-11T16:04:00Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {
+    "cpu_seconds": {
+      "value": 4.08,
+      "source": "recorded",
+      "how": "cgroup cpu.stat"
+    }
+  },
+  "provider_records": [
+    {
+      "source": "E2B lifecycle webhook",
+      "read_at": "2026-10-11T16:04:15Z",
+      "body": {
+        "id": "evt-created",
+        "version": "v2",
+        "type": "sandbox.lifecycle.created",
+        "timestamp": "2026-10-11T16:03:28Z",
+        "event_category": "lifecycle",
+        "event_label": "created",
+        "sandbox_id": "e2b-sandbox-redacted",
+        "sandbox_execution_id": "exec-redacted",
+        "event_data": {}
+      }
+    },
+    {
+      "source": "E2B lifecycle webhook",
+      "read_at": "2026-10-11T16:04:15Z",
+      "body": {
+        "id": "evt-paused",
+        "version": "v2",
+        "type": "sandbox.lifecycle.paused",
+        "timestamp": "2026-10-11T16:03:40Z",
+        "event_category": "lifecycle",
+        "event_label": "paused",
+        "sandbox_id": "e2b-sandbox-redacted",
+        "sandbox_execution_id": "exec-redacted",
+        "event_data": {}
+      }
+    },
+    {
+      "source": "E2B lifecycle webhook",
+      "read_at": "2026-10-11T16:04:15Z",
+      "body": {
+        "id": "evt-resumed",
+        "version": "v2",
+        "type": "sandbox.lifecycle.resumed",
+        "timestamp": "2026-10-11T16:03:50Z",
+        "event_category": "lifecycle",
+        "event_label": "resumed",
+        "sandbox_id": "e2b-sandbox-redacted",
+        "sandbox_execution_id": "exec-redacted",
+        "event_data": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:record",
+  "title": "Sandbox record",
+  "description": "What a consumer stored about one sandbox, before it is turned into evidence by record_evidence(). Only the provider is required; a record with no reports prices as unknown.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["provider"],
+  "properties": {
+    "provider": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "sandbox_id": {"type": ["string", "null"]},
+    "requested": {
+      "description": "What the consumer asked for. Sizes are in the units evidence uses. A region is kept as the consumer recorded it; a leading `<provider>:` is removed.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cpu": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "memory_mib": {"type": ["integer", "null"], "minimum": 1},
+        "disk_mib": {"type": ["integer", "null"], "minimum": 1},
+        "gpu": {"type": ["integer", "null"], "minimum": 1},
+        "gpu_model": {"type": ["string", "null"], "minLength": 1},
+        "region": {"type": ["string", "null"], "minLength": 1},
+        "class": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "calls": {
+      "description": "Our own recorded edges of lifecycle calls, one per edge, in any order. Diagnostic only: they stand in for a time the provider has not reported and never price a sandbox.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "edge", "at"],
+        "properties": {
+          "name": {"enum": ["create", "pause", "resume", "destroy"]},
+          "edge": {"enum": ["sent", "returned"]},
+          "at": {"$ref": "#/$defs/timestamp"},
+          "how": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "reports": {
+      "description": "The Core provider reports as read, as one envelope (merge_reports() joins several reads): `cost`, `size` and `usage` reports, the `target` they were read for, and when each was read.",
+      "type": "object",
+      "properties": {
+        "read_at": {"$ref": "#/$defs/timestamp"},
+        "read_times": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cost": {"$ref": "#/$defs/timestamp"},
+            "size": {"$ref": "#/$defs/timestamp"},
+            "usage": {"$ref": "#/$defs/timestamp"}
+          }
+        },
+        "cost": {"type": "object", "required": ["status"]},
+        "size": {"type": "object", "required": ["status"]},
+        "usage": {"type": "object", "required": ["status"]},
+        "target": {"type": "object"}
+      }
+    },
+    "provider_records": {
+      "description": "The provider's own records, each with the time it was read.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "read_at", "body"],
+        "properties": {
+          "source": {"type": "string", "minLength": 1},
+          "read_at": {"$ref": "#/$defs/timestamp"},
+          "body": {}
+        }
+      }
+    },
+    "provider_times": {
+      "description": "The provider's own lifecycle times. Others, and kinds pricing does not take, are left out.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "at"],
+        "properties": {
+          "kind": {"type": "string"},
+          "at": {"type": "object", "required": ["value", "source"]},
+          "field": {"type": "string", "minLength": 1},
+          "read": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "operations": {
+      "description": "Work done for this sandbox besides its lifecycle calls. An `image.prepare` that ran leaves the cost unknown.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "outcome"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "outcome": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "read_at": {
+      "description": "When the consumer read these records: used only for reports that carry no read time of their own and no record read time.",
+      "$ref": "#/$defs/timestamp"
+    }
+  },
+  "$defs": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"
+    }
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:boxrouter:sandbox-provider-pricing:cost-method",
+  "title": "Cost method",
+  "description": "How a sandbox's cost is worked out: the method every provider shares, and for each provider its billing rules and every price version. Text may contain code spans written with backticks and nothing else.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "pricing_release_version", "method", "providers"],
+  "properties": {
+    "schema_version": {"const": "1.2.0"},
+    "pricing_release_version": {
+      "description": "The package version that wrote this document.",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+    },
+    "method": {
+      "description": "METHOD.md's rules as slots. Each slot is a list of paragraphs.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["what_a_cost_is", "list_price_vs_bill", "never_a_cost", "labels", "state_titles"],
+      "properties": {
+        "what_a_cost_is": {"$ref": "#/$defs/paragraphs"},
+        "list_price_vs_bill": {"$ref": "#/$defs/paragraphs"},
+        "never_a_cost": {"$ref": "#/$defs/paragraphs"},
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reported", "calculated", "unknown"],
+          "properties": {
+            "reported": {"$ref": "#/$defs/label"},
+            "calculated": {"$ref": "#/$defs/label"},
+            "unknown": {"$ref": "#/$defs/label"}
+          }
+        },
+        "state_titles": {
+          "description": "The words a consumer shows for the settlement states that have no label of their own: `pending` while a late record can still arrive and `unknown` once none can. `exact` has no entry; it keeps the cost's label title.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pending", "unknown"],
+          "properties": {
+            "pending": {"$ref": "#/$defs/text"},
+            "unknown": {"$ref": "#/$defs/text"}
+          }
+        }
+      }
+    },
+    "providers": {
+      "description": "Each provider, keyed by its id.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[a-z][a-z0-9-]*$"},
+      "additionalProperties": {"$ref": "#/$defs/provider"}
+    }
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "paragraphs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}},
+    "label": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "meaning", "method"],
+      "properties": {
+        "title": {
+          "description": "The words a consumer shows beside a cost with this label; null where it shows nothing.",
+          "anyOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]
+        },
+        "meaning": {"$ref": "#/$defs/text"},
+        "method": {"$ref": "#/$defs/paragraphs"}
+      }
+    },
+    "source": {"$ref": "#/$defs/text"},
+    "provider": {
+      "description": "One provider: its newest billing rules, its earlier ones under `rules_history`, and every price version.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name", "website", "rules_version", "best_label", "summary", "formula", "why_not_higher",
+        "would_raise", "rules", "open_questions", "measurements", "rules_history", "latest_version",
+        "versions"
+      ],
+      "properties": {
+        "name": {"$ref": "#/$defs/text"},
+        "website": {"type": "string", "pattern": "^https://"},
+        "rules_version": {"$ref": "#/$defs/rules/properties/rules_version"},
+        "best_label": {"$ref": "#/$defs/rules/properties/best_label"},
+        "summary": {"$ref": "#/$defs/rules/properties/summary"},
+        "formula": {"$ref": "#/$defs/rules/properties/formula"},
+        "why_not_higher": {"$ref": "#/$defs/rules/properties/why_not_higher"},
+        "would_raise": {"$ref": "#/$defs/rules/properties/would_raise"},
+        "rules": {"$ref": "#/$defs/rules/properties/rules"},
+        "open_questions": {"$ref": "#/$defs/rules/properties/open_questions"},
+        "measurements": {"$ref": "#/$defs/rules/properties/measurements"},
+        "rules_history": {
+          "description": "Each earlier `rules_version` the package keeps, by the number a result records as `versions.rules`, newest first. Each holds the label, formula and billing rules as they were when it priced results.",
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/rules"}
+        },
+        "latest_version": {
+          "description": "The key in `versions` of the newest version not replaced by another.",
+          "$ref": "#/$defs/text"
+        },
+        "versions": {
+          "description": "Every price version, keyed by the id a result records as `versions.prices`.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/version"}
+        }
+      }
+    },
+    "rules": {
+      "description": "What one `rules_version` of a provider's billing rules says.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rules_version", "best_label", "summary", "formula", "why_not_higher", "would_raise",
+        "rules", "open_questions", "measurements"
+      ],
+      "properties": {
+        "rules_version": {
+          "description": "The billing rules' version; a result records it as `versions.rules`.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "best_label": {"enum": ["reported", "calculated", "unknown"]},
+        "summary": {"$ref": "#/$defs/text"},
+        "formula": {"$ref": "#/$defs/text"},
+        "why_not_higher": {"$ref": "#/$defs/text"},
+        "would_raise": {"$ref": "#/$defs/text"},
+        "rules": {
+          "description": "The billing rules in display order, `left_out` among them.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["key", "title", "answer"],
+            "properties": {
+              "key": {"$ref": "#/$defs/text"},
+              "title": {"$ref": "#/$defs/text"},
+              "answer": {"$ref": "#/$defs/text"},
+              "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source"}},
+              "unknown_how": {"$ref": "#/$defs/text"}
+            },
+            "additionalProperties": false,
+            "oneOf": [{"required": ["sources"]}, {"required": ["unknown_how"]}]
+          }
+        },
+        "open_questions": {"type": "array", "items": {"$ref": "#/$defs/question"}},
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date", "title", "file", "result"],
+            "properties": {
+              "date": {"$ref": "#/$defs/text"},
+              "title": {"$ref": "#/$defs/text"},
+              "file": {"$ref": "#/$defs/text"},
+              "result": {"$ref": "#/$defs/text"}
+            }
+          }
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "how"],
+      "properties": {"question": {"$ref": "#/$defs/text"}, "how": {"$ref": "#/$defs/text"}}
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version", "effective_from", "retrieved_at", "supersedes", "state", "replaced_by", "file",
+        "classes", "sources", "left_out", "open_questions"
+      ],
+      "properties": {
+        "version": {"$ref": "#/$defs/text"},
+        "effective_from": {"type": "string", "format": "date-time"},
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "supersedes": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+        "state": {
+          "description": "`in_effect` for the newest version not replaced; `replaced` for one another version supersedes; `earlier` for an older one still in force for sandboxes that started before the next version took effect.",
+          "enum": ["in_effect", "replaced", "earlier"]
+        },
+        "replaced_by": {"anyOf": [{"$ref": "#/$defs/text"}, {"type": "null"}]},
+        "file": {"$ref": "#/$defs/text"},
+        "classes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "rates", "meter"],
+            "properties": {
+              "name": {"$ref": "#/$defs/text"},
+              "default": {"type": "boolean"},
+              "covers": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+              "rates": {
+                "description": "Each meter's rate: `usd` per `per`; a meter priced by model holds one such rate for each model.",
+                "type": "object"
+              },
+              "meter": {
+                "description": "How each meter is billed: its `basis`, its `billed_states` and any `increment_seconds`.",
+                "type": "object"
+              },
+              "region_multipliers": {"type": "object"}
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "quote"],
+            "properties": {"url": {"$ref": "#/$defs/text"}, "quote": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "storage": {
+          "description": "The version's snapshot, image and volume storage rates, where it has them.",
+          "type": "object"
+        },
+        "left_out": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+        "open_questions": {"type": "array", "items": {"$ref": "#/$defs/text"}}
+      }
+    }
+  },
+  "x-text": {
+    "explain": {
+      "line": "{resource}: {working} = {amount}",
+      "working": "{quantity} {unit} × {rate} per {unit}",
+      "exact_quantity": "Exactly {quantity} {unit}",
+      "reported_line": "Reported by the provider: {amount}",
+      "range": "{low} to {high}",
+      "summary": {
+        "reported": "Reported by the provider: {total}.",
+        "calculated": "Calculated: {total}, the sum of the lines above.",
+        "unknown": "Unknown: {reason}"
+      },
+      "unknown_reason": "No provider record gives a figure for this sandbox yet.",
+      "resources": {
+        "cpu": "CPU",
+        "memory": "Memory",
+        "disk": "Disk",
+        "gpu": "GPU",
+        "machine": "Machine",
+        "creation": "Creations",
+        "egress": "Egress",
+        "snapshot_storage": "Snapshot storage"
+      },
+      "unit_words": {"vcpu": "vCPU", "gib": "GiB", "gb": "GB", "gpu": "GPU", "machine": "machine"},
+      "sources": {
+        "provider": "provider record",
+        "measured": "measured",
+        "recorded": "recorded",
+        "published": "published rate",
+        "calculated": "calculated",
+        "unknown": "unknown"
+      },
+      "rate_source": "published rate",
+      "amount_source": "calculated"
+    }
+  }
+}

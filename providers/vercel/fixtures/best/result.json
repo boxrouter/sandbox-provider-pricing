@@ -1,0 +1,363 @@
+{
+  "provider": "vercel",
+  "label": "calculated",
+  "total": {
+    "low": "0.00321979999999999999999999999999999999999999999999999999999999",
+    "high": "0.00321979999999999999999999999999999999999999999999999999999999"
+  },
+  "lines": [
+    {
+      "what": "cpu",
+      "quantity": "0.00306666666666666666666666666666666666666666666666666666666667",
+      "unit": "vcpu-hour",
+      "rate": "0.128",
+      "amount": "0.000392533333333333333333333333333333333333333333333333333333334",
+      "quantity_source": "provider"
+    },
+    {
+      "what": "memory",
+      "quantity": "0.133333333333333333333333333333333333333333333333333333333333",
+      "unit": "gb-hour",
+      "rate": "0.0212",
+      "amount": "0.00282666666666666666666666666666666666666666666666666666666666",
+      "quantity_source": "recorded"
+    },
+    {
+      "what": "creation",
+      "quantity": "0.000001",
+      "unit": "million-creations",
+      "rate": "0.6",
+      "amount": "0.0000006",
+      "quantity_source": "provider"
+    },
+    {
+      "what": "egress",
+      "quantity": "0",
+      "unit": "gb",
+      "rate": "0.15",
+      "amount": "0",
+      "quantity_source": "provider"
+    }
+  ],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Disk: 64 GB ephemeral NVMe per sandbox is included; no separate disk charge (SDK 3.0.0+ or custom image; 32 GB for deprecated runtimes).",
+    "Network: data the sandbox sends to the internet and all traffic on exposed ports is billable, downloads are free. Priced at the iad1 list rate, $0.15/GB. Plan allowances are not deducted: Hobby includes 20 GB/month, and the plan table lists Pro data transfer as included in Flat Rate CDN, whose lowest tier, included with Pro, has a capacity of 1 TB of data transfer each month. A sandbox that sends almost no data pays almost nothing here.",
+    "Drives (not included in the hourly rates here): $0.05/GB-month storage, $0.0015/GB reads, $0.004/GB writes at iad1.",
+    "Plan fee: Pro $20/month platform fee (1 deploying seat and $20/month usage credit, which expires monthly), extra seats $20/month each. Hobby $0. Pro and Enterprise list the same rates except data transfer, and Enterprise plans have custom pricing; Hobby usage is never billed. The list-price basis is Pro, with data transfer at the iad1 rate; 1/2, 2/4 and 4/8 also run on Hobby (free within quota, then creation is paused); 8/16 needs Pro.",
+    "Plan allowance: Hobby, per month: 5 active CPU-hours, 420 GB-hours, 5,000 creations, 20 GB data transfer, 15 GB snapshot storage (lifetime); 10 concurrent sandboxes, 45-minute sessions, at most 4 vCPU / 8 GB; past the quota creation is paused, never billed. At 2 vCPU / 4 GiB that is 105 sandbox-hours of memory or 2.5 h of full CPU (25 h at 10% active). Pro: the $20/month credit applies to sandbox usage.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-10-12T12:04:01Z",
+    "until": "2026-10-19T12:02:01Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-10-12T13:07:00Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.14.0",
+    "rules": 2,
+    "prices": "vercel@2026-10-20-055631Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "vercel",
+      "sandbox_id": null,
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "disk_mib": null,
+        "region": "iad1",
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-10-12T12:00:00.000Z",
+            "source": "recorded"
+          },
+          "returned_at": {
+            "value": "2026-10-12T12:00:01.400Z",
+            "source": "recorded"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-10-12T12:02:00.500Z",
+            "source": "recorded"
+          },
+          "returned_at": {
+            "value": "2026-10-12T12:02:01.000Z",
+            "source": "recorded"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {
+        "cpu_seconds": {
+          "value": 18.9,
+          "source": "measured",
+          "how": "cgroup cpu.stat"
+        }
+      },
+      "provider_records": [
+        {
+          "source": "vercel.sessions.get",
+          "read_at": "2026-10-12T12:07:00.000Z",
+          "body": {
+            "startedAt": "2026-10-12T12:00:00.500Z",
+            "stoppedAt": "2026-10-12T12:02:00.500Z",
+            "activeCpuDurationMs": 11040,
+            "networkTransfer": {
+              "egress": 0
+            }
+          }
+        }
+      ]
+    },
+    "times": {
+      "start": {
+        "value": "2026-10-12T12:00:00.500000Z",
+        "source": "provider",
+        "how": "Vercel session startedAt."
+      },
+      "end": {
+        "value": "2026-10-12T12:02:00.500000Z",
+        "source": "provider",
+        "how": "Vercel session stoppedAt."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-10-12T12:00:00.500000Z",
+      "source": "provider",
+      "how": "Vercel session startedAt."
+    },
+    "sandbox_end": {
+      "value": "2026-10-12T12:02:00.500000Z",
+      "source": "provider",
+      "how": "Vercel session stoppedAt."
+    },
+    "usage": {
+      "low": {
+        "provider": "vercel",
+        "started": {
+          "at": "2026-10-12T12:00:00.500000Z",
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Vercel session startedAt."
+        },
+        "region": {
+          "name": "iad1",
+          "source": "recorded",
+          "observed_at": "2026-10-12T12:07:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-12T12:07:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": 1,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "One session record for each Vercel sandbox session."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 120.0,
+            "source": "provider",
+            "observed_at": "2026-10-12T12:07:00.000Z",
+            "how": "Vercel session startedAt to stoppedAt from vercel.sessions.get."
+          }
+        ],
+        "active_cpu": {
+          "seconds": 11.04,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Sum of activeCpuDurationMs from vercel.sessions.get records."
+        },
+        "egress": {
+          "bytes": 0,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Sum of networkTransfer.egress from vercel.sessions.get records."
+        }
+      },
+      "high": {
+        "provider": "vercel",
+        "started": {
+          "at": "2026-10-12T12:00:00.500000Z",
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Vercel session startedAt."
+        },
+        "region": {
+          "name": "iad1",
+          "source": "recorded",
+          "observed_at": "2026-10-12T12:07:00Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-10-12T12:07:00Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": 1,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "One session record for each Vercel sandbox session."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 120.0,
+            "source": "provider",
+            "observed_at": "2026-10-12T12:07:00.000Z",
+            "how": "Vercel session startedAt to stoppedAt from vercel.sessions.get."
+          }
+        ],
+        "active_cpu": {
+          "seconds": 11.04,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Sum of activeCpuDurationMs from vercel.sessions.get records."
+        },
+        "egress": {
+          "bytes": 0,
+          "source": "provider",
+          "observed_at": "2026-10-12T12:07:00.000Z",
+          "how": "Sum of networkTransfer.egress from vercel.sessions.get records."
+        }
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00321979999999999999999999999999999999999999999999999999999999",
+          "high": "0.00321979999999999999999999999999999999999999999999999999999999"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "0.00306666666666666666666666666666666666666666666666666666666667",
+            "unit": "vcpu-hour",
+            "rate": "0.128",
+            "amount": "0.000392533333333333333333333333333333333333333333333333333333334",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "memory",
+            "quantity": "0.133333333333333333333333333333333333333333333333333333333333",
+            "unit": "gb-hour",
+            "rate": "0.0212",
+            "amount": "0.00282666666666666666666666666666666666666666666666666666666666",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "creation",
+            "quantity": "0.000001",
+            "unit": "million-creations",
+            "rate": "0.6",
+            "amount": "0.0000006",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "egress",
+            "quantity": "0",
+            "unit": "gb",
+            "rate": "0.15",
+            "amount": "0",
+            "quantity_source": "provider"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Disk: 64 GB ephemeral NVMe per sandbox is included; no separate disk charge (SDK 3.0.0+ or custom image; 32 GB for deprecated runtimes).",
+          "Network: data the sandbox sends to the internet and all traffic on exposed ports is billable, downloads are free. Priced at the iad1 list rate, $0.15/GB. Plan allowances are not deducted: Hobby includes 20 GB/month, and the plan table lists Pro data transfer as included in Flat Rate CDN, whose lowest tier, included with Pro, has a capacity of 1 TB of data transfer each month. A sandbox that sends almost no data pays almost nothing here.",
+          "Drives (not included in the hourly rates here): $0.05/GB-month storage, $0.0015/GB reads, $0.004/GB writes at iad1.",
+          "Plan fee: Pro $20/month platform fee (1 deploying seat and $20/month usage credit, which expires monthly), extra seats $20/month each. Hobby $0. Pro and Enterprise list the same rates except data transfer, and Enterprise plans have custom pricing; Hobby usage is never billed. The list-price basis is Pro, with data transfer at the iad1 rate; 1/2, 2/4 and 4/8 also run on Hobby (free within quota, then creation is paused); 8/16 needs Pro.",
+          "Plan allowance: Hobby, per month: 5 active CPU-hours, 420 GB-hours, 5,000 creations, 20 GB data transfer, 15 GB snapshot storage (lifetime); 10 concurrent sandboxes, 45-minute sessions, at most 4 vCPU / 8 GB; past the quota creation is paused, never billed. At 2 vCPU / 4 GiB that is 105 sandbox-hours of memory or 2.5 h of full CPU (25 h at 10% active). Pro: the $20/month credit applies to sandbox usage.",
+          "Credits and discounts"
+        ],
+        "price_version": "vercel@2026-10-20-055631Z",
+        "as_of": "2026-10-12T12:07:00Z"
+      },
+      "high": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00321979999999999999999999999999999999999999999999999999999999",
+          "high": "0.00321979999999999999999999999999999999999999999999999999999999"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "0.00306666666666666666666666666666666666666666666666666666666667",
+            "unit": "vcpu-hour",
+            "rate": "0.128",
+            "amount": "0.000392533333333333333333333333333333333333333333333333333333334",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "memory",
+            "quantity": "0.133333333333333333333333333333333333333333333333333333333333",
+            "unit": "gb-hour",
+            "rate": "0.0212",
+            "amount": "0.00282666666666666666666666666666666666666666666666666666666666",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "creation",
+            "quantity": "0.000001",
+            "unit": "million-creations",
+            "rate": "0.6",
+            "amount": "0.0000006",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "egress",
+            "quantity": "0",
+            "unit": "gb",
+            "rate": "0.15",
+            "amount": "0",
+            "quantity_source": "provider"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Disk: 64 GB ephemeral NVMe per sandbox is included; no separate disk charge (SDK 3.0.0+ or custom image; 32 GB for deprecated runtimes).",
+          "Network: data the sandbox sends to the internet and all traffic on exposed ports is billable, downloads are free. Priced at the iad1 list rate, $0.15/GB. Plan allowances are not deducted: Hobby includes 20 GB/month, and the plan table lists Pro data transfer as included in Flat Rate CDN, whose lowest tier, included with Pro, has a capacity of 1 TB of data transfer each month. A sandbox that sends almost no data pays almost nothing here.",
+          "Drives (not included in the hourly rates here): $0.05/GB-month storage, $0.0015/GB reads, $0.004/GB writes at iad1.",
+          "Plan fee: Pro $20/month platform fee (1 deploying seat and $20/month usage credit, which expires monthly), extra seats $20/month each. Hobby $0. Pro and Enterprise list the same rates except data transfer, and Enterprise plans have custom pricing; Hobby usage is never billed. The list-price basis is Pro, with data transfer at the iad1 rate; 1/2, 2/4 and 4/8 also run on Hobby (free within quota, then creation is paused); 8/16 needs Pro.",
+          "Plan allowance: Hobby, per month: 5 active CPU-hours, 420 GB-hours, 5,000 creations, 20 GB data transfer, 15 GB snapshot storage (lifetime); 10 concurrent sandboxes, 45-minute sessions, at most 4 vCPU / 8 GB; past the quota creation is paused, never billed. At 2 vCPU / 4 GiB that is 105 sandbox-hours of memory or 2.5 h of full CPU (25 h at 10% active). Pro: the $20/month credit applies to sandbox usage.",
+          "Credits and discounts"
+        ],
+        "price_version": "vercel@2026-10-20-055631Z",
+        "as_of": "2026-10-12T12:07:00Z"
+      }
+    }
+  },
+  "as_of": "2026-10-12T12:07:00Z"
+}

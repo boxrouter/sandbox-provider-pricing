@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sandbox-provider-pricing"
+version = "0.16.2"
+description = "Provider list prices: the price-version format, the scraper and the cost calculator"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.11,<3.15"
+dependencies = ["jsonschema==4.26.0", "pyyaml==6.0.3"]
+
+[project.urls]
+Homepage = "https://github.com/boxrouter/sandbox-provider-pricing"
+Repository = "https://github.com/boxrouter/sandbox-provider-pricing"
+Issues = "https://github.com/boxrouter/sandbox-provider-pricing/issues"
+
+[project.scripts]
+spp = "sandbox_provider_pricing.watch.cli:main"
+spp-price-sheet = "sandbox_provider_pricing.price_sheet:main"
+spp-cost-method = "sandbox_provider_pricing.cost_method:main"
+
+[project.optional-dependencies]
+draft = [
+    "claude-agent-sdk==0.2.163",
+]
+
+[dependency-groups]
+dev = [
+    "uv==0.13.4",
+    "mypy==2.3.1",
+    "pyright==1.1.414",
+    "pylint==4.0.8",
+    "ruff==0.16.7",
+    "pytest==9.1.1",
+    "pytest-mock==3.15.1",
+    "sandbox-benchmark-verifier==0.4.341",
+    "pre-commit==4.6.2",
+    "types-jsonschema==4.26.0.20260518",
+    "claude-agent-sdk==0.2.163",
+    "pytest-cov==7.1.0",
+    "tzdata==2026.6",
+]
+[tool.hatch.build.targets.wheel]
+packages = ["src/sandbox_provider_pricing"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"schemas" = "sandbox_provider_pricing/schemas"
+"METHOD.md" = "sandbox_provider_pricing/METHOD.md"
+# Each provider's evidence, fixtures and page, beside its package; conformance reads the fixtures.
+"providers" = "sandbox_provider_pricing/providers"
+
+[tool.uv]
+find-links = ["wheels"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["unit: offline behavior tests"]
+
+[tool.coverage.run]
+source = ["src/sandbox_provider_pricing"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src", "tests"]
+
+[tool.pyright]
+include = ["src", "tests"]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+
+[tool.pylint.main]
+py-version = "3.11"
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-class-docstring", "missing-function-docstring", "missing-module-docstring",
+    "too-few-public-methods", "wrong-import-order", "line-too-long",
+]
