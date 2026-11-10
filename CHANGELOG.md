@@ -6,6 +6,11 @@ releases are made.
 
 ## Unreleased
 
+### Fixed
+
+- boxd: the benchmark region's source link names Sandbox Provider Spec v0.3.178 (line 29), a
+  version published on the public spec repository; v0.3.161 predates it and is not published.
+
 ## 0.16.2 — 2026-11-10
 
 ### Fixed

@@ -2558,7 +2558,7 @@
       "region_checked_at": "2026-11-02",
       "region_multiplier": null,
       "region_note": null,
-      "region_source_url": "https://github.com/boxrouter/sandbox-provider-spec/blob/v0.3.161/providers/boxd/declaration.yaml#L27",
+      "region_source_url": "https://github.com/boxrouter/sandbox-provider-spec/blob/v0.3.178/providers/boxd/declaration.yaml#L29",
       "source_url": "https://boxd.sh/llms-full.txt",
       "storage": [
         {
