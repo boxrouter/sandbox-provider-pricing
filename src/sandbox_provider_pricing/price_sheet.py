@@ -23,8 +23,11 @@ from sandbox_provider_pricing.calculator.quantities import in_rate_unit
 from sandbox_provider_pricing.cost_method import RULES
 from sandbox_provider_pricing.price import _basis_text
 from sandbox_provider_pricing.providers import billing as provider_billing
-from sandbox_provider_pricing.providers import provider_ids
-from sandbox_provider_pricing.versions import latest_version, seed_versions
+from sandbox_provider_pricing.versions import (
+    latest_version,
+    priced_provider_ids,
+    seed_versions,
+)
 
 SCHEMA_ID = "urn:boxrouter:sandbox-provider-pricing:price-sheet"
 SCHEMA_VERSION = "2.4.0"
@@ -175,7 +178,7 @@ def build_price_sheet(
     providers: list[dict[str, Any]] = []
     release_version = package_version()
     schema = _text_schema()
-    for provider in provider_ids():
+    for provider in priced_provider_ids(versions):
         current = latest_version(provider, versions)
         billing = provider_billing(provider)
         default = next(

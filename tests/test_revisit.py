@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
-from sandbox_provider_pricing import RevisitPolicy, price, revisit
+from sandbox_provider_pricing import RevisitPolicy, price, revisit, scheduled_revisit
 from sandbox_provider_pricing.providers import provider_ids
 
 ENDED = datetime(2026, 1, 1, tzinfo=UTC)
@@ -25,10 +25,15 @@ def test_every_provider_has_a_complete_policy() -> None:
         "modal": (600, 604800, 3600),
         "vercel": (120, 604800, 3600),
     }
-    assert sorted(expected) == provider_ids()
-    for provider, times in expected.items():
-        policy = revisit(provider)
-        assert (policy.after_s, policy.until_s, policy.interval_s) == times
+    for provider in provider_ids():
+        # A provider scaffolded before its schedule is verified has no policy to re-read by.
+        policy = scheduled_revisit(provider)
+        times = expected.get(provider)
+        if times is None:
+            assert policy is None
+        else:
+            assert policy is not None
+            assert (policy.after_s, policy.until_s, policy.interval_s) == times
 
 
 def test_first_read_is_anchored_at_end() -> None:

@@ -170,6 +170,8 @@ def _fixture_versions() -> list[tuple[str, dict[str, object]]]:
     return [
         (path.parents[2].name, json.loads(path.read_text(encoding="utf-8"))["versions"])
         for path in sorted(ROOT.glob("providers/*/fixtures/*/result.json"))
+        # A fixture priced without a version (an unpriced provider scaffold) names no method.
+        if json.loads(path.read_text(encoding="utf-8"))["versions"]["prices"] is not None
     ]
 
 

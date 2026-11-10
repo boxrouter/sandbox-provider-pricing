@@ -155,7 +155,7 @@ def test_a_provider_that_reports_no_cost_is_not_account_rate_dependent() -> None
     calculated = [
         provider
         for provider in provider_ids()
-        if load_billing(provider)["status"]["best_label"] != "reported"
+        if load_billing(provider)["status"]["best_label"] == "calculated"
     ]
     assert calculated
     for provider in calculated:

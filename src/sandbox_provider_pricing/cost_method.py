@@ -20,9 +20,13 @@ from sandbox_provider_pricing._util import (
     package_version,
     write_json,
 )
-from sandbox_provider_pricing.providers import billing, billing_history, provider_ids
+from sandbox_provider_pricing.providers import billing, billing_history
 from sandbox_provider_pricing.types import JsonObject, bundled_copy
-from sandbox_provider_pricing.versions import latest_version, seed_versions
+from sandbox_provider_pricing.versions import (
+    latest_version,
+    priced_provider_ids,
+    seed_versions,
+)
 
 SCHEMA_VERSION = "1.2.0"
 #: The billing rules, in the order a provider's page lists them, with their headings.
@@ -186,7 +190,9 @@ def build_cost_method() -> JsonObject:
         "schema_version": SCHEMA_VERSION,
         "pricing_release_version": package_version(),
         "method": _method(),
-        "providers": {provider: _provider(provider) for provider in provider_ids()},
+        "providers": {
+            provider: _provider(provider) for provider in priced_provider_ids(seed_versions())
+        },
     }
 
 

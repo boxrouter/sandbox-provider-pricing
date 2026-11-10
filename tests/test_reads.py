@@ -18,6 +18,7 @@ from sandbox_provider_pricing import (
     price,
     record_evidence,
     revisit,
+    scheduled_revisit,
 )
 from sandbox_provider_pricing.providers import bundled_billing, provider_ids, validate_billing
 
@@ -115,7 +116,8 @@ def test_times_need_a_zone() -> None:
 def test_the_sooner_reads_default_to_cloud_s_constants_and_billing_can_set_them() -> None:
     assert all(
         (policy.unpriced_window_s, policy.unpriced_first_s) == (1800, 15)
-        for policy in map(revisit, provider_ids())
+        for policy in map(scheduled_revisit, provider_ids())
+        if policy is not None
     )
     document = bundled_billing("e2b")["revisit"]
     assert "unpriced_window_s" not in document  # the defaults stand until a provider sets them

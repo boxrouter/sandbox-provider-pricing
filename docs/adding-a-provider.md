@@ -20,16 +20,18 @@ the unit and basis differences to look for.
 
 ## Steps
 
-1. Generate the native billing record, with the provider's registry id:
+1. Scaffold everything the provider owns, with the provider's registry id:
 
    ```sh
-   spp scaffold acme --name Acme --website https://acme.example
+   make new-provider NAME=acme
    ```
 
    This creates the provider's package, `src/sandbox_provider_pricing/providers/acme/`, with its
-   `__init__.py` and `billing.yaml`. Existing identities are reused; this command never replaces a
-   billing record. Every generated answer is honestly unknown, with no invented polling schedule or
-   rate.
+   `__init__.py` and `billing.yaml`, a first `providers/acme/fixtures/best/` fixture whose result
+   is unknown, and a `providers/acme/TODO.md` listing the remaining work below. Existing
+   identities are reused; this command never replaces a billing record. Every generated answer is
+   honestly unknown, with no invented polling schedule or rate, and the unpriced provider stays
+   off the price sheet, cost method and generated docs until a version lands.
 2. Prepare a price-version YAML using the [schema](../schemas/price-version.schema.json). Save
    each provider source page locally and write a JSON map from its URL to its saved filename.
    Add a new version with the same scaffold:

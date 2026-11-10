@@ -24,13 +24,12 @@ from sandbox_provider_pricing import billing as load_billing
 from sandbox_provider_pricing import build_price_sheet, seed_versions
 from sandbox_provider_pricing import price_sheet as sheet_module
 from sandbox_provider_pricing.calculator import SECONDS_PER_HOUR
-from sandbox_provider_pricing.providers import provider_ids
 from sandbox_provider_pricing.testing import use_providers
-from sandbox_provider_pricing.versions import latest_version
+from sandbox_provider_pricing.versions import latest_version, priced_provider_ids
 
 ROOT = Path(__file__).parents[1]
 SCHEMA = json.loads((ROOT / "schemas" / "price-sheet.schema.json").read_text(encoding="utf-8"))
-EXPECTED_PROVIDERS = set(provider_ids())
+EXPECTED_PROVIDERS = set(priced_provider_ids())
 EXPECTED_SIZES = [(vcpu, memory_gib) for vcpu in (1, 2, 4, 8) for memory_gib in (2, 4, 8, 16)]
 LEGACY_BENCHMARK_SIZES = [(1, 2), (2, 4), (4, 8), (8, 16)]
 

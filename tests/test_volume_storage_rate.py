@@ -6,8 +6,7 @@ import re
 from pathlib import Path
 
 from sandbox_provider_pricing.price_sheet import build_price_sheet
-from sandbox_provider_pricing.providers import provider_ids
-from sandbox_provider_pricing.versions import latest_version
+from sandbox_provider_pricing.versions import latest_version, priced_provider_ids
 from sandbox_provider_pricing.watch import check
 
 PAGE = Path(__file__).parent / "fixtures" / "pages" / "blaxel-pricing.html"
@@ -83,5 +82,5 @@ def test_the_latest_modal_version_records_the_volume_rate() -> None:
 
 
 def test_no_other_provider_records_a_volume_rate() -> None:
-    for provider in set(provider_ids()) - {"blaxel", "modal"}:
+    for provider in set(priced_provider_ids()) - {"blaxel", "modal"}:
         assert "volume_storage" not in latest_version(provider)

@@ -44,7 +44,7 @@ from sandbox_provider_pricing.read_time import READ_TIME_CONTRACT, READ_TIME_PAT
 from sandbox_provider_pricing.reads import next_read
 from sandbox_provider_pricing.record import merge_reports, record_evidence, region_name
 from sandbox_provider_pricing.reservation import ReservationQuote, reservation_quote
-from sandbox_provider_pricing.revisit import RevisitPolicy, revisit
+from sandbox_provider_pricing.revisit import RevisitPolicy, revisit, scheduled_revisit
 from sandbox_provider_pricing.types import TimeValue
 from sandbox_provider_pricing.versions import latest_version, price_version, seed_versions
 
@@ -78,6 +78,7 @@ __all__ = [
     "reproduce",
     "reservation_quote",
     "revisit",
+    "scheduled_revisit",
     "seed_versions",
     "settles_after",
 ]

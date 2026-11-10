@@ -15,7 +15,7 @@ import pytest
 from sandbox_provider_pricing import READ_TIME_CONTRACT, READ_TIME_PATHS, price, settles_after
 from sandbox_provider_pricing.providers import provider_ids
 from sandbox_provider_pricing.read_time import _valid_declaration
-from sandbox_provider_pricing.revisit import RevisitPolicy, revisit
+from sandbox_provider_pricing.revisit import RevisitPolicy, revisit, scheduled_revisit
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = ROOT / "src" / "sandbox_provider_pricing" / "providers"
@@ -222,13 +222,16 @@ def test_unknown_and_malformed(mocker: Any, tmp_path: Path) -> None:
 def test_bounds() -> None:
     assert READ_TIME_CONTRACT == 1
     for provider in provider_ids():
-        policy = revisit(provider)
-        assert (
-            settles_after(provider) == policy.after_s + policy.until_s + policy.interval_s + 259202
+        # An unreviewed scaffold declares neither policy nor read-time bound.
+        policy = scheduled_revisit(provider)
+        assert settles_after(provider) == (
+            None if policy is None else policy.after_s + policy.until_s + policy.interval_s + 259202
         )
 
 
-@pytest.mark.parametrize("provider", provider_ids())
+@pytest.mark.parametrize(
+    "provider", [p for p in provider_ids() if scheduled_revisit(p) is not None]
+)
 def test_revisit_and_finality_boundaries(provider: str) -> None:
     evidence = json.loads(
         (ROOT / "providers" / provider / "fixtures/best/evidence.json").read_text()

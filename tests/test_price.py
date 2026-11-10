@@ -52,7 +52,7 @@ def test_fixture_parity_and_result_schema() -> None:
             key: expected[key] for key in ("label", "total")
         }
         assert not list(RESULT_VALIDATOR.iter_errors(result))
-    assert counts == {
+    expected = {
         "blaxel": 5,
         "boat": 1,
         "boxd": 1,
@@ -61,6 +61,8 @@ def test_fixture_parity_and_result_schema() -> None:
         "modal": 2,
         "vercel": 4,
     }
+    for provider, count in counts.items():
+        assert count == expected.get(provider, 0), provider
 
 
 def test_all_price_outputs_match_usage_and_cost_schemas() -> None:

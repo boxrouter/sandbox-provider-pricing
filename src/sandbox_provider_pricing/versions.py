@@ -71,6 +71,16 @@ def _read_price_versions(price_dir: Traversable, label: str) -> list[JsonObject]
     return versions
 
 
+def priced_provider_ids(versions: list[JsonObject] | None = None) -> list[str]:
+    """Every bundled provider with a current price version, in name order.
+
+    A provider folder scaffolded ahead of its first sourced version has none yet and stays
+    off the price sheet, the cost method and the generated docs until a version lands.
+    """
+    pool = _not_superseded(seed_versions() if versions is None else versions)
+    return sorted({version["provider"] for version in pool})
+
+
 def price_version(
     provider: str, started: str | None, versions: list[JsonObject] | None = None
 ) -> JsonObject | None:

@@ -6,6 +6,15 @@ releases are made.
 
 ## Unreleased
 
+## 0.16.2 — 2026-11-10
+
+### Fixed
+
+- boxd's complete USD usage record is priced as reported when the consumer keeps no create or
+  destroy call edge: the record's own `period.start` selects the stored list rates it is checked
+  against, where the sandbox had no start. Before, such a record read unknown ("the provider did
+  not report the billed time") though it was complete and its rates matched.
+
 ## 0.16.1 — 2026-11-09
 
 ### Changed

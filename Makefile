@@ -1,5 +1,9 @@
-.PHONY: check format lint docs price-sheet cost-method release-assets update-fixtures release-digests
+.PHONY: check format lint docs price-sheet cost-method release-assets update-fixtures release-digests new-provider
 UV := $(abspath .venv/bin/uv)
+
+new-provider:
+	$(UV) run --locked python scripts/new_provider.py $(NAME)
+	$(MAKE) update-fixtures docs
 
 docs:
 	$(UV) run --locked python scripts/docs.py

@@ -44,18 +44,29 @@ def billable(
         and body.get("complete") is True
         and body.get("currency") == "usd"
     )
-    if not usable or not isinstance(cost, int) or isinstance(cost, bool) or cost < 0:
+    period = body.get("period")
+    if (
+        not usable
+        or not isinstance(cost, int)
+        or isinstance(cost, bool)
+        or cost < 0
+        or not isinstance(period, dict)
+    ):
         return result
     # boxd reports no lifecycle times, so the sandbox's start is its recorded create. Price takes
-    # the same start to select the version it rates with.
+    # the same start to select the version it rates with. A consumer that keeps no call edges
+    # (the benchmark runner keeps none for boxd) leaves no start, and the record's own period start
+    # selects the version instead: the provider's rates are the ones in effect in that period.
     rates_match = stored_rates_match(
         "boxd",
-        result["low"]["started"].get("at") or utc_text(sandbox_start(evidence, result).value),
+        result["low"]["started"].get("at")
+        or utc_text(sandbox_start(evidence, result).value)
+        or period.get("start"),
         body.get("rates"),
         RATE_FIELDS,
         versions,
     )
-    if rates_match is None or not isinstance(body.get("period"), dict):
+    if rates_match is None:
         return result
     if not rates_match:
         for usage in (result["low"], result["high"]):
@@ -63,7 +74,6 @@ def billable(
                 "boxd usage rates do not match the stored USD list rates."
             )
         return result
-    period = body["period"]
     periods = [{"interval_start": period.get("start"), "interval_end": period.get("end")}]
     if not covers_sandbox(evidence, result, periods):
         return result

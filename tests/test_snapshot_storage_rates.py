@@ -2,8 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0
 """Independent snapshot storage rates keep their supplier evidence and proxy label."""
 
-from sandbox_provider_pricing.providers import provider_ids
-from sandbox_provider_pricing.versions import latest_version, seed_versions
+from sandbox_provider_pricing.versions import (
+    latest_version,
+    priced_provider_ids,
+    seed_versions,
+)
 
 
 def test_published_snapshot_rates_and_approved_daytona_proxy() -> None:
@@ -28,7 +31,7 @@ def test_published_snapshot_rates_and_approved_daytona_proxy() -> None:
     assert (
         "does not publish a snapshot rate" in latest_version("daytona")["snapshot_storage"]["note"]
     )
-    for provider in set(provider_ids()) - set(expected):
+    for provider in set(priced_provider_ids()) - set(expected):
         assert "snapshot_storage" not in latest_version(provider)
 
 

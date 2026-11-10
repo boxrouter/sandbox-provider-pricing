@@ -64,6 +64,17 @@ def test_cost_is_reported_when_the_provider_gives_no_lifecycle_times() -> None:
     assert result["basis"] == "provider_reported"
 
 
+def test_cost_is_reported_when_the_consumer_keeps_no_call_edges_either() -> None:
+    """The record's period start selects the stored rates when no call edge or lifecycle time
+    gives the sandbox a start (the benchmark runner keeps no call edges for boxd)."""
+    item = evidence()
+    item["provider_times"] = []
+    item["calls"] = []
+    result = price(item)
+    assert result["label"] == "reported"
+    assert result["total"] == {"low": "0.03932", "high": "0.03932"}
+
+
 @pytest.mark.parametrize(
     ("field", "value"),
     [

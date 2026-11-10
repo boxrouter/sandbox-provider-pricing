@@ -14,8 +14,8 @@ import yaml  # type: ignore[import-untyped]
 from jsonschema import Draft202012Validator, FormatChecker
 
 from sandbox_provider_pricing.calculator import cost, per_hour
-from sandbox_provider_pricing.providers import provider_ids
 from sandbox_provider_pricing.types import Document, JsonObject
+from sandbox_provider_pricing.versions import priced_provider_ids
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = ROOT / "src" / "sandbox_provider_pricing" / "providers"
@@ -472,7 +472,7 @@ def test_never_reported() -> None:
     # `reported` is a consumer's to set when a provider's own figure replaces the calculation. No
     # price version, source or odd input makes the calculator say it, whatever the record claims.
     versions = sorted(PACKAGES.glob("*/prices/*.yaml"))
-    assert sorted({path.parts[-3] for path in versions}) == provider_ids()
+    assert sorted({path.parts[-3] for path in versions}) == priced_provider_ids()
     labels = set()
     for path, source in itertools.product(versions, SOURCES):
         version = yaml.safe_load(path.read_text())

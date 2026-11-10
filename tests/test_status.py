@@ -39,7 +39,8 @@ def test_best_fixture_label_matches_each_provider_status() -> None:
             key: expected[key] for key in ("label", "total")
         }
         assert result["final"] is False
-        assert result["revisit"]["next_read_at"] is not None
+        # A scaffold without a verified revisit policy schedules no read.
+        assert result["revisit"] is None or result["revisit"]["next_read_at"] is not None
 
 
 def test_daytona_retains_the_sum_of_its_reported_period_prices() -> None:

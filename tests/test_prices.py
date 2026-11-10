@@ -14,7 +14,12 @@ import yaml  # type: ignore[import-untyped]
 from jsonschema import Draft202012Validator, FormatChecker
 
 from sandbox_provider_pricing.providers import billing, provider_ids
-from sandbox_provider_pricing.versions import latest_version, price_version, seed_versions
+from sandbox_provider_pricing.versions import (
+    latest_version,
+    price_version,
+    priced_provider_ids,
+    seed_versions,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = ROOT / "src" / "sandbox_provider_pricing" / "providers"
@@ -68,7 +73,7 @@ def test_reuse_annotations_cover_any_provider_folder() -> None:
 
 def test_every_price_file_validates_against_the_schema() -> None:
     validator = Draft202012Validator(PRICE_SCHEMA, format_checker=FormatChecker())
-    assert sorted({path.parts[-3] for path in PRICE_FILES}) == provider_ids()
+    assert sorted({path.parts[-3] for path in PRICE_FILES}) == priced_provider_ids()
     for path in PRICE_FILES:
         messages = sorted(error.message for error in validator.iter_errors(load_price(path)))
         assert messages == [], f"{path.relative_to(ROOT)}: {messages}"
@@ -120,8 +125,9 @@ def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
         "modal": (4, True),
         "vercel": (2, True),
     }
-    assert sorted(expected) == provider_ids()
-    for provider, (rules_version, has_evidence) in expected.items():
+    for provider in provider_ids():
+        # A provider scaffolded before its first measurement is rules_version 1, no evidence.
+        rules_version, has_evidence = expected.get(provider, (1, False))
         assert "boundary" not in billing(provider)
         assert billing(provider)["rules_version"] == rules_version
         evidence = ROOT / "providers" / provider / "evidence"

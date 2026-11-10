@@ -12,11 +12,11 @@ import pytest
 import yaml  # type: ignore[import-untyped]
 
 from sandbox_provider_pricing.billing_text import fill_answer
-from sandbox_provider_pricing.providers import provider_ids
-from sandbox_provider_pricing.versions import latest_version
+from sandbox_provider_pricing.versions import latest_version, priced_provider_ids
 
 PACKAGES = Path(__file__).resolve().parents[1] / "src" / "sandbox_provider_pricing" / "providers"
-PROVIDERS = provider_ids()
+#: Only a priced provider owns rates its billing answers could repeat.
+PROVIDERS = priced_provider_ids()
 AMOUNT = re.compile(r"(?:\$|USD )(\d[\d,]*(?:\.\d+)?)")
 MONTH_SIZE_UNIT = re.compile(r"\bGi?B(?:-|\s*·\s*)month\b")
 

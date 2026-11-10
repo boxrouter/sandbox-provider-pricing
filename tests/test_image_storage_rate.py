@@ -5,8 +5,7 @@
 import re
 from pathlib import Path
 
-from sandbox_provider_pricing.providers import provider_ids
-from sandbox_provider_pricing.versions import latest_version
+from sandbox_provider_pricing.versions import latest_version, priced_provider_ids
 from sandbox_provider_pricing.watch import check
 
 PAGE = Path(__file__).parent / "fixtures" / "pages" / "blaxel-pricing.html"
@@ -55,5 +54,5 @@ def test_every_quote_of_the_latest_blaxel_version_found_on_the_pricing_page_stil
 
 
 def test_no_other_provider_records_an_image_rate() -> None:
-    for provider in set(provider_ids()) - {"blaxel"}:
+    for provider in set(priced_provider_ids()) - {"blaxel"}:
         assert "image_storage" not in latest_version(provider)

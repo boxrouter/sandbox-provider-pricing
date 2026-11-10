@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sandbox-provider-pricing"
-version = "0.16.1"
+version = "0.16.2"
 description = "Provider list prices: the price-version format, the scraper and the cost calculator"
 readme = "README.md"
 license = "Apache-2.0"
