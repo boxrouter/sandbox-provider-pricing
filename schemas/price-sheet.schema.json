@@ -103,9 +103,178 @@
       "items": {"$ref": "#/$defs/provider"}
     }
   ,
-    "content_criteria": {"type": "object"}
+    "content_criteria": {"$ref": "#/$defs/content_criteria"}
   },
   "$defs": {
+    "content_criteria": {
+      "const": {
+        "schema": "boxrouter.pricing.content-criteria/1",
+        "slots": {
+          "title": {
+            "form": "canonical",
+            "min_length": 1,
+            "max_length": 40
+          },
+          "description": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 140,
+            "max_sentences": 1,
+            "source": "summary"
+          },
+          "caption": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 160,
+            "max_sentences": 2,
+            "source": "caption"
+          },
+          "axis-title": {
+            "form": "label",
+            "min_length": 1,
+            "max_length": 80,
+            "source": "axis_measure"
+          },
+          "details.how-its-measured": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 300,
+            "max_sentences": 2,
+            "source": "how_it_is_measured"
+          },
+          "details.how-to-read-it": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 300,
+            "max_sentences": 3,
+            "source": "how_to_read"
+          },
+          "details.limits": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 200,
+            "max_sentences": 1,
+            "min_items": 1,
+            "max_items": 3,
+            "source": "limits"
+          },
+          "details.latest-result": {
+            "form": "sentence",
+            "min_length": 8,
+            "max_length": 240,
+            "max_sentences": 2,
+            "runtime_fields": [
+              "provider",
+              "value",
+              "unit"
+            ]
+          },
+          "details.sources": {
+            "form": "link",
+            "min_length": 1,
+            "max_length": 240,
+            "runtime_fields": [
+              "source_url",
+              "checked_at"
+            ]
+          }
+        },
+        "required_slots": [
+          "title",
+          "description",
+          "caption",
+          "axis-title",
+          "details.how-its-measured",
+          "details.how-to-read-it",
+          "details.limits",
+          "details.latest-result",
+          "details.sources"
+        ],
+        "details_order": [
+          "details.how-its-measured",
+          "details.how-to-read-it",
+          "details.limits",
+          "details.latest-result",
+          "details.sources"
+        ],
+        "placeholders": {
+          "source": "param:path",
+          "runtime": [
+            "idle",
+            "paused",
+            "state",
+            "direction"
+          ],
+          "numbers": "param",
+          "prices": "data-only",
+          "units": "metric.unit",
+          "axis": "metric-derived",
+          "metric": "metric:field"
+        },
+        "directions": {
+          "lower_is_better": "Lower is better."
+        },
+        "fact_scope": {
+          "page": [
+            "region",
+            "machine_size",
+            "provider_list"
+          ],
+          "panel": [
+            "price",
+            "billing_state",
+            "storage_kind"
+          ],
+          "forbidden_panel_runtime_fields": [
+            "region",
+            "machine_size",
+            "provider_list"
+          ]
+        },
+        "hover_slots": {
+          "price-info": {
+            "owner": "pricing",
+            "form": "sentence",
+            "template": "{description}",
+            "criteria_slot": "tooltip",
+            "runtime_fields": ["description"]
+          },
+          "price-bar": {
+            "owner": "pricing",
+            "form": "sentence",
+            "template": "The published price for {provider} is {value} {unit}.",
+            "criteria_slot": "tooltip",
+            "runtime_fields": ["provider", "value", "unit"]
+          },
+          "billing-rule": {
+            "owner": "pricing",
+            "form": "sentence",
+            "template": "{description}",
+            "criteria_slot": "tooltip",
+            "runtime_fields": ["description"]
+          },
+          "price-status": {
+            "owner": "pricing",
+            "form": "sentence",
+            "template": "{reason}",
+            "criteria_slot": "tooltip",
+            "runtime_fields": ["reason"]
+          },
+          "source": {
+            "owner": "pricing",
+            "form": "sentence",
+            "template": "The rate comes from the linked public pricing source.",
+            "criteria_slot": "tooltip",
+            "runtime_fields": []
+          }
+        },
+        "unique_slots": [
+          "description",
+          "details.how-its-measured",
+          "details.how-to-read-it"
+        ]
+      }
+    },
     "sentence": {"type": "string", "minLength": 8, "maxLength": 300, "pattern": "^[A-Z](?=[\\s\\S]*\\b(?:is|are|uses?|shows?|means?|assumes?|includes?|excludes?|follows?|follow|compares?|incurs?|adds?|estimates?|multiply|set|choose|can|does|do|covers?|counts?|determines?|determine)\\b)[\\s\\S]*\\.$"},
     "panel_text": {
       "type": "object",
@@ -379,173 +548,6 @@
         }
       }
     }
-  },
-  "x-content-criteria": {
-    "schema": "boxrouter.pricing.content-criteria/1",
-    "slots": {
-      "title": {
-        "form": "canonical",
-        "min_length": 1,
-        "max_length": 40
-      },
-      "description": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 140,
-        "max_sentences": 1,
-        "source": "summary"
-      },
-      "caption": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 160,
-        "max_sentences": 2,
-        "source": "caption"
-      },
-      "axis-title": {
-        "form": "label",
-        "min_length": 1,
-        "max_length": 80,
-        "source": "axis_measure"
-      },
-      "details.how-its-measured": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 300,
-        "max_sentences": 2,
-        "source": "how_it_is_measured"
-      },
-      "details.how-to-read-it": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 300,
-        "max_sentences": 3,
-        "source": "how_to_read"
-      },
-      "details.limits": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 200,
-        "max_sentences": 1,
-        "min_items": 1,
-        "max_items": 3,
-        "source": "limits"
-      },
-      "details.latest-result": {
-        "form": "sentence",
-        "min_length": 8,
-        "max_length": 240,
-        "max_sentences": 2,
-        "runtime_fields": [
-          "provider",
-          "value",
-          "unit"
-        ]
-      },
-      "details.sources": {
-        "form": "link",
-        "min_length": 1,
-        "max_length": 240,
-        "runtime_fields": [
-          "source_url",
-          "checked_at"
-        ]
-      }
-    },
-    "required_slots": [
-      "title",
-      "description",
-      "caption",
-      "axis-title",
-      "details.how-its-measured",
-      "details.how-to-read-it",
-      "details.limits",
-      "details.latest-result",
-      "details.sources"
-    ],
-    "details_order": [
-      "details.how-its-measured",
-      "details.how-to-read-it",
-      "details.limits",
-      "details.latest-result",
-      "details.sources"
-    ],
-    "placeholders": {
-      "source": "param:path",
-      "runtime": [
-        "idle",
-        "paused",
-        "state",
-        "direction"
-      ],
-      "numbers": "param",
-      "prices": "data-only",
-      "units": "metric.unit",
-      "axis": "metric-derived",
-      "metric": "metric:field"
-    },
-    "directions": {
-      "lower_is_better": "Lower is better."
-    },
-    "fact_scope": {
-      "page": [
-        "region",
-        "machine_size",
-        "provider_list"
-      ],
-      "panel": [
-        "price",
-        "billing_state",
-        "storage_kind"
-      ],
-      "forbidden_panel_runtime_fields": [
-        "region",
-        "machine_size",
-        "provider_list"
-      ]
-    },
-    "hover_slots": {
-      "price-info": {
-        "owner": "pricing",
-        "form": "sentence",
-        "template": "{description}",
-        "criteria_slot": "tooltip",
-        "runtime_fields": ["description"]
-      },
-      "price-bar": {
-        "owner": "pricing",
-        "form": "sentence",
-        "template": "The published price for {provider} is {value} {unit}.",
-        "criteria_slot": "tooltip",
-        "runtime_fields": ["provider", "value", "unit"]
-      },
-      "billing-rule": {
-        "owner": "pricing",
-        "form": "sentence",
-        "template": "{description}",
-        "criteria_slot": "tooltip",
-        "runtime_fields": ["description"]
-      },
-      "price-status": {
-        "owner": "pricing",
-        "form": "sentence",
-        "template": "{reason}",
-        "criteria_slot": "tooltip",
-        "runtime_fields": ["reason"]
-      },
-      "source": {
-        "owner": "pricing",
-        "form": "sentence",
-        "template": "The rate comes from the linked public pricing source.",
-        "criteria_slot": "tooltip",
-        "runtime_fields": []
-      }
-    },
-    "unique_slots": [
-      "description",
-      "details.how-its-measured",
-      "details.how-to-read-it"
-    ]
   },
   "x-text": {
     "storage_statuses": {

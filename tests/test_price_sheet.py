@@ -94,7 +94,9 @@ def test_price_sheet_schema_and_provider_size_coverage() -> None:
             assert storage["status_text"]["word"] == storage["status"].title()
             status_text = SCHEMA["x-text"]["storage_statuses"][storage["status"]]
             assert storage["status_text"]["word"] == status_text["word"]
-            template = SCHEMA["x-content-criteria"]["hover_slots"]["price-status"]["template"]
+            template = SCHEMA["$defs"]["content_criteria"]["const"]["hover_slots"]["price-status"][
+                "template"
+            ]
             assert template.format(reason=storage["status_text"]["hover"]) == status_text[
                 "hover_template"
             ].format(kind=storage["kind"])
@@ -376,7 +378,7 @@ def test_authored_page_fact_scan_allows_two_declared_dynamic_regions() -> None:
 
 
 def test_price_hover_templates_export_stable_owner_slots() -> None:
-    hover_slots = SCHEMA["x-content-criteria"]["hover_slots"]
+    hover_slots = SCHEMA["$defs"]["content_criteria"]["const"]["hover_slots"]
     criteria = content_criteria()
     expected = criteria["hover_slots"]["price-info"]["criteria_slot"]
     for binding in hover_slots.values():
@@ -410,11 +412,11 @@ def test_price_page_fact_scan_covers_reader_text_and_declared_hover_templates() 
     assert templates
     slot_ids = {slot["id"] for slot in payload["authored_slots"]}
     expected_hover_slots = {
-        "x-content-criteria.hover_slots.billing-rule.template",
-        "x-content-criteria.hover_slots.price-bar.template",
-        "x-content-criteria.hover_slots.price-info.template",
-        "x-content-criteria.hover_slots.price-status.template",
-        "x-content-criteria.hover_slots.source.template",
+        "$defs.content_criteria.const.hover_slots.billing-rule.template",
+        "$defs.content_criteria.const.hover_slots.price-bar.template",
+        "$defs.content_criteria.const.hover_slots.price-info.template",
+        "$defs.content_criteria.const.hover_slots.price-status.template",
+        "$defs.content_criteria.const.hover_slots.source.template",
     }
     assert expected_hover_slots <= slot_ids
     expected_storage_status_templates = {
@@ -458,7 +460,20 @@ def test_reader_reasons_are_complete_sentences_before_joining() -> None:
         reasons = [item["status_text"]["hover"] for item in provider["storage"]]
         assert all(reason.endswith((".", "!", "?")) for reason in reasons), reasons
         assert not re.search(r"[a-z] [A-Z][a-z]+ (?:storage|price)", " ".join(reasons))
-    assert SCHEMA["x-content-criteria"]["hover_slots"]["price-status"]["template"] == "{reason}"
+    assert (
+        SCHEMA["$defs"]["content_criteria"]["const"]["hover_slots"]["price-status"]["template"]
+        == "{reason}"
+    )
+
+
+def test_content_criteria_is_typed_by_its_one_definition() -> None:
+    """The sheet's `content_criteria` is the schema's `$defs.content_criteria` constant, so a
+    consumer's generated types carry each criterion; an open object compiled to `{}`."""
+    assert SCHEMA["properties"]["content_criteria"] == {"$ref": "#/$defs/content_criteria"}
+    sheet = build_price_sheet()
+    assert sheet["content_criteria"] == SCHEMA["$defs"]["content_criteria"]["const"]
+    sheet["content_criteria"]["hover_slots"]["price-bar"]["template"] = "{value}"
+    assert not Draft202012Validator(SCHEMA).is_valid(sheet)
 
 
 @pytest.mark.parametrize(

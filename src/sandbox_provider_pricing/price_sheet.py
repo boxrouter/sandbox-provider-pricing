@@ -48,7 +48,7 @@ def _text_schema() -> dict[str, Any]:
 
 def _page_text(schema: dict[str, Any]) -> dict[str, Any]:
     source = schema["x-text"]
-    criteria = schema["x-content-criteria"]
+    criteria = schema["$defs"]["content_criteria"]["const"]
     parameters = {
         "param:pricing.hourly.seconds_per_hour": str(SECONDS_PER_HOUR),
         "param:pricing.excludes": ", ".join(schema["properties"]["excludes"]["items"]["enum"]),
@@ -113,8 +113,8 @@ def validate_price_text(sheet: dict[str, Any]) -> None:
         if any(panel["metric"][key] not in panel["caption"] for key in ("quantity", "per", "unit")):
             raise ValueError(f"{panel_id}.caption: missing metric quantity, period or unit")
         seen: dict[str, str] = {}
-        for slot in schema["x-content-criteria"]["unique_slots"]:
-            key = schema["x-content-criteria"]["slots"][slot]["source"]
+        for slot in schema["$defs"]["content_criteria"]["const"]["unique_slots"]:
+            key = schema["$defs"]["content_criteria"]["const"]["slots"][slot]["source"]
             normalized = " ".join(panel[key].casefold().split())
             if normalized in seen:
                 raise ValueError(f"{panel_id}.{key}: duplicates {seen[normalized]}")

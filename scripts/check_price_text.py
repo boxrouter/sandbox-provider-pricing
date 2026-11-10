@@ -29,7 +29,7 @@ def _strings(value: Any, path: str) -> Iterator[tuple[str, str]]:
 def capture() -> dict[str, list[dict[str, Any]]]:
     """Return authored reader text and hover templates with declared runtime fields."""
     schema = _text_schema()
-    declared_runtime = schema["x-content-criteria"]["placeholders"]["runtime"]
+    declared_runtime = schema["$defs"]["content_criteria"]["const"]["placeholders"]["runtime"]
     storage_statuses = schema["x-text"]["storage_statuses"]
     slots = [
         {"id": path, "template": template, "runtime_fields": declared_runtime}
@@ -48,11 +48,11 @@ def capture() -> dict[str, list[dict[str, Any]]]:
     )
     slots.extend(
         {
-            "id": f"x-content-criteria.hover_slots.{code}.template",
+            "id": f"$defs.content_criteria.const.hover_slots.{code}.template",
             "template": entry["template"],
             "runtime_fields": entry["runtime_fields"],
         }
-        for code, entry in schema["x-content-criteria"]["hover_slots"].items()
+        for code, entry in schema["$defs"]["content_criteria"]["const"]["hover_slots"].items()
     )
     # The words that explain a cost; their `{name}` placeholders are filled from a result.
     explain = bundled_schema("cost-method")["x-text"]["explain"]

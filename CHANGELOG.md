@@ -4,7 +4,13 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
-## Unreleased
+## 0.16.3 — 2026-11-10
+
+### Changed
+
+- The price-sheet schema types `content_criteria`: the field references `$defs.content_criteria`,
+  a constant holding the criteria that `x-content-criteria` held before. A sheet whose criteria
+  differ no longer validates, and generated types carry each criterion instead of an open object.
 
 ### Fixed
 
