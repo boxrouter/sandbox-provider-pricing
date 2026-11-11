@@ -4,6 +4,14 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.1 — 2026-11-11
+
+### Changed
+
+- Every rate unit (`per`) enum in the price-version schema carries `x-boxrouter-open-enum: true`:
+  units grow with the provider roster, so readers take the listed units plus any string. The
+  listed units are unchanged; a test checks that every `per` enum carries the flag.
+
 ## 0.17.0 — 2026-11-11
 
 ### Added

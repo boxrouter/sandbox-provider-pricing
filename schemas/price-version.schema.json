@@ -54,7 +54,7 @@
       "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
       "properties": {
         "usd": { "$ref": "#/$defs/positive_decimal" },
-        "per": { "enum": ["gb-month", "gib-month", "gib-hour"] },
+        "per": { "enum": ["gb-month", "gib-month", "gib-hour"], "x-boxrouter-open-enum": true },
         "rate_source": { "enum": ["published_snapshot_rate", "published_disk_rate_proxy"] },
         "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
         "checked_at": { "$ref": "#/$defs/timestamp" },
@@ -68,7 +68,7 @@
       "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
       "properties": {
         "usd": { "$ref": "#/$defs/positive_decimal" },
-        "per": { "enum": ["gb-month", "gib-month"] },
+        "per": { "enum": ["gb-month", "gib-month"], "x-boxrouter-open-enum": true },
         "rate_source": { "const": "published_image_rate" },
         "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
         "checked_at": { "$ref": "#/$defs/timestamp" },
@@ -82,7 +82,7 @@
       "required": ["usd", "per", "rate_source", "source_url", "checked_at"],
       "properties": {
         "usd": { "$ref": "#/$defs/positive_decimal" },
-        "per": { "enum": ["gb-month", "gib-month"] },
+        "per": { "enum": ["gb-month", "gib-month"], "x-boxrouter-open-enum": true },
         "rate_source": { "const": "published_volume_rate" },
         "source_url": { "type": "string", "pattern": "^https?://[^\\s]+$" },
         "checked_at": { "$ref": "#/$defs/timestamp" },
@@ -239,7 +239,8 @@
         "usd": { "$ref": "#/$defs/decimal" },
         "per": {
           "description": "A month is 730 hours, as providers that price per month define it.",
-          "enum": ["vcpu-second", "vcpu-hour", "vcpu-month", "core-second", "core-hour"]
+          "enum": ["vcpu-second", "vcpu-hour", "vcpu-month", "core-second", "core-hour"],
+          "x-boxrouter-open-enum": true
         },
         "size_per_unit": {
           "description": "vCPUs one core covers. Required for a core unit, which is not a vCPU (Modal's physical core), and absent for a vCPU unit.",
@@ -258,7 +259,8 @@
         "usd": { "$ref": "#/$defs/decimal" },
         "per": {
           "description": "A month is 730 hours, as providers that price per month define it.",
-          "enum": ["gib-second", "gib-hour", "gib-month", "gb-second", "gb-hour", "gb-month"]
+          "enum": ["gib-second", "gib-hour", "gib-month", "gb-second", "gb-hour", "gb-month"],
+          "x-boxrouter-open-enum": true
         },
         "size_per_unit": {
           "description": "GiB one GB covers: 1 where the provider's GB is read as a GiB, as Vercel's and Blaxel's examples do. Required for a GB unit and absent for a GiB unit.",
@@ -275,7 +277,7 @@
       "required": ["usd", "per"],
       "properties": {
         "usd": { "$ref": "#/$defs/decimal" },
-        "per": { "enum": ["gpu-second", "gpu-hour"] }
+        "per": { "enum": ["gpu-second", "gpu-hour"], "x-boxrouter-open-enum": true }
       }
     },
     "gpu_rates": {
@@ -297,7 +299,7 @@
       "required": ["usd", "per", "cpu", "memory_gib"],
       "properties": {
         "usd": { "$ref": "#/$defs/decimal" },
-        "per": { "enum": ["machine-second", "machine-hour"] },
+        "per": { "enum": ["machine-second", "machine-hour"], "x-boxrouter-open-enum": true },
         "cpu": {
           "description": "vCPUs the published size gives.",
           "$ref": "#/$defs/positive_decimal"
@@ -315,7 +317,7 @@
       "required": ["usd", "per"],
       "properties": {
         "usd": { "$ref": "#/$defs/decimal" },
-        "per": { "enum": ["creation", "million-creations"] }
+        "per": { "enum": ["creation", "million-creations"], "x-boxrouter-open-enum": true }
       }
     },
     "egress_rate": {
@@ -326,7 +328,8 @@
         "usd": { "$ref": "#/$defs/decimal" },
         "per": {
           "description": "gib is 2^30 bytes; gb is 10^9 bytes.",
-          "enum": ["gib", "gb"]
+          "enum": ["gib", "gb"],
+          "x-boxrouter-open-enum": true
         }
       }
     },
