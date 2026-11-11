@@ -22,7 +22,7 @@ Daytona's documentation does not say how its per-sandbox price is formed.
 - **Our times:** for each sandbox, the moment the create call returned (the start of our
   interval) and the moment the destroy call was sent (its end), from our own clock.
 - **Our calculation:** the interval in seconds multiplied by the list rates of the price version
-  dated 2026-10-03 13:09:08Z (see [the file as released in v0.3.24](https://github.com/boxrouter/sandbox-provider-pricing/blob/v0.3.24/providers/daytona/prices/2026-10-03-130908Z.yaml)): $0.000014 per
+  dated 2026-10-03 13:09:08Z (since retired; no public release carries it): $0.000014 per
   vCPU-second, $0.0000045 per GiB-second of memory and $0.00000003 per GiB-second of disk. For
   1 / 1 / 3 that is $0.00001859 per second. The 3 GiB of disk is charged in full; the "first 5
   GiB free" allowance on Daytona's pricing page is not subtracted.
