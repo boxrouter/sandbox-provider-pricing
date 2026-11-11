@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: agent37
+website: https://agent37.invalid
+rules_version: 1
+status:
+  best_label: unknown
+  why_not_higher: Provider billing evidence has not been verified.
+  would_raise: Verify provider records against the published list rates.
+revisit: null
+reported_at_list_price:
+  value: null
+  unknown_how: Compare a provider-reported sandbox charge with its list rates.
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported sandbox charge on a discounted account with list
+    rates.
+summary: Billing rules have not been verified. Unknown facts remain unpriced.
+formula: Unknown until the provider's meters and billing boundaries are verified.
+rules:
+  billed_on:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  starts:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  ends:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  rounding:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  idle_and_paused:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  image_pull:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  extra_charges:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  left_out:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  per_sandbox_data:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+checks: []
+open_questions: []
