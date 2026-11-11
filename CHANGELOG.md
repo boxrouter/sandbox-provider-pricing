@@ -4,6 +4,14 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.2 — 2026-11-11
+
+### Changed
+
+- Every rate unit (`per`) enum in the price-version schema also states `type: string`: OpenAPI
+  accepts `x-boxrouter-open-enum` only on a string enum, so its clients widen the unit to any
+  string.
+
 ## 0.17.1 — 2026-11-11
 
 ### Changed

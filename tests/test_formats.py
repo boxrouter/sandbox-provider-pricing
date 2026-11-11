@@ -77,10 +77,14 @@ def _rate_units(node: Any, path: str = "") -> list[tuple[str, JsonObject]]:
 
 def test_every_rate_unit_enum_is_open() -> None:
     """Units grow with the provider roster (Agent37 added months), so clients read `per` as the
-    known units plus any string: OpenAPI's `x-boxrouter-open-enum`."""
+    known units plus any string: OpenAPI's `x-boxrouter-open-enum` on a string enum."""
     units = _rate_units(load_schema("price-version"))
     assert len(units) >= 9
-    assert [path for path, unit in units if unit.get("x-boxrouter-open-enum") is not True] == []
+    assert [
+        path
+        for path, unit in units
+        if unit.get("x-boxrouter-open-enum") is not True or unit.get("type") != "string"
+    ] == []
 
 
 def test_source_is_the_same_six_values_in_usage_and_cost() -> None:
