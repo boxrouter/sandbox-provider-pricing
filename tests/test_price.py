@@ -53,6 +53,7 @@ def test_fixture_parity_and_result_schema() -> None:
         }
         assert not list(RESULT_VALIDATOR.iter_errors(result))
     expected = {
+        "agent37": 2,
         "blaxel": 5,
         "boat": 1,
         "boxd": 1,

@@ -237,7 +237,10 @@
       "required": ["usd", "per"],
       "properties": {
         "usd": { "$ref": "#/$defs/decimal" },
-        "per": { "enum": ["vcpu-second", "vcpu-hour", "core-second", "core-hour"] },
+        "per": {
+          "description": "A month is 730 hours, as providers that price per month define it.",
+          "enum": ["vcpu-second", "vcpu-hour", "vcpu-month", "core-second", "core-hour"]
+        },
         "size_per_unit": {
           "description": "vCPUs one core covers. Required for a core unit, which is not a vCPU (Modal's physical core), and absent for a vCPU unit.",
           "$ref": "#/$defs/positive_decimal"
@@ -253,13 +256,16 @@
       "required": ["usd", "per"],
       "properties": {
         "usd": { "$ref": "#/$defs/decimal" },
-        "per": { "enum": ["gib-second", "gib-hour", "gb-second", "gb-hour"] },
+        "per": {
+          "description": "A month is 730 hours, as providers that price per month define it.",
+          "enum": ["gib-second", "gib-hour", "gib-month", "gb-second", "gb-hour", "gb-month"]
+        },
         "size_per_unit": {
           "description": "GiB one GB covers: 1 where the provider's GB is read as a GiB, as Vercel's and Blaxel's examples do. Required for a GB unit and absent for a GiB unit.",
           "$ref": "#/$defs/positive_decimal"
         }
       },
-      "if": { "properties": { "per": { "enum": ["gb-second", "gb-hour"] } }, "required": ["per"] },
+      "if": { "properties": { "per": { "enum": ["gb-second", "gb-hour", "gb-month"] } }, "required": ["per"] },
       "then": { "required": ["size_per_unit"] },
       "else": { "not": { "required": ["size_per_unit"] } }
     },

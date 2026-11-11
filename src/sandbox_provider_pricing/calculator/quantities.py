@@ -12,6 +12,7 @@ from sandbox_provider_pricing.calculator.spans import (
     BYTES_PER_GB,
     BYTES_PER_GIB,
     CREATIONS_PER_MILLION,
+    HOURS_PER_MONTH,
     MIB_PER_GIB,
     SECONDS_PER_HOUR,
     ZERO,
@@ -235,11 +236,18 @@ def base_unit_seconds(basis: str, amount: Decimal, seconds: Span) -> Span:
     return Span(Decimal(0), allocated.high) if basis == "active" else allocated
 
 
+#: Seconds in each time unit a rate can be per.
+RATE_TIME_SECONDS = {
+    "second": Decimal(1),
+    "hour": SECONDS_PER_HOUR,
+    "month": HOURS_PER_MONTH * SECONDS_PER_HOUR,
+}
+
+
 def in_rate_unit(rate: Document, unit_seconds: Span) -> Span:
     """Base-unit seconds in the rate's unit: a provider's own size unit (a core, a GB) covers
-    `size_per_unit` base units, and a rate per hour counts hours."""
-    per_hour_rate = rate["per"].endswith("-hour")
-    divisor = SECONDS_PER_HOUR if per_hour_rate else Decimal(1)
+    `size_per_unit` base units, and a rate per hour counts hours, per month 730-hour months."""
+    divisor = RATE_TIME_SECONDS[rate["per"].rsplit("-", 1)[1]]
     size_per_unit = rate.get("size_per_unit")
     if size_per_unit is not None:
         divisor *= Decimal(size_per_unit)

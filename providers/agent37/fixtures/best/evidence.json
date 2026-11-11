@@ -1,43 +1,38 @@
 {
-  "provider": "agent37",
-  "sandbox_id": "scaffolded-example",
   "sandbox_made": {
     "value": true,
     "source": "recorded",
-    "how": "the scaffold's synthetic create call returned"
+    "how": "the create request returned 201"
   },
   "requested": {
-    "cpu": 2,
-    "memory_mib": 4096,
-    "region": null,
     "options": {}
   },
   "calls": [
     {
       "name": "create",
       "sent_at": {
-        "value": "2026-01-01T00:00:00Z",
+        "value": "2026-11-11T20:46:33.595286Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic create request was sent"
+        "how": "the create request was sent"
       },
       "returned_at": {
-        "value": "2026-01-01T00:00:05Z",
+        "value": "2026-11-11T20:46:34.530896Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic create request returned"
+        "how": "the create request returned"
       },
       "outcome": "returned"
     },
     {
       "name": "destroy",
       "sent_at": {
-        "value": "2026-01-01T00:10:00Z",
+        "value": "2026-11-11T20:58:37.372618Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic destroy request was sent"
+        "how": "the destroy request was sent"
       },
       "returned_at": {
-        "value": "2026-01-01T00:10:05Z",
+        "value": "2026-11-11T20:58:37.780835Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic destroy request returned"
+        "how": "the destroy request returned"
       },
       "outcome": "returned"
     }
@@ -45,6 +40,64 @@
   "provider_times": [],
   "last_seen_alive": null,
   "noticed_gone": null,
-  "provider_records": [],
-  "measured": {}
+  "measured": {},
+  "provider_records": [
+    {
+      "source": "core.cost",
+      "read_at": "2026-11-11T21:59:02.420979Z",
+      "body": {
+        "status": "available",
+        "reason": null,
+        "readings": [
+          {
+            "amount": "0.001413",
+            "currency": "USD",
+            "meter": "instance_total",
+            "interval_start": "2026-11-11T00:00:00+00:00",
+            "interval_end": "2026-11-11T21:59:01.770863+00:00",
+            "scope": "sandbox",
+            "source": "agent37.usage"
+          }
+        ],
+        "records": [
+          {
+            "source": "agent37.usage",
+            "read_at": "2026-11-11T21:59:01.770863+00:00",
+            "body": {
+              "id": "u4q5psdda1",
+              "total_micros": 1413,
+              "compute_micros": 1413,
+              "llm_micros": 0,
+              "brave_micros": 0,
+              "composio_micros": 0,
+              "perflo_micros": 0,
+              "llm_calls": 0,
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "awake_minutes": 13
+            }
+          }
+        ]
+      }
+    },
+    {
+      "source": "agent37.usage",
+      "read_at": "2026-11-11T21:59:01.770863+00:00",
+      "body": {
+        "id": "u4q5psdda1",
+        "total_micros": 1413,
+        "compute_micros": 1413,
+        "llm_micros": 0,
+        "brave_micros": 0,
+        "composio_micros": 0,
+        "perflo_micros": 0,
+        "llm_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "awake_minutes": 13
+      }
+    }
+  ],
+  "provider": "agent37",
+  "sandbox_id": "u4q5psdda1"
 }

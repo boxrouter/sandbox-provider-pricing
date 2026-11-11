@@ -11,6 +11,9 @@ from typing import Any
 from sandbox_provider_pricing._util import decimal_text
 
 SECONDS_PER_HOUR = Decimal(3600)
+#: The hours a `-month` rate covers: 365 days over 12 months, as the providers that price per
+#: month define it (Agent37 meters its monthly rates at the monthly price divided by 730 hours).
+HOURS_PER_MONTH = Decimal(730)
 MIB_PER_GIB = Decimal(1024)
 BYTES_PER_GIB = Decimal(2**30)
 BYTES_PER_GB = Decimal(10**9)

@@ -14,6 +14,7 @@ import sys
 import tempfile
 from collections.abc import AsyncIterator
 from datetime import UTC, datetime
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
@@ -208,6 +209,22 @@ def test_the_calculator_prices_an_hour_of_a_rate_as_its_quote_does() -> None:
     assert str(draft_verify._calculator_hour("cpu", rate)) == "0.0576"
     core = {"usd": "0.00003942", "per": "core-second", "size_per_unit": "2"}
     assert str(draft_verify._calculator_hour("cpu", core)) == "0.070956"
+
+
+def test_a_monthly_rate_is_checked_as_its_quote_does() -> None:
+    """Per month to per hour over 730 hours: the calculator and the quote agree on $0.80 a
+    vCPU-month, and a rate read per hour from a per-month quote fails."""
+    month = {"usd": "0.80", "per": "vcpu-month"}
+    hour = draft_verify._calculator_hour("cpu", month)
+    assert hour is not None and abs(hour * 730 - Decimal("0.80")) < Decimal("1e-40")
+    quote = draft_verify.Mention(
+        Decimal("0.80"), " per vCPU per month", "vCPU | $0.80 per vCPU per month"
+    )
+    assert draft_verify._time_unit_failures("cpu", "cpu", month, [quote]) == []
+    hourly = {"usd": "0.80", "per": "vcpu-hour"}
+    assert draft_verify._time_unit_failures("cpu", "cpu", hourly, [quote]) == [
+        "The rate cpu 0.80 is vcpu-hour, but its quote says per month."
+    ]
 
 
 def test_a_draft_that_is_not_a_price_version_fails() -> None:

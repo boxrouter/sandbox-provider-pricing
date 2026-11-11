@@ -119,7 +119,7 @@ def _version_entries(provider: str) -> JsonObject:
             "version": name,
             "effective_from": version["effective_from"],
             "retrieved_at": version["retrieved_at"],
-            "supersedes": version["supersedes"],
+            "supersedes": version.get("supersedes", []),
             "state": state,
             "replaced_by": replaced_by,
             "file": f"{_PACKAGE_PRICES}/{provider}/prices/{name.split('@', 1)[1]}.yaml",

@@ -4,6 +4,7 @@
 
 import posixpath
 import sys
+from decimal import Decimal
 from pathlib import Path
 from typing import Any, cast
 
@@ -242,6 +243,14 @@ def _billed_on(meter: dict[str, Any]) -> str:
     return text[0].upper() + text[1:]
 
 
+def _hour_amount(text: str) -> str:
+    """A quote as the calculator gives it, or, where its decimal does not end (an hour of a
+    monthly rate), rounded to a millionth of a dollar and marked "about"."""
+    exact = Decimal(text)
+    rounded = exact.quantize(Decimal("0.000001"))
+    return text if rounded == exact else f"about {rounded.normalize():f}"
+
+
 def render_hourly_table(documents: list[tuple[str, dict[str, Any]]]) -> str:
     """Render COMPARING.md's one-hour quote for HOURLY_SIZE on each newest price version."""
     lines = [
@@ -256,11 +265,11 @@ def render_hourly_table(documents: list[tuple[str, dict[str, Any]]]) -> str:
         if quote is None:
             amount = "not priced"
         elif quote["low"] != quote["high"]:
-            amount = f"{quote['low']} to {quote['high']}"
+            amount = f"{_hour_amount(quote['low'])} to {_hour_amount(quote['high'])}"
         elif any(rule.get("basis") == "larger_of_request_and_use" for rule in meter.values()):
-            amount = f"at least {quote['low']}"
+            amount = f"at least {_hour_amount(quote['low'])}"
         else:
-            amount = quote["low"]
+            amount = _hour_amount(quote["low"])
         link = f"[`{version['version']}`]({document['versions'][version['version']]['file']})"
         lines.append(f"| {document['name']} | {amount} | {_billed_on(meter)} | {link} |")
     return "\n".join(lines)

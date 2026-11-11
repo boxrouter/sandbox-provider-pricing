@@ -18,6 +18,7 @@ and consumers show nothing. Our own clocks never stand in for the provider's.
 <!-- generated:provider-status -->
 | Provider | Best cost available | How it is worked out |
 | --- | --- | --- |
+| [Agent37](providers/agent37/README.md) | `reported` | Agent37's compute_micros for the instance, divided by one million. Check: billed minutes × (vCPUs × CPU rate + GB of RAM × memory rate) ÷ 43,800 for running minutes, plus GB of disk × disk rate ÷ 43,800 for every minute. |
 | [Blaxel](providers/blaxel/README.md) | `reported` | Blaxel's own cost for the sandbox. Check: active seconds × GB of memory × memory rate (CPU is included), plus snapshot GB × seconds in standby × snapshot rate. |
 | [Boat](providers/boat/README.md) | `reported` | The sandbox's usage record, read with the meter stopped (running: false) or last read before Boat deleted the sandbox and its record (as of that read): its dollars at list price. No record, another sandbox's, or a moving meter with no known end is unknown. |
 | [boxd](providers/boxd/README.md) | `reported` | A complete USD machines.usage(id) record for this machine, with rates matching the stored list version, reports cost_micro divided by one million. Otherwise unknown; no calculated fallback. |

@@ -117,6 +117,7 @@ def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
     # Each provider's rules version, and whether it keeps evidence: boat has no measurement yet
     # (its `checks` is empty and its rules cite only Boat's pages).
     expected = {
+        "agent37": (1, True),
         "blaxel": (2, True),
         "boat": (1, False),
         "boxd": (1, True),

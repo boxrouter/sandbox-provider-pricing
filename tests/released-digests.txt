@@ -33,3 +33,4 @@ src/sandbox_provider_pricing/providers/e2b/prices/2026-10-31-015029Z.yaml 7480f6
 src/sandbox_provider_pricing/providers/modal/prices/2026-11-05-065701Z.yaml 7432e34edfcde673c98b899d8b3f54fd081f620b3f0b58759f61457a983eed10
 src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055631Z.yaml 9b17b9a26de4de38ee85ef101c41031225cfcc565e71e4dc2aa6a84a39418fa6
 src/sandbox_provider_pricing/providers/blaxel/prices/2026-11-07-122300Z.yaml 48380e590fc6563ce549f7c5bd5840898622fec37554b21648541d5ad0f98324
+src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml 3f14a731a775a566412861e5df98564ae4a17567f93718b51a38edff8b0cf310

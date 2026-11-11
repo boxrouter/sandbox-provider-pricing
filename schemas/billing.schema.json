@@ -323,7 +323,8 @@
                     ]
                   },
                   "per": {
-                    "const": "gib-hour"
+                    "description": "The price version rate's own unit, which the sheet checks: an hourly rate is multiplied by the month's hours, a monthly one is not.",
+                    "enum": ["gib-hour", "gb-month"]
                   },
                   "multiply_by_month_hours": {
                     "type": "boolean"

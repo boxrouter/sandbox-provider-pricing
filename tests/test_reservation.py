@@ -121,6 +121,7 @@ def test_invalid_reservation_duration_is_rejected(seconds: Any) -> None:
 SIZE = {"cpu": 2, "memory_mib": 4096, "disk_mib": 10240}
 # What each provider's current coverage implies for a 2 vCPU, 4 GiB, 10 GiB sandbox.
 EXPECTED_STATUS = {
+    "agent37": "bounded",
     "blaxel": "bounded",  # the writable filesystem is in billed RAM
     "boat": "bounded",
     "boxd": "bounded",

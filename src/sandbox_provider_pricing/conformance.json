@@ -2,6 +2,2014 @@
   "schema_version": 1,
   "cases": [
     {
+      "id": "agent37/default/1x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0030136986301369864,
+          "high": 0.0030136986301369864,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0030136986301369864,
+          "high": 0.0030136986301369864,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/1x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.004931506849315068,
+          "high": 0.004931506849315068,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.004931506849315068,
+          "high": 0.004931506849315068,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/1x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.008767123287671232,
+          "high": 0.008767123287671232,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.008767123287671232,
+          "high": 0.008767123287671232,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/1x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.01643835616438356,
+          "high": 0.01643835616438356,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.01643835616438356,
+          "high": 0.01643835616438356,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/1x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/1x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00410958904109589,
+          "high": 0.00410958904109589,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00410958904109589,
+          "high": 0.00410958904109589,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/2x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.006027397260273973,
+          "high": 0.006027397260273973,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.006027397260273973,
+          "high": 0.006027397260273973,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/2x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.009863013698630137,
+          "high": 0.009863013698630137,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.009863013698630137,
+          "high": 0.009863013698630137,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/2x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.017534246575342465,
+          "high": 0.017534246575342465,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.017534246575342465,
+          "high": 0.017534246575342465,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/2x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/2x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.006301369863013699,
+          "high": 0.006301369863013699,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.006301369863013699,
+          "high": 0.006301369863013699,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/4x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00821917808219178,
+          "high": 0.00821917808219178,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00821917808219178,
+          "high": 0.00821917808219178,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/4x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.012054794520547946,
+          "high": 0.012054794520547946,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.012054794520547946,
+          "high": 0.012054794520547946,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/4x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.019726027397260273,
+          "high": 0.019726027397260273,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.019726027397260273,
+          "high": 0.019726027397260273,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/4x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/4x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.010684931506849316,
+          "high": 0.010684931506849316,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.010684931506849316,
+          "high": 0.010684931506849316,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/8x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.012602739726027398,
+          "high": 0.012602739726027398,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.012602739726027398,
+          "high": 0.012602739726027398,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/8x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.01643835616438356,
+          "high": 0.01643835616438356,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.01643835616438356,
+          "high": 0.01643835616438356,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/8x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.02410958904109589,
+          "high": 0.02410958904109589,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.02410958904109589,
+          "high": 0.02410958904109589,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0006164383561643835,
+          "high": 0.001232876712328767,
+          "source_url": "https://www.agent37.com/docs/agents-api/billing",
+          "checked_at": "2026-11-11"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/8x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": []
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "agent37/default/8x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "agent37/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.001413",
+          "high": "0.001413"
+        }
+      }
+    },
+    {
+      "id": "agent37/default/storage/image",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "storage": "image"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "agent37/default/storage/disk",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "storage": "disk"
+      },
+      "expected": {
+        "status": "priced",
+        "label": "Priced",
+        "usd": 0.09
+      }
+    },
+    {
+      "id": "agent37/default/storage/snapshot",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "storage": "snapshot"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "agent37/default/storage/volume",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "agent37",
+        "storage": "volume"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
       "id": "blaxel/default/1x2/running",
       "kind": "hourly",
       "input": {

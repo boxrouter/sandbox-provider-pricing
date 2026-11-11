@@ -1,48 +1,91 @@
 # yaml-language-server: $schema=../../../../schemas/billing.schema.json
-name: agent37
-website: https://agent37.invalid
+name: Agent37
+website: https://www.agent37.com
 rules_version: 1
 status:
-  best_label: unknown
-  why_not_higher: Provider billing evidence has not been verified.
-  would_raise: Verify provider records against the published list rates.
-revisit: null
+  best_label: reported
+  why_not_higher: Nothing. A deleted instance's settled compute spend in Agent37's usage report is labelled reported; it matched list rates in our check.
+  would_raise: Nothing. Until the adapter reads the same settled total twice, an hour apart, after the delete, the cost is unknown.
+revisit:
+  after_s: 60
+  until_s: 604800
+  interval_s: 1800
+  rationale: Both measured instances' final compute was in the usage report 1 s after delete returned, so the first read waits 60 s. The adapter reports a total only after it has held for an hour; the 30-minute cadence and the 7-day window are chosen defaults.
+  unverified_default: true
 reported_at_list_price:
-  value: null
-  unknown_how: Compare a provider-reported sandbox charge with its list rates.
+  value: true
+  source: providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#verdict (on two instances, compute_micros was the billed minutes at the list rates in src/sandbox_provider_pricing/providers/agent37/prices, rounded to a whole micro-dollar)
 reported_under_account_rate:
   value: null
-  unknown_how: Compare a reported sandbox charge on a discounted account with list
-    rates.
-summary: Billing rules have not been verified. Unknown facts remain unpriced.
-formula: Unknown until the provider's meters and billing boundaries are verified.
+  unknown_how: Compare a reported instance's compute_micros on an account with negotiated rates against list rates; the 2026-11-11 check used a list-rate account.
+summary: >-
+  Agent37 meters each instance per minute at monthly rates divided by 730 hours, and its usage report gives each instance's compute spend, deleted instances included. That spend matched list rates in our check and is labelled reported; managed services billed to the instance are left out.
+formula: >-
+  Agent37's compute_micros for the instance, divided by one million. Check: billed minutes × (vCPUs × CPU rate + GB of RAM × memory rate) ÷ 43,800 for running minutes, plus GB of disk × disk rate ÷ 43,800 for every minute.
 rules:
   billed_on:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: '{rate.cpu} and {rate.memory} of allocated RAM while running, plus {rate.disk} of reserved disk in every state; a month is 730 hours, metered per minute.'
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
   starts:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: When the instance first reaches running; nothing is debited at create. Measured, the first billed minute began at the instance's created second, before create returned.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
   ends:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: At delete, which settles the final minutes. Measured, the last part minute before delete was billed in full.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
   rounding:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: Each period is billed in whole minutes, rounded up, and the next state starts at the end of the last billed minute; each settled debit is a whole micro-dollar.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
   idle_and_paused:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: Running and the transitional states bill the full rate; sleeping, stopped and waking bill disk only. A stopped instance measured billed disk alone. A sleeper parked in cold storage bills its compressed bytes at a separate rate.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
   image_pull:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: Not stated. The meter starts at running, so a create that fails costs nothing; two measured creates of the default template returned in under a second.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
   extra_charges:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: Managed LLM, search and tool calls debit the same wallet per instance within a budget that defaults to $0. Performance instances bill compute at 4x and VM instances at 2.5x. Backups and egress are not priced on the pages checked.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - https://www.agent37.com/docs/agents-api/budgets
   left_out:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
+    answer: Managed LLM, search and tool spend (the instance's other usage fields), Performance and VM instances, cold-storage time, backups, egress, the sign-up credit and top-ups.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - https://www.agent37.com/docs/agents-api/budgets
   per_sandbox_data:
-    answer: Unknown; not yet verified.
-    unknown_how: Read the provider's billing documentation and verify its records.
-checks: []
-open_questions: []
+    answer: Yes. GET /v1/usage lists each instance's spend in micro-dollars over up to 90 days, deleted ones included; compute lands within the hour and, measured, at delete.
+    sources:
+      - https://www.agent37.com/docs/agents-api/billing
+      - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
+checks:
+  - date: '2026-11-11'
+    title: Usage report compute against list rates
+    file: evidence/2026-11-11-usage-vs-list-price.md
+    result: On two default instances (one running, one stopped part way), compute_micros equalled the billed minutes at list rates to the micro-dollar and was readable at delete. One account, one size, one region.
+open_questions:
+  - question: Can a deleted instance's usage total change after it has been read?
+    how: Re-read deleted instances' totals over days; the 2026-11-11 check read them for an hour after the delete.
+  - question: Is GB in the RAM and disk rates 10^9 bytes or a GiB?
+    how: Ask Agent37 or compare a reported charge for a size whose GB and GiB figures differ in the micro-dollar.
+price_sheet:
+  active_time_priced: {value: false, source_url: https://www.agent37.com/docs/agents-api/billing}
+  benchmark_region: {value: us, source_url: https://www.agent37.com/docs/agents-api/instances/create}
+  states:
+    idle: {rule: running, note: An idle instance bills the full rate while it runs; auto-sleep is off by default., source_url: https://www.agent37.com/docs/agents-api/billing}
+    paused: {rule: disk, note: Only reserved disk is billed while stopped or sleeping., source_url: https://www.agent37.com/docs/agents-api/billing}
+  class_overrides: {}
+  storage:
+  - {kind: disk, status: priced, source_url: https://www.agent37.com/docs/agents-api/billing, price_version_rate: {resource: disk, per: gb-month, multiply_by_month_hours: false}}
+  - {kind: snapshot, status: unpublished, source_url: https://www.agent37.com/docs/agents-api/billing}
+  - {kind: image, status: unpublished, source_url: https://www.agent37.com/docs/agents-api/billing}
+  - {kind: volume, status: unpublished, source_url: https://www.agent37.com/docs/agents-api/billing}

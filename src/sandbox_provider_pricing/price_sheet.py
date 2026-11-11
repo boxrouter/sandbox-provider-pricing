@@ -282,11 +282,10 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
         cpu_part = None if cpu is None else _range(cpu)
         memory_part = None if memory is None else _range(memory)
         if (
-            cpu_part is not None
-            and memory_part is not None
+            cpu is not None
+            and memory is not None
             and any(
-                Decimal(str(cpu_part[end])) + Decimal(str(memory_part[end]))
-                != Decimal(str(running[end]))
+                abs(Decimal(cpu[end]) + Decimal(memory[end]) - Decimal(raw[end])) > _SUM_TOLERANCE
                 for end in ("low", "high")
             )
         ):
@@ -576,6 +575,11 @@ def _storage(
         rate = (default.get("rates") or {}).get(calculation["resource"])
         if rate is None:
             continue
+        if rate["per"] != calculation["per"]:
+            raise ValueError(
+                f"{fact['kind']} storage names a {calculation['per']} rate, "
+                f"but the price version's is {rate['per']}"
+            )
         hours = (
             float(version_doc.get("month_hours", 730))
             if calculation.get("multiply_by_month_hours", False)
@@ -632,6 +636,11 @@ def _billing_rules(billing: dict[str, Any]) -> dict[str, Any]:
         **{key: rules[key] for key, _ in RULES},
         "sources": {key: rules[key].get("sources", []) for key, _ in RULES},
     }
+
+
+#: How far the exact CPU and memory parts may sum from the whole: an hour of a monthly rate is a
+#: decimal that does not end, which the calculator rounds in its last digit, never near a cent.
+_SUM_TOLERANCE = Decimal("1e-20")
 
 
 def _range(value: dict[str, str]) -> dict[str, float]:

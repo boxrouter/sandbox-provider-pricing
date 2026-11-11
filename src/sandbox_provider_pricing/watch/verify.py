@@ -35,6 +35,7 @@ SIZE_OF_ONE = {
 }
 SECONDS = {"s", "sec", "secs", "second", "seconds"}
 HOURS = {"h", "hr", "hrs", "hour", "hours"}
+MONTHS = {"mo", "month", "months"}
 NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
 FREE = re.compile(r"\b(free|included|no charge|no cost)\b", re.IGNORECASE)
 # What a quote must mention to be about a resource: a price in a memory table is not the CPU's.
@@ -247,6 +248,8 @@ def _time_unit(after: str) -> str | None:
             return "second"
         if word.lower() in HOURS:
             return "hour"
+        if word.lower() in MONTHS:
+            return "month"
     return None
 
 
@@ -254,9 +257,9 @@ def _time_unit_failures(
     label: str, resource: str, rate: JsonObject, found: list[Mention], model: str | None = None
 ) -> list[str]:
     """The rate's time unit must be the quote's, and the calculator must price an hour of one
-    unit at what the quote gives: the number, times 3600 where it is per second, over the
-    vCPUs or GiB one of the rate's units covers."""
-    unit = "second" if rate["per"].endswith("-second") else "hour"
+    unit at what the quote gives: the number, times 3600 where it is per second or over 730
+    where it is per month, over the vCPUs or GiB one of the rate's units covers."""
+    unit = rate["per"].rsplit("-", 1)[1]
     quoted = {mention: _time_unit(mention.after) for mention in found}
     stated = {value for value in quoted.values() if value is not None}
     if not stated:
@@ -268,7 +271,14 @@ def _time_unit_failures(
         ]
     number = next(mention.number for mention, value in quoted.items() if value == unit)
     with localcontext(calculator.CONTEXT):
-        expected = number * (calculator.SECONDS_PER_HOUR if unit == "second" else 1)
+        expected = (
+            number
+            * {
+                "second": calculator.SECONDS_PER_HOUR,
+                "hour": Decimal(1),
+                "month": 1 / calculator.HOURS_PER_MONTH,
+            }[unit]
+        )
         expected /= Decimal(rate.get("size_per_unit", 1))
         actual = _calculator_hour(resource, rate, model)
     if actual != expected:

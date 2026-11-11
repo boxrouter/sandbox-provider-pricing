@@ -4,6 +4,24 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.0 — 2026-11-11
+
+### Added
+
+- Agent37 is priced: price version `agent37@2026-11-11` (CPU, RAM and disk per month, metered per
+  minute), its billing rules, and a rule that reports a deleted instance's settled
+  `compute_micros` from Agent37's usage report as the sandbox's cost, labelled `reported`.
+  Managed LLM, search and tool spend billed to the instance is left out.
+- Rates can be per month: `vcpu-month`, `gib-month` and `gb-month`, where a month is 730 hours.
+  The price-version and price-sheet schemas list the new units.
+
+### Fixed
+
+- The price sheet checks that a running price's CPU and memory parts add up on the calculator's
+  exact figures, so an hour of a monthly rate, a decimal that does not end, no longer fails on
+  float rounding. A storage row's `price_version_rate.per` must now be its rate's own unit.
+- The cost method accepts a price version without `supersedes`, as the schema does.
+
 ## 0.16.3 — 2026-11-10
 
 ### Changed

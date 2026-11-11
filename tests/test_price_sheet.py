@@ -168,6 +168,23 @@ def test_size_without_a_price_is_marked_in_development(monkeypatch: Any) -> None
     assert largest["running_per_hour_usd"] is None
 
 
+def test_a_storage_row_must_name_its_price_version_rates_unit() -> None:
+    """Agent37's disk rate is per GB-month, so a row that reads it as per GiB-hour would be
+    multiplied by the month's hours again; the sheet refuses it."""
+    billing = copy.deepcopy(load_billing("agent37"))
+    disk = next(row for row in billing["price_sheet"]["storage"] if row["kind"] == "disk")
+    disk["price_version_rate"] |= {"per": "gib-hour", "multiply_by_month_hours": True}
+    with pytest.raises(ValueError, match="disk storage names a gib-hour rate"):
+        sheet_module._provider_sheet(
+            "agent37",
+            "default",
+            latest_version("agent37", seed_versions()),
+            billing,
+            "0",
+            storage_statuses=SCHEMA["x-text"]["storage_statuses"],
+        )
+
+
 def test_modal_region_multiplier_is_part_of_displayed_prices() -> None:
     modal = next(item for item in build_price_sheet()["providers"] if item["id"] == "modal")
     assert modal["region"] == "us"
@@ -178,6 +195,7 @@ def test_modal_region_multiplier_is_part_of_displayed_prices() -> None:
 def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:
     sheet = build_price_sheet()
     assert {provider["id"]: provider["name"] for provider in sheet["providers"]} == {
+        "agent37": "Agent37",
         "blaxel": "Blaxel",
         "boat": "Boat",
         "boxd": "boxd",
@@ -218,6 +236,7 @@ def test_price_sheet_has_one_entry_per_provider_and_spec_class() -> None:
     """Each entry is keyed by provider and class, with a readable class label."""
     entries = {(item["id"], item["class"]): item for item in build_price_sheet()["providers"]}
     assert set(entries) == {
+        ("agent37", "default"),
         ("blaxel", "default"),
         ("boat", "default"),
         ("boxd", "default"),
@@ -513,6 +532,7 @@ def test_every_sheet_provider_carries_typed_billing_mode_and_compute_rate_units(
         for provider in sheet["providers"]
     }
     assert facts == {
+        "agent37": ("allocated", False, ["cpu", "memory"]),
         "blaxel": ("active", True, ["memory"]),
         "boat": ("allocated", False, ["machine"]),
         "boxd": ("active", False, ["cpu", "memory"]),

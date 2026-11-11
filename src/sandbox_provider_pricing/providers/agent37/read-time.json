@@ -1,0 +1,17 @@
+{
+  "contract": 1,
+  "settles": "bounded",
+  "uses": [
+    {
+      "file": "src/sandbox_provider_pricing/providers/agent37/rules.py",
+      "function": "billable",
+      "kind": "copied verbatim",
+      "offset": "none; input copies and forwarding do not advance time",
+      "uses": [
+        "Name:as_of",
+        "arg:as_of",
+        "keyword:as_of"
+      ]
+    }
+  ]
+}

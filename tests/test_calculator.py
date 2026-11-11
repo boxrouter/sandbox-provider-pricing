@@ -697,6 +697,31 @@ def test_free_quantity_and_egress() -> None:
     ]
 
 
+def test_monthly_rates_are_730_hour_months() -> None:
+    # A month rate is the price of 730 hours: 2 vCPU x $0.80 + 4 GB x $0.70 + 4 GB disk x $0.09
+    # is $4.76 for 730 hours running, and a month stopped bills the disk alone, $0.36.
+    month = version_with(
+        rates={
+            "cpu": {"usd": "0.80", "per": "vcpu-month"},
+            "memory": {"usd": "0.70", "per": "gb-month", "size_per_unit": "1"},
+            "disk": {"usd": "0.09", "per": "gb-month", "size_per_unit": "1"},
+        },
+        meter={
+            "cpu": {"basis": "allocated", "billed_states": ["running"]},
+            "memory": {"basis": "allocated", "billed_states": ["running"]},
+            "disk": {"basis": "allocated", "billed_states": ["running", "stopped"]},
+        },
+    )
+    month["provider"] = "agent37"
+    hours = 730 * 3600
+    running = usage("agent37", disk_mib=4096, intervals=[interval("running", hours)])
+    assert totals(valid(cost(running, month))) == ("4.76", "4.76")
+    stopped = usage("agent37", disk_mib=4096, intervals=[interval("stopped", hours)])
+    assert totals(valid(cost(stopped, month))) == ("0.36", "0.36")
+    hourly = per_hour(month, {"cpu": 2, "memory_mib": 4096, "disk_mib": 4096})
+    assert hourly is not None and Decimal(hourly["low"]) * 730 == pytest.approx(Decimal("4.76"))
+
+
 def test_per_hour_prices_only_what_the_size_lists() -> None:
     # Daytona's disk is a separate rate: a size with no disk is priced without it (1 vcpu-hour
     # x 0.0504 + 2 gib-hour x 0.0162 = 0.0828), and with one adds it (3 GiB x 0.000108)

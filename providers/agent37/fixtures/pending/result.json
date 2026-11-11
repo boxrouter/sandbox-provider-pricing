@@ -1,0 +1,314 @@
+{
+  "provider": "agent37",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "cpu",
+      "text": "The provider did not report the sandbox's size."
+    },
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    },
+    {
+      "code": "unreported_quantity",
+      "resource": "memory",
+      "text": "The provider did not report the sandbox's size."
+    },
+    {
+      "code": "unreported_quantity",
+      "resource": "disk",
+      "text": "The provider did not report the sandbox's size."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+    "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
+    "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
+    "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-11T20:59:37.780835Z",
+    "until": "2026-11-18T20:58:37.780835Z",
+    "interval_s": 1800,
+    "next_read_at": "2026-11-11T20:59:37.780835Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.16.3",
+    "rules": 1,
+    "prices": "agent37@2026-11-11"
+  },
+  "steps": {
+    "evidence": {
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create request returned 201"
+      },
+      "requested": {
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-11T20:46:33.595286Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-11T20:46:34.530896Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-11T20:58:37.372618Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-11T20:58:37.780835Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {},
+      "provider_records": [
+        {
+          "source": "core.cost",
+          "read_at": "2026-11-11T20:58:53.765953Z",
+          "body": {
+            "status": "unknown",
+            "reason": "pending",
+            "readings": [],
+            "records": [
+              {
+                "source": "agent37.usage",
+                "read_at": "2026-11-11T20:58:53.076846+00:00",
+                "body": {
+                  "id": "u4q5psdda1",
+                  "total_micros": 1413,
+                  "compute_micros": 1413,
+                  "llm_micros": 0,
+                  "brave_micros": 0,
+                  "composio_micros": 0,
+                  "perflo_micros": 0,
+                  "llm_calls": 0,
+                  "input_tokens": 0,
+                  "output_tokens": 0,
+                  "awake_minutes": 13
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "agent37.usage",
+          "read_at": "2026-11-11T20:58:53.076846+00:00",
+          "body": {
+            "id": "u4q5psdda1",
+            "total_micros": 1413,
+            "compute_micros": 1413,
+            "llm_micros": 0,
+            "brave_micros": 0,
+            "composio_micros": 0,
+            "perflo_micros": 0,
+            "llm_calls": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "awake_minutes": 13
+          }
+        }
+      ],
+      "provider": "agent37",
+      "sandbox_id": "u4q5psdda1"
+    },
+    "times": {
+      "start": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-11T20:46:34.530896Z",
+      "source": "recorded",
+      "how": "When the provider's create call returned."
+    },
+    "sandbox_end": {
+      "value": "2026-11-11T20:58:37.780835Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "agent37",
+        "started": {
+          "at": "2026-11-11T20:46:34.530896Z",
+          "source": "recorded",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-11T20:58:53.765953Z",
+            "how": "Waiting for Agent37's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "agent37",
+        "started": {
+          "at": "2026-11-11T20:46:34.530896Z",
+          "source": "recorded",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-11T20:58:53.765953Z",
+            "how": "Waiting for Agent37's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the sandbox's size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "memory",
+            "text": "The provider did not report the sandbox's size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the sandbox's size."
+          }
+        ],
+        "exclusions": [
+          "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+          "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
+          "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
+          "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
+          "Credits and discounts"
+        ],
+        "price_version": "agent37@2026-11-11",
+        "as_of": "2026-11-11T20:58:53.765953Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the sandbox's size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "memory",
+            "text": "The provider did not report the sandbox's size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the sandbox's size."
+          }
+        ],
+        "exclusions": [
+          "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+          "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
+          "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
+          "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
+          "Credits and discounts"
+        ],
+        "price_version": "agent37@2026-11-11",
+        "as_of": "2026-11-11T20:58:53.765953Z"
+      }
+    }
+  },
+  "as_of": "2026-11-11T20:58:53.765953Z"
+}

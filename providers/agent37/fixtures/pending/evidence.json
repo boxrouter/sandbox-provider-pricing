@@ -1,0 +1,77 @@
+{
+  "provider": "agent37",
+  "sandbox_id": "u4q5psdda1",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create request returned 201"
+  },
+  "requested": {
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-11-11T20:46:33.595286Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-11T20:46:34.530896Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-11-11T20:58:37.372618Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-11T20:58:37.780835Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [],
+  "provider_reports": {
+    "cost": {
+      "status": "unknown",
+      "reason": "pending",
+      "readings": [],
+      "records": [
+        {
+          "source": "agent37.usage",
+          "read_at": "2026-11-11T20:58:53.076846+00:00",
+          "body": {
+            "id": "u4q5psdda1",
+            "total_micros": 1413,
+            "compute_micros": 1413,
+            "llm_micros": 0,
+            "brave_micros": 0,
+            "composio_micros": 0,
+            "perflo_micros": 0,
+            "llm_calls": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "awake_minutes": 13
+          }
+        }
+      ]
+    },
+    "read_times": {
+      "cost": "2026-11-11T20:58:53.765953Z"
+    },
+    "read_at": "2026-11-11T20:58:53.765953Z"
+  }
+}
