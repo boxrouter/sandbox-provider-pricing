@@ -1278,7 +1278,7 @@ wheels = [
 
 [[package]]
 name = "sandbox-provider-pricing"
-version = "0.17.2"
+version = "0.17.3"
 source = { editable = "." }
 dependencies = [
     { name = "jsonschema" },

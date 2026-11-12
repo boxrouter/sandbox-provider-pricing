@@ -68,7 +68,7 @@ cost of any sandbox. `make docs` regenerates the table.
 <!-- generated:hourly -->
 | Provider | One hour (USD) | Billed on | Price version |
 | --- | ---: | --- | --- |
-| Agent37 | about 0.006027 | CPU and memory as requested | [`agent37@2026-11-11`](src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml) |
+| Agent37 | about 0.006027 | CPU and memory as requested | [`agent37@2026-11-12`](src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml) |
 | Blaxel | 0 to 0.1656 | Memory only while in use | [`blaxel@2026-11-07-122300Z`](src/sandbox_provider_pricing/providers/blaxel/prices/2026-11-07-122300Z.yaml) |
 | Boat | 0.018 | Flat per-size rate, not per vCPU or GiB | [`boat@2026-11-01-052001Z`](src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052001Z.yaml) |
 | boxd | 0 to 0.15 | CPU and memory only while in use | [`boxd@2026-11-02-082924Z`](src/sandbox_provider_pricing/providers/boxd/prices/2026-11-02-082924Z.yaml) |

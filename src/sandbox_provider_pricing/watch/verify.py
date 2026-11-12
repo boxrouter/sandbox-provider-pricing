@@ -93,6 +93,7 @@ def verify(
     quotes = [source["quote"] for source in draft["sources"]]
     for rate in _rates(draft):
         failures += _rate_failures(rate, mentions, quotes)
+    failures += _derived_failures(draft, quotes)
     return [_short(failure) for failure in failures]
 
 
@@ -162,7 +163,10 @@ def _rates(version: JsonObject) -> Iterator[PricedRate]:
     several = len(version["classes"]) > 1
     for price_class in version["classes"]:
         prefix = f"{price_class['name']} " if several else ""
+        derived = price_class.get("derived_from", {}).get("rates", ())
         for resource, rate in price_class["rates"].items():
+            if resource in derived:
+                continue  # `_derived_failures` checks it against its base rate and factor
             if resource == "gpu":
                 for model, model_rate in rate.items():
                     yield PricedRate(f"{prefix}gpu {model}", resource, model_rate, model)
@@ -171,6 +175,32 @@ def _rates(version: JsonObject) -> Iterator[PricedRate]:
                     yield PricedRate(f"{prefix}machine {size_name}", resource, size_rate, size_name)
             else:
                 yield PricedRate(f"{prefix}{resource}", resource, rate)
+
+
+def _derived_failures(version: JsonObject, quotes: list[str]) -> list[str]:
+    """A rate the provider publishes only as a factor of another class's: it must equal that
+    class's rate times the factor, in the same unit, and a quote must state the factor."""
+    classes = {price_class["name"]: price_class for price_class in version["classes"]}
+    failures = []
+    for price_class in version["classes"]:
+        derived = price_class.get("derived_from")
+        if derived is None:
+            continue
+        name, factor = price_class["name"], derived["factor"]
+        if not any(f"{factor}x" in quote for quote in quotes):
+            failures.append(f"No quote states the {name} class's factor {factor}x.")
+        base = classes.get(derived["class"], {}).get("rates", {})
+        for resource in derived["rates"]:
+            rate, of = price_class["rates"].get(resource), base.get(resource)
+            if rate is None or of is None or rate["per"] != of["per"]:
+                failures.append(
+                    f"The rate {name} {resource} has no {derived['class']} rate to derive from."
+                )
+            elif Decimal(rate["usd"]) != Decimal(of["usd"]) * Decimal(factor):
+                failures.append(
+                    f"The rate {name} {resource} {rate['usd']} is not {of['usd']} times {factor}."
+                )
+    return failures
 
 
 def _rate_failures(

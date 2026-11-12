@@ -14,7 +14,7 @@ What would improve it: Nothing. Until the adapter reads the same settled total t
 
 ## Rates
 
-From [`agent37@2026-11-11`](../../src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml), in effect from 2026-11-11, default class `default`.
+From [`agent37@2026-11-12`](../../src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml), in effect from 2026-11-11, default class `default`.
 
 | Meter | Rate | Billed on | Billed while |
 | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ From [`agent37@2026-11-11`](../../src/sandbox_provider_pricing/providers/agent37
 | Idle and paused | Running and the transitional states bill the full rate; sleeping, stopped and waking bill disk only. A stopped instance measured billed disk alone. A sleeper parked in cold storage bills its compressed bytes at a separate rate. [^1][^2] |
 | Image pull | Not stated. The meter starts at running, so a create that fails costs nothing; two measured creates of the default template returned in under a second. [^1][^2] |
 | Billed separately | Managed LLM, search and tool calls debit the same wallet per instance within a budget that defaults to $0. Performance instances bill compute at 4x and VM instances at 2.5x. Backups and egress are not priced on the pages checked. [^1][^3] |
-| Left out | Managed LLM, search and tool spend (the instance's other usage fields), Performance and VM instances, cold-storage time, backups, egress, the sign-up credit and top-ups. [^1][^3] |
+| Left out | Managed LLM, search and tool spend (the instance's other usage fields), Performance instances, cold-storage time, backups, egress, the sign-up credit and top-ups. [^1][^3] |
 | Per-sandbox data | Yes. GET /v1/usage lists each instance's spend in micro-dollars over up to 90 days, deleted ones included; compute lands within the hour and, measured, at delete. [^1][^2] |
 
 ## Not known yet
@@ -49,7 +49,8 @@ From [`agent37@2026-11-11`](../../src/sandbox_provider_pricing/providers/agent37
 
 ## Price versions
 
-- [`agent37@2026-11-11`](../../src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml): from 2026-11-11, read 2026-11-11, in effect now.
+- [`agent37@2026-11-12`](../../src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml): from 2026-11-11, read 2026-11-12, in effect now.
+- [`agent37@2026-11-11`](../../src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml): from 2026-11-11, read 2026-11-11, replaced by `agent37@2026-11-12`.
 
 This page is generated from [billing.yaml](../../src/sandbox_provider_pricing/providers/agent37/billing.yaml) and the price versions by `make docs`. Edit those, not this file.
 

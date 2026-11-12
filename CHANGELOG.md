@@ -4,6 +4,17 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.3 — 2026-11-12
+
+### Added
+
+- Agent37 prices VM instances: price version `agent37@2026-11-12` adds class `vm` at 2.5x the
+  default compute rate ($2.00 per vCPU-month and $1.75 per GB-month of RAM) with disk unchanged at
+  $0.09 per GB-month, and supersedes `agent37@2026-11-11`.
+- A price class may carry `derived_from` (`class`, `factor`, `rates`) where the provider publishes
+  a rate only as a factor of another class's: each named rate equals that class's rate times the
+  factor, in the same unit, and a source quote states the factor (`watch.verify` checks both).
+
 ## 0.17.2 — 2026-11-11
 
 ### Changed

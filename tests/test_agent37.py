@@ -3,10 +3,12 @@
 """Agent37's price is the settled compute spend of the instance, never its managed services."""
 
 import json
+from decimal import Decimal
 from pathlib import Path
 from typing import Any, cast
 
-from sandbox_provider_pricing import price
+from sandbox_provider_pricing import price, reservation_quote
+from sandbox_provider_pricing.versions import latest_version
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,3 +53,15 @@ def test_another_instances_usage_entry_is_not_priced() -> None:
     item = evidence()
     item["sandbox_id"] = "someotherid"
     assert price(item)["label"] == "unknown"
+
+
+def test_a_vm_reservation_is_the_published_vm_monthly_price() -> None:
+    # The VM page's 2 vCPU / 4 GB / 4 GB disk row is $11.36 a month (730 hours); the default
+    # type's same shape is $4.76, so the VM class prices compute at 2.5x and disk unchanged.
+    version = latest_version("agent37")
+    size = {"cpu": 2, "memory_mib": 4096, "disk_mib": 4096}
+    month = 730 * 3600
+    for class_name, monthly in (("vm", "11.36"), ("default", "4.76")):
+        quote = reservation_quote(version, size, month, class_name=class_name, creation=False)
+        assert quote["status"] == "bounded", quote
+        assert Decimal(str(quote["ceiling_usd"])).quantize(Decimal("0.01")) == Decimal(monthly)

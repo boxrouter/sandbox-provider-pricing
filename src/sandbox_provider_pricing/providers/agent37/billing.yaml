@@ -58,7 +58,7 @@ rules:
       - https://www.agent37.com/docs/agents-api/billing
       - https://www.agent37.com/docs/agents-api/budgets
   left_out:
-    answer: Managed LLM, search and tool spend (the instance's other usage fields), Performance and VM instances, cold-storage time, backups, egress, the sign-up credit and top-ups.
+    answer: Managed LLM, search and tool spend (the instance's other usage fields), Performance instances, cold-storage time, backups, egress, the sign-up credit and top-ups.
     sources:
       - https://www.agent37.com/docs/agents-api/billing
       - https://www.agent37.com/docs/agents-api/budgets

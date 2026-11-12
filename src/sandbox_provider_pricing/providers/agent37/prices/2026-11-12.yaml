@@ -1,0 +1,181 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: agent37
+version: agent37@2026-11-12
+effective_from: '2026-11-11T00:00:00Z'
+retrieved_at: '2026-11-12T09:20:00Z'
+supersedes:
+- agent37@2026-11-11
+sources:
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: vCPU | $0.80 per vCPU per month
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: RAM | $0.70 per GB per month
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Disk | $0.09 per GB per month
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: The monthly price is the rate; the wallet is metered per minute (the monthly
+    price divided by 730 hours, divided by 60).
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: running, and the transitional states (starting, restarting, updating, stopping)
+    | The full compute rate, with auto-sleep on or off.
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: 'sleeping, stopped, or waking | The disk rate alone: $0.09 per reserved GB
+    per month.'
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: 'Nothing is debited at create: the meter starts when the instance first reaches
+    running, so a failed create costs nothing and there is nothing to refund.'
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Whole minutes are billed at every lifecycle transition and at least hourly;
+    you never see a per-minute charge on an API call.
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Deleting an instance settles the final window and billing stops.
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Parked in cold storage | $0.03 per GB per month, on the actual compressed
+    bytes stored.
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: compute is 4x the default rate, and disk is unchanged.
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Its compute is 2.5x the default rate, and disk is unchanged.
+- url: https://www.agent37.com/docs/agents-api/vm-instances
+  quote: The same four shapes, and compute meters at 2.5x the default rate
+- url: https://www.agent37.com/docs/agents-api/vm-instances
+  quote: '| 2 | 4 GB | 2-100 GB | 4 GB | $11.36 |'
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Managed LLM, Brave search, and Composio calls are metered at cost against
+    the same wallet, gated by each instance
+- url: https://www.agent37.com/docs/agents-api/billing
+  quote: Billing is prepaid.
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.80'
+      per: vcpu-month
+    memory:
+      usd: '0.70'
+      per: gb-month
+      size_per_unit: '1'
+    disk:
+      usd: '0.09'
+      per: gb-month
+      size_per_unit: '1'
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+      increment_seconds: 60
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+      increment_seconds: 60
+    disk:
+      basis: allocated
+      billed_states:
+      - running
+      - paused
+      - stopped
+      increment_seconds: 60
+- name: vm
+  derived_from:
+    class: default
+    factor: '2.5'
+    rates:
+    - cpu
+    - memory
+  rates:
+    cpu:
+      usd: '2.00'
+      per: vcpu-month
+    memory:
+      usd: '1.75'
+      per: gb-month
+      size_per_unit: '1'
+    disk:
+      usd: '0.09'
+      per: gb-month
+      size_per_unit: '1'
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+      increment_seconds: 60
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+      increment_seconds: 60
+    disk:
+      basis: allocated
+      billed_states:
+      - running
+      - paused
+      - stopped
+      increment_seconds: 60
+exclusions:
+- Performance instances (compute at 4x the default rate) are not priced here; the
+  default and VM instance types are. VM compute is 2.5x the default rate (2 vCPU and
+  4 GB at $2.00 and $1.75 make the page's $11.36 a month with 4 GB of disk).
+- A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed
+  bytes instead of its reserved disk; those bytes are not reported per instance, so
+  that time is not priced here.
+- Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per
+  instance, within a budget that defaults to $0; they are not part of a sandbox's
+  price.
+- The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up
+  tier are account terms, not per-instance cost.
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Billed per vCPU-month (730 hours) of allocated vCPU while running or in
+      a transitional state.
+  memory:
+    treatment: in_quote
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Billed per GB-month (730 hours) of allocated RAM while running or in a transitional
+      state.
+  disk:
+    treatment: in_quote
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Billed per GB-month (730 hours) of reserved disk in every state while the
+      instance exists.
+  creation:
+    treatment: not_billed
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Nothing is debited at create; the meter starts when the instance first reaches
+      running.
+  egress:
+    treatment: unbounded
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: No egress charge is listed. Not published on the pages checked; treated
+      as possibly billable, never as free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Nightly and on-demand backups are not priced on the pages checked; treated
+      as possibly billable, never as free.
+  image_storage:
+    treatment: unbounded
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: No template or image storage charge is listed. Not published on the pages
+      checked; treated as possibly billable, never as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: No volume charge is listed. Not published on the pages checked; treated
+      as possibly billable, never as free.
+  requests:
+    treatment: unbounded
+    source: https://www.agent37.com/docs/agents-api/billing
+    note: Managed LLM, search and tool calls are billed per use within each instance's
+      budget, which defaults to $0; outside a sandbox's price.
+open_questions:
+- The pages do not say how a part minute is billed. In two measured instances each
+  period was rounded up to whole minutes and the next state began at the end of the
+  last billed minute (providers/agent37/evidence/2026-11-11-usage-vs-list-price.md).
+- Whether GB means 10^9 bytes or GiB for RAM and disk; this version reads one GB as
+  one GiB, as other providers that quote GB for RAM are read.

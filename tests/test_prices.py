@@ -140,7 +140,10 @@ def test_every_unit_rate_appears_in_a_quote() -> None:
         document = load_price(path)
         quotes = [source["quote"] for source in document["sources"]]
         for price_class in document["classes"]:
+            derived = price_class.get("derived_from", {}).get("rates", ())
             for resource, rate in price_class["rates"].items():
+                if resource in derived:
+                    continue  # watch.verify's `_derived_failures` checks it (test_draft)
                 rates = rate.items() if resource in ("gpu", "machine") else [(None, rate)]
                 for model, model_rate in rates:
                     amount = model_rate["usd"]

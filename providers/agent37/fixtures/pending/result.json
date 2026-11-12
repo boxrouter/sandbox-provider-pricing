@@ -6,30 +6,15 @@
   "held_back_by": [
     {
       "code": "unreported_quantity",
-      "resource": "cpu",
-      "text": "The provider did not report the sandbox's size."
-    },
-    {
-      "code": "unreported_quantity",
-      "resource": "time",
-      "text": "The provider did not report the billed time."
-    },
-    {
-      "code": "unreported_quantity",
-      "resource": "memory",
-      "text": "The provider did not report the sandbox's size."
-    },
-    {
-      "code": "unreported_quantity",
-      "resource": "disk",
-      "text": "The provider did not report the sandbox's size."
+      "resource": "class",
+      "text": "The provider did not report the class."
     }
   ],
   "currency": "USD",
   "basis": "list_price_usage",
   "reported": null,
   "excluded": [
-    "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+    "Performance instances (compute at 4x the default rate) are not priced here; the default and VM instance types are. VM compute is 2.5x the default rate (2 vCPU and 4 GB at $2.00 and $1.75 make the page's $11.36 a month with 4 GB of disk).",
     "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
     "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
     "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
@@ -43,9 +28,9 @@
   },
   "final": false,
   "versions": {
-    "package": "0.16.3",
+    "package": "0.17.3",
     "rules": 1,
-    "prices": "agent37@2026-11-11"
+    "prices": "agent37@2026-11-12"
   },
   "steps": {
     "evidence": {
@@ -243,33 +228,18 @@
         "held_back_by": [
           {
             "code": "unreported_quantity",
-            "resource": "cpu",
-            "text": "The provider did not report the sandbox's size."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "time",
-            "text": "The provider did not report the billed time."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "memory",
-            "text": "The provider did not report the sandbox's size."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "disk",
-            "text": "The provider did not report the sandbox's size."
+            "resource": "class",
+            "text": "The provider did not report the class."
           }
         ],
         "exclusions": [
-          "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+          "Performance instances (compute at 4x the default rate) are not priced here; the default and VM instance types are. VM compute is 2.5x the default rate (2 vCPU and 4 GB at $2.00 and $1.75 make the page's $11.36 a month with 4 GB of disk).",
           "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
           "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
           "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
           "Credits and discounts"
         ],
-        "price_version": "agent37@2026-11-11",
+        "price_version": "agent37@2026-11-12",
         "as_of": "2026-11-11T20:58:53.765953Z"
       },
       "high": {
@@ -279,33 +249,18 @@
         "held_back_by": [
           {
             "code": "unreported_quantity",
-            "resource": "cpu",
-            "text": "The provider did not report the sandbox's size."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "time",
-            "text": "The provider did not report the billed time."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "memory",
-            "text": "The provider did not report the sandbox's size."
-          },
-          {
-            "code": "unreported_quantity",
-            "resource": "disk",
-            "text": "The provider did not report the sandbox's size."
+            "resource": "class",
+            "text": "The provider did not report the class."
           }
         ],
         "exclusions": [
-          "Performance instances (compute at 4x the default rate) and VM instances (compute at 2.5x) are not priced here; only the default instance type is.",
+          "Performance instances (compute at 4x the default rate) are not priced here; the default and VM instance types are. VM compute is 2.5x the default rate (2 vCPU and 4 GB at $2.00 and $1.75 make the page's $11.36 a month with 4 GB of disk).",
           "A sleeping instance parked in cold storage bills $0.03 per GB-month on its compressed bytes instead of its reserved disk; those bytes are not reported per instance, so that time is not priced here.",
           "Managed LLM, Brave search, Composio and paid-tool calls debit the same wallet per instance, within a budget that defaults to $0; they are not part of a sandbox's price.",
           "The wallet is prepaid; the $5 sign-up credit, top-ups and instance limits by top-up tier are account terms, not per-instance cost.",
           "Credits and discounts"
         ],
-        "price_version": "agent37@2026-11-11",
+        "price_version": "agent37@2026-11-12",
         "as_of": "2026-11-11T20:58:53.765953Z"
       }
     }

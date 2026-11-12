@@ -349,7 +349,7 @@
           ]
         },
         "left_out": {
-          "answer": "Managed LLM, search and tool spend (the instance's other usage fields), Performance and VM instances, cold-storage time, backups, egress, the sign-up credit and top-ups.",
+          "answer": "Managed LLM, search and tool spend (the instance's other usage fields), Performance instances, cold-storage time, backups, egress, the sign-up credit and top-ups.",
           "sources": [
             "https://www.agent37.com/docs/agents-api/billing",
             "https://www.agent37.com/docs/agents-api/budgets"
@@ -415,7 +415,7 @@
         }
       },
       "billing_rules_source": "src/sandbox_provider_pricing/providers/agent37/billing.yaml",
-      "checked_at": "2026-11-11",
+      "checked_at": "2026-11-12",
       "class": "default",
       "class_rules": {},
       "compute_rates": [
@@ -443,46 +443,46 @@
       "configs": [
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0030136986301369864,
             "low": 0.0030136986301369864,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0030136986301369864,
             "low": 0.0030136986301369864,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -495,46 +495,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004931506849315068,
             "low": 0.004931506849315068,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004931506849315068,
             "low": 0.004931506849315068,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -547,46 +547,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -599,46 +599,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001095890410958904,
             "low": 0.001095890410958904,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.01643835616438356,
             "low": 0.01643835616438356,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.01643835616438356,
             "low": 0.01643835616438356,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -651,46 +651,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.00410958904109589,
             "low": 0.00410958904109589,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.00410958904109589,
             "low": 0.00410958904109589,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -703,46 +703,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.006027397260273973,
             "low": 0.006027397260273973,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.006027397260273973,
             "low": 0.006027397260273973,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -755,46 +755,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.009863013698630137,
             "low": 0.009863013698630137,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.009863013698630137,
             "low": 0.009863013698630137,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -807,46 +807,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.002191780821917808,
             "low": 0.002191780821917808,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.017534246575342465,
             "low": 0.017534246575342465,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.017534246575342465,
             "low": 0.017534246575342465,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -859,46 +859,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.006301369863013699,
             "low": 0.006301369863013699,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.006301369863013699,
             "low": 0.006301369863013699,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -911,46 +911,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.00821917808219178,
             "low": 0.00821917808219178,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.00821917808219178,
             "low": 0.00821917808219178,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -963,46 +963,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.012054794520547946,
             "low": 0.012054794520547946,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.012054794520547946,
             "low": 0.012054794520547946,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1015,46 +1015,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.004383561643835616,
             "low": 0.004383561643835616,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.019726027397260273,
             "low": 0.019726027397260273,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.019726027397260273,
             "low": 0.019726027397260273,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1067,46 +1067,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.010684931506849316,
             "low": 0.010684931506849316,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0019178082191780822,
             "low": 0.0019178082191780822,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.010684931506849316,
             "low": 0.010684931506849316,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1119,46 +1119,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.012602739726027398,
             "low": 0.012602739726027398,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.0038356164383561643,
             "low": 0.0038356164383561643,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.012602739726027398,
             "low": 0.012602739726027398,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1171,46 +1171,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.01643835616438356,
             "low": 0.01643835616438356,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.007671232876712329,
             "low": 0.007671232876712329,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.01643835616438356,
             "low": 0.01643835616438356,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1223,46 +1223,46 @@
         },
         {
           "cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.008767123287671232,
             "low": 0.008767123287671232,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "idle_note": "An idle instance bills the full rate while it runs; auto-sleep is off by default.",
           "idle_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.02410958904109589,
             "low": 0.02410958904109589,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "memory_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.015342465753424657,
             "low": 0.015342465753424657,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "paused_note": "Only reserved disk is billed while stopped or sleeping.",
           "paused_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.001232876712328767,
             "low": 0.0006164383561643835,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
           },
           "reason": null,
           "running_per_hour_usd": {
-            "checked_at": "2026-11-11",
+            "checked_at": "2026-11-12",
             "high": 0.02410958904109589,
             "low": 0.02410958904109589,
             "source_url": "https://www.agent37.com/docs/agents-api/billing"
@@ -1278,17 +1278,17 @@
       "id": "agent37",
       "label": "default",
       "name": "Agent37",
-      "price_version": "agent37@2026-11-11",
+      "price_version": "agent37@2026-11-12",
       "pricing_release_version": "",
       "region": "us",
-      "region_checked_at": "2026-11-11",
+      "region_checked_at": "2026-11-12",
       "region_multiplier": null,
       "region_note": null,
       "region_source_url": "https://www.agent37.com/docs/agents-api/instances/create",
       "source_url": "https://www.agent37.com/docs/agents-api/billing",
       "storage": [
         {
-          "checked_at": "2026-11-11",
+          "checked_at": "2026-11-12",
           "included_gb": null,
           "included_unit": null,
           "kind": "image",
@@ -1304,7 +1304,7 @@
           "usd": null
         },
         {
-          "checked_at": "2026-11-11",
+          "checked_at": "2026-11-12",
           "included_gb": null,
           "included_unit": null,
           "kind": "disk",
@@ -1320,7 +1320,7 @@
           "usd": 0.09
         },
         {
-          "checked_at": "2026-11-11",
+          "checked_at": "2026-11-12",
           "included_gb": null,
           "included_unit": null,
           "kind": "snapshot",
@@ -1336,7 +1336,7 @@
           "usd": null
         },
         {
-          "checked_at": "2026-11-11",
+          "checked_at": "2026-11-12",
           "included_gb": null,
           "included_unit": null,
           "kind": "volume",

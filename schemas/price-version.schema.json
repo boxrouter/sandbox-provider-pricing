@@ -201,6 +201,17 @@
           "uniqueItems": true,
           "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
         },
+        "derived_from": {
+          "description": "Rates this class takes from another class of the same version times a factor the provider publishes, where it publishes no unit rate of its own (Agent37's VM compute is 2.5x its default rate). Each named rate equals that class's rate times the factor, and a source quote states the factor.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["class", "factor", "rates"],
+          "properties": {
+            "class": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+            "factor": { "$ref": "#/$defs/positive_decimal" },
+            "rates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+          }
+        },
         "rates": { "$ref": "#/$defs/rates" },
         "meter": { "$ref": "#/$defs/meter" },
         "region_multipliers": {

@@ -274,6 +274,21 @@ def test_a_free_rate_needs_a_quote_about_it_that_says_free_or_included() -> None
     assert draft.verify(document, PageText(visible=included), URL) == []
 
 
+def test_a_derived_rate_must_be_its_base_rate_times_a_quoted_factor() -> None:
+    path = ROOT / "src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml"
+    version: JsonObject = yaml.safe_load(path.read_text(encoding="utf-8"))
+    everything = PageText(visible=" ".join(source["quote"] for source in version["sources"]))
+    url = version["sources"][0]["url"]
+    vm = next(item for item in version["classes"] if item["name"] == "vm")
+    vm["rates"]["cpu"]["usd"] = "2.01"
+    assert draft.verify(version, everything, url) == ["The rate vm cpu 2.01 is not 0.80 times 2.5."]
+    vm["rates"]["cpu"]["usd"] = "2.00"
+    vm["derived_from"]["factor"] = "2.6"
+    vm["rates"]["memory"]["usd"] = "1.82"
+    vm["rates"]["cpu"]["usd"] = "2.08"
+    assert draft.verify(version, everything, url) == ["No quote states the vm class's factor 2.6x."]
+
+
 @pytest.mark.parametrize(
     "path",
     sorted((ROOT / "src/sandbox_provider_pricing/providers").glob("*/prices/*.yaml")),
