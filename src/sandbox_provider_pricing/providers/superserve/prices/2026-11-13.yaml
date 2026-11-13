@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: superserve
+version: superserve@2026-11-13
+effective_from: '2026-06-17T00:00:00Z'
+retrieved_at: '2026-11-13T02:49:20Z'
+sources:
+- url: https://api.superserve.ai/billing/pricing/public
+  quote: '"plan_name":"Pay-as-you-go","currency":"USD"'
+- url: https://api.superserve.ai/billing/pricing/public
+  quote: '"resource_key":"vcpu","resource":"vcpu","display_name":"CPU","sort_order":10,"unit":"second","display_unit":"vCPU-hours","price_usd":0.000014,"price_usd_hourly":0.0504,"effective_from":"2026-06-17T00:00:00Z","tracked":true,"billable":true'
+- url: https://api.superserve.ai/billing/pricing/public
+  quote: '"resource_key":"memory_gib","resource":"memory_gib","display_name":"Memory","sort_order":20,"unit":"second","display_unit":"GiB-hours","price_usd":0.0000045,"price_usd_hourly":0.0162,"effective_from":"2026-06-17T00:00:00Z","tracked":true,"billable":true'
+- url: https://api.superserve.ai/billing/pricing/public
+  quote: '"resource_key":"storage_gib","resource":"storage_gib","display_name":"Storage","sort_order":30,"unit":"second","display_unit":"GiB-hours","price_usd":3e-8,"price_usd_hourly":0.000108,"effective_from":"2026-06-17T00:00:00Z","tracked":true,"billable":false'
+- url: https://www.superserve.ai/pricing/
+  quote: The same rates on every plan. Included usage on every plan is spent at these
+    rates.
+- url: https://www.superserve.ai/pricing/
+  quote: Compute[vCPU] Per-second billing. Pay only while sandboxes are running. $0.0504/
+    hour
+- url: https://www.superserve.ai/pricing/
+  quote: Memory[GiB] Allocated memory, billed per second of active runtime. $0.0162/
+    hour
+- url: https://www.superserve.ai/pricing/
+  quote: Storage[GiB] Shared template once, plus retained sandbox diffs. Billed while
+    stored. $0.000108/ hour
+- url: https://www.superserve.ai/pricing/
+  quote: Compute stops billing when paused; storage is billed for as long as you keep
+    it.
+- url: https://www.superserve.ai/pricing/
+  quote: Estimates exclude taxes, network, and external model API charges.
+- url: https://docs.superserve.ai/sandbox/lifecycle
+  quote: active - VM is running, processes executing, compute billed
+- url: https://docs.superserve.ai/sandbox/lifecycle
+  quote: paused - VM paused, state persisted to disk, no compute billed
+- url: https://docs.superserve.ai/sandbox/live-memory-resizing
+  quote: "You pay for the memory a sandbox holds. During a burst it\u2019s billed\
+    \ at its grown size, and once it shrinks it\u2019s billed at the smaller size\
+    \ again."
+- url: https://docs.superserve.ai/sandbox/live-memory-resizing
+  quote: "paused sandboxes aren\u2019t billed for it."
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.000014'
+      per: vcpu-second
+    memory:
+      usd: '0.0000045'
+      per: gib-second
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+exclusions:
+- 'Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once
+  plus each sandbox''s retained changes, not its allocated disk, and says it is billed
+  for as long as it is kept. The public pricing JSON lists the same rate with "billable":false.
+  The two sources conflict, so no storage rate is priced here.'
+- 'Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including
+  $250 of usage; Enterprise custom. The usage rates are the same on every plan.'
+- 'Network: the pricing page says its estimates "exclude taxes, network, and external
+  model API charges"; no network charge is published.'
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://api.superserve.ai/billing/pricing/public
+    note: Billed per vCPU-second while the sandbox is running; compute is not billed
+      while paused.
+  memory:
+    treatment: in_quote
+    source: https://api.superserve.ai/billing/pricing/public
+    note: Billed per GiB-second of the memory the sandbox holds while it is running;
+      paused sandboxes are not billed for it.
+  disk:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: Storage is billed on retained data, not on allocated disk, and the pricing
+      page and the public pricing JSON disagree on whether it is billed. Treated as
+      possibly billable, never as free.
+  creation:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: No per-creation fee is published. Not published on the pages checked; treated
+      as possibly billable, never as free.
+  egress:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: No network charge is published; the pricing page says its estimates exclude
+      network. Treated as possibly billable, never as free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: Paused sandbox data is retained and the pricing page says storage is billed
+      for as long as it is kept, but the public pricing JSON says storage is not billable.
+      Treated as possibly billable, never as free.
+  image_storage:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: The shared template is counted once in storage, which the two sources disagree
+      on billing. Treated as possibly billable, never as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: No volume product or charge is published. Not published on the pages checked;
+      treated as possibly billable, never as free.
+  requests:
+    treatment: unbounded
+    source: https://www.superserve.ai/pricing/
+    note: No per-request charge is published. Not published on the pages checked;
+      treated as possibly billable, never as free.
+open_questions:
+- 'Whether storage is billed: the pricing page lists $0.000108 per GiB-hour "billed
+  while stored", and the public pricing JSON marks storage_gib "billable":false. Which
+  rate applies today, and from when, is not stated.'
+- Whether a sandbox's storage can be read per sandbox; the team-level usage endpoint
+  reports vCPU, memory and storage seconds, but no per-sandbox usage record is documented.
+- Rounding, minimum charge and billing of the starting, pausing and resuming states
+  are not stated; only active and paused are described.

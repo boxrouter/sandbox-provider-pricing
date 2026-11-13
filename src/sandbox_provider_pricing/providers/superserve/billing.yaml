@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Superserve
+website: https://www.superserve.ai
+rules_version: 1
+status:
+  best_label: unknown
+  why_not_higher: Superserve documents no per-sandbox usage or cost record and no lifecycle event feed, and its billing boundaries have not been measured.
+  would_raise: A per-sandbox usage record, or measured start and end boundaries that let lifecycle times be priced at the list rates.
+revisit: null
+reported_at_list_price:
+  value: null
+  unknown_how: Compare a reported usage total for a team that ran a known set of sandboxes with the list rates; no per-sandbox charge is documented.
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported usage total on an account with negotiated rates against the list rates.
+summary: >-
+  Superserve bills compute and memory per second at the same list rates on every plan, only while a sandbox runs. Storage is listed at a rate by one source and marked not billable by another, so it is left out and the cost stays unknown. Billing boundaries and per-sandbox records are not measured.
+formula: >-
+  Unknown until the billing boundaries are measured. List-rate estimate for a running period: seconds × (vCPUs × CPU rate + GiB of memory × memory rate), plus storage if it is billed.
+rules:
+  billed_on:
+    answer: '{rate.cpu} and {rate.memory} of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict.'
+    sources:
+      - https://www.superserve.ai/pricing/
+      - https://api.superserve.ai/billing/pricing/public
+      - https://docs.superserve.ai/sandbox/live-memory-resizing
+  starts:
+    answer: Not stated; not yet measured.
+    unknown_how: Compare billed usage with a sandbox's create and ready times on an account whose usage can be read.
+  ends:
+    answer: Compute and memory stop billing when the sandbox is paused. Not stated for delete or for time spent pausing.
+    sources:
+      - https://docs.superserve.ai/sandbox/lifecycle
+      - https://www.superserve.ai/pricing/
+  rounding:
+    answer: Billed per second; no minimum or rounding increment is stated.
+    sources:
+      - https://www.superserve.ai/pricing/
+  idle_and_paused:
+    answer: A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither; its retained data is the storage meter.
+    sources:
+      - https://docs.superserve.ai/sandbox/lifecycle
+      - https://docs.superserve.ai/sandbox/live-memory-resizing
+      - https://www.superserve.ai/pricing/
+  image_pull:
+    answer: Not stated; not yet measured.
+    unknown_how: Compare billed usage for a first create from a large template with a later create from the same template.
+  extra_charges:
+    answer: Storage on a shared template and retained sandbox changes, if billed. The pricing page says its estimates exclude network and external model API charges; no network charge is published.
+    sources:
+      - https://www.superserve.ai/pricing/
+  left_out:
+    answer: Storage, plan fees, the included usage on paid plans, taxes, network and external model API charges.
+    sources:
+      - https://www.superserve.ai/pricing/
+  per_sandbox_data:
+    answer: Unknown. A team-level usage endpoint is described, but no per-sandbox usage or cost record is documented.
+    unknown_how: Read a team's usage after running one sandbox alone and compare it with the sandbox's own record.
+checks: []
+open_questions:
+  - question: Is storage billed? The pricing page lists it at a per GiB-hour rate while retained, and the public pricing data marks it not billable.
+    how: Ask Superserve, or compare a team's reported storage usage and charge for retained sandboxes against the listed rate.
+  - question: Do paused sandboxes, templates and snapshots add a charge beyond storage?
+    how: Pause a sandbox for a measured period and compare a team's usage before and after.
+  - question: Are time spent starting, pausing and resuming billed?
+    how: Compare billed usage with the timestamps of one sandbox's lifecycle transitions.
+price_sheet:
+  active_time_priced: {value: false, source_url: https://www.superserve.ai/pricing/}
+  benchmark_region: {value: null, source_url: https://docs.superserve.ai/api-key}
+  states:
+    idle: {rule: running, note: A running sandbox bills compute and memory whether or not it is busy., source_url: https://www.superserve.ai/pricing/}
+    paused: {rule: unknown, note: Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources., source_url: https://www.superserve.ai/pricing/}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: unknown, source_url: https://www.superserve.ai/pricing/}
+    - {kind: snapshot, status: unknown, source_url: https://www.superserve.ai/pricing/}
+    - {kind: image, status: unknown, source_url: https://www.superserve.ai/pricing/}
+    - {kind: volume, status: unpublished, source_url: https://www.superserve.ai/pricing/}

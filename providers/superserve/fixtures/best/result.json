@@ -1,0 +1,207 @@
+{
+  "provider": "superserve",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [],
+  "revisit": null,
+  "final": false,
+  "versions": {
+    "package": "0.17.3",
+    "rules": 1,
+    "prices": null
+  },
+  "steps": {
+    "evidence": {
+      "provider": "superserve",
+      "sandbox_id": "scaffolded-example",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the scaffold's synthetic create call returned"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-01-01T00:00:00Z",
+            "source": "recorded",
+            "how": "the scaffold's synthetic create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-01-01T00:00:05Z",
+            "source": "recorded",
+            "how": "the scaffold's synthetic create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-01-01T00:10:00Z",
+            "source": "recorded",
+            "how": "the scaffold's synthetic destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-01-01T00:10:05Z",
+            "source": "recorded",
+            "how": "the scaffold's synthetic destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-01-01T00:00:05Z",
+      "source": "recorded",
+      "how": "When the provider's create call returned."
+    },
+    "sandbox_end": {
+      "value": "2026-01-01T00:10:05Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-01-01T00:00:05Z",
+          "source": "recorded",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-01-01T00:10:05Z",
+            "how": "Waiting for the provider's lifecycle record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-01-01T00:00:05Z",
+          "source": "recorded",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "When the provider's create call returned."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-01-01T00:10:05Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-01-01T00:10:05Z",
+            "how": "Waiting for the provider's lifecycle record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [],
+        "price_version": null,
+        "as_of": "2026-01-01T00:10:05Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [],
+        "price_version": null,
+        "as_of": "2026-01-01T00:10:05Z"
+      }
+    }
+  },
+  "as_of": "2026-01-01T00:10:05Z"
+}

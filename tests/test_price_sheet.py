@@ -202,6 +202,7 @@ def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:
         "daytona": "Daytona",
         "e2b": "E2B",
         "modal": "Modal",
+        "superserve": "Superserve",
         "vercel": "Vercel",
     }
     assert all(provider["display_name"] == provider["name"] for provider in sheet["providers"])
@@ -245,6 +246,7 @@ def test_price_sheet_has_one_entry_per_provider_and_spec_class() -> None:
         ("e2b", "default"),
         ("modal", "default"),
         ("modal", "vm"),
+        ("superserve", "default"),
         ("vercel", "default"),
     }
     for (provider_id, spec_class), entry in entries.items():
@@ -539,6 +541,7 @@ def test_every_sheet_provider_carries_typed_billing_mode_and_compute_rate_units(
         "daytona": ("allocated", False, ["cpu", "memory"]),
         "e2b": ("allocated", False, ["cpu", "memory"]),
         "modal": ("larger_of_request_and_use", False, ["cpu", "memory"]),
+        "superserve": ("allocated", False, ["cpu", "memory"]),
         "vercel": ("mixed", True, ["cpu", "memory"]),
     }
     # Each compute rate carries its price version's meter and the rate's own unit and amount.

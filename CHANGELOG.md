@@ -4,6 +4,17 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.4 — 2026-11-13
+
+### Added
+
+- Superserve prices its default class: price version `superserve@2026-11-13` has CPU at
+  $0.000014 per vCPU-second and memory at $0.0000045 per GiB-second, billed while a sandbox runs,
+  the same on every plan. Storage is left unpriced: the pricing page lists it at $0.000108 per
+  GiB-hour while retained, and the public pricing data marks it not billable, so the version states
+  disk, snapshot and image storage as unbounded. Billing boundaries and per-sandbox records are not
+  measured, so the cost label is unknown.
+
 ## 0.17.3 — 2026-11-12
 
 ### Added

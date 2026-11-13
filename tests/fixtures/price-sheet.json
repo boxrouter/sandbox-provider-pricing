@@ -8816,6 +8816,957 @@
       }
     },
     {
+      "active_time_priced": false,
+      "basis": "allocated CPU and memory",
+      "billing_mode": "allocated",
+      "billing_rules": {
+        "best_cost_label": "unknown",
+        "billed_on": {
+          "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict.",
+          "sources": [
+            "https://www.superserve.ai/pricing/",
+            "https://api.superserve.ai/billing/pricing/public",
+            "https://docs.superserve.ai/sandbox/live-memory-resizing"
+          ]
+        },
+        "ends": {
+          "answer": "Compute and memory stop billing when the sandbox is paused. Not stated for delete or for time spent pausing.",
+          "sources": [
+            "https://docs.superserve.ai/sandbox/lifecycle",
+            "https://www.superserve.ai/pricing/"
+          ]
+        },
+        "extra_charges": {
+          "answer": "Storage on a shared template and retained sandbox changes, if billed. The pricing page says its estimates exclude network and external model API charges; no network charge is published.",
+          "sources": [
+            "https://www.superserve.ai/pricing/"
+          ]
+        },
+        "idle_and_paused": {
+          "answer": "A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither; its retained data is the storage meter.",
+          "sources": [
+            "https://docs.superserve.ai/sandbox/lifecycle",
+            "https://docs.superserve.ai/sandbox/live-memory-resizing",
+            "https://www.superserve.ai/pricing/"
+          ]
+        },
+        "image_pull": {
+          "answer": "Not stated; not yet measured.",
+          "unknown_how": "Compare billed usage for a first create from a large template with a later create from the same template."
+        },
+        "left_out": {
+          "answer": "Storage, plan fees, the included usage on paid plans, taxes, network and external model API charges.",
+          "sources": [
+            "https://www.superserve.ai/pricing/"
+          ]
+        },
+        "per_sandbox_data": {
+          "answer": "Unknown. A team-level usage endpoint is described, but no per-sandbox usage or cost record is documented.",
+          "unknown_how": "Read a team's usage after running one sandbox alone and compare it with the sandbox's own record."
+        },
+        "rounding": {
+          "answer": "Billed per second; no minimum or rounding increment is stated.",
+          "sources": [
+            "https://www.superserve.ai/pricing/"
+          ]
+        },
+        "sources": {
+          "billed_on": [
+            "https://www.superserve.ai/pricing/",
+            "https://api.superserve.ai/billing/pricing/public",
+            "https://docs.superserve.ai/sandbox/live-memory-resizing"
+          ],
+          "ends": [
+            "https://docs.superserve.ai/sandbox/lifecycle",
+            "https://www.superserve.ai/pricing/"
+          ],
+          "extra_charges": [
+            "https://www.superserve.ai/pricing/"
+          ],
+          "idle_and_paused": [
+            "https://docs.superserve.ai/sandbox/lifecycle",
+            "https://docs.superserve.ai/sandbox/live-memory-resizing",
+            "https://www.superserve.ai/pricing/"
+          ],
+          "image_pull": [],
+          "left_out": [
+            "https://www.superserve.ai/pricing/"
+          ],
+          "per_sandbox_data": [],
+          "rounding": [
+            "https://www.superserve.ai/pricing/"
+          ],
+          "starts": []
+        },
+        "starts": {
+          "answer": "Not stated; not yet measured.",
+          "unknown_how": "Compare billed usage with a sandbox's create and ready times on an account whose usage can be read."
+        }
+      },
+      "billing_rules_source": "src/sandbox_provider_pricing/providers/superserve/billing.yaml",
+      "checked_at": "2026-11-13",
+      "class": "default",
+      "class_rules": {},
+      "compute_rates": [
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "vcpu-second",
+          "resource": "cpu",
+          "size_per_unit": null,
+          "usd": 1.4e-05
+        },
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "gib-second",
+          "resource": "memory",
+          "size_per_unit": null,
+          "usd": 4.5e-06
+        }
+      ],
+      "configs": [
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0828,
+            "low": 0.0828,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0828,
+            "low": 0.0828,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1152,
+            "low": 0.1152,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1152,
+            "low": 0.1152,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.18,
+            "low": 0.18,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.18,
+            "low": 0.18,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0504,
+            "low": 0.0504,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.3096,
+            "low": 0.3096,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.3096,
+            "low": 0.3096,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1332,
+            "low": 0.1332,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1332,
+            "low": 0.1332,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1656,
+            "low": 0.1656,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1656,
+            "low": 0.1656,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2304,
+            "low": 0.2304,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2304,
+            "low": 0.2304,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1008,
+            "low": 0.1008,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.36,
+            "low": 0.36,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.36,
+            "low": 0.36,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.234,
+            "low": 0.234,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.234,
+            "low": 0.234,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2664,
+            "low": 0.2664,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2664,
+            "low": 0.2664,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.3312,
+            "low": 0.3312,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.3312,
+            "low": 0.3312,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2016,
+            "low": 0.2016,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4608,
+            "low": 0.4608,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4608,
+            "low": 0.4608,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4356,
+            "low": 0.4356,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0324,
+            "low": 0.0324,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4356,
+            "low": 0.4356,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.468,
+            "low": 0.468,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0648,
+            "low": 0.0648,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.468,
+            "low": 0.468,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.5328,
+            "low": 0.5328,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.1296,
+            "low": 0.1296,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.5328,
+            "low": 0.5328,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.4032,
+            "low": 0.4032,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.6624,
+            "low": 0.6624,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.2592,
+            "low": 0.2592,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.6624,
+            "low": 0.6624,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "status": "priced"
+        }
+      ],
+      "display_name": "Superserve",
+      "id": "superserve",
+      "label": "default",
+      "name": "Superserve",
+      "price_version": "superserve@2026-11-13",
+      "pricing_release_version": "",
+      "region": null,
+      "region_checked_at": "2026-11-13",
+      "region_multiplier": null,
+      "region_note": null,
+      "region_source_url": "https://docs.superserve.ai/api-key",
+      "source_url": "https://api.superserve.ai/billing/pricing/public",
+      "storage": [
+        {
+          "checked_at": "2026-11-13",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "image",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.superserve.ai/pricing/",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the image storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-13",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "disk",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.superserve.ai/pricing/",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the disk storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-13",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "snapshot",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.superserve.ai/pricing/",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the snapshot storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-13",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "volume",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.superserve.ai/pricing/",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the volume storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        }
+      ],
+      "unit_rates": {
+        "cpu_per_vcpu_hour": 0.0504,
+        "memory_per_gib_hour": 0.0162
+      }
+    },
+    {
       "active_time_priced": true,
       "basis": "active time",
       "billing_mode": "mixed",
