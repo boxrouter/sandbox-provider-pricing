@@ -60,6 +60,7 @@ def test_fixture_parity_and_result_schema() -> None:
         "daytona": 5,
         "e2b": 3,
         "modal": 2,
+        "superserve": 5,
         "vercel": 4,
     }
     for provider, count in counts.items():

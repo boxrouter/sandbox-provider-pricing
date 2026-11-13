@@ -1,0 +1,363 @@
+{
+  "provider": "superserve",
+  "label": "calculated",
+  "total": {
+    "low": "0.002833408088",
+    "high": "0.002833408088"
+  },
+  "lines": [
+    {
+      "what": "cpu",
+      "quantity": "123.191656",
+      "unit": "vcpu-second",
+      "rate": "0.000014",
+      "amount": "0.001724683184",
+      "quantity_source": "recorded"
+    },
+    {
+      "what": "memory",
+      "quantity": "246.383312",
+      "unit": "gib-second",
+      "rate": "0.0000045",
+      "amount": "0.001108724904",
+      "quantity_source": "recorded"
+    }
+  ],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+    "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+    "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-13T09:27:20.346000Z",
+    "until": "2026-11-20T09:27:15.346000Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-11-13T09:27:20.346000Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.17.4",
+    "rules": 2,
+    "prices": "superserve@2026-11-13"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "superserve",
+      "sandbox_id": "superserve-sandbox-redacted",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-13T09:25:42.467Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-13T09:25:42.796Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "pause",
+          "sent_at": {
+            "value": "2026-11-13T09:26:13.062Z",
+            "source": "recorded",
+            "how": "the pause request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-13T09:26:13.487Z",
+            "source": "recorded",
+            "how": "the pause request returned"
+          },
+          "outcome": "returned",
+          "keeps": "memory"
+        },
+        {
+          "name": "resume",
+          "sent_at": {
+            "value": "2026-11-13T09:26:44.138Z",
+            "source": "recorded",
+            "how": "the resume request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-13T09:26:44.475Z",
+            "source": "recorded",
+            "how": "the resume request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-13T09:27:14.927Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-13T09:27:15.346Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "started",
+          "at": {
+            "value": "2026-11-13T09:25:42.754542Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity started"
+        },
+        {
+          "kind": "paused",
+          "at": {
+            "value": "2026-11-13T09:26:13.531987Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity paused"
+        },
+        {
+          "kind": "resumed",
+          "at": {
+            "value": "2026-11-13T09:26:44.487695Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity resumed"
+        },
+        {
+          "kind": "ended",
+          "at": {
+            "value": "2026-11-13T09:27:15.306078Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity deleted"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-13T09:25:42.754542Z",
+        "source": "provider",
+        "how": "The provider's own time: Superserve activity started."
+      },
+      "end": {
+        "value": "2026-11-13T09:27:15.306078Z",
+        "source": "provider",
+        "how": "The provider's own time: Superserve activity deleted."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-13T09:25:42.754542Z",
+      "source": "provider",
+      "how": "The provider's own time: Superserve activity started."
+    },
+    "sandbox_end": {
+      "value": "2026-11-13T09:27:15.306078Z",
+      "source": "provider",
+      "how": "The provider's own time: Superserve activity deleted."
+    },
+    "usage": {
+      "low": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-11-13T09:25:42.754542Z",
+          "source": "provider",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The provider's own time: Superserve activity started."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 30.777445,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "paused",
+            "seconds": 30.955708,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "running",
+            "seconds": 30.818383,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          }
+        ]
+      },
+      "high": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-11-13T09:25:42.754542Z",
+          "source": "provider",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The provider's own time: Superserve activity started."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-13T09:27:15.346000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 30.777445,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "paused",
+            "seconds": 30.955708,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "running",
+            "seconds": 30.818383,
+            "source": "provider",
+            "observed_at": "2026-11-13T09:27:15.346000Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "calculated",
+        "total": {
+          "low": "0.002833408088",
+          "high": "0.002833408088"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "123.191656",
+            "unit": "vcpu-second",
+            "rate": "0.000014",
+            "amount": "0.001724683184",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "memory",
+            "quantity": "246.383312",
+            "unit": "gib-second",
+            "rate": "0.0000045",
+            "amount": "0.001108724904",
+            "quantity_source": "recorded"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+          "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+          "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "superserve@2026-11-13",
+        "as_of": "2026-11-13T09:27:15.346000Z"
+      },
+      "high": {
+        "label": "calculated",
+        "total": {
+          "low": "0.002833408088",
+          "high": "0.002833408088"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "123.191656",
+            "unit": "vcpu-second",
+            "rate": "0.000014",
+            "amount": "0.001724683184",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "memory",
+            "quantity": "246.383312",
+            "unit": "gib-second",
+            "rate": "0.0000045",
+            "amount": "0.001108724904",
+            "quantity_source": "recorded"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+          "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+          "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "superserve@2026-11-13",
+        "as_of": "2026-11-13T09:27:15.346000Z"
+      }
+    }
+  },
+  "as_of": "2026-11-13T09:27:15.346000Z"
+}

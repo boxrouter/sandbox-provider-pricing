@@ -37,6 +37,12 @@ A consumer words a cost's label as follows, and shows nothing beside an `unknown
 
 Each provider's page says which of these it supports and why.
 
+A calculated cost prices each running period from a start event to the end event that follows it. A
+provider's own timeout or auto-delete can end a sandbox without a delete event: Superserve writes
+`timeout_paused`, then `auto_deleted`, and no `deleted`. A calculated cost therefore ends a period
+at the first end event of every kind the provider writes, and each kind needs a measured case and a
+fixture. With no end event the cost is `unknown`, never the time to the last read.
+
 A cost also carries a settlement state, separate from its label: `exact` when it holds a figure,
 `pending` while a late record can still arrive inside the revisit window, and `unknown` once none
 can. The total stays `null` for `pending` and `unknown`. A consumer words an `exact` cost with its

@@ -25,7 +25,7 @@ and consumers show nothing. Our own clocks never stand in for the provider's.
 | [Daytona](providers/daytona/README.md) | `reported` | Daytona's own price for the sandbox. Check: billed seconds × (vCPUs × CPU rate + GiB of memory × memory rate + GiB of disk × disk rate). |
 | [E2B](providers/e2b/README.md) | `calculated` | For each running period, from a created or resumed event to the next paused or killed event: seconds × (vCPUs × CPU rate + GiB of memory × memory rate). |
 | [Modal](providers/modal/README.md) | `reported` | Modal's own bill for the App, when it held only this sandbox: the sum of hourly USD rows and covered empty hours, read at least 600 seconds after finished_at. An image preparation is priced the same way from its own stopped App. Otherwise unknown. |
-| [Superserve](providers/superserve/README.md) | `unknown` | Unknown until the billing boundaries are measured. List-rate estimate for a running period: seconds × (vCPUs × CPU rate + GiB of memory × memory rate), plus storage if it is billed. |
+| [Superserve](providers/superserve/README.md) | `calculated` | For each running period, from a started or resumed row to the first deleted, paused, timeout_paused or auto_deleted row: seconds × (vCPUs × CPU rate + GiB of memory × memory rate). With no end row the cost is unknown. |
 | [Vercel](providers/vercel/README.md) | `calculated` | GB of memory × run time in whole minutes × memory rate + active CPU hours × CPU rate + creations × creation fee + GB sent × egress rate + snapshot GB-months × storage rate. |
 <!-- /generated:provider-status -->
 

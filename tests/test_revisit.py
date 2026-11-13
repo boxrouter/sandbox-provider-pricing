@@ -24,6 +24,7 @@ def test_every_provider_has_a_complete_policy() -> None:
         "daytona": (120, 259200, 3600),
         "e2b": (15, 604800, 3600),
         "modal": (600, 604800, 3600),
+        "superserve": (5, 604800, 3600),
         "vercel": (120, 604800, 3600),
     }
     for provider in provider_ids():

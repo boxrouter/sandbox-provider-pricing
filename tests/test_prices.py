@@ -124,7 +124,7 @@ def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
         "daytona": (2, True),
         "e2b": (2, True),
         "modal": (4, True),
-        "superserve": (1, False),
+        "superserve": (2, True),
         "vercel": (2, True),
     }
     for provider in provider_ids():

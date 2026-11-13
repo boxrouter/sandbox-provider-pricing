@@ -1,0 +1,79 @@
+{
+  "provider": "superserve",
+  "sandbox_id": "superserve-sandbox-redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 2,
+    "memory_mib": 4096,
+    "region": null,
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-11-13T09:18:19.368Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-13T09:18:19.687Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "pause",
+      "sent_at": {
+        "value": "2026-11-13T09:18:50.260Z",
+        "source": "recorded",
+        "how": "the pause request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-13T09:18:50.683Z",
+        "source": "recorded",
+        "how": "the pause request returned"
+      },
+      "outcome": "returned",
+      "keeps": "memory"
+    }
+  ],
+  "provider_times": [
+    {
+      "kind": "started",
+      "at": {
+        "value": "2026-11-13T09:18:19.680Z",
+        "source": "provider",
+        "how": "Superserve's GET /activity row created_at."
+      },
+      "field": "Superserve activity started"
+    },
+    {
+      "kind": "paused",
+      "at": {
+        "value": "2026-11-13T09:18:50.702Z",
+        "source": "provider",
+        "how": "Superserve's GET /activity row created_at."
+      },
+      "field": "Superserve activity paused"
+    },
+    {
+      "kind": "ended",
+      "at": {
+        "value": "2026-11-13T09:18:58.342Z",
+        "source": "provider",
+        "how": "Superserve's GET /activity row created_at."
+      },
+      "field": "Superserve activity auto_deleted"
+    }
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "provider_records": [],
+  "measured": {}
+}

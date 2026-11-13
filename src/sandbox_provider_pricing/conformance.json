@@ -17600,8 +17600,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.000717726109",
+          "high": "0.000717726109"
+        }
       }
     },
     {
@@ -17711,8 +17714,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.000998575456",
+          "high": "0.000998575456"
+        }
       }
     },
     {
@@ -17822,8 +17828,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.00156027415",
+          "high": "0.00156027415"
+        }
       }
     },
     {
@@ -17933,8 +17942,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.002683671538",
+          "high": "0.002683671538"
+        }
       }
     },
     {
@@ -18044,8 +18056,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.001154602871",
+          "high": "0.001154602871"
+        }
       }
     },
     {
@@ -18155,8 +18170,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18266,8 +18284,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.001997150912",
+          "high": "0.001997150912"
+        }
       }
     },
     {
@@ -18377,8 +18398,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.0031205483",
+          "high": "0.0031205483"
+        }
       }
     },
     {
@@ -18488,8 +18512,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.002028356395",
+          "high": "0.002028356395"
+        }
       }
     },
     {
@@ -18599,8 +18626,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.002309205742",
+          "high": "0.002309205742"
+        }
       }
     },
     {
@@ -18710,8 +18740,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.002870904436",
+          "high": "0.002870904436"
+        }
       }
     },
     {
@@ -18821,8 +18854,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.003994301824",
+          "high": "0.003994301824"
+        }
       }
     },
     {
@@ -18932,8 +18968,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.003775863443",
+          "high": "0.003775863443"
+        }
       }
     },
     {
@@ -19043,8 +19082,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.00405671279",
+          "high": "0.00405671279"
+        }
       }
     },
     {
@@ -19154,8 +19196,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.004618411484",
+          "high": "0.004618411484"
+        }
       }
     },
     {
@@ -19265,8 +19310,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "calculated",
+        "total": {
+          "low": "0.005741808872",
+          "high": "0.005741808872"
+        }
       }
     },
     {

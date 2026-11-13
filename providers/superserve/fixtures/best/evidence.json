@@ -1,10 +1,10 @@
 {
   "provider": "superserve",
-  "sandbox_id": "scaffolded-example",
+  "sandbox_id": "superserve-sandbox-redacted",
   "sandbox_made": {
     "value": true,
     "source": "recorded",
-    "how": "the scaffold's synthetic create call returned"
+    "how": "the create succeeded"
   },
   "requested": {
     "cpu": 2,
@@ -16,33 +16,52 @@
     {
       "name": "create",
       "sent_at": {
-        "value": "2026-01-01T00:00:00Z",
+        "value": "2026-11-13T09:13:55.289Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic create request was sent"
+        "how": "the create request was sent"
       },
       "returned_at": {
-        "value": "2026-01-01T00:00:05Z",
+        "value": "2026-11-13T09:13:55.599Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic create request returned"
+        "how": "the create request returned"
       },
       "outcome": "returned"
     },
     {
       "name": "destroy",
       "sent_at": {
-        "value": "2026-01-01T00:10:00Z",
+        "value": "2026-11-13T09:14:26.197Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic destroy request was sent"
+        "how": "the destroy request was sent"
       },
       "returned_at": {
-        "value": "2026-01-01T00:10:05Z",
+        "value": "2026-11-13T09:14:26.821Z",
         "source": "recorded",
-        "how": "the scaffold's synthetic destroy request returned"
+        "how": "the destroy request returned"
       },
       "outcome": "returned"
     }
   ],
-  "provider_times": [],
+  "provider_times": [
+    {
+      "kind": "started",
+      "at": {
+        "value": "2026-11-13T09:13:55.565760Z",
+        "source": "provider",
+        "how": "Superserve's GET /activity row created_at."
+      },
+      "field": "Superserve activity started"
+    },
+    {
+      "kind": "ended",
+      "at": {
+        "value": "2026-11-13T09:14:26.771243Z",
+        "source": "provider",
+        "how": "Superserve's GET /activity row created_at."
+      },
+      "field": "Superserve activity deleted"
+    }
+  ],
   "last_seen_alive": null,
   "noticed_gone": null,
   "provider_records": [],

@@ -8820,20 +8820,22 @@
       "basis": "allocated CPU and memory",
       "billing_mode": "allocated",
       "billing_rules": {
-        "best_cost_label": "unknown",
+        "best_cost_label": "calculated",
         "billed_on": {
-          "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict.",
+          "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict; its usage stayed 0 in every measured sandbox.",
           "sources": [
             "https://www.superserve.ai/pricing/",
             "https://api.superserve.ai/billing/pricing/public",
-            "https://docs.superserve.ai/sandbox/live-memory-resizing"
+            "https://docs.superserve.ai/sandbox/live-memory-resizing",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
           ]
         },
         "ends": {
-          "answer": "Compute and memory stop billing when the sandbox is paused. Not stated for delete or for time spent pausing.",
+          "answer": "Compute and memory stop when the sandbox is paused. The calculator ends at the first deleted, paused, timeout_paused or auto_deleted row; the deleted row fell inside the destroy call on four sandboxes. A sandbox that ends by its own timeout has no deleted row: the meter stopped before its timeout_paused row, and auto_deleted followed 0.24 s later.",
           "sources": [
             "https://docs.superserve.ai/sandbox/lifecycle",
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ]
         },
         "extra_charges": {
@@ -8843,11 +8845,12 @@
           ]
         },
         "idle_and_paused": {
-          "answer": "A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither; its retained data is the storage meter.",
+          "answer": "A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither: a 30.956 s pause between paused and resumed rows added nothing to the meter, and a sandbox deleted 7.64 s after pausing billed only its running time.",
           "sources": [
             "https://docs.superserve.ai/sandbox/lifecycle",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ]
         },
         "image_pull": {
@@ -8861,24 +8864,30 @@
           ]
         },
         "per_sandbox_data": {
-          "answer": "Unknown. A team-level usage endpoint is described, but no per-sandbox usage or cost record is documented.",
-          "unknown_how": "Read a team's usage after running one sandbox alone and compare it with the sandbox's own record."
+          "answer": "No cost or usage. The audit log (GET /activity) has a started, paused, resumed, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.",
+          "sources": [
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#retention"
+          ]
         },
         "rounding": {
-          "answer": "Billed per second; no minimum or rounding increment is stated.",
+          "answer": "Billed per second; no minimum or rounding increment is stated. The usage meter reports microsecond fractions.",
           "sources": [
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
           ]
         },
         "sources": {
           "billed_on": [
             "https://www.superserve.ai/pricing/",
             "https://api.superserve.ai/billing/pricing/public",
-            "https://docs.superserve.ai/sandbox/live-memory-resizing"
+            "https://docs.superserve.ai/sandbox/live-memory-resizing",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
           ],
           "ends": [
             "https://docs.superserve.ai/sandbox/lifecycle",
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ],
           "extra_charges": [
             "https://www.superserve.ai/pricing/"
@@ -8886,21 +8895,30 @@
           "idle_and_paused": [
             "https://docs.superserve.ai/sandbox/lifecycle",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ],
           "image_pull": [],
           "left_out": [
             "https://www.superserve.ai/pricing/"
           ],
-          "per_sandbox_data": [],
-          "rounding": [
-            "https://www.superserve.ai/pricing/"
+          "per_sandbox_data": [
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#retention"
           ],
-          "starts": []
+          "rounding": [
+            "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
+          ],
+          "starts": [
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#verdict"
+          ]
         },
         "starts": {
-          "answer": "Not stated; not yet measured.",
-          "unknown_how": "Compare billed usage with a sandbox's create and ready times on an account whose usage can be read."
+          "answer": "Not stated. The calculator uses the started row (or resumed after a pause), which fell inside the create call on six sandboxes. The team's usage meter ran 0.09 to 0.38 s less than the rows on every period, so the rows are an upper bound.",
+          "sources": [
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#verdict"
+          ]
         }
       },
       "billing_rules_source": "src/sandbox_provider_pricing/providers/superserve/billing.yaml",
