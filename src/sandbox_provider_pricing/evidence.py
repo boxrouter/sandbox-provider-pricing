@@ -17,14 +17,12 @@ from dataclasses import fields, is_dataclass
 from datetime import UTC, datetime
 from decimal import Decimal, InvalidOperation
 from functools import cache
-from importlib import resources
-from pathlib import Path
 from typing import Any, cast
 
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
-from sandbox_provider_pricing._util import parse_time, providers_root
+from sandbox_provider_pricing._util import bundled_schema, parse_time, providers_root
 from sandbox_provider_pricing.types import Document, JsonObject
 
 
@@ -46,16 +44,7 @@ def decimal_total(values: Iterable[object]) -> str:
 
 @cache
 def _schema() -> JsonObject:
-    bundled = resources.files("sandbox_provider_pricing").joinpath(
-        "schemas", "evidence.schema.json"
-    )
-    if bundled.is_file():
-        schema = cast(JsonObject, json.loads(bundled.read_text(encoding="utf-8")))
-    else:
-        # The repository keeps schemas at its root and bundles them into built wheels.
-        source = Path(__file__).resolve().parents[2] / "schemas" / "evidence.schema.json"
-        schema = cast(JsonObject, json.loads(source.read_text(encoding="utf-8")))
-    return _with_record_rules(schema)
+    return _with_record_rules(bundled_schema("evidence"))
 
 
 def _with_record_rules(schema: JsonObject) -> JsonObject:

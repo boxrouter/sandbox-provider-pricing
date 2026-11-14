@@ -5,17 +5,20 @@
 from __future__ import annotations
 
 import argparse
-import json
 import re
 from collections.abc import Sequence
 from decimal import Decimal, localcontext
-from importlib import resources
 from pathlib import Path
 from typing import Any
 
 from jsonschema import Draft202012Validator
 
-from sandbox_provider_pricing._util import decimal_text, package_version, write_json
+from sandbox_provider_pricing._util import (
+    bundled_schema,
+    decimal_text,
+    package_version,
+    write_json,
+)
 from sandbox_provider_pricing.billing_text import unit_name
 from sandbox_provider_pricing.calculator import CONTEXT, SECONDS_PER_HOUR, Span, per_hour
 from sandbox_provider_pricing.calculator.quantities import in_rate_unit
@@ -31,19 +34,6 @@ from sandbox_provider_pricing.versions import (
 
 SCHEMA_ID = "urn:boxrouter:sandbox-provider-pricing:price-sheet"
 SCHEMA_VERSION = "2.4.0"
-
-
-def _text_schema() -> dict[str, Any]:
-    bundled = resources.files("sandbox_provider_pricing").joinpath(
-        "schemas/price-sheet.schema.json"
-    )
-    path = (
-        bundled
-        if bundled.is_file()
-        else Path(__file__).resolve().parents[2] / "schemas/price-sheet.schema.json"
-    )
-    schema: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
-    return schema
 
 
 def _page_text(schema: dict[str, Any]) -> dict[str, Any]:
@@ -105,7 +95,7 @@ def _page_text(schema: dict[str, Any]) -> dict[str, Any]:
 
 def validate_price_text(sheet: dict[str, Any]) -> None:
     """Fail source builds on missing, fragment, duplicate or unbound price text."""
-    schema = _text_schema()
+    schema = bundled_schema("price-sheet")
     error = next(Draft202012Validator(schema).iter_errors(sheet), None)
     if error is not None:
         raise ValueError(f"{list(error.absolute_path)}: {error.message}")
@@ -177,7 +167,7 @@ def build_price_sheet(
     versions = seed_versions()
     providers: list[dict[str, Any]] = []
     release_version = package_version()
-    schema = _text_schema()
+    schema = bundled_schema("price-sheet")
     for provider in priced_provider_ids(versions):
         current = latest_version(provider, versions)
         billing = provider_billing(provider)
@@ -254,6 +244,7 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
     applied_region = region if multiplier is not None else None
     checked_at = str(price_version["retrieved_at"])[:10]
     source_url = price_version["sources"][0]["url"]
+    flat = isinstance((default.get("rates") or {}).get("machine"), dict)
     configs = []
     for vcpu, memory_gib in price_configs:
         size = {"cpu": vcpu, "memory_mib": memory_gib * 1024}
@@ -275,7 +266,6 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
             continue
         cpu = per_hour(price_version, {"cpu": vcpu}, region=applied_region)
         memory = per_hour(price_version, {"memory_mib": memory_gib * 1024}, region=applied_region)
-        flat = isinstance((default.get("rates") or {}).get("machine"), dict)
         if memory is None and not flat:
             raise ValueError(f"{provider}: no memory component at {vcpu}x{memory_gib}")
         running = _range(raw)
@@ -315,8 +305,8 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
     billing_mode = _billing_mode(default, display_facts)
     region_note = (
         None
-        if multiplier is None or region is None
-        else f"list rate × {multiplier} for a {region.upper()} region pin"
+        if applied_region is None
+        else f"list rate × {multiplier} for a {applied_region.upper()} region pin"
     )
     return {
         "id": provider,
@@ -567,11 +557,11 @@ def _storage(
                 ),
             }
         )
+    default: dict[str, Any] = next((c for c in version_doc["classes"] if c.get("default")), {})
     for fact in storage_facts:
         calculation = fact.get("price_version_rate")
         if calculation is None:
             continue
-        default: dict[str, Any] = next((c for c in version_doc["classes"] if c.get("default")), {})
         rate = (default.get("rates") or {}).get(calculation["resource"])
         if rate is None:
             continue

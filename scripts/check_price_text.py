@@ -10,7 +10,6 @@ from collections.abc import Iterator, Mapping
 from typing import Any
 
 from sandbox_provider_pricing._util import bundled_schema
-from sandbox_provider_pricing.price_sheet import _text_schema
 
 
 def _strings(value: Any, path: str) -> Iterator[tuple[str, str]]:
@@ -28,7 +27,7 @@ def _strings(value: Any, path: str) -> Iterator[tuple[str, str]]:
 
 def capture() -> dict[str, list[dict[str, Any]]]:
     """Return authored reader text and hover templates with declared runtime fields."""
-    schema = _text_schema()
+    schema = bundled_schema("price-sheet")
     declared_runtime = schema["$defs"]["content_criteria"]["const"]["placeholders"]["runtime"]
     storage_statuses = schema["x-text"]["storage_statuses"]
     slots = [

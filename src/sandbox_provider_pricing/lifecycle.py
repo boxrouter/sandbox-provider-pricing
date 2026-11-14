@@ -10,10 +10,10 @@ from decimal import Decimal, localcontext
 from typing import Literal, TypeAlias, TypedDict
 
 from sandbox_provider_pricing._util import CONTEXT, decimal_text
-from sandbox_provider_pricing.calculator import TIME_RESOURCES
 from sandbox_provider_pricing.calculator.charges import find_rate
 from sandbox_provider_pricing.calculator.quantities import (
     BASES,
+    TIME_RESOURCES,
     creation_quantity,
     egress_quantity,
     in_rate_unit,
@@ -249,9 +249,14 @@ def _quote_amount(
 def _runtime_amounts(
     periods: list[_PeriodDemand], context: _QuoteContext
 ) -> tuple[Decimal, list[str]]:
-    time_amount, time_reasons = _time_amounts(periods, context)
+    total = Decimal(0)
+    reasons: list[str] = []
+    for what in TIME_RESOURCES:
+        amount, resource_reasons = _time_resource_amount(what, periods, context)
+        total += amount
+        reasons.extend(resource_reasons)
     machine_amount, machine_reasons = _machine_amount(periods, context)
-    return time_amount + machine_amount, time_reasons + machine_reasons
+    return total + machine_amount, reasons + machine_reasons
 
 
 def _creation_and_egress_amounts(
@@ -300,19 +305,6 @@ def _meter_periods(
     return rate_set, meter if isinstance(meter, Mapping) else None, billed, reason
 
 
-def _time_amounts(
-    periods: list[_PeriodDemand],
-    context: _QuoteContext,
-) -> tuple[Decimal, list[str]]:
-    total = Decimal(0)
-    reasons: list[str] = []
-    for what in TIME_RESOURCES:
-        amount, resource_reasons = _time_resource_amount(what, periods, context)
-        total += amount
-        reasons.extend(resource_reasons)
-    return total, reasons
-
-
 def _time_resource_amount(
     what: str,
     periods: list[_PeriodDemand],
@@ -322,9 +314,7 @@ def _time_resource_amount(
     rate_set, meter, billed, reason = _meter_periods(what, periods, context.price_class)
     if what == "gpu" and not context.size.get("gpu") and billed:
         return total, []
-    if reason is not None:
-        pass
-    elif billed and rate_set is not None and meter is not None:
+    if reason is None and billed and rate_set is not None and meter is not None:
         basis = meter.get("basis")
         if basis not in BASES:
             reason = f"{what}: the metering basis is unknown."
@@ -334,9 +324,10 @@ def _time_resource_amount(
             rate, rate_reason = _resource_rate(what, rate_set, context.size)
             if rate_reason is not None:
                 reason = rate_reason
-            elif rate is not None and basis == "active" and what != "cpu":
+            elif basis == "active" and what != "cpu":
                 reason = f"{what}: this demand contract does not identify active use."
-            elif rate is not None:
+            else:
+                assert rate is not None
                 for period in billed:
                     unit_seconds, quantity_reason = _time_unit_seconds(
                         what, basis, period, meter, context
