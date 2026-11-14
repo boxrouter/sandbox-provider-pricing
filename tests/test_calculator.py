@@ -222,6 +222,49 @@ def test_snapshot_storage_requires_known_size_and_uses_the_version_month_length(
     assert cost(record, version)["total"] is None
 
 
+@pytest.mark.parametrize(
+    "month_hours",
+    ["NaN", "Infinity", float("nan"), float("inf"), Decimal("NaN"), Decimal("Infinity")],
+)
+def test_snapshot_storage_needs_a_finite_month_length(month_hours: Any) -> None:
+    # A version whose month length is not a finite positive number has no rate to apply:
+    # the cost is unknown, never a crash or a zero-width month.
+    version = version_with(
+        rates={"snapshot_storage": {"usd": "0.08", "per": "gb-month"}},
+        meter={"snapshot_storage": {"billed_states": ["stopped"]}},
+    )
+    version["provider"], version["month_hours"] = "vercel", month_hours
+    record = usage("vercel", intervals=[interval("stopped", 3600)])
+    record["snapshot_storage"] = fact("provider", gb=1)
+    answer = valid(cost(record, version))
+    assert answer["label"] == "unknown"
+    assert answer["total"] is None
+    assert answer["held_back_by"] == [
+        finding(
+            "no_rate",
+            "snapshot_storage",
+            "The price version has no positive month length for snapshot storage.",
+        )
+    ]
+
+
+def test_snapshot_storage_month_length_takes_a_json_number() -> None:
+    # The same month_hours forms a lifecycle quote accepts price a cost: a numeric
+    # month length works where only strings and integers were taken before.
+    version = version_with(
+        rates={"snapshot_storage": {"usd": "0.08", "per": "gb-month"}},
+        meter={"snapshot_storage": {"billed_states": ["stopped"]}},
+    )
+    version["provider"], version["month_hours"] = "vercel", 730.0
+    record = usage("vercel", intervals=[interval("stopped", 3600)])
+    record["snapshot_storage"] = fact("provider", gb=1)
+    answer = valid(cost(record, version))
+    storage = lines_by_resource(answer)["snapshot_storage"]
+    assert answer["label"] == "calculated"
+    assert storage["quantity"].startswith("0.001369863013698630136986301369863")
+    assert storage["amount"].startswith("0.000109589041095890410958904109589")
+
+
 def test_modal_h100_gpu_rate_is_available_for_hourly_quotes() -> None:
     version = price_file("modal", "2026-10-20-061900Z")
     assert per_hour(version, {"gpu": 1, "gpu_model": "nvidia:h100"}) == {

@@ -396,13 +396,7 @@ def read_before_end(evidence: Document, record: Document) -> str | None:
     at that point may stand as the cost, and labels it with that time (`report_cost(...,
     taken_at=...)`).
     """
-    ended = [
-        call["returned_at"].get("value")
-        for call in evidence["calls"]
-        if call["name"] == "destroy"
-        and call["outcome"] == "returned"
-        and isinstance(call.get("returned_at"), Mapping)
-    ]
+    ended = call_returns(evidence, "destroy")
     gone = evidence.get("noticed_gone")
     ended.append(gone.get("value") if isinstance(gone, Mapping) else None)
     times = [at for value in ended if isinstance(value, str) and (at := parse_time(value))]

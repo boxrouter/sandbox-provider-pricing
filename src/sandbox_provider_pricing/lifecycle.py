@@ -18,6 +18,7 @@ from sandbox_provider_pricing.calculator.quantities import (
     egress_quantity,
     in_rate_unit,
     machine_rate_for_size,
+    month_hours,
     period_seconds,
     size_value,
     snapshot_storage_gb,
@@ -388,8 +389,8 @@ def _snapshot_amount(
     )
     billed = [period for period in candidate_periods if period[1] > 0]
     if reason is None and billed and rate is not None and meter is not None:
-        month_hours = _month_hours(version)
-        if month_hours is None:
+        month_length = month_hours(version)
+        if month_length is None:
             reason = "snapshot_storage: a positive month_hours value is required."
         else:
             for _, seconds, _, snapshot_bytes in billed:
@@ -398,18 +399,10 @@ def _snapshot_amount(
                 else:
                     billed_time = Span.exact(period_seconds(seconds, meter))
                     quantity = snapshot_storage_quantity(
-                        Span.exact(snapshot_storage_gb(snapshot_bytes)), billed_time, month_hours
+                        Span.exact(snapshot_storage_gb(snapshot_bytes)), billed_time, month_length
                     )
                     total += quantity.low * (Decimal(rate["usd"]) * context.multiplier)
     return total, [] if reason is None else [reason]
-
-
-def _month_hours(version: Document) -> Decimal | None:
-    value = version.get("month_hours")
-    if isinstance(value, bool) or not isinstance(value, (str, int, float, Decimal)):
-        return None
-    hours = Decimal(str(value))
-    return hours if hours.is_finite() and hours > 0 else None
 
 
 def _append_reason(result: LifecycleQuote, reason: str) -> None:

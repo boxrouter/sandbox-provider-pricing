@@ -193,14 +193,26 @@ def egress_quantity(byte_count: Decimal, rate: Document) -> Span:
     return Span.exact(byte_count / unit_bytes)
 
 
+def month_hours(version: Document | None) -> Decimal | None:
+    """The version's `month_hours`, when it is a finite positive number; None otherwise."""
+    value = None if version is None else version.get("month_hours")
+    if isinstance(value, bool) or not isinstance(value, (str, int, float, Decimal)):
+        return None
+    try:
+        hours = Decimal(str(value))
+    except ArithmeticError:
+        return None
+    return hours if hours.is_finite() and hours > 0 else None
+
+
 def snapshot_storage_gb(byte_count: Decimal) -> Decimal:
     """Snapshot bytes in decimal GB, the stored quantity used by the cost calculator."""
     return byte_count / BYTES_PER_GB
 
 
-def snapshot_storage_quantity(gigabytes: Span, billed_time: Span, month_hours: Decimal) -> Span:
+def snapshot_storage_quantity(gigabytes: Span, billed_time: Span, month_length: Decimal) -> Span:
     """Stored decimal GB over billed seconds in the version's GB-month quantity."""
-    return gigabytes.times(billed_time).divided_by(month_hours * SECONDS_PER_HOUR)
+    return gigabytes.times(billed_time).divided_by(month_length * SECONDS_PER_HOUR)
 
 
 def machine_rate_for_size(price_class: Document, size: Document) -> Document | None:

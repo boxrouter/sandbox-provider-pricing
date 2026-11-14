@@ -26,6 +26,7 @@ from sandbox_provider_pricing.calculator.quantities import (
     egress_quantity,
     in_rate_unit,
     machine_rate_for_size,
+    month_hours,
     snapshot_storage_gb,
     snapshot_storage_quantity,
     time_sources,
@@ -122,10 +123,8 @@ def _snapshot_storage_charge(
     seconds = billed_seconds(usage, meter, findings)
     if seconds is None:
         return None
-    month_hours = None if version is None else version.get("month_hours")
-    if isinstance(month_hours, (str, int)) and not isinstance(month_hours, bool):
-        month_hours = Decimal(month_hours)
-    if not isinstance(month_hours, Decimal) or month_hours <= 0:
+    month_length = month_hours(version)
+    if month_length is None:
         findings.gap(
             "The price version has no positive month length for snapshot storage.",
             "no_rate",
@@ -133,7 +132,7 @@ def _snapshot_storage_charge(
         )
         return None
 
-    quantity = snapshot_storage_quantity(size, seconds, month_hours)
+    quantity = snapshot_storage_quantity(size, seconds, month_length)
     return _charge(
         "snapshot_storage",
         rate,

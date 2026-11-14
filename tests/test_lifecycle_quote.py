@@ -294,6 +294,52 @@ def test_egress_and_snapshot_storage_require_explicit_material_demand() -> None:
     assert (missing_month["status"], missing_month["amount_usd"]) == ("unknown", None)
 
 
+@pytest.mark.parametrize(
+    "month_hours",
+    [
+        True,
+        "soon",
+        "0",
+        0,
+        -730,
+        "NaN",
+        "Infinity",
+        float("nan"),
+        float("inf"),
+        Decimal("NaN"),
+        Decimal("Infinity"),
+        ["730"],
+    ],
+)
+def test_an_invalid_month_length_holds_the_snapshot_quote_back(month_hours: Any) -> None:
+    version = _version(
+        {"snapshot_storage": {"usd": "0.08", "per": "gb-month"}},
+        {"snapshot_storage": {"billed_states": ["stopped"]}},
+    )
+    version["month_hours"] = month_hours
+    quote = lifecycle_quote(
+        version, {}, [LifecyclePeriod("stopped", 3600, snapshot_bytes=1_000_000_000)]
+    )
+    assert (quote["status"], quote["amount_usd"]) == ("unknown", None)
+    assert quote["held_back_by"] == ["snapshot_storage: a positive month_hours value is required."]
+
+
+@pytest.mark.parametrize("month_hours", [730, 730.0, Decimal("730"), "730"])
+def test_accepted_month_length_forms_price_the_same_snapshot(month_hours: Any) -> None:
+    version = _version(
+        {"snapshot_storage": {"usd": "0.08", "per": "gb-month"}},
+        {"snapshot_storage": {"billed_states": ["stopped"]}},
+    )
+    version["month_hours"] = month_hours
+    quote = lifecycle_quote(
+        version, {}, [LifecyclePeriod("stopped", 3600, snapshot_bytes=1_000_000_000)]
+    )
+    assert (quote["status"], quote["held_back_by"]) == ("known", [])
+    assert (
+        quote["amount_usd"] == "0.000109589041095890410958904109589041095890410958904109589041096"
+    )
+
+
 def test_unknown_class_size_rate_and_meter_basis_do_not_become_zero() -> None:
     version = _cpu_version()
     period = [LifecyclePeriod("running", 60)]
