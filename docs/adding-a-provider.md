@@ -77,6 +77,30 @@ To change a published price, add a new price version instead of editing the old 
 `supersedes` lists the version it replaces, and only versions still in the checkout. Explain what it
 corrects in an `open_questions` entry that starts with `Correction:`.
 
+## A provider that publishes its prices in discovery
+
+A provider whose billing record says `prices: discovery` does not get hand-written price versions.
+Its discovery document (`classes[].prices[]`, section 3 of the SPS 1.0 contract) is the input, and
+this command writes the next version:
+
+```sh
+spp from-discovery --provider acme --discovery discovery.json \
+  --source https://api.acme.example/v1/discovery --out src/sandbox_provider_pricing/providers/acme/prices
+```
+
+It writes one new immutable price version. Every rate cites `{url: <--source>, quote: <the
+canonical JSON of its price item>}`, the provider's unit spelling is kept, and `discovery_digest`
+records the digest of the price block so that an unchanged block is recognised. An item the
+document does not price is left out, which means unknown, never zero. Prices a version cannot
+carry as a rate (a minimum quantity, an allowance that is not per sandbox, a regional or variant
+price) are listed in `open_questions` or `exclusions`.
+
+The command refuses, printing `refused: <reason>` and exiting `2`, a negative amount, a zero amount
+on an item not marked `included`, an item priced in the provider's previous version that became
+zero, and any rate that moved by more than 10x against the previous version (compared in one base
+unit, so a changed unit spelling does not trip it). Included and zero-price items that were already
+zero are accepted. The previous version is the newest one in the provider's package or in `--out`.
+
 ## Where the files live
 
 A provider has two folders. `src/sandbox_provider_pricing/providers/<id>/` is a Python package that

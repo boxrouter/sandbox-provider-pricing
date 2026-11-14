@@ -31,9 +31,9 @@
   },
   "final": false,
   "versions": {
-    "package": "0.16.0",
+    "package": "0.17.6",
     "rules": 1,
-    "prices": "boat@2026-11-01-052001Z"
+    "prices": "boat@2026-11-01-052002Z"
   },
   "steps": {
     "evidence": {
@@ -209,7 +209,7 @@
           "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
           "Credits and discounts"
         ],
-        "price_version": "boat@2026-11-01-052001Z",
+        "price_version": "boat@2026-11-01-052002Z",
         "as_of": "2026-11-01T04:05:04Z"
       },
       "high": {
@@ -233,7 +233,7 @@
           "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
           "Credits and discounts"
         ],
-        "price_version": "boat@2026-11-01-052001Z",
+        "price_version": "boat@2026-11-01-052002Z",
         "as_of": "2026-11-01T04:05:04Z"
       }
     }

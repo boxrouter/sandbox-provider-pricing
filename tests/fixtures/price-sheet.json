@@ -2646,7 +2646,7 @@
       "id": "boat",
       "label": "default",
       "name": "Boat",
-      "price_version": "boat@2026-11-01-052001Z",
+      "price_version": "boat@2026-11-01-052002Z",
       "pricing_release_version": "",
       "region": null,
       "region_checked_at": "2026-11-01",
@@ -8822,16 +8822,17 @@
       "billing_rules": {
         "best_cost_label": "calculated",
         "billed_on": {
-          "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict; its usage stayed 0 in every measured sandbox.",
+          "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate resource that Superserve tracks but does not bill: a sandbox paused 11 min 18 s with 1 GiB written added no storage charge.",
           "sources": [
             "https://www.superserve.ai/pricing/",
             "https://api.superserve.ai/billing/pricing/public",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox",
+            "providers/superserve/evidence/2026-11-13-paused-storage.md#verdict"
           ]
         },
         "ends": {
-          "answer": "Compute and memory stop when the sandbox is paused. The calculator ends at the first deleted, paused, timeout_paused or auto_deleted row; the deleted row fell inside the destroy call on four sandboxes. A sandbox that ends by its own timeout has no deleted row: the meter stopped before its timeout_paused row, and auto_deleted followed 0.24 s later.",
+          "answer": "Compute and memory stop when the sandbox is paused. The calculator ends at the first deleted, paused, idle_paused, timeout_paused or auto_deleted row; the deleted row fell inside the destroy call on four sandboxes. The meter stopped before the idle_paused row (by 1.05 s) and before the timeout_paused row, which auto_deleted followed 0.24 s later.",
           "sources": [
             "https://docs.superserve.ai/sandbox/lifecycle",
             "https://www.superserve.ai/pricing/",
@@ -8839,17 +8840,20 @@
           ]
         },
         "extra_charges": {
-          "answer": "Storage on a shared template and retained sandbox changes, if billed. The pricing page says its estimates exclude network and external model API charges; no network charge is published.",
+          "answer": "Storage on a shared template and retained sandbox changes is listed per GiB-hour but marked not billable, and a sandbox paused 11 min 18 s was charged 0 for it. The pricing page says its estimates exclude network and external model API charges; no network charge is published.",
           "sources": [
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "https://api.superserve.ai/billing/pricing/public",
+            "providers/superserve/evidence/2026-11-13-paused-storage.md#verdict"
           ]
         },
         "idle_and_paused": {
-          "answer": "A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither: a 30.956 s pause between paused and resumed rows added nothing to the meter, and a sandbox deleted 7.64 s after pausing billed only its running time.",
+          "answer": "An idle running sandbox bills its full compute and memory: one left idle 8 min stayed active at full size. Superserve pauses a sandbox only on a timeout it is given (idle_timeout_seconds, timeout_seconds), an explicit pause or a delete; both timeouts are unset by default. A paused sandbox bills nothing: the meter stayed flat for 43 s of idle pause.",
           "sources": [
             "https://docs.superserve.ai/sandbox/lifecycle",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
             "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-14-idle-and-idle-timeout.md#verdict",
             "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ]
         },
@@ -8864,7 +8868,7 @@
           ]
         },
         "per_sandbox_data": {
-          "answer": "No cost or usage. The audit log (GET /activity) has a started, paused, resumed, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.",
+          "answer": "No cost or usage. The audit log (GET /activity) has a started, paused, resumed, idle_paused, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.",
           "sources": [
             "providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing",
             "providers/superserve/evidence/2026-11-13-billing-boundary.md#retention"
@@ -8882,7 +8886,8 @@
             "https://www.superserve.ai/pricing/",
             "https://api.superserve.ai/billing/pricing/public",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox"
+            "providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox",
+            "providers/superserve/evidence/2026-11-13-paused-storage.md#verdict"
           ],
           "ends": [
             "https://docs.superserve.ai/sandbox/lifecycle",
@@ -8890,12 +8895,15 @@
             "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ],
           "extra_charges": [
-            "https://www.superserve.ai/pricing/"
+            "https://www.superserve.ai/pricing/",
+            "https://api.superserve.ai/billing/pricing/public",
+            "providers/superserve/evidence/2026-11-13-paused-storage.md#verdict"
           ],
           "idle_and_paused": [
             "https://docs.superserve.ai/sandbox/lifecycle",
             "https://docs.superserve.ai/sandbox/live-memory-resizing",
             "https://www.superserve.ai/pricing/",
+            "providers/superserve/evidence/2026-11-14-idle-and-idle-timeout.md#verdict",
             "providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox"
           ],
           "image_pull": [],
@@ -8967,7 +8975,7 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.0828,
@@ -8980,8 +8988,13 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9014,7 +9027,7 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.1152,
@@ -9027,8 +9040,13 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9061,7 +9079,7 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.18,
@@ -9074,8 +9092,13 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9108,7 +9131,7 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.3096,
@@ -9121,8 +9144,13 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9155,7 +9183,7 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.1332,
@@ -9168,8 +9196,13 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9202,7 +9235,7 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.1656,
@@ -9215,8 +9248,13 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9249,7 +9287,7 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.2304,
@@ -9262,8 +9300,13 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9296,7 +9339,7 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.36,
@@ -9309,8 +9352,13 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9343,7 +9391,7 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.234,
@@ -9356,8 +9404,13 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9390,7 +9443,7 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.2664,
@@ -9403,8 +9456,13 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9437,7 +9495,7 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.3312,
@@ -9450,8 +9508,13 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9484,7 +9547,7 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.4608,
@@ -9497,8 +9560,13 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9531,7 +9599,7 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.4356,
@@ -9544,8 +9612,13 @@
             "low": 0.0324,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9578,7 +9651,7 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.468,
@@ -9591,8 +9664,13 @@
             "low": 0.0648,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9625,7 +9703,7 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.5328,
@@ -9638,8 +9716,13 @@
             "low": 0.1296,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9672,7 +9755,7 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "idle_note": "A running sandbox bills compute and memory whether or not it is busy.",
+          "idle_note": "An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.",
           "idle_per_hour_usd": {
             "checked_at": "2026-11-13",
             "high": 0.6624,
@@ -9685,8 +9768,13 @@
             "low": 0.2592,
             "source_url": "https://api.superserve.ai/billing/pricing/public"
           },
-          "paused_note": "Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources.",
-          "paused_per_hour_usd": null,
+          "paused_note": "Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-13",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://api.superserve.ai/billing/pricing/public"
+          },
           "reason": null,
           "running_per_hour_usd": {
             "checked_at": "2026-11-13",
@@ -9705,7 +9793,7 @@
       "id": "superserve",
       "label": "default",
       "name": "Superserve",
-      "price_version": "superserve@2026-11-13",
+      "price_version": "superserve@2026-11-13-141358Z",
       "pricing_release_version": "",
       "region": null,
       "region_checked_at": "2026-11-13",
@@ -9737,12 +9825,12 @@
           "kind": "disk",
           "per": null,
           "source_per": null,
-          "source_url": "https://www.superserve.ai/pricing/",
+          "source_url": "https://api.superserve.ai/billing/pricing/public",
           "source_usd": null,
-          "status": "unknown",
+          "status": "included",
           "status_text": {
-            "hover": "The separate price status for the disk storage item is not known.",
-            "word": "Unknown"
+            "hover": "The disk storage item is listed as included.",
+            "word": "Included"
           },
           "usd": null
         },

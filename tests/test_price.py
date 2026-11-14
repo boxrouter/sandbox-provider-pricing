@@ -53,14 +53,14 @@ def test_fixture_parity_and_result_schema() -> None:
         }
         assert not list(RESULT_VALIDATOR.iter_errors(result))
     expected = {
-        "agent37": 2,
+        "agent37": 3,
         "blaxel": 5,
         "boat": 1,
         "boxd": 1,
         "daytona": 5,
         "e2b": 3,
         "modal": 2,
-        "superserve": 5,
+        "superserve": 6,
         "vercel": 4,
     }
     for provider, count in counts.items():
@@ -562,9 +562,10 @@ def test_vercel_rereading_one_session_does_not_double_count_it() -> None:
 
 
 @pytest.mark.parametrize("provider", provider_ids())
-def test_no_provider_records_and_no_provider_times_never_produce_a_cost(provider: str) -> None:
+def test_no_provider_records_times_or_reports_never_produce_a_cost(provider: str) -> None:
     evidence = _load(ROOT / f"providers/{provider}/fixtures/best/evidence.json")
     evidence["provider_records"], evidence["provider_times"] = [], []
+    evidence["provider_reports"] = {}
     result = price(evidence)
     assert (result["label"], result["total"], result["lines"]) == ("unknown", None, [])
     assert result["held_back_by"]

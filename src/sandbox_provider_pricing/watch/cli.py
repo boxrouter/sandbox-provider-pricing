@@ -5,6 +5,7 @@
 import argparse
 import json
 from collections.abc import Sequence
+from datetime import UTC, datetime
 from decimal import Decimal
 from importlib import import_module
 from pathlib import Path
@@ -82,6 +83,21 @@ def _check_imports(parser: argparse.ArgumentParser, path: Path) -> int:
     return 1 if found else 0
 
 
+def _from_discovery(arguments: argparse.Namespace) -> int:
+    discovery = import_module("sandbox_provider_pricing.discovery")
+    return cast(
+        int,
+        discovery.run(
+            arguments.provider,
+            arguments.discovery,
+            arguments.source,
+            arguments.out,
+            arguments.root,
+            now=datetime.now(UTC),
+        ),
+    )
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="spp", description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -109,6 +125,20 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     reconcile_parser.add_argument("directory", metavar="reconciliation-directory")
     _add_check_imports(commands)
+    discovery_parser = commands.add_parser(
+        "from-discovery",
+        help="Write a new price version from the price block of a discovery document.",
+        description=(
+            "Write one new immutable price version into --out, every rate citing the discovery "
+            "document's address and the canonical JSON of its price item. Exit 2 and print "
+            "`refused: <reason>` when the document should not become a version."
+        ),
+    )
+    discovery_parser.add_argument("--provider", required=True)
+    discovery_parser.add_argument("--discovery", required=True, type=Path, metavar="file")
+    discovery_parser.add_argument("--source", required=True, metavar="ref")
+    discovery_parser.add_argument("--out", required=True, type=Path, metavar="dir")
+    discovery_parser.add_argument("--root", type=Path, default=Path.cwd())
     draft_parser = commands.add_parser(
         "draft",
         help="Have an agent draft the new price version from a page that changed.",
@@ -145,6 +175,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if arguments.command == "check-imports":
         return _check_imports(parser, arguments.path)
+    if arguments.command == "from-discovery":
+        return _from_discovery(arguments)
     if arguments.command == "draft":
         agent = import_module("sandbox_provider_pricing.watch.agent")
         draft = import_module("sandbox_provider_pricing.watch.draft")

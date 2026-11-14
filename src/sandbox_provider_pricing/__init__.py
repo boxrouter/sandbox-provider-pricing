@@ -30,8 +30,7 @@
   the types those functions take and return.
 """
 
-from sandbox_provider_pricing.calculator import cost, find_class, per_hour
-from sandbox_provider_pricing.calculator.documents import covered_classes
+from sandbox_provider_pricing.calculator import cost, per_hour
 from sandbox_provider_pricing.compose import compose
 from sandbox_provider_pricing.cost_method import cost_method
 from sandbox_provider_pricing.evidence import TIME_POINTS
@@ -46,7 +45,13 @@ from sandbox_provider_pricing.record import merge_reports, record_evidence, regi
 from sandbox_provider_pricing.reservation import ReservationQuote, reservation_quote
 from sandbox_provider_pricing.revisit import RevisitPolicy, revisit, scheduled_revisit
 from sandbox_provider_pricing.types import TimeValue
-from sandbox_provider_pricing.versions import latest_version, price_version, seed_versions
+from sandbox_provider_pricing.versions import (
+    covered_classes,
+    find_class,
+    latest_version,
+    price_version,
+    seed_versions,
+)
 
 __all__ = [
     "READ_TIME_CONTRACT",

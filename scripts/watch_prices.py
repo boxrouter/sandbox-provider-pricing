@@ -68,8 +68,11 @@ def body(result: VersionCheck, run_url: str) -> str:
         lines.append("")
     lines += [
         "Nothing was changed. To fix it, re-read the page, write a new price version and open a"
-        " pull request (docs/watching-prices.md, `spp draft` helps). The issue updates daily and"
-        " closes when the quotes are confirmed again.",
+        " pull request (docs/watching-prices.md, `spp draft` helps). If more than a rate changed,"
+        " such as a resource that was free turning billable, also revisit"
+        f" `src/sandbox_provider_pricing/providers/{result.provider}/billing.yaml`, whose rules"
+        " cite these pages. The issue updates daily and closes when the quotes are confirmed"
+        " again.",
     ]
     return "\n".join(lines)
 

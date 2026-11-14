@@ -36,3 +36,5 @@ src/sandbox_provider_pricing/providers/blaxel/prices/2026-11-07-122300Z.yaml 483
 src/sandbox_provider_pricing/providers/agent37/prices/2026-11-11.yaml 3f14a731a775a566412861e5df98564ae4a17567f93718b51a38edff8b0cf310
 src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml b99ea1b36b3ada506725eeb9318de12a410f21c0dd644d0175491c880404ebed
 src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13.yaml 8caa165fd320e212d34d9476f3959fcdf6d84bafafa3799e44b9c98b61a9a0fa
+src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052002Z.yaml 49a7477440e28b94777ca130417afaa12a062a137ac9d86fd1c7b3c96878f106
+src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13-141358Z.yaml 431b216fe8354853c899249b52c857e51a31b561e5ad58d64c2d10df92f9fa1c

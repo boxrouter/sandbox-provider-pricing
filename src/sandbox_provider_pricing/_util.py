@@ -14,6 +14,8 @@ from typing import Any
 
 # Exact for every answer a price list can give; division is the only step that could round.
 CONTEXT = Context(prec=60, rounding=ROUND_HALF_EVEN)
+#: Rate tables carry memory and disk in GiB; usage sizes report MiB.
+MIB_PER_GIB = Decimal(1024)
 
 
 def providers_root() -> Traversable:

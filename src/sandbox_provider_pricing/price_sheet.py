@@ -18,12 +18,12 @@ from jsonschema import Draft202012Validator
 from sandbox_provider_pricing._util import decimal_text, package_version, write_json
 from sandbox_provider_pricing.billing_text import unit_name
 from sandbox_provider_pricing.calculator import CONTEXT, SECONDS_PER_HOUR, Span, per_hour
-from sandbox_provider_pricing.calculator.documents import covered_classes
 from sandbox_provider_pricing.calculator.quantities import in_rate_unit
 from sandbox_provider_pricing.cost_method import RULES
 from sandbox_provider_pricing.price import _basis_text
 from sandbox_provider_pricing.providers import billing as provider_billing
 from sandbox_provider_pricing.versions import (
+    covered_classes,
     latest_version,
     priced_provider_ids,
     seed_versions,

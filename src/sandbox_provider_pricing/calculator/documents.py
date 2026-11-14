@@ -27,6 +27,7 @@ from sandbox_provider_pricing.calculator.spans import (
     as_decimal,
 )
 from sandbox_provider_pricing.types import Cost, Document
+from sandbox_provider_pricing.versions import find_class
 
 # The usage facts that say when they were observed; the latest is the default `as_of`.
 FACTS_WITH_TIMES = (
@@ -227,23 +228,6 @@ def _time_unreported(usage: Document) -> bool:
         not isinstance(interval, Mapping) or interval.get("source") != "provider"
         for interval in intervals
     )
-
-
-def covered_classes(price_class: Document) -> list[str]:
-    """The spec classes a price class prices: its `covers`, or its own name when it has none."""
-    covers = price_class.get("covers")
-    return list(covers) if covers else [str(price_class.get("name"))]
-
-
-def find_class(version: Document, name: str | None) -> Document | None:
-    """The price class covering `name`, or the default class when `name` is None."""
-    classes: list[Document] = version.get("classes", [])
-    for price_class in classes:
-        if name is None and price_class.get("default") is True:
-            return price_class
-        if name is not None and name in covered_classes(price_class):
-            return price_class
-    return None
 
 
 def _region_multiplier(usage: Document, price_class: Document, findings: Findings) -> Span:

@@ -14,7 +14,7 @@ What would improve it: Nothing. A missing usage record, a record that names anot
 
 ## Rates
 
-From [`boat@2026-11-01-052001Z`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052001Z.yaml), in effect from 2026-11-01, default class `default`.
+From [`boat@2026-11-01-052002Z`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052002Z.yaml), in effect from 2026-11-01, default class `default`.
 
 | Meter | Rate | Billed on | Billed while |
 | --- | --- | --- | --- |
@@ -59,7 +59,8 @@ None yet.
 
 ## Price versions
 
-- [`boat@2026-11-01-052001Z`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052001Z.yaml): from 2026-11-01, read 2026-11-01, in effect now.
+- [`boat@2026-11-01-052002Z`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052002Z.yaml): from 2026-11-01, read 2026-11-01, in effect now.
+- [`boat@2026-11-01-052001Z`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052001Z.yaml): from 2026-11-01, read 2026-11-01, replaced by `boat@2026-11-01-052002Z`.
 - [`boat@2026-11-01`](../../src/sandbox_provider_pricing/providers/boat/prices/2026-11-01.yaml): from 2026-11-01, read 2026-11-01, replaced by `boat@2026-11-01-052001Z`.
 
 This page is generated from [billing.yaml](../../src/sandbox_provider_pricing/providers/boat/billing.yaml) and the price versions by `make docs`. Edit those, not this file.

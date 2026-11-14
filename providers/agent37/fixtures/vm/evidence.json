@@ -1,0 +1,90 @@
+{
+  "provider": "agent37",
+  "sandbox_id": "41wc7mgvwi",
+  "sandbox_made": {
+    "value": null,
+    "source": "unknown",
+    "how": "No creation observation."
+  },
+  "requested": {
+    "options": {},
+    "cpu": 2,
+    "memory_mib": 4096,
+    "class": "vm"
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-11-13T21:28:19.815807Z",
+        "source": "recorded",
+        "how": "the create request Cloud sent to the provider"
+      },
+      "returned_at": {
+        "value": "2026-11-13T21:28:20.828984Z",
+        "source": "recorded",
+        "how": "the provider's answer to the create request, when it reached Cloud"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-11-13T21:32:23.626754Z",
+        "source": "recorded",
+        "how": "the destroy request Cloud sent to the provider"
+      },
+      "returned_at": {
+        "value": "2026-11-13T21:32:23.935010Z",
+        "source": "recorded",
+        "how": "the provider's answer to the destroy request, when it reached Cloud"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "measured": {},
+  "provider_records": [],
+  "provider_reports": {
+    "cost": {
+      "status": "available",
+      "reason": null,
+      "readings": [
+        {
+          "amount": "0.001379",
+          "currency": "USD",
+          "meter": "instance_total",
+          "interval_start": "2026-11-13T00:00:00+00:00",
+          "interval_end": "2026-11-13T21:33:25.346343+00:00",
+          "scope": "sandbox",
+          "source": "agent37.usage"
+        }
+      ],
+      "records": [
+        {
+          "source": "agent37.usage",
+          "read_at": "2026-11-13T21:33:25.346343+00:00",
+          "body": {
+            "id": "41wc7mgvwi",
+            "total_micros": 1379,
+            "compute_micros": 1379,
+            "llm_micros": 0,
+            "brave_micros": 0,
+            "composio_micros": 0,
+            "perflo_micros": 0,
+            "llm_calls": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "awake_minutes": 5
+          }
+        }
+      ]
+    },
+    "read_times": {
+      "cost": "2026-11-13T21:33:25.764268Z"
+    },
+    "read_at": "2026-11-13T21:33:25.764268Z"
+  }
+}

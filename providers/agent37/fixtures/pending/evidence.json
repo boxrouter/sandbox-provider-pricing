@@ -1,40 +1,43 @@
 {
   "provider": "agent37",
-  "sandbox_id": "u4q5psdda1",
+  "sandbox_id": "h1g2aj3uhd",
   "sandbox_made": {
-    "value": true,
-    "source": "recorded",
-    "how": "the create request returned 201"
+    "value": null,
+    "source": "unknown",
+    "how": "No creation observation."
   },
   "requested": {
-    "options": {}
+    "options": {},
+    "cpu": 2,
+    "memory_mib": 4096,
+    "class": "default"
   },
   "calls": [
     {
       "name": "create",
       "sent_at": {
-        "value": "2026-11-11T20:46:33.595286Z",
+        "value": "2026-11-13T21:28:18.695886Z",
         "source": "recorded",
-        "how": "the create request was sent"
+        "how": "the create request Cloud sent to the provider"
       },
       "returned_at": {
-        "value": "2026-11-11T20:46:34.530896Z",
+        "value": "2026-11-13T21:28:19.815634Z",
         "source": "recorded",
-        "how": "the create request returned"
+        "how": "the provider's answer to the create request, when it reached Cloud"
       },
       "outcome": "returned"
     },
     {
       "name": "destroy",
       "sent_at": {
-        "value": "2026-11-11T20:58:37.372618Z",
+        "value": "2026-11-13T21:32:23.268955Z",
         "source": "recorded",
-        "how": "the destroy request was sent"
+        "how": "the destroy request Cloud sent to the provider"
       },
       "returned_at": {
-        "value": "2026-11-11T20:58:37.780835Z",
+        "value": "2026-11-13T21:32:23.626646Z",
         "source": "recorded",
-        "how": "the destroy request returned"
+        "how": "the provider's answer to the destroy request, when it reached Cloud"
       },
       "outcome": "returned"
     }
@@ -49,29 +52,11 @@
       "status": "unknown",
       "reason": "pending",
       "readings": [],
-      "records": [
-        {
-          "source": "agent37.usage",
-          "read_at": "2026-11-11T20:58:53.076846+00:00",
-          "body": {
-            "id": "u4q5psdda1",
-            "total_micros": 1413,
-            "compute_micros": 1413,
-            "llm_micros": 0,
-            "brave_micros": 0,
-            "composio_micros": 0,
-            "perflo_micros": 0,
-            "llm_calls": 0,
-            "input_tokens": 0,
-            "output_tokens": 0,
-            "awake_minutes": 13
-          }
-        }
-      ]
+      "records": []
     },
     "read_times": {
-      "cost": "2026-11-11T20:58:53.765953Z"
+      "cost": "2026-11-13T21:28:22.001228Z"
     },
-    "read_at": "2026-11-11T20:58:53.765953Z"
+    "read_at": "2026-11-13T21:28:22.001228Z"
   }
 }

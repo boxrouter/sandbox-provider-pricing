@@ -10,7 +10,7 @@ from decimal import Decimal, localcontext
 from typing import Literal, TypeAlias, TypedDict
 
 from sandbox_provider_pricing._util import CONTEXT, decimal_text
-from sandbox_provider_pricing.calculator import TIME_RESOURCES, find_class
+from sandbox_provider_pricing.calculator import TIME_RESOURCES
 from sandbox_provider_pricing.calculator.charges import find_rate
 from sandbox_provider_pricing.calculator.quantities import (
     BASES,
@@ -25,6 +25,7 @@ from sandbox_provider_pricing.calculator.quantities import (
 )
 from sandbox_provider_pricing.calculator.spans import Span
 from sandbox_provider_pricing.types import Document
+from sandbox_provider_pricing.versions import find_class
 
 _STATES = ("running", "paused", "stopped")
 _PeriodDemand: TypeAlias = tuple[str, Decimal, Decimal | None, Decimal | None]

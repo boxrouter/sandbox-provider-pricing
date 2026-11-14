@@ -37,6 +37,11 @@
       "description": "Legacy: where billing starts and ends, kept so documents published before 0.2 stay byte-identical. Code ignores it; the provider's billing.yaml is the source.",
       "$ref": "#/$defs/boundary"
     },
+    "discovery_digest": {
+      "description": "Set on a version generated from a provider's discovery document: `sha256:` and the hex digest of the canonical JSON (sorted keys, no spacing) of the document's price block, a list of {class, prices} in the document's order. The same digest means the same price block.",
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
     "supersedes": {
       "description": "Earlier price version ids corrected by this document. Selectors ignore these versions when the bundled price files include this document.",
       "type": "array",
@@ -319,6 +324,10 @@
         },
         "memory_gib": {
           "description": "GiB of memory the published size gives; where the provider quotes GB it is read as a GiB.",
+          "$ref": "#/$defs/positive_decimal"
+        },
+        "disk_gib": {
+          "description": "GiB of disk the published size gives; where the provider quotes GB it is read as a GiB.",
           "$ref": "#/$defs/positive_decimal"
         },
         "note": { "type": "string", "minLength": 1 }

@@ -4,6 +4,68 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.7 — 2026-11-14
+
+### Fixed
+
+- Superserve's price sheet said a paused sandbox's price was unknown and its disk storage status
+  was unknown. A measured idle sandbox stayed active and billed at full size until it was paused;
+  one with an idle timeout was paused by Superserve and its meter stopped. The sheet now says paused
+  is not billed (a paused rate of 0) and disk is included, as the price version states.
+- Superserve's billing rules did not list the `idle_paused` row an idle timeout writes as an end row.
+  The formula, the ends rule and the audit-log row list now include it, with a calculated fixture
+  (`idle-paused`) from the measured sandbox. Pausing, resuming, starting, failed and migrating
+  states are stated as open questions with what the lifecycle page says; failed and migrating were not measured.
+- `usage.py` no longer imports the calculator's class lookup or its unit constant, keeping usage
+  independent of pricing; the lookups moved to `versions` and the constant to `_util`. The two new
+  usage read-time functions are declared, and REUSE annotations cover the `tests/data` files added
+  since 0.17.4 — the from-discovery case files and `superserve-pricing-public.json`. The
+  release-time license check rejected 0.17.6 for the missing notices, so 0.17.6 has no published
+  release; this version replaces it.
+
+## 0.17.6 — 2026-11-14
+
+### Changed
+
+- `spp from-discovery` shares the calculator's rate-period, byte and size-factor constants
+  instead of keeping its own copies. Generated price versions and their digests are unchanged.
+
+### Fixed
+
+- Agent37's 2026-11-13 VM-instance evidence cited a closed Cloud revision for the adapter's
+  cost reader; it now names the adapter's released package version. The 0.17.5 tag carried the
+  old text, which the release-time provenance check rejects, so 0.17.5 has no published
+  release; this version replaces it.
+
+## 0.17.5 — 2026-11-14
+
+### Added
+
+- `allocated_size` in the billing declaration names the provider-record field carrying the
+  provider's own size name. When a sandbox was created by minimums and records no exact
+  requested size, the latest record read resolves the published bundle of that name in the
+  selected price version — cpu, memory and disk become the provider-reported usage size. A
+  record never read, or a name no machine rate covers, leaves the size unknown rather than
+  estimated. Boat declares its usage record's `sandboxType`.
+- `disk_gib` on a price version's machine rate carries the disk the published size gives.
+- Boat's price version `boat@2026-11-01-052002Z` adds `disk_gib` to each machine rate from the
+  pricing quote already cited (small and default 51 GB, large 111 GB, xlarge 251 GB). It
+  supersedes `boat@2026-11-01-052001Z`; no rate, class or source changed.
+
+### Changed
+
+- Superserve's price version `superserve@2026-11-13-141358Z` states disk as not billed, so a managed
+  reservation quote for the default size is bounded. It holds for sandboxes BoxRouter never keeps
+  paused; storage on a long retained pause stays an open question. It supersedes
+  `superserve@2026-11-13`; no rate changed.
+- Agent37's fixtures `best` and `pending` are now a default instance recorded on 2026-11-13 and
+  built into evidence by Cloud's own close path, and a new `vm` fixture records a VM instance.
+  Both settled figures equal their billed minutes at list price, the VM's compute at 2.5 times.
+  Agent37's billing text no longer says the adapter waits an hour after the delete: it reports
+  the cost at its first read after the instance reads as deleted.
+- The conformance `missing-records` case also removes a fixture's Core reports, so a provider's
+  own figure never survives it.
+
 ## 0.17.4 — 2026-11-13
 
 ### Added

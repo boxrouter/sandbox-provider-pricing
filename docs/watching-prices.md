@@ -37,7 +37,9 @@ checks the current (newest, not superseded) price version, and keeps one issue p
 - `confirmed`: the open issue, if any, is closed.
 
 It never runs `spp draft` and never writes a price: a `changed` issue is for a person to turn into a new
-price version. A new provider is watched as soon as its first price version is bundled.
+price version, and to revisit the provider's `billing.yaml` when more than a rate changed. Superserve's
+price version quotes its public pricing JSON, down to storage's `"billable":false`, so storage turning
+billable opens `Price check: superserve`. A new provider is watched as soon as its first price version is bundled.
 
 ```sh
 uv run --locked python scripts/watch_prices.py --run-url "$URL" --provider e2b   # needs gh and a repository

@@ -6,8 +6,13 @@
   "held_back_by": [
     {
       "code": "unreported_quantity",
-      "resource": "class",
-      "text": "The provider did not report the class."
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    },
+    {
+      "code": "unreported_quantity",
+      "resource": "disk",
+      "text": "The provider did not report the disk size."
     }
   ],
   "currency": "USD",
@@ -21,53 +26,56 @@
     "Credits and discounts"
   ],
   "revisit": {
-    "after": "2026-11-11T20:59:37.780835Z",
-    "until": "2026-11-18T20:58:37.780835Z",
+    "after": "2026-11-13T21:33:23.626646Z",
+    "until": "2026-11-20T21:32:23.626646Z",
     "interval_s": 1800,
-    "next_read_at": "2026-11-11T20:59:37.780835Z"
+    "next_read_at": "2026-11-13T21:33:23.626646Z"
   },
   "final": false,
   "versions": {
-    "package": "0.17.3",
+    "package": "0.17.4",
     "rules": 1,
     "prices": "agent37@2026-11-12"
   },
   "steps": {
     "evidence": {
       "sandbox_made": {
-        "value": true,
-        "source": "recorded",
-        "how": "the create request returned 201"
+        "value": null,
+        "source": "unknown",
+        "how": "No creation observation."
       },
       "requested": {
-        "options": {}
+        "options": {},
+        "cpu": 2,
+        "memory_mib": 4096,
+        "class": "default"
       },
       "calls": [
         {
           "name": "create",
           "sent_at": {
-            "value": "2026-11-11T20:46:33.595286Z",
+            "value": "2026-11-13T21:28:18.695886Z",
             "source": "recorded",
-            "how": "the create request was sent"
+            "how": "the create request Cloud sent to the provider"
           },
           "returned_at": {
-            "value": "2026-11-11T20:46:34.530896Z",
+            "value": "2026-11-13T21:28:19.815634Z",
             "source": "recorded",
-            "how": "the create request returned"
+            "how": "the provider's answer to the create request, when it reached Cloud"
           },
           "outcome": "returned"
         },
         {
           "name": "destroy",
           "sent_at": {
-            "value": "2026-11-11T20:58:37.372618Z",
+            "value": "2026-11-13T21:32:23.268955Z",
             "source": "recorded",
-            "how": "the destroy request was sent"
+            "how": "the destroy request Cloud sent to the provider"
           },
           "returned_at": {
-            "value": "2026-11-11T20:58:37.780835Z",
+            "value": "2026-11-13T21:32:23.626646Z",
             "source": "recorded",
-            "how": "the destroy request returned"
+            "how": "the provider's answer to the destroy request, when it reached Cloud"
           },
           "outcome": "returned"
         }
@@ -79,52 +87,17 @@
       "provider_records": [
         {
           "source": "core.cost",
-          "read_at": "2026-11-11T20:58:53.765953Z",
+          "read_at": "2026-11-13T21:28:22.001228Z",
           "body": {
             "status": "unknown",
             "reason": "pending",
             "readings": [],
-            "records": [
-              {
-                "source": "agent37.usage",
-                "read_at": "2026-11-11T20:58:53.076846+00:00",
-                "body": {
-                  "id": "u4q5psdda1",
-                  "total_micros": 1413,
-                  "compute_micros": 1413,
-                  "llm_micros": 0,
-                  "brave_micros": 0,
-                  "composio_micros": 0,
-                  "perflo_micros": 0,
-                  "llm_calls": 0,
-                  "input_tokens": 0,
-                  "output_tokens": 0,
-                  "awake_minutes": 13
-                }
-              }
-            ]
-          }
-        },
-        {
-          "source": "agent37.usage",
-          "read_at": "2026-11-11T20:58:53.076846+00:00",
-          "body": {
-            "id": "u4q5psdda1",
-            "total_micros": 1413,
-            "compute_micros": 1413,
-            "llm_micros": 0,
-            "brave_micros": 0,
-            "composio_micros": 0,
-            "perflo_micros": 0,
-            "llm_calls": 0,
-            "input_tokens": 0,
-            "output_tokens": 0,
-            "awake_minutes": 13
+            "records": []
           }
         }
       ],
       "provider": "agent37",
-      "sandbox_id": "u4q5psdda1"
+      "sandbox_id": "h1g2aj3uhd"
     },
     "times": {
       "start": {
@@ -139,12 +112,12 @@
       }
     },
     "sandbox_start": {
-      "value": "2026-11-11T20:46:34.530896Z",
+      "value": "2026-11-13T21:28:19.815634Z",
       "source": "recorded",
       "how": "When the provider's create call returned."
     },
     "sandbox_end": {
-      "value": "2026-11-11T20:58:37.780835Z",
+      "value": "2026-11-13T21:32:23.626646Z",
       "source": "recorded",
       "how": "When the provider's destroy call returned."
     },
@@ -152,26 +125,28 @@
       "low": {
         "provider": "agent37",
         "started": {
-          "at": "2026-11-11T20:46:34.530896Z",
+          "at": "2026-11-13T21:28:19.815634Z",
           "source": "recorded",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "When the provider's create call returned."
         },
         "region": {
           "name": null,
           "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "The requested region."
         },
         "size": {
-          "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "The requested allocation."
         },
         "creations": {
           "count": null,
           "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "No provider creation count."
         },
         "intervals": [
@@ -179,34 +154,42 @@
             "state": "running",
             "seconds": null,
             "source": "unknown",
-            "observed_at": "2026-11-11T20:58:53.765953Z",
+            "observed_at": "2026-11-13T21:32:23.626646Z",
             "how": "Waiting for Agent37's per-sandbox provider record."
           }
-        ]
+        ],
+        "class": {
+          "name": "default",
+          "source": "recorded",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
+          "how": "The class the sandbox was created in."
+        }
       },
       "high": {
         "provider": "agent37",
         "started": {
-          "at": "2026-11-11T20:46:34.530896Z",
+          "at": "2026-11-13T21:28:19.815634Z",
           "source": "recorded",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "When the provider's create call returned."
         },
         "region": {
           "name": null,
           "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "The requested region."
         },
         "size": {
-          "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "The requested allocation."
         },
         "creations": {
           "count": null,
           "source": "unknown",
-          "observed_at": "2026-11-11T20:58:53.765953Z",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
           "how": "No provider creation count."
         },
         "intervals": [
@@ -214,10 +197,16 @@
             "state": "running",
             "seconds": null,
             "source": "unknown",
-            "observed_at": "2026-11-11T20:58:53.765953Z",
+            "observed_at": "2026-11-13T21:32:23.626646Z",
             "how": "Waiting for Agent37's per-sandbox provider record."
           }
-        ]
+        ],
+        "class": {
+          "name": "default",
+          "source": "recorded",
+          "observed_at": "2026-11-13T21:32:23.626646Z",
+          "how": "The class the sandbox was created in."
+        }
       }
     },
     "rated": {
@@ -228,8 +217,13 @@
         "held_back_by": [
           {
             "code": "unreported_quantity",
-            "resource": "class",
-            "text": "The provider did not report the class."
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the disk size."
           }
         ],
         "exclusions": [
@@ -240,7 +234,7 @@
           "Credits and discounts"
         ],
         "price_version": "agent37@2026-11-12",
-        "as_of": "2026-11-11T20:58:53.765953Z"
+        "as_of": "2026-11-13T21:32:23.626646Z"
       },
       "high": {
         "label": "unknown",
@@ -249,8 +243,13 @@
         "held_back_by": [
           {
             "code": "unreported_quantity",
-            "resource": "class",
-            "text": "The provider did not report the class."
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the disk size."
           }
         ],
         "exclusions": [
@@ -261,9 +260,9 @@
           "Credits and discounts"
         ],
         "price_version": "agent37@2026-11-12",
-        "as_of": "2026-11-11T20:58:53.765953Z"
+        "as_of": "2026-11-13T21:32:23.626646Z"
       }
     }
   },
-  "as_of": "2026-11-11T20:58:53.765953Z"
+  "as_of": "2026-11-13T21:32:23.626646Z"
 }

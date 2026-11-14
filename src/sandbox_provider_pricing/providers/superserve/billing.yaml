@@ -19,17 +19,18 @@ reported_under_account_rate:
   value: false
   source: providers/superserve/evidence/2026-11-13-billing-boundary.md#verdict (Superserve reports no per-sandbox cost; the cost is calculated from rates)
 summary: >-
-  Superserve reports no cost. Each running period lasts from a started or resumed row of its audit log to the first row that ends it, and is priced at the list rates per second. A sandbox that ends by its own timeout has no deleted row, so its end is the timeout_paused row. Without an end row the cost is unknown. The cost is calculated, not Superserve's own figure.
+  Superserve reports no cost. Each running period lasts from a started or resumed row of its audit log to the first row that ends it, and is priced at the list rates per second. A sandbox that ends by its own timeout has no deleted row, so its end is the timeout_paused row, or the idle_paused row after an idle timeout. Without an end row the cost is unknown. The cost is calculated, not Superserve's own figure.
 formula: >-
-  For each running period, from a started or resumed row to the first deleted, paused, timeout_paused or auto_deleted row: seconds × (vCPUs × CPU rate + GiB of memory × memory rate). With no end row the cost is unknown.
+  For each running period, from a started or resumed row to the first deleted, paused, idle_paused, timeout_paused or auto_deleted row: seconds × (vCPUs × CPU rate + GiB of memory × memory rate). With no end row the cost is unknown.
 rules:
   billed_on:
-    answer: '{rate.cpu} and {rate.memory} of the memory the sandbox holds, while it runs. Storage on retained data is a separate meter whose billing the sources contradict; its usage stayed 0 in every measured sandbox.'
+    answer: '{rate.cpu} and {rate.memory} of the memory the sandbox holds, while it runs. Storage on retained data is a separate resource that Superserve tracks but does not bill: a sandbox paused 11 min 18 s with 1 GiB written added no storage charge.'
     sources:
       - https://www.superserve.ai/pricing/
       - https://api.superserve.ai/billing/pricing/public
       - https://docs.superserve.ai/sandbox/live-memory-resizing
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox
+      - providers/superserve/evidence/2026-11-13-paused-storage.md#verdict
   starts:
     answer: >-
       Not stated. The calculator uses the started row (or resumed after a pause), which fell inside the create call on six sandboxes.
@@ -38,8 +39,8 @@ rules:
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#verdict
   ends:
     answer: >-
-      Compute and memory stop when the sandbox is paused. The calculator ends at the first deleted, paused, timeout_paused or auto_deleted row; the deleted row fell inside the destroy call on four sandboxes.
-      A sandbox that ends by its own timeout has no deleted row: the meter stopped before its timeout_paused row, and auto_deleted followed 0.24 s later.
+      Compute and memory stop when the sandbox is paused. The calculator ends at the first deleted, paused, idle_paused, timeout_paused or auto_deleted row; the deleted row fell inside the destroy call on four sandboxes.
+      The meter stopped before the idle_paused row (by 1.05 s) and before the timeout_paused row, which auto_deleted followed 0.24 s later.
     sources:
       - https://docs.superserve.ai/sandbox/lifecycle
       - https://www.superserve.ai/pricing/
@@ -51,43 +52,56 @@ rules:
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#audit-log-rows-and-billed-seconds-per-sandbox
   idle_and_paused:
     answer: >-
-      A running sandbox bills compute and memory whether or not it is busy. A paused sandbox bills neither: a 30.956 s pause between paused and resumed rows added nothing to the meter, and a sandbox deleted 7.64 s after pausing billed only its running time.
+      An idle running sandbox bills its full compute and memory: one left idle 8 min stayed active at full size. Superserve pauses a sandbox only on a timeout it is given (idle_timeout_seconds, timeout_seconds), an explicit pause or a delete; both timeouts are unset by default. A paused sandbox bills nothing: the meter stayed flat for 43 s of idle pause.
     sources:
       - https://docs.superserve.ai/sandbox/lifecycle
       - https://docs.superserve.ai/sandbox/live-memory-resizing
       - https://www.superserve.ai/pricing/
+      - providers/superserve/evidence/2026-11-14-idle-and-idle-timeout.md#verdict
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#what-ended-each-sandbox
   image_pull:
     answer: Not stated; not yet measured.
     unknown_how: Compare billed usage for a first create from a large template with a later create from the same template.
   extra_charges:
-    answer: Storage on a shared template and retained sandbox changes, if billed. The pricing page says its estimates exclude network and external model API charges; no network charge is published.
+    answer: Storage on a shared template and retained sandbox changes is listed per GiB-hour but marked not billable, and a sandbox paused 11 min 18 s was charged 0 for it. The pricing page says its estimates exclude network and external model API charges; no network charge is published.
     sources:
       - https://www.superserve.ai/pricing/
+      - https://api.superserve.ai/billing/pricing/public
+      - providers/superserve/evidence/2026-11-13-paused-storage.md#verdict
   left_out:
     answer: Storage, plan fees, the included usage on paid plans, taxes, network and external model API charges.
     sources:
       - https://www.superserve.ai/pricing/
   per_sandbox_data:
     answer: >-
-      No cost or usage. The audit log (GET /activity) has a started, paused, resumed, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.
+      No cost or usage. The audit log (GET /activity) has a started, paused, resumed, idle_paused, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.
     sources:
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing
       - providers/superserve/evidence/2026-11-13-billing-boundary.md#retention
 checks:
+  - date: '2026-11-14'
+    title: Idle time on a sandbox
+    file: evidence/2026-11-14-idle-and-idle-timeout.md
+    result: A sandbox with no idle timeout, idle 8 min 14 s, stayed active and billed 2 vCPU and 4,096 MiB throughout. One with idle_timeout_seconds 60 was paused about 67 s after its last command, and the meter stopped there for the 43 s read. One team, one region, the base template.
+  - date: '2026-11-13'
+    title: Storage on a paused sandbox
+    file: evidence/2026-11-13-paused-storage.md
+    result: One sandbox with 1 GiB of random data written, paused 11 min 18 s, added no storage charge. Storage usage was tracked in the team's hourly series (2,414.76 GiB-seconds, billable false, cost 0). One team, one region, one pause.
   - date: '2026-11-13'
     title: Billing boundary against Superserve lifecycle rows
     file: evidence/2026-11-13-billing-boundary.md
     result: On six sandboxes rows priced at list rates came to 0.4% above the team's billing meter, including a 2048 MiB sandbox, a pause and resume, and a timeout. One team, one region, 30 to 90 s.
 open_questions:
-  - question: Is storage billed? The pricing page lists it at a per GiB-hour rate while retained, and the public pricing data marks it not billable. The team's storage usage stayed 0 over six sandboxes of 30 to 90 s.
-    how: Keep a sandbox paused for hours, and compare the team's storage usage and charge with the listed rate.
+  - question: Is storage billed on a pause longer than 12 minutes, or at invoice time? The public pricing data marks it not billable, and a sandbox paused 11 min 18 s with 1 GiB written added no storage charge.
+    how: Keep a sandbox paused for hours with a larger diff, compare the team's storage usage and charge with the listed rate, and read the period's invoice.
   - question: Does the meter start before the started row, and end before the ending row? The rows ran 0.09 to 0.38 s longer than the meter.
     how: Compare the meter of many short sandboxes with their rows, and look for a fixed offset at each end.
-  - question: Does live memory resizing (memory_current_mib) change the memory billed?
-    how: Grow a sandbox's memory during a measured run and compare the meter with the allocated size.
-  - question: Which rows do idle-timeout pauses, failed creates and migrations write, and are they billed?
-    how: Trigger each state on one sandbox and compare its rows with the team's meter.
+  - question: Does live memory resizing (memory_current_mib) change the memory billed? The base template is a fixed size, so the idle check could not show it.
+    how: Grow a sandbox's memory on a template with memory_max_mib set, let it shrink, and compare the meter with memory_current_mib.
+  - question: Is time in pausing, resuming or starting billed? The lifecycle page says active is billed and paused is not, and states no billing for these three. In measured pauses and resumes the meter agreed with the rows (started to paused, resumed to deleted) within 0.4 s.
+    how: Pause and resume a sandbox with a large memory image, and compare the team's meter with the time between the call, the row and the status change.
+  - question: Are failed and migrating sandboxes billed, and which rows do they write? The lifecycle page says failed means the sandbox could not boot or resume and stays until deleted, and migrating is a temporary move of a paused sandbox. No billing is stated for either, and none was observed.
+    how: Read the team's meter and activity rows while a sandbox is failed or migrating. Ask Superserve support how to cause each, and what each bills.
   - question: Does an account rate differ from the list rate?
     how: Compare a negotiated account's meter delta with the list rates for one sandbox.
   - question: How long does the audit log keep rows beyond 21 days?
@@ -98,11 +112,11 @@ price_sheet:
   active_time_priced: {value: false, source_url: https://www.superserve.ai/pricing/}
   benchmark_region: {value: null, source_url: https://docs.superserve.ai/api-key}
   states:
-    idle: {rule: running, note: A running sandbox bills compute and memory whether or not it is busy., source_url: https://www.superserve.ai/pricing/}
-    paused: {rule: unknown, note: Compute and memory are not billed while paused; whether the retained data is billed is contradicted by the sources., source_url: https://www.superserve.ai/pricing/}
+    idle: {rule: running, note: 'An idle sandbox bills its full compute and memory until it is paused. Superserve pauses it only on idle_timeout_seconds or timeout_seconds when set, an explicit pause or a delete; both are unset by default.', source_url: https://docs.superserve.ai/sandbox/lifecycle}
+    paused: {rule: none, note: 'Compute and memory are not billed while paused. A paused sandbox with 1 GiB written added no storage charge in 11 min 18 s.', source_url: https://docs.superserve.ai/sandbox/lifecycle}
   class_overrides: {}
   storage:
-    - {kind: disk, status: unknown, source_url: https://www.superserve.ai/pricing/}
+    - {kind: disk, status: included, source_url: https://api.superserve.ai/billing/pricing/public}
     - {kind: snapshot, status: unknown, source_url: https://www.superserve.ai/pricing/}
     - {kind: image, status: unknown, source_url: https://www.superserve.ai/pricing/}
     - {kind: volume, status: unpublished, source_url: https://www.superserve.ai/pricing/}

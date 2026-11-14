@@ -22,7 +22,13 @@ from sandbox_provider_pricing.types import (
     TimeValue,
     bundled_copy,
 )
-from sandbox_provider_pricing.usage import call_returns, sandbox_end, sandbox_start, utc_text
+from sandbox_provider_pricing.usage import (
+    call_returns,
+    provider_record_size,
+    sandbox_end,
+    sandbox_start,
+    utc_text,
+)
 from sandbox_provider_pricing.versions import (
     bundled_pool,
     latest_version,
@@ -77,6 +83,7 @@ def price(
         selected = latest_version(provider, pool)
     if selected is not None and versions is None:
         selected = bundled_copy(selected)
+    _recorded_size(evidence, bill, selected, usage)
     low = cost(usage["low"], selected, as_of=observation)
     high = (
         low if usage["low"] == usage["high"] else cost(usage["high"], selected, as_of=observation)
@@ -356,6 +363,25 @@ def _canonical_end(evidence: Document, ended_at: datetime | None) -> datetime | 
         facts.append(noticed_gone.get("value"))
     parsed = [parse_time(value) for value in facts if isinstance(value, str)]
     return max(parsed, default=None)
+
+
+def _recorded_size(
+    evidence: Document, bill: Document, selected: Document | None, usage: BillableUsage
+) -> None:
+    """Fill the usage size from the provider's own record where its declaration names one.
+
+    A create that asks for minimums records no exact requested size; the provider's sandbox
+    record says what was allocated. Its resolved size stands in for the requested one wherever
+    no provider or measured size already does.
+    """
+    size = provider_record_size(evidence, bill, selected)
+    if size is None:
+        return
+    for side in (usage["low"], usage["high"]):
+        existing = side.get("size")
+        if isinstance(existing, Mapping) and existing.get("source") in ("provider", "measured"):
+            continue
+        side["size"] = size
 
 
 def _start_usage(evidence: Document, usage: BillableUsage) -> None:

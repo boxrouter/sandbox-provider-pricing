@@ -7,13 +7,13 @@ from __future__ import annotations
 from collections.abc import Mapping
 from decimal import ROUND_CEILING, Decimal
 
+from sandbox_provider_pricing._util import MIB_PER_GIB
 from sandbox_provider_pricing.calculator.findings import Findings, fact_source, usage_fact
 from sandbox_provider_pricing.calculator.spans import (
     BYTES_PER_GB,
     BYTES_PER_GIB,
     CREATIONS_PER_MILLION,
     HOURS_PER_MONTH,
-    MIB_PER_GIB,
     SECONDS_PER_HOUR,
     ZERO,
     Span,

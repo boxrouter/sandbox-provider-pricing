@@ -6,10 +6,10 @@ from collections.abc import Mapping, Sequence
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
-from sandbox_provider_pricing._util import parse_time
+from sandbox_provider_pricing._util import MIB_PER_GIB, parse_time
 from sandbox_provider_pricing.evidence import core_report, validate_evidence
 from sandbox_provider_pricing.types import BillableUsage, Document, JsonObject, TimeValue
-from sandbox_provider_pricing.versions import price_version
+from sandbox_provider_pricing.versions import find_class, price_version
 
 STARTS = ("created", "started", "resumed", "billed_start")
 ENDS = ("paused", "stopped", "ended", "billed_end")
@@ -310,6 +310,79 @@ def read_core_report(evidence: Document, kind: str) -> tuple[JsonObject, str] | 
     report = core_report(evidence, kind)
     record = latest_record(evidence, f"core.{kind}")
     return None if report is None or record is None else (report, record["read_at"])
+
+
+def provider_record_size(
+    evidence: Document, billing: Document, version: Document | None
+) -> JsonObject | None:
+    """The allocated size the provider's own record names, resolved to published dimensions.
+
+    Where the billing declaration names a record field carrying the provider's size name, the
+    newest read of that field resolves the allocated bundle: the price version's per-size
+    machine rate of the same name carries its published cpu, memory and disk. A sandbox created
+    by minimums records no exact requested size; what the provider allocated is what the price
+    version bills. A field never read, or a name no rate covers, leaves the size unknown — it
+    is never estimated.
+    """
+    declared = billing.get("allocated_size")
+    field = declared.get("record_field") if isinstance(declared, Mapping) else None
+    if not isinstance(field, str) or not field or version is None:
+        return None
+    requested = evidence.get("requested")
+    requested_class = requested.get("class") if isinstance(requested, Mapping) else None
+    price_class = find_class(version, requested_class if isinstance(requested_class, str) else None)
+    machine = (price_class or {}).get("rates", {}).get("machine")
+    if not isinstance(machine, Mapping):
+        return None
+    records = sorted(
+        evidence.get("provider_records") or (),
+        key=lambda record: record.get("read_at") or "",
+        reverse=True,
+    )
+    return next(
+        (
+            size
+            for record in records
+            if (size := _record_named_size(machine, field, record)) is not None
+        ),
+        None,
+    )
+
+
+def _record_named_size(machine: Document, field: str, record: Document) -> JsonObject | None:
+    """The size doc one provider record resolves, when its named bundle is priced."""
+    body = record.get("body")
+    name = body.get(field) if isinstance(body, Mapping) else None
+    bundle = machine.get(name) if isinstance(name, str) else None
+    if not isinstance(bundle, Mapping):
+        return None
+    size: JsonObject = {
+        key: amount
+        for key, amount in (
+            ("cpu", _bundle_dim(bundle.get("cpu"), 1)),
+            ("memory_mib", _bundle_dim(bundle.get("memory_gib"), MIB_PER_GIB)),
+            ("disk_mib", _bundle_dim(bundle.get("disk_gib"), MIB_PER_GIB)),
+        )
+        if amount is not None
+    }
+    if not size:
+        return None
+    return size | {
+        "source": "provider",
+        "observed_at": record["read_at"],
+        "how": f"The provider's sandbox record named the allocated size {name}.",
+    }
+
+
+def _bundle_dim(value: object, factor: object) -> int | float | None:
+    """A published bundle dimension in the usage size's unit; never a guessed number."""
+    if isinstance(value, bool) or not isinstance(value, (int, float, str)):
+        return None
+    try:
+        amount = Decimal(str(value)) * Decimal(str(factor))
+    except (ArithmeticError, ValueError):
+        return None
+    return int(amount) if amount == amount.to_integral_value() else float(amount)
 
 
 def read_before_end(evidence: Document, record: Document) -> str | None:

@@ -53,6 +53,8 @@ path = [
   "template/provider/evidence/check.md",
   "tests/data/cloud-report-read-times.json",
   "tests/data/core-report-wire.json",
+  "tests/data/discovery/**",
+  "tests/data/superserve-pricing-public.json",
   "tests/fixtures/benchmark_per_hour.json",
   "tests/fixtures/drafts/e2b-cpu-changed.reply.json",
   "tests/fixtures/drafts/e2b-cpu-changed.stray.json",

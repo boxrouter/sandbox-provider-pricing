@@ -128,7 +128,7 @@ EXPECTED_STATUS = {
     "daytona": "bounded",
     "e2b": "bounded",
     "modal": "unbounded",  # CPU, memory and disk are charged on request or use
-    "superserve": "unbounded",  # storage is billed on retained data and the sources disagree on it
+    "superserve": "bounded",  # storage is not billed for sandboxes BoxRouter never keeps paused
     "vercel": "bounded",
 }
 

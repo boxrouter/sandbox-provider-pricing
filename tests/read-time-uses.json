@@ -313,6 +313,25 @@
     ]
   },
   {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "provider_record_size",
+    "kind": "compared with input",
+    "offset": "none; choose among fixed input read times",
+    "uses": [
+      "Constant:read_at"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "_record_named_size",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:read_at"
+    ]
+  },
+  {
     "file": "src/sandbox_provider_pricing/providers/vercel/conformance.py",
     "function": "records",
     "kind": "copied verbatim",

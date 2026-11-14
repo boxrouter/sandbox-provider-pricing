@@ -18,6 +18,9 @@ reported_at_list_price:
 reported_under_account_rate:
   value: false
   source: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage (dollars is documented as seconds at list price, whatever plan, trial or gift actually paid for it); the figure is list even when the account pays less
+allocated_size:
+  record_field: sandboxType
+  source: https://docs.boat.dev/api/reference/sandboxes/get-sandbox-usage (the usage record's sandboxType names the allocated size; the price version keys its machine rates by the same names)
 summary: >-
   Boat reports a per-sandbox cost: GET /sandboxes/{id}/usage returns billable machine-seconds
   weighted by size (small 0.5, default 1, large 2, xlarge 50/9) and dollars at list price. The

@@ -117,7 +117,10 @@ def _sheet_cases(sheet: Document) -> list[JsonObject]:
             fixture = f"{provider['id']}/fixtures/best/evidence.json"
             for scenario, extra in (
                 ("recorded", {}),
-                ("missing-records", {"provider_records": [], "provider_times": []}),
+                (
+                    "missing-records",
+                    {"provider_records": [], "provider_times": [], "provider_reports": {}},
+                ),
                 ("unknown-class", {"requested/class": "unpublished-conformance-class"}),
             ):
                 cases.append(

@@ -70,12 +70,12 @@ cost of any sandbox. `make docs` regenerates the table.
 | --- | ---: | --- | --- |
 | Agent37 | about 0.006027 | CPU and memory as requested | [`agent37@2026-11-12`](src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml) |
 | Blaxel | 0 to 0.1656 | Memory only while in use | [`blaxel@2026-11-07-122300Z`](src/sandbox_provider_pricing/providers/blaxel/prices/2026-11-07-122300Z.yaml) |
-| Boat | 0.018 | Flat per-size rate, not per vCPU or GiB | [`boat@2026-11-01-052001Z`](src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052001Z.yaml) |
+| Boat | 0.018 | Flat per-size rate, not per vCPU or GiB | [`boat@2026-11-01-052002Z`](src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052002Z.yaml) |
 | boxd | 0 to 0.15 | CPU and memory only while in use | [`boxd@2026-11-02-082924Z`](src/sandbox_provider_pricing/providers/boxd/prices/2026-11-02-082924Z.yaml) |
 | Daytona | 0.1656 | CPU and memory as requested | [`daytona@2026-10-24-065001Z`](src/sandbox_provider_pricing/providers/daytona/prices/2026-10-24-065001Z.yaml) |
 | E2B | 0.1656 | CPU and memory as requested | [`e2b@2026-10-31-015029Z`](src/sandbox_provider_pricing/providers/e2b/prices/2026-10-31-015029Z.yaml) |
 | Modal | at least 0.23796 | CPU and memory at the larger of request and use | [`modal@2026-11-05-065701Z`](src/sandbox_provider_pricing/providers/modal/prices/2026-11-05-065701Z.yaml) |
-| Superserve | 0.1656 | CPU and memory as requested | [`superserve@2026-11-13`](src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13.yaml) |
+| Superserve | 0.1656 | CPU and memory as requested | [`superserve@2026-11-13-141358Z`](src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13-141358Z.yaml) |
 | Vercel | 0.0848 to 0.3408 | CPU only while in use, memory as requested | [`vercel@2026-10-20-055631Z`](src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055631Z.yaml) |
 <!-- /generated:hourly -->
 

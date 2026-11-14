@@ -10,7 +10,7 @@ Agent37's compute_micros for the instance, divided by one million. Check: billed
 
 What holds it back: Nothing. A deleted instance's settled compute spend in Agent37's usage report is labelled reported; it matched list rates in our check.
 
-What would improve it: Nothing. Until the adapter reads the same settled total twice, an hour apart, after the delete, the cost is unknown.
+What would improve it: Nothing. Until the adapter has read the instance as deleted and found it in the usage report, the cost is unknown.
 
 ## Rates
 
@@ -39,13 +39,14 @@ From [`agent37@2026-11-12`](../../src/sandbox_provider_pricing/providers/agent37
 ## Not known yet
 
 - Can a deleted instance's usage total change after it has been read?
-  - To find out: Re-read deleted instances' totals over days; the 2026-11-11 check read them for an hour after the delete.
+  - To find out: Re-read deleted instances' totals over days; the 2026-11-11 and 2026-11-13 checks read them for an hour after the delete.
 - Is GB in the RAM and disk rates 10^9 bytes or a GiB?
   - To find out: Ask Agent37 or compare a reported charge for a size whose GB and GiB figures differ in the micro-dollar.
 
 ## Our measurements
 
 - 2026-11-11: [Usage report compute against list rates](evidence/2026-11-11-usage-vs-list-price.md). On two default instances (one running, one stopped part way), compute_micros equalled the billed minutes at list rates to the micro-dollar and was readable at delete. One account, one size, one region.
+- 2026-11-13: [A VM instance's usage report compute against list rates](evidence/2026-11-13-vm-instance-usage.md). On one VM and one default instance, compute_micros equalled the billed minutes at list rates, the VM's CPU and RAM at 2.5 times, to the micro-dollar; the adapter's first read after the delete was already settled. One account, one size, one region.
 
 ## Price versions
 

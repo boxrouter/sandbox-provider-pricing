@@ -1,0 +1,48 @@
+{
+  "spec_version": "1.0",
+  "provider": {
+    "id": "zzexample",
+    "name": "ZZ Example",
+    "docs_url": "https://example.test/docs"
+  },
+  "classes": [
+    {
+      "id": "default",
+      "name": "Linux container",
+      "ready": true,
+      "prices": [
+        {
+          "item": "cpu",
+          "price_usd": "0",
+          "unit": "vcpu_second",
+          "basis": "allocated",
+          "included": true
+        },
+        {
+          "item": "memory",
+          "price_usd": "0.0000045",
+          "unit": "gib_second",
+          "basis": "allocated"
+        },
+        {
+          "item": "disk",
+          "price_usd": "0.09",
+          "unit": "gib_month",
+          "basis": "allocated",
+          "states": [
+            "running",
+            "paused",
+            "stopped"
+          ]
+        },
+        {
+          "item": "egress",
+          "price_usd": "0",
+          "unit": "gb",
+          "basis": "used",
+          "included": true
+        }
+      ]
+    }
+  ]
+}

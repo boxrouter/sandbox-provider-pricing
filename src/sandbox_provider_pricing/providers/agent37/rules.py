@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 """Agent37: the instance's compute spend, from the workspace usage report Core's cost report reads.
 
-The adapter reports an instance's cost only once the instance is deleted and its usage total has
-held for a settle cycle. Its reading is the instance's whole spend (`total_micros`), which also
+The adapter reports an instance's cost once the instance reads as deleted and the usage report
+lists it. Its reading is the instance's whole spend (`total_micros`), which also
 counts managed services (LLM, search, tools) billed to the instance. The sandbox's price is its
 compute alone (`compute_micros` of the same usage entry): those services are not part of a
 sandbox and the billing record leaves them out.

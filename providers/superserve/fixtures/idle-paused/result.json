@@ -1,0 +1,311 @@
+{
+  "provider": "superserve",
+  "label": "calculated",
+  "total": {
+    "low": "0.003220440588",
+    "high": "0.003220440588"
+  },
+  "lines": [
+    {
+      "what": "cpu",
+      "quantity": "140.019156",
+      "unit": "vcpu-second",
+      "rate": "0.000014",
+      "amount": "0.001960268184",
+      "quantity_source": "recorded"
+    },
+    {
+      "what": "memory",
+      "quantity": "280.038312",
+      "unit": "gib-second",
+      "rate": "0.0000045",
+      "amount": "0.001260172404",
+      "quantity_source": "recorded"
+    }
+  ],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
+    "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+    "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-14T04:43:29.926157Z",
+    "until": "2026-11-21T04:43:24.926157Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-11-14T04:43:29.926157Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.17.6",
+    "rules": 2,
+    "prices": "superserve@2026-11-13-141358Z"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "superserve",
+      "sandbox_id": "superserve-sandbox-redacted",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 2,
+        "memory_mib": 4096,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-14T04:41:01.631Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-14T04:41:02.133Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-14T04:43:23.722Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-14T04:43:24.085Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "started",
+          "at": {
+            "value": "2026-11-14T04:41:02.876817Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity started"
+        },
+        {
+          "kind": "paused",
+          "at": {
+            "value": "2026-11-14T04:42:12.886395Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity idle_paused"
+        },
+        {
+          "kind": "ended",
+          "at": {
+            "value": "2026-11-14T04:43:24.926157Z",
+            "source": "provider",
+            "how": "Superserve's GET /activity row created_at."
+          },
+          "field": "Superserve activity deleted"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-14T04:41:02.876817Z",
+        "source": "provider",
+        "how": "The provider's own time: Superserve activity started."
+      },
+      "end": {
+        "value": "2026-11-14T04:43:24.926157Z",
+        "source": "provider",
+        "how": "The provider's own time: Superserve activity deleted."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-14T04:41:02.876817Z",
+      "source": "provider",
+      "how": "The provider's own time: Superserve activity started."
+    },
+    "sandbox_end": {
+      "value": "2026-11-14T04:43:24.926157Z",
+      "source": "provider",
+      "how": "The provider's own time: Superserve activity deleted."
+    },
+    "usage": {
+      "low": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-11-14T04:41:02.876817Z",
+          "source": "provider",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The provider's own time: Superserve activity started."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 70.009578,
+            "source": "provider",
+            "observed_at": "2026-11-14T04:43:24.926157Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "paused",
+            "seconds": 72.039762,
+            "source": "provider",
+            "observed_at": "2026-11-14T04:43:24.926157Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          }
+        ]
+      },
+      "high": {
+        "provider": "superserve",
+        "started": {
+          "at": "2026-11-14T04:41:02.876817Z",
+          "source": "provider",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The provider's own time: Superserve activity started."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 2,
+          "memory_mib": 4096,
+          "source": "recorded",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-14T04:43:24.926157Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": 70.009578,
+            "source": "provider",
+            "observed_at": "2026-11-14T04:43:24.926157Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          },
+          {
+            "state": "paused",
+            "seconds": 72.039762,
+            "source": "provider",
+            "observed_at": "2026-11-14T04:43:24.926157Z",
+            "how": "Elapsed time between provider lifecycle event timestamps."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "calculated",
+        "total": {
+          "low": "0.003220440588",
+          "high": "0.003220440588"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "140.019156",
+            "unit": "vcpu-second",
+            "rate": "0.000014",
+            "amount": "0.001960268184",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "memory",
+            "quantity": "280.038312",
+            "unit": "gib-second",
+            "rate": "0.0000045",
+            "amount": "0.001260172404",
+            "quantity_source": "recorded"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
+          "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+          "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "superserve@2026-11-13-141358Z",
+        "as_of": "2026-11-14T04:43:24.926157Z"
+      },
+      "high": {
+        "label": "calculated",
+        "total": {
+          "low": "0.003220440588",
+          "high": "0.003220440588"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "140.019156",
+            "unit": "vcpu-second",
+            "rate": "0.000014",
+            "amount": "0.001960268184",
+            "quantity_source": "recorded"
+          },
+          {
+            "what": "memory",
+            "quantity": "280.038312",
+            "unit": "gib-second",
+            "rate": "0.0000045",
+            "amount": "0.001260172404",
+            "quantity_source": "recorded"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
+          "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
+          "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
+          "Credits and discounts"
+        ],
+        "price_version": "superserve@2026-11-13-141358Z",
+        "as_of": "2026-11-14T04:43:24.926157Z"
+      }
+    }
+  },
+  "as_of": "2026-11-14T04:43:24.926157Z"
+}

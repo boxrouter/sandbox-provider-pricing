@@ -6,7 +6,7 @@ from decimal import Decimal, localcontext
 from typing import Literal, TypedDict
 
 from sandbox_provider_pricing._util import decimal_text
-from sandbox_provider_pricing.calculator import CONTEXT, TIME_RESOURCES, Span, find_class, find_rate
+from sandbox_provider_pricing.calculator import CONTEXT, TIME_RESOURCES, Span, find_rate
 from sandbox_provider_pricing.calculator.quantities import (
     creation_quantity,
     in_rate_unit,
@@ -15,6 +15,7 @@ from sandbox_provider_pricing.calculator.quantities import (
     size_value,
 )
 from sandbox_provider_pricing.types import Document
+from sandbox_provider_pricing.versions import find_class
 
 COVERAGE_KINDS = (
     "cpu",

@@ -32,9 +32,9 @@
   },
   "final": false,
   "versions": {
-    "package": "0.14.0",
+    "package": "0.17.6",
     "rules": 1,
-    "prices": "boat@2026-11-01-052001Z"
+    "prices": "boat@2026-11-01-052002Z"
   },
   "steps": {
     "evidence": {
@@ -166,9 +166,9 @@
           "cpu": 4,
           "memory_mib": 8192,
           "disk_mib": 52224,
-          "source": "recorded",
+          "source": "provider",
           "observed_at": "2026-11-01T04:05:20Z",
-          "how": "The requested allocation."
+          "how": "The provider's sandbox record named the allocated size default."
         },
         "creations": {
           "count": null,
@@ -204,9 +204,9 @@
           "cpu": 4,
           "memory_mib": 8192,
           "disk_mib": 52224,
-          "source": "recorded",
+          "source": "provider",
           "observed_at": "2026-11-01T04:05:20Z",
-          "how": "The requested allocation."
+          "how": "The provider's sandbox record named the allocated size default."
         },
         "creations": {
           "count": null,
@@ -247,7 +247,7 @@
           "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
           "Credits and discounts"
         ],
-        "price_version": "boat@2026-11-01-052001Z",
+        "price_version": "boat@2026-11-01-052002Z",
         "as_of": "2026-11-01T04:05:20Z"
       },
       "high": {
@@ -271,7 +271,7 @@
           "Egress: not billed (\"Network traffic. boat does not bill egress.\").",
           "Credits and discounts"
         ],
-        "price_version": "boat@2026-11-01-052001Z",
+        "price_version": "boat@2026-11-01-052002Z",
         "as_of": "2026-11-01T04:05:20Z"
       }
     }

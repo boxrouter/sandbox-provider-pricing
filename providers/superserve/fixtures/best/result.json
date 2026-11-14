@@ -28,7 +28,7 @@
   "basis": "list_price_usage",
   "reported": null,
   "excluded": [
-    "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+    "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
     "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
     "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
     "Credits and discounts"
@@ -43,7 +43,7 @@
   "versions": {
     "package": "0.17.4",
     "rules": 2,
-    "prices": "superserve@2026-11-13"
+    "prices": "superserve@2026-11-13-141358Z"
   },
   "steps": {
     "evidence": {
@@ -240,12 +240,12 @@
         ],
         "held_back_by": [],
         "exclusions": [
-          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
           "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
           "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
           "Credits and discounts"
         ],
-        "price_version": "superserve@2026-11-13",
+        "price_version": "superserve@2026-11-13-141358Z",
         "as_of": "2026-11-13T09:14:26.821000Z"
       },
       "high": {
@@ -274,12 +274,12 @@
         ],
         "held_back_by": [],
         "exclusions": [
-          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here.",
+          "Storage: the pricing page lists $0.000108 per GiB-hour for a shared template once plus each sandbox's retained changes, not its allocated disk, and says it is billed for as long as it is kept. The public pricing JSON lists the same rate with \"billable\":false. The two sources conflict, so no storage rate is priced here. In the sandboxes measured, storage was charged 0 (see the disk coverage entry).",
           "Plan fees: Developer $20 per month including $20 of usage; Pro $250 per month including $250 of usage; Enterprise custom. The usage rates are the same on every plan.",
           "Network: the pricing page says its estimates \"exclude taxes, network, and external model API charges\"; no network charge is published.",
           "Credits and discounts"
         ],
-        "price_version": "superserve@2026-11-13",
+        "price_version": "superserve@2026-11-13-141358Z",
         "as_of": "2026-11-13T09:14:26.821000Z"
       }
     }

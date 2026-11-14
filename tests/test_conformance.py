@@ -37,6 +37,14 @@ def test_all_released_cases_and_certainty_labels() -> None:
     assert set(labels) == {"reported", "calculated", "unknown"}
 
 
+def test_a_fixture_without_its_provider_evidence_is_never_priced() -> None:
+    # The scenario removes every place a fixture keeps the provider's own evidence, Core reports
+    # included, so no provider's figure can survive it.
+    missing = [case for case in load_cases() if case["id"].endswith("/missing-records")]
+    assert missing
+    assert {case["expected"]["label"] for case in missing} == {"unknown"}
+
+
 def test_consumer_difference_and_empty_selection_fail() -> None:
     with pytest.raises(AssertionError, match="expected"):
         run_cases(lambda _: {}, kinds={"price"})

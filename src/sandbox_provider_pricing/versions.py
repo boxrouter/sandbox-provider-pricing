@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: BoxRouter, Inc.
 # SPDX-License-Identifier: Apache-2.0
-"""Price version loading and effective-date selection."""
+"""Price version loading, effective-date selection and class lookup."""
 
 from datetime import datetime
 from functools import cache
@@ -10,7 +10,7 @@ from pathlib import Path
 import yaml  # type: ignore[import-untyped]
 
 from sandbox_provider_pricing._util import parse_time, providers_root
-from sandbox_provider_pricing.types import JsonObject, bundled_copy
+from sandbox_provider_pricing.types import Document, JsonObject, bundled_copy
 
 
 def seed_versions() -> list[JsonObject]:
@@ -113,3 +113,20 @@ def _not_superseded(pool: list[JsonObject]) -> list[JsonObject]:
 
 def _version_order(version: JsonObject) -> tuple[datetime, datetime]:
     return parse_time(version["effective_from"]), parse_time(version["retrieved_at"])
+
+
+def covered_classes(price_class: Document) -> list[str]:
+    """The spec classes a price class prices: its `covers`, or its own name when it has none."""
+    covers = price_class.get("covers")
+    return list(covers) if covers else [str(price_class.get("name"))]
+
+
+def find_class(version: Document, name: str | None) -> Document | None:
+    """The price class covering `name`, or the default class when `name` is None."""
+    classes: list[Document] = version.get("classes", [])
+    for price_class in classes:
+        if name is None and price_class.get("default") is True:
+            return price_class
+        if name is not None and name in covered_classes(price_class):
+            return price_class
+    return None
