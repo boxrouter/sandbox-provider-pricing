@@ -9,18 +9,17 @@ rules and exclusions; none means the page was only reworded.
 """
 
 import difflib
-import json
 import re
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation, localcontext
 from functools import cache
-from pathlib import Path
 from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
 from sandbox_provider_pricing import calculator
+from sandbox_provider_pricing._util import bundled_schema
 from sandbox_provider_pricing.types import JsonObject
 from sandbox_provider_pricing.watch.check import PageText
 from sandbox_provider_pricing.watch.errors import DraftError
@@ -58,13 +57,10 @@ SAME_EXCLUSION = 0.6  # how alike two exclusions must be to be one, reworded or 
 
 @cache
 def price_version_schema() -> JsonObject:
-    here = Path(__file__).resolve().parent
-    for folder in (here.parent / "schemas", here.parents[2] / "schemas"):  # the wheel, a checkout
-        path = folder / "price-version.schema.json"
-        if path.is_file():
-            schema: JsonObject = json.loads(path.read_text(encoding="utf-8"))
-            return schema
-    raise DraftError("price-version.schema.json is not installed with this package.")
+    try:
+        return bundled_schema("price-version")
+    except FileNotFoundError:
+        raise DraftError("price-version.schema.json is not installed with this package.") from None
 
 
 def verify(

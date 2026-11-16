@@ -81,6 +81,8 @@ def _price_text(provider: str, price: JsonObject, pages: dict[str, Path] | None)
     version = str(price["version"])
     filename = version.removeprefix(provider + "@")
     return filename + ".yaml", (
+        # The URI is relative to the generated price file (providers/<id>/prices/), not this module.
+        # sibling-paths: allow
         "# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json\n"
         + yaml.safe_dump(price, sort_keys=False)
     )

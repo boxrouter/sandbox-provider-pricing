@@ -481,6 +481,8 @@ def write_version(document: JsonObject, out: Path) -> Path:
     filename = str(document["version"]).split("@", 1)[1] + ".yaml"
     path = out / filename
     text = (
+        # The URI is relative to the generated price file (providers/<id>/prices/), not this module.
+        # sibling-paths: allow
         "# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json\n"
         + yaml.safe_dump(document, sort_keys=False, allow_unicode=True, width=100)
     )

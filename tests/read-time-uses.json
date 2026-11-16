@@ -211,10 +211,18 @@
     "kind": "copied verbatim",
     "offset": "none; input copies and forwarding do not advance time",
     "uses": [
-      "Constant:read_at",
       "Name:as_of",
       "Name:as_of",
       "arg:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "_observation_values",
+    "kind": "copied verbatim",
+    "offset": "none; input copies and forwarding do not advance time",
+    "uses": [
+      "Constant:read_at"
     ]
   },
   {

@@ -23,6 +23,7 @@ from sandbox_provider_pricing.types import (
     bundled_copy,
 )
 from sandbox_provider_pricing.usage import (
+    _observation_values,
     call_returns,
     provider_record_size,
     sandbox_end,
@@ -65,7 +66,7 @@ def price(
     # The bundle is only selected from here, so only the selected version is copied.
     pool = bundled_pool() if versions is None else list(versions)
     observation = as_of
-    if observation is None and not _has_observation(evidence):
+    if observation is None and not any(_observation_values(evidence)):
         if evidence["sandbox_made"]["value"] is not False:
             raise ValueError("as_of is required when evidence has no observation time")
         observation = latest_version(provider, pool)["effective_from"]
@@ -272,28 +273,8 @@ def _started(evidence: Document) -> str | None:
     return None
 
 
-def _has_observation(evidence: Document) -> bool:
-    return bool(
-        any(
-            edge and edge.get("value")
-            for call in evidence["calls"]
-            for edge in (call.get("sent_at"), call.get("returned_at"))
-        )
-        or any(time["at"].get("value") for time in evidence["provider_times"])
-        or any(
-            fact and fact.get("value")
-            for fact in (
-                evidence["last_seen_alive"],
-                evidence["noticed_gone"],
-                evidence.get("deadline"),
-            )
-        )
-        or evidence["provider_records"]
-    )
-
-
 def _time_value(value: TimeValue) -> JsonObject:
-    out = {"value": _timestamp(value.value), "source": value.source, "how": value.how}
+    out = {"value": utc_text(value.value), "source": value.source, "how": value.how}
     return out
 
 
@@ -310,10 +291,10 @@ def _revisit(provider: str, ended: datetime | None, as_of: str) -> JsonObject | 
     after = ended_utc + timedelta(seconds=policy.after_s)
     until = ended_utc + timedelta(seconds=policy.until_s)
     return {
-        "after": _timestamp(after),
-        "until": _timestamp(until),
+        "after": utc_text(after),
+        "until": utc_text(until),
         "interval_s": policy.interval_s,
-        "next_read_at": _timestamp(next_read),
+        "next_read_at": utc_text(next_read),
     }
 
 
@@ -340,10 +321,6 @@ def _basis_text(version: Document) -> str:
         "; ".join(f"{words[basis]} {' and '.join(items)}" for basis, items in by_basis.items())
         or "a flat rate per sandbox size"
     )
-
-
-def _timestamp(value: datetime | None) -> str | None:
-    return None if value is None else value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
 
 def _canonical_end(evidence: Document, ended_at: datetime | None) -> datetime | None:

@@ -2,17 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 """The single provider-specific seam: each provider's billing document, rules and prices."""
 
-import json
 import re
 from functools import cache
-from importlib import import_module, resources
-from pathlib import Path
+from importlib import import_module
 from types import ModuleType
 
 import yaml  # type: ignore[import-untyped]
 from jsonschema import Draft202012Validator
 
-from sandbox_provider_pricing._util import providers_root
+from sandbox_provider_pricing._util import bundled_schema, providers_root
 from sandbox_provider_pricing.billing_text import fill_rules
 from sandbox_provider_pricing.rules import default
 from sandbox_provider_pricing.types import Document, JsonObject, bundled_copy
@@ -78,13 +76,7 @@ def billing_history(provider: str) -> dict[int, JsonObject]:
 
 @cache
 def _billing_validator() -> Draft202012Validator:
-    bundled = resources.files("sandbox_provider_pricing").joinpath("schemas", "billing.schema.json")
-    if bundled.is_file():
-        schema = json.loads(bundled.read_text(encoding="utf-8"))
-    else:
-        source = Path(__file__).resolve().parents[3] / "schemas" / "billing.schema.json"
-        schema = json.loads(source.read_text(encoding="utf-8"))
-    return Draft202012Validator(schema)
+    return Draft202012Validator(bundled_schema("billing"))
 
 
 def validate_billing(document: Document) -> None:

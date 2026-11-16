@@ -133,6 +133,21 @@ def test_a_range_total_makes_the_composed_cost_unknown() -> None:
     assert (result["label"], result["total"], result["lines"]) == ("unknown", None, [])
 
 
+@pytest.mark.parametrize(
+    "total",
+    [
+        {"low": "1", "other": "1"},
+        {"high": "1", "other": "1"},
+    ],
+)
+def test_a_partial_total_with_extra_keys_makes_composed_cost_unknown(
+    total: dict[str, str],
+) -> None:
+    result = compose([_part("calculated", total)])
+
+    assert (result["label"], result["total"], result["lines"]) == ("unknown", None, [])
+
+
 def _priced_sandbox(sandbox_id: str) -> dict[str, Any]:
     path = ROOT / "tests" / "fixtures" / "records" / "e2b-usage.json"
     case = json.loads(path.read_text())

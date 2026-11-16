@@ -193,7 +193,7 @@ def _point_total(part: Document) -> tuple[Decimal, Decimal] | None:
     if part["label"] == "unknown":
         return None
     total = part["total"]
-    if not isinstance(total, Mapping) or set(total) < {"low", "high"}:
+    if not isinstance(total, Mapping) or not {"low", "high"} <= set(total):
         return None
     try:
         low = Decimal(str(total["low"]))

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Provider lifecycle times and usage; call clocks remain diagnostic evidence only."""
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
@@ -28,18 +28,29 @@ def utc_text(value: datetime | None) -> str | None:
     return None if value is None else value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
 
+def _observation_values(evidence: Document) -> Iterator[str | None]:
+    """Yield validated timestamps that make the evidence observed."""
+    for call in evidence["calls"]:
+        for edge in (call.get("sent_at"), call.get("returned_at")):
+            if edge:
+                yield edge.get("value")
+    yield from (time["at"].get("value") for time in evidence["provider_times"])
+    yield from (
+        fact.get("value")
+        for fact in (
+            evidence.get("last_seen_alive"),
+            evidence.get("noticed_gone"),
+            evidence.get("deadline"),
+        )
+        if fact
+    )
+    yield from (record["read_at"] for record in evidence["provider_records"])
+
+
 def observation(evidence: Document, as_of: str | None) -> str:
     if as_of is not None:
         return as_of
-    facts = [
-        edge
-        for call in evidence["calls"]
-        for edge in (call.get("sent_at"), call.get("returned_at"))
-    ]
-    facts += [time["at"] for time in evidence["provider_times"]]
-    facts += [evidence.get(name) for name in ("last_seen_alive", "noticed_gone", "deadline")]
-    facts += [{"value": record["read_at"]} for record in evidence["provider_records"]]
-    found = [parse_datetime(fact.get("value")) for fact in facts if fact and fact.get("value")]
+    found = [parse_datetime(value) for value in _observation_values(evidence) if value]
     if not found:
         raise ValueError("as_of is required when evidence has no observation time")
     return utc_text(max(at for at in found if at is not None)) or ""
