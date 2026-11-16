@@ -48,7 +48,9 @@ class _Site:
                 pass
 
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
-        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread = threading.Thread(
+            target=self.server.serve_forever, kwargs={"poll_interval": 0.05}, daemon=True
+        )
 
     def url(self, path: str) -> str:
         return f"http://127.0.0.1:{self.server.server_address[1]}{path}"
