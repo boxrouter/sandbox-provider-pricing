@@ -38,3 +38,4 @@ src/sandbox_provider_pricing/providers/agent37/prices/2026-11-12.yaml b99ea1b36b
 src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13.yaml 8caa165fd320e212d34d9476f3959fcdf6d84bafafa3799e44b9c98b61a9a0fa
 src/sandbox_provider_pricing/providers/boat/prices/2026-11-01-052002Z.yaml 49a7477440e28b94777ca130417afaa12a062a137ac9d86fd1c7b3c96878f106
 src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13-141358Z.yaml 431b216fe8354853c899249b52c857e51a31b561e5ad58d64c2d10df92f9fa1c
+src/sandbox_provider_pricing/providers/modal/prices/2026-11-05-065702Z.yaml b03983e139821737937170a7fc18f7d215c03bc9c06e3ab1a1e11ca743f79cb4

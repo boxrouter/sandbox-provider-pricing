@@ -189,7 +189,9 @@ def test_modal_region_multiplier_is_part_of_displayed_prices() -> None:
     modal = next(item for item in build_price_sheet()["providers"] if item["id"] == "modal")
     assert modal["region"] == "us"
     assert modal["region_multiplier"] == 1.15
-    assert modal["configs"][0]["running_per_hour_usd"]["low"] == 0.136827
+    # One requested vCPU is one Modal core at the us multiplier: for 1 vCPU and 2 GiB,
+    # 1.15 x (0.00003942 + 2 x 0.00000667) x 3,600 per hour.
+    assert modal["configs"][0]["running_per_hour_usd"]["low"] == 0.2184264
 
 
 def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:

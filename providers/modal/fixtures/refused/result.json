@@ -25,9 +25,9 @@
   "revisit": null,
   "final": true,
   "versions": {
-    "package": "0.14.0",
+    "package": "0.17.7",
     "rules": 4,
-    "prices": "modal@2026-11-05-065701Z"
+    "prices": "modal@2026-11-05-065702Z"
   },
   "steps": {
     "evidence": {
@@ -176,7 +176,7 @@
           "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
           "Credits and discounts"
         ],
-        "price_version": "modal@2026-11-05-065701Z",
+        "price_version": "modal@2026-11-05-065702Z",
         "as_of": "2026-10-11T09:12:49Z"
       },
       "high": {
@@ -199,7 +199,7 @@
           "Plan allowance: Starter: $0 / month plus compute, with $30 / month free credits, 100 containers and 3 seats; Team $250 / month with $100 / month free credits and 5000 containers; credit programs for startups and academics up to $10k (by application)",
           "Credits and discounts"
         ],
-        "price_version": "modal@2026-11-05-065701Z",
+        "price_version": "modal@2026-11-05-065702Z",
         "as_of": "2026-10-11T09:12:49Z"
       }
     }

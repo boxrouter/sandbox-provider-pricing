@@ -55,6 +55,10 @@ rules:
     sources: [https://modal.com/docs/guide/billing, providers/modal/evidence/2026-10-23-per-app-bill.md#verdict, providers/modal/evidence/2026-10-23-per-app-bill.md#limits]
 
 checks:
+  - date: '2026-11-16'
+    title: What the cpu argument bills, and what a benchmark box cost
+    file: evidence/2026-11-16-cpu-argument-billing.md
+    result: A sandbox created with cpu=N is billed N cores at the core rate and shows N CPUs to its guest. 320 benchmark sandboxes of 4 vCPU billed 98% of four cores' price and 157% of two cores'. Whether a size request means a CPU the guest sees or a hardware thread was not settled.
   - date: '2026-10-24'
     title: Per-sandbox cost through one Modal App per sandbox
     file: evidence/2026-10-23-per-app-bill.md

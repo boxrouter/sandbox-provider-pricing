@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Modal's quotes follow its pricing page (reworded 2026-10-29) and docs page (2026-10-30)."""
 
+import copy
 from pathlib import Path
 from typing import Any
 
@@ -51,8 +52,17 @@ def test_the_new_resources_page_quotes_are_on_the_rewritten_page_and_the_old_one
     assert not page.contains(dropped[0])
 
 
-def test_the_corrected_version_and_its_successors_change_no_rate() -> None:
+def test_the_corrected_versions_change_no_rate_but_the_cpu_core_size_of_the_last() -> None:
     corrected = _version("2026-10-30-103442Z.yaml")
     assert corrected["supersedes"] == ["modal@2026-10-29-163500Z"]
     assert corrected["classes"] == _version("2026-10-29-163500Z.yaml")["classes"]
-    assert latest_version("modal")["classes"] == corrected["classes"]
+    assert _version("2026-11-05-065701Z.yaml")["classes"] == corrected["classes"]
+    latest = latest_version("modal")
+    assert latest["version"] == "modal@2026-11-05-065702Z"
+    assert latest["supersedes"] == ["modal@2026-11-05-065701Z"]
+    classes = copy.deepcopy(latest["classes"])
+    cpu = classes[0]["rates"]["cpu"]
+    # One requested vCPU is one Modal core (QA-522); every other rate is the superseded version's.
+    assert cpu["size_per_unit"] == "1"
+    cpu["size_per_unit"] = "2"
+    assert classes == corrected["classes"]

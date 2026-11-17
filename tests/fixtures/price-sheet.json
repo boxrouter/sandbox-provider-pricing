@@ -6985,7 +6985,7 @@
           ],
           "per": "core-second",
           "resource": "cpu",
-          "size_per_unit": 2.0,
+          "size_per_unit": 1.0,
           "usd": 3.942e-05
         },
         {
@@ -7003,194 +7003,6 @@
         {
           "cpu_per_hour_usd": {
             "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0552276,
-            "low": 0.0552276,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.136827,
-            "low": 0.136827,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0552276,
-            "low": 0.0552276,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.136827,
-            "low": 0.136827,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 2,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1104552,
-            "low": 0.1104552,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1920546,
-            "low": 0.1920546,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1104552,
-            "low": 0.1104552,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1920546,
-            "low": 0.1920546,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 4,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.2209104,
-            "low": 0.2209104,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.3025098,
-            "low": 0.3025098,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.2209104,
-            "low": 0.2209104,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.3025098,
-            "low": 0.3025098,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 8,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.4418208,
-            "low": 0.4418208,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.5234202,
-            "low": 0.5234202,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.4418208,
-            "low": 0.4418208,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.5234202,
-            "low": 0.5234202,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 16,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
             "high": 0.1631988,
             "low": 0.1631988,
             "source_url": "https://modal.com/pricing"
@@ -7231,7 +7043,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -7278,7 +7090,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -7325,7 +7137,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -7372,7 +7184,7 @@
           },
           "size": {
             "memory_gib": 16,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -7419,7 +7231,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -7466,7 +7278,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -7513,7 +7325,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -7560,7 +7372,7 @@
           },
           "size": {
             "memory_gib": 16,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -7607,7 +7419,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -7654,7 +7466,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -7701,7 +7513,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -7744,6 +7556,194 @@
             "checked_at": "2026-11-05",
             "high": 1.094616,
             "low": 1.094616,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.0552276,
+            "low": 0.0552276,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.360818,
+            "low": 1.360818,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.0552276,
+            "low": 0.0552276,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.360818,
+            "low": 1.360818,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.1104552,
+            "low": 0.1104552,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.4160456,
+            "low": 1.4160456,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.1104552,
+            "low": 0.1104552,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.4160456,
+            "low": 1.4160456,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.2209104,
+            "low": 0.2209104,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.5265008,
+            "low": 1.5265008,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.2209104,
+            "low": 0.2209104,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.5265008,
+            "low": 1.5265008,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.4418208,
+            "low": 0.4418208,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.7474112,
+            "low": 1.7474112,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.4418208,
+            "low": 0.4418208,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.7474112,
+            "low": 1.7474112,
             "source_url": "https://modal.com/pricing"
           },
           "size": {
@@ -7757,7 +7757,7 @@
       "id": "modal",
       "label": "gVisor",
       "name": "Modal",
-      "price_version": "modal@2026-11-05-065701Z",
+      "price_version": "modal@2026-11-05-065702Z",
       "pricing_release_version": "",
       "region": "us",
       "region_checked_at": "2026-11-05",
@@ -7832,7 +7832,7 @@
         }
       ],
       "unit_rates": {
-        "cpu_per_vcpu_hour": 0.0815994,
+        "cpu_per_vcpu_hour": 0.1631988,
         "memory_per_gib_hour": 0.0276138
       }
     },
@@ -7964,7 +7964,7 @@
           ],
           "per": "core-second",
           "resource": "cpu",
-          "size_per_unit": 2.0,
+          "size_per_unit": 1.0,
           "usd": 3.942e-05
         },
         {
@@ -7982,194 +7982,6 @@
         {
           "cpu_per_hour_usd": {
             "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0552276,
-            "low": 0.0552276,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.136827,
-            "low": 0.136827,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0552276,
-            "low": 0.0552276,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.136827,
-            "low": 0.136827,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 2,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1104552,
-            "low": 0.1104552,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1920546,
-            "low": 0.1920546,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1104552,
-            "low": 0.1104552,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.1920546,
-            "low": 0.1920546,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 4,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.2209104,
-            "low": 0.2209104,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.3025098,
-            "low": 0.3025098,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.2209104,
-            "low": 0.2209104,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.3025098,
-            "low": 0.3025098,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 8,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.0815994,
-            "low": 0.0815994,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.4418208,
-            "low": 0.4418208,
-            "source_url": "https://modal.com/pricing"
-          },
-          "idle_note": "Idle usage is billed as running.",
-          "idle_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.5234202,
-            "low": 0.5234202,
-            "source_url": "https://modal.com/pricing"
-          },
-          "memory_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.4418208,
-            "low": 0.4418208,
-            "source_url": "https://modal.com/pricing"
-          },
-          "paused_note": "There is no paused state.",
-          "paused_per_hour_usd": null,
-          "reason": null,
-          "running_per_hour_usd": {
-            "checked_at": "2026-11-05",
-            "high": 0.5234202,
-            "low": 0.5234202,
-            "source_url": "https://modal.com/pricing"
-          },
-          "size": {
-            "memory_gib": 16,
-            "vcpu": 1
-          },
-          "status": "priced"
-        },
-        {
-          "cpu_per_hour_usd": {
-            "checked_at": "2026-11-05",
             "high": 0.1631988,
             "low": 0.1631988,
             "source_url": "https://modal.com/pricing"
@@ -8210,7 +8022,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -8257,7 +8069,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -8304,7 +8116,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -8351,7 +8163,7 @@
           },
           "size": {
             "memory_gib": 16,
-            "vcpu": 2
+            "vcpu": 1
           },
           "status": "priced"
         },
@@ -8398,7 +8210,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -8445,7 +8257,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -8492,7 +8304,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -8539,7 +8351,7 @@
           },
           "size": {
             "memory_gib": 16,
-            "vcpu": 4
+            "vcpu": 2
           },
           "status": "priced"
         },
@@ -8586,7 +8398,7 @@
           },
           "size": {
             "memory_gib": 2,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -8633,7 +8445,7 @@
           },
           "size": {
             "memory_gib": 4,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -8680,7 +8492,7 @@
           },
           "size": {
             "memory_gib": 8,
-            "vcpu": 8
+            "vcpu": 4
           },
           "status": "priced"
         },
@@ -8723,6 +8535,194 @@
             "checked_at": "2026-11-05",
             "high": 1.094616,
             "low": 1.094616,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.0552276,
+            "low": 0.0552276,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.360818,
+            "low": 1.360818,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.0552276,
+            "low": 0.0552276,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.360818,
+            "low": 1.360818,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.1104552,
+            "low": 0.1104552,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.4160456,
+            "low": 1.4160456,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.1104552,
+            "low": 0.1104552,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.4160456,
+            "low": 1.4160456,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.2209104,
+            "low": 0.2209104,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.5265008,
+            "low": 1.5265008,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.2209104,
+            "low": 0.2209104,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.5265008,
+            "low": 1.5265008,
+            "source_url": "https://modal.com/pricing"
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.3055904,
+            "low": 1.3055904,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.4418208,
+            "low": 0.4418208,
+            "source_url": "https://modal.com/pricing"
+          },
+          "idle_note": "Idle usage is billed as running.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.7474112,
+            "low": 1.7474112,
+            "source_url": "https://modal.com/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 0.4418208,
+            "low": 0.4418208,
+            "source_url": "https://modal.com/pricing"
+          },
+          "paused_note": "There is no paused state.",
+          "paused_per_hour_usd": null,
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-05",
+            "high": 1.7474112,
+            "low": 1.7474112,
             "source_url": "https://modal.com/pricing"
           },
           "size": {
@@ -8736,7 +8736,7 @@
       "id": "modal",
       "label": "VM",
       "name": "Modal",
-      "price_version": "modal@2026-11-05-065701Z",
+      "price_version": "modal@2026-11-05-065702Z",
       "pricing_release_version": "",
       "region": "us",
       "region_checked_at": "2026-11-05",
@@ -8811,7 +8811,7 @@
         }
       ],
       "unit_rates": {
-        "cpu_per_vcpu_hour": 0.0815994,
+        "cpu_per_vcpu_hour": 0.1631988,
         "memory_per_gib_hour": 0.0276138
       }
     },

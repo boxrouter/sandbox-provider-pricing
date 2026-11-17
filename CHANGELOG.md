@@ -4,6 +4,17 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.8 — 2026-11-17
+
+### Fixed
+
+- Modal's price sheet priced one requested vCPU as half a Modal core, but Modal bills the `cpu` argument as that
+  many physical cores and shows the sandbox that many CPUs, so a size of N vCPUs created with `cpu=N` costs N cores.
+  `modal@2026-11-05-065702Z` supersedes `modal@2026-11-05-065701Z` with `size_per_unit` 1 on the cpu rate; no other
+  rate, source or class changed. The hourly price of 1, 2, 4 and 8 vCPU (2, 4, 8 and 16 GiB) goes from 0.136827,
+  0.273654, 0.547308 and 1.094616 to 0.2184264, 0.4368528, 0.8737056 and 1.7474112 (`us` region). The evidence is
+  `providers/modal/evidence/2026-11-16-cpu-argument-billing.md`.
+
 ## 0.17.7 — 2026-11-14
 
 ### Fixed
