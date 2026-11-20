@@ -1,17 +1,17 @@
 # sandbox-provider-pricing
 
-List prices for sandbox providers, and a calculator that turns a provider's own records for one
-sandbox into a cost.
+Published list prices for cloud sandbox providers, together with a Python calculator that turns a provider's own usage or billing records for one sandbox into a verified cost.
 
-A cost has one of two labels:
+This repository serves developers, routers, and benchmark harnesses that price sandbox runs, as well as providers who audit or update their published rate tables. In the [Sandbox Provider Spec](https://github.com/boxrouter/sandbox-provider-spec) (SPS), the discovery price schema and the optional `cost` operation distinguish between provider-reported costs, usage-calculated costs, and unknown costs; this package maintains the provider rate sheets and the `price()` calculator that implement those rules.
 
-- `reported`: the provider's own figure for the sandbox, checked against its list prices.
-- `calculated`: the provider's own usage or lifecycle records, priced at its list rates.
+When a sandbox's cost can be established from the provider's records, it carries one of two labels:
 
-Otherwise there is no cost. The result says `unknown` with a `null` total, never zero or a guess,
-and consumers show nothing. Our own clocks never stand in for the provider's.
+- `reported`: the provider's own dollar figure for the sandbox, checked against its published list prices.
+- `calculated`: the provider's own usage or lifecycle records for the sandbox, multiplied by its published list rates.
 
-[METHOD.md](METHOD.md) defines these and says what a cost includes.
+When the provider's records do not establish either figure, there is no cost: the result returns `unknown` with a `null` total, never zero or an estimate, and consumers display nothing. External clocks never stand in for the provider's own timestamps.
+
+[METHOD.md](METHOD.md) defines these rules and specifies what a sandbox cost includes.
 
 ## Providers
 
