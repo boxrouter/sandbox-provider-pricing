@@ -4,6 +4,13 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## 0.17.9 — 2026-11-20
+
+### Changed
+
+- Tests keep only a failed test's `tmp_path` (`tmp_path_retention_policy = "failed"`), matching
+  every other package's retention policy. No pricing or scraper behavior change.
+
 ## 0.17.8 — 2026-11-17
 
 ### Fixed
