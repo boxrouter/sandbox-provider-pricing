@@ -19,9 +19,11 @@
       "uses": [
         "Constant:observed_at",
         "Name:as_of",
+        "Name:as_of",
         "Name:observed_at",
         "Name:observed_at",
         "arg:as_of",
+        "keyword:as_of",
         "keyword:as_of"
       ]
     },

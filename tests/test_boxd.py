@@ -171,3 +171,38 @@ def test_reported_rates_are_checked_against_the_version_in_use() -> None:
     result = price(item, versions=[card])
     assert result["label"] == "reported"
     assert result["basis"] == "provider_reported"
+
+
+def test_spec_usage_lines_are_priced_at_the_stored_rates_like_the_usage_record() -> None:
+    """The in-process boxd package states vCPU, RAM and disk hours and no amounts."""
+    item = evidence()
+    record = item.pop("provider_records")[0]["body"]
+    quantities = {
+        "cpu": ("vcpu_hour", record["vcpu_hours"]),
+        "memory": ("gib_hour", record["ram_gib_hours"]),
+        "disk": ("gib_hour", record["disk_gib_hours"]),
+    }
+    item["provider_reports"] = {
+        "read_at": "2026-11-02T01:30:00Z",
+        "cost": {
+            "status": "available",
+            "reason": None,
+            "readings": [
+                {
+                    "amount": None,
+                    "currency": "USD",
+                    "meter": meter,
+                    "quantity": str(quantity),
+                    "unit": unit,
+                    "interval_start": record["period"]["start"],
+                    "interval_end": record["period"]["end"],
+                    "scope": "sandbox",
+                    "source": "usage",
+                }
+                for meter, (unit, quantity) in quantities.items()
+            ],
+        },
+    }
+    result = price(item)
+    assert result["total"] == {"low": "0.03932", "high": "0.03932"}
+    assert (result["label"], result["basis"]) == ("calculated", "list_price_usage")

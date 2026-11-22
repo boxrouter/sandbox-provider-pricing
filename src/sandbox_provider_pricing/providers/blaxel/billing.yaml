@@ -73,6 +73,10 @@ rules:
       - providers/blaxel/evidence/2026-10-11-billing-boundary.md#method
       - providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "2 of 2 sandboxes had a known cost 161 to 197 s after the destroy call returned (median 179 s). No figure changed while it was watched after that."
   - date: '2026-10-11'
     title: Billing boundary and standby against per-sandbox metrics
     file: evidence/2026-10-11-billing-boundary.md

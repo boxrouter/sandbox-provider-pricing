@@ -134,9 +134,9 @@ read. Evidence that the sandbox was never created is final at once.
 
 To schedule reads, ask for the next one. `next_read(result, ended_at, now)` returns the time of the
 next read, or `None` when none is due. It is the provider's cadence, except that while a price is
-still `unknown` shortly after the end it comes sooner: after half the time since the end, at least
-`unpriced_first_s` (default 15) from `now`, for the first `unpriced_window_s` (default 1800) after
-the end. A provider's `revisit` block in `billing.yaml` may set those two numbers.
+still `unknown` it comes sooner: after half the time since the end, at least `unpriced_first_s`
+(default 15) from `now`, and never later than the provider's cadence. A provider's `revisit` block in
+`billing.yaml` may set `unpriced_first_s`.
 
 ```python
 from sandbox_provider_pricing import next_read

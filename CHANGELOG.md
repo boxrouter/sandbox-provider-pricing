@@ -4,6 +4,49 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## Unreleased
+
+### Changed
+
+- `next_read` backs off for as long as a price is unknown: the next read comes after half the sandbox's age (at
+  least `unpriced_first_s`), never later than the provider's cadence. The fixed `unpriced_window_s` (1800 s) is gone
+  from `RevisitPolicy`, `billing.yaml` and the schema: after it, a record that landed late waited a whole `interval_s`.
+- Every provider's rules read the spec's cost lines first (`spec_cost`), as boxd and Blaxel's do: Agent37,
+  Boat, Daytona, E2B, Modal, Superserve and Vercel now give the label and total their old records gave
+  from the lines the in-process providers state (`reported` sums, `usage` quantities priced here).
+  Each keeps its old-record branch until the switch removes it. Superserve gains a rules module (its
+  default billed-time rules otherwise). Local states no cost and has no price folder.
+- A `usage` line's `create` count is priced at the creation rate (`each` against `million-creations`),
+  and its creation charge no longer also asks for a creation fact. A quantity in GiB or vCPUs converts to
+  the provider's own size unit only where the rate states `size_per_unit`, as the calculator already
+  does for a size; GB and GiB never convert otherwise.
+- A cost report read before the sandbox ended (`cost.capture`, taken just before a destroy) counts as soon as the
+  adapter says it is final: the provider-delay wait applies only to reads after the end, since a provider that
+  deletes its cost with the sandbox can never be read later.
+- Boat's spec cost report read while the sandbox still ran counts when it was the last read before Boat
+  deleted the sandbox and its record (`spec_cost_read_before_end`), as its old usage record did: Cloud reads
+  just before Boat's own timer ends a sandbox, and no read after the delete can answer. The figure is
+  reported as of that read (`reported.taken_at`). Without it, every Boat sandbox that reached its lifetime
+  priced unknown and its managed hold was released unpaid.
+- Usage lines are a sandbox's active runs, so a pause between two of them is not a gap in the cost
+  (`covers_sandbox(..., gaps=False)`); the first line's start and the last line's end must still reach
+  the sandbox's own. Reported lines still must leave no gap.
+
+### Added
+
+- boxd prices the spec's `usage` lines (vCPU, RAM and disk hours) at its stored rates, so the in-process
+  boxd package keeps no prices (FA-12). The complete USD machine usage record is still read when the
+  report has no spec lines.
+- `spec_cost(evidence, billing)` reads a Core cost report in the spec's cost shape: readings whose
+  `source` is `reported`, `calculated` or `usage` and whose `meter` is the line's item. A `reported`
+  cost is the sum of its lines once the adapter said final (the report is not `final: false`) and
+  the provider's own `revisit.after_s` has passed. A `calculated` or `usage` cost is priced from the
+  lines' quantities and units with the price version's own rates; the adapter's amounts are ignored.
+  The usage document gains an optional `metered` list for those quantities, and the calculator prices
+  each as one cost line. The Blaxel rule calls `spec_cost` first and keeps its branch for the old
+  adapter's readings. Blaxel's finality stays unverified (`unverified_default`), and its labels do
+  not change.
+
 ## 0.17.9 — 2026-11-20
 
 ### Changed

@@ -11,8 +11,8 @@ revisit:
   after_s: 120
   until_s: 604800
   interval_s: 3600
-  rationale: Vercel documents neither how late records arrive nor how long they are kept, so retries stop after 7 days.
-  unverified_default: true
+  rationale: Costs were known 5 to 85 s after the end in 5 of 5 sandboxes (2026-11-22), so a first read at 120 s finds them. Vercel documents neither how late records arrive nor how long they are kept, so the 7-day stop is a chosen default.
+  unverified_default: false
 reported_at_list_price:
   value: false
   source: providers/vercel/evidence/2026-10-11-session-edges.md#verdict
@@ -77,6 +77,10 @@ rules:
     sources: [https://vercel.com/docs/rest-api/sandboxes/get-a-session, https://vercel.com/docs/rest-api/billing/list-focus-billing-charges, providers/vercel/evidence/2026-10-12-charges-rates-check.md]
 
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "5 of 5 sandboxes had a known cost 5 to 85 s after the destroy call returned (median 60 s). No figure changed while it was watched after that."
   - date: '2026-10-12'
     title: Billing charges export against the price version's rates
     file: evidence/2026-10-12-charges-rates-check.md

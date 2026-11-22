@@ -7,11 +7,11 @@ status:
   why_not_higher: Nothing. Only a complete USD machine usage record with matching machine identity and stored list rates counts.
   would_raise: Nothing. Missing, incomplete, non-USD or mismatched records leave cost unknown.
 revisit:
-  after_s: 1500
+  after_s: 600
   until_s: 604800
   interval_s: 900
-  rationale: The SDK documents metering lag up to about 25 minutes; the seven-day correction window and 15-minute retry cadence are chosen defaults, not measured finality.
-  unverified_default: true
+  rationale: Costs were known 661 to 799 s after the end in 4 of 4 sandboxes and did not change in the next 20 minutes (2026-11-22), so the first read waits 600 s. The SDK says metering can lag about 25 minutes; the 15-minute cadence and 7-day stop are chosen defaults.
+  unverified_default: false
 reported_at_list_price:
   value: true
   source: https://boxd.sh/llms-full.txt (accepted only when the record's USD resource rates match the stored version; cost_micro is provider-reported current-rate list cost, not an invoice)
@@ -48,7 +48,11 @@ rules:
   per_sandbox_data:
     answer: machines.usage(id) returns machine_id, currency, cost_micro, complete, usage quantities and rates; the SDK calls cost_micro an estimate at current rates, not the invoiced settlement. Accept only complete USD records whose identity and rates match.
     sources: [https://pypi.org/project/boxd/0.2.22/, providers/boxd/evidence/2026-11-02-sdk.txt]
-checks: []
+checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "4 of 4 sandboxes had a known cost 661 to 799 s after the destroy call returned (median 782 s). No figure changed while it was watched after that."
 open_questions:
 - question: Can complete records be corrected later, and how long are deleted-machine records retained?
   how: Re-read a deleted machine's complete usage over days and compare with organization billing activity.

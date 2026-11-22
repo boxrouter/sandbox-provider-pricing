@@ -166,6 +166,24 @@
       "then": { "properties": { "seconds": { "type": "null" } } },
       "else": { "properties": { "seconds": { "type": "number" } } }
     },
+    "metered": {
+      "description": "Quantities the provider metered for this sandbox, each in the unit the provider states (a spec `usage` cost). They carry no amount: the calculator prices each from the price version's rate for its item, and a resource listed here is not also priced from the size and time above. Absent where the provider reports its own cost or no quantities.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "quantity", "unit", "source", "observed_at", "how"],
+        "properties": {
+          "item": { "description": "What was metered: a spec price item such as `memory`, `cpu`, `disk`, `egress` or `snapshot`.", "type": "string", "minLength": 1 },
+          "quantity": { "description": "A non-negative decimal in `unit`.", "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+          "unit": { "description": "The unit as the provider states it, for example `gb_second` or `gib_hour`.", "type": "string", "minLength": 1 },
+          "source": { "$ref": "#/$defs/source" },
+          "observed_at": { "$ref": "#/$defs/timestamp" },
+          "how": { "$ref": "#/$defs/how" }
+        }
+      }
+    },
     "egress": {
       "description": "Bytes the sandbox sent out. Absent where the provider does not bill it.",
       "type": "object",

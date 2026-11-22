@@ -59,6 +59,7 @@ From [`vercel@2026-10-20-055631Z`](../../src/sandbox_provider_pricing/providers/
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 5 of 5 sandboxes had a known cost 5 to 85 s after the destroy call returned (median 60 s). No figure changed while it was watched after that.
 - 2026-10-12: [Billing charges export against the price version's rates](evidence/2026-10-12-charges-rates-check.md). 25 of 26 daily charge rows equal quantity times the price version's rate; one small data-transfer row was charged $0.15 per GB, not $0. Checks rates and units only, not billing edges.
 - 2026-10-11: [Session start and stop times against our call edges](evidence/2026-10-11-session-edges.md). In five sessions, startedAt fell inside the create call, stoppedAt preceded the destroy call, and duration equalled stoppedAt minus startedAt. No bill was compared, so the billed memory boundary is unsettled.
 

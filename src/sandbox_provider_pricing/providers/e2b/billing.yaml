@@ -70,6 +70,10 @@ rules:
       which can under-report after a snapshot.
     sources: [https://docs.e2b.dev/sandbox/lifecycle-events-api, https://docs.e2b.dev/sandbox/lifecycle-events-webhooks, https://docs.e2b.dev/faq/calculate-sandbox-price, providers/e2b/evidence/2026-10-11-billing-boundary.md#event-latency]
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "6 of 6 sandboxes had a known cost 31 to 115 s after the destroy call returned (median 93 s). No figure changed while it was watched after that."
   - date: '2026-10-11'
     title: Billing boundary against E2B lifecycle events
     file: evidence/2026-10-11-billing-boundary.md

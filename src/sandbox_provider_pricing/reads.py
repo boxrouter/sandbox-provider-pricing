@@ -16,12 +16,12 @@ def next_read(result: Document, ended_at: datetime, now: datetime) -> datetime |
     """When to read the provider's records for this result again, or None when no read is due.
 
     A result that is `final` needs none. Otherwise the provider's revisit policy sets the time
-    (`result["revisit"]["next_read_at"]`), except while the price is still unknown shortly after
-    the end: the policy repeats only every `interval_s`, so a first read that finds the
-    provider's records incomplete would leave the cost unknown for an hour. For the policy's
-    `unpriced_window_s` after the end, the read comes after half the time since the end, at
-    least `unpriced_first_s` from `now`, if that is sooner than the policy's time. After the
-    window the policy's time stands.
+    (`result["revisit"]["next_read_at"]`), except while the price is still unknown: the policy
+    repeats only every `interval_s`, so a read that finds the provider's records incomplete would
+    leave the cost unknown for an hour. While it is unknown, the next read comes after half the
+    time since the end (at least `unpriced_first_s` from `now`) if that is sooner than the
+    policy's time, so the wait grows with the age of the sandbox up to the policy's interval and
+    a record that lands late is read soon after it does.
 
     A composed result (`compose()`) is due when its earliest unfinished part is. `ended_at` is the
     sandbox's canonical end, the same one given to `price()`; both times must carry a zone.
@@ -38,7 +38,7 @@ def next_read(result: Document, ended_at: datetime, now: datetime) -> datetime |
         return None
     planned = parse_time(scheduled["next_read_at"])
     policy = revisit(result["provider"])
-    since_end = now - ended_at
-    if result["label"] != "unknown" or since_end >= timedelta(seconds=policy.unpriced_window_s):
+    if result["label"] != "unknown":
         return planned
+    since_end = now - ended_at
     return min(planned, now + max(timedelta(seconds=policy.unpriced_first_s), since_end / 2))

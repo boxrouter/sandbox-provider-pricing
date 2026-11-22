@@ -279,6 +279,24 @@
   },
   {
     "file": "src/sandbox_provider_pricing/usage.py",
+    "function": "spec_cost",
+    "kind": "bounded comparison",
+    "offset": "revisit.after_s (strict comparison covered by margin)",
+    "uses": [
+      "Constant:observed_at",
+      "Constant:observed_at",
+      "Name:as_of",
+      "Name:read_at",
+      "Name:read_at",
+      "Name:read_at",
+      "Name:read_at_text",
+      "Name:read_at_text",
+      "arg:as_of",
+      "keyword:as_of"
+    ]
+  },
+  {
+    "file": "src/sandbox_provider_pricing/usage.py",
     "function": "_provider_timeline",
     "kind": "copied verbatim",
     "offset": "none; input copies and forwarding do not advance time",

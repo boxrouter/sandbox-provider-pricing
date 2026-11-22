@@ -45,6 +45,7 @@ From [`agent37@2026-11-12`](../../src/sandbox_provider_pricing/providers/agent37
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 6 of 6 sandboxes had a known cost 30 to 115 s after the destroy call returned (median 75 s). No figure changed while it was watched after that.
 - 2026-11-11: [Usage report compute against list rates](evidence/2026-11-11-usage-vs-list-price.md). On two default instances (one running, one stopped part way), compute_micros equalled the billed minutes at list rates to the micro-dollar and was readable at delete. One account, one size, one region.
 - 2026-11-13: [A VM instance's usage report compute against list rates](evidence/2026-11-13-vm-instance-usage.md). On one VM and one default instance, compute_micros equalled the billed minutes at list rates, the VM's CPU and RAM at 2.5 times, to the micro-dollar; the adapter's first read after the delete was already settled. One account, one size, one region.
 

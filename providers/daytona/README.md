@@ -54,6 +54,7 @@ From [`daytona@2026-10-24-065001Z`](../../src/sandbox_provider_pricing/providers
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 3 of 6 sandboxes had a known cost 312 to 356 s after the destroy call returned (median 342 s); the other 3 stayed unknown for the 1010 s watched. No figure changed while it was watched after that.
 - 2026-10-24: [How soon a finished sandbox's analytics row arrives](evidence/2026-10-24-analytics-row-latency.md). On 10 sandboxes that ran 5 to 300 s, each row was readable at most 9.4 to 68.2 s after destroy returned, already final for the next 20 minutes, and priced at list rates. One organization, one size.
 - 2026-10-11: [Billing boundary against Daytona's billed periods](evidence/2026-10-11-billing-boundary.md). On seven sandboxes Daytona's billed periods began just before create returned and ended just after destroy was sent, and every price matched list rates. One organization, container sandboxes only.
 - 2026-10-05: [Reported price against the list-price calculation](evidence/2026-10-05-reported-vs-list-price.md). On three 5-second sandboxes our list-price calculation was 1.06% to 1.80% below Daytona's price. The first read of each price was 2.73% to 4.25% lower than a later one; the cause is unknown.

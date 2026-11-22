@@ -10,8 +10,8 @@ revisit:
   after_s: 60
   until_s: 604800
   interval_s: 1800
-  rationale: Every measured instance's final compute was in the usage report at the first read after its delete (1 s after on 2026-11-11, 60 s after on 2026-11-13), so the first read waits 60 s. The 30-minute cadence and the 7-day window are chosen defaults.
-  unverified_default: true
+  rationale: Costs were known 30 to 115 s after the end in 6 of 6 sandboxes (2026-11-22; 1 s and 60 s on 2026-11-11 and 11-13), so the first read waits 60 s and later reads back off. The 30-minute cadence and 7-day stop are chosen defaults.
+  unverified_default: false
 reported_at_list_price:
   value: true
   source: providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#verdict and providers/agent37/evidence/2026-11-13-vm-instance-usage.md#verdict (on three default instances and one VM instance, compute_micros was the billed minutes at the list rates in src/sandbox_provider_pricing/providers/agent37/prices, rounded to a whole micro-dollar)
@@ -68,6 +68,10 @@ rules:
       - https://www.agent37.com/docs/agents-api/billing
       - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "6 of 6 sandboxes had a known cost 30 to 115 s after the destroy call returned (median 75 s). No figure changed while it was watched after that."
   - date: '2026-11-11'
     title: Usage report compute against list rates
     file: evidence/2026-11-11-usage-vs-list-price.md

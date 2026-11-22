@@ -96,13 +96,8 @@
               "type": "integer",
               "minimum": 1
             },
-            "unpriced_window_s": {
-              "description": "For this long after a sandbox ends, a read that still finds no price is repeated sooner than interval_s. Default 1800.",
-              "type": "integer",
-              "minimum": 1
-            },
             "unpriced_first_s": {
-              "description": "The shortest wait between those sooner reads. Default 15.",
+              "description": "The shortest wait between the sooner reads of a still-unknown price. Default 15.",
               "type": "integer",
               "minimum": 1
             },

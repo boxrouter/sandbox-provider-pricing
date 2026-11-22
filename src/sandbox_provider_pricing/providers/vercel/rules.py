@@ -16,6 +16,7 @@ from sandbox_provider_pricing.usage import (
     parse_datetime,
     read_core_report,
     record_reason,
+    spec_cost,
     unavailable,
     utc_text,
 )
@@ -42,6 +43,12 @@ def billable(
     as_of: str | None = None,
     **_: object,
 ) -> BillableUsage:
+    # The spec's cost lines first (Vercel's in-process provider states quantities, which this
+    # package prices). The session-record branch below is the old adapter's and stays until it
+    # is removed after the switch.
+    spec = spec_cost(evidence, billing, as_of=as_of)
+    if spec is not None:
+        return spec
     evidence = _core_sessions(evidence)
     result = default_billable(evidence, as_of=as_of)
     records = [record for record in evidence["provider_records"] if record["source"] == SESSIONS]

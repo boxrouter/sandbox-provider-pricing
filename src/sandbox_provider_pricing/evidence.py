@@ -393,6 +393,39 @@ def sandbox_cost_readings(report: Document, *, source: str, meter: str) -> list[
     return []
 
 
+SPEC_COST_SOURCES = ("reported", "calculated", "usage")
+
+
+def spec_cost_readings(report: Document) -> list[Any] | None:
+    """An available Core cost report's readings, if they are the spec's cost lines; else None.
+
+    Every reading is this sandbox's USD, with the same spec `source` (`reported`, `calculated`
+    or `usage`) and the line's item as its `meter`. A `reported` reading has its amount. A
+    `calculated` or `usage` one has a quantity and a unit, and any amount is ignored: only this
+    package prices quantities.
+    """
+    readings = report.get("readings", [])
+    if report["status"] != "available" or not readings:
+        return None
+    source = readings[0].get("source")
+    if source not in SPEC_COST_SOURCES:
+        return None
+    for row in readings:
+        if (
+            row.get("source") != source
+            or row.get("scope") != "sandbox"
+            or row.get("currency") != "USD"
+            or not isinstance(row.get("meter"), str)
+        ):
+            return None
+        if source == "reported":
+            if row.get("amount") is None:
+                return None
+        elif row.get("quantity") is None or not isinstance(row.get("unit"), str):
+            return None
+    return list(readings)
+
+
 def report_number(value: Any, *, integer: bool = False) -> int | float:
     """A serialized Core decimal, validated before conversion to a usage quantity."""
     if isinstance(value, bool) or not isinstance(value, (str, int, float, Decimal)):

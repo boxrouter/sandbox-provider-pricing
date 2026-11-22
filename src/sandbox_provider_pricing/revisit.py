@@ -9,7 +9,6 @@ from datetime import UTC, datetime, timedelta
 
 from sandbox_provider_pricing.providers import bundled_billing
 
-UNPRICED_WINDOW_S = 1800
 UNPRICED_FIRST_S = 15
 
 
@@ -20,9 +19,8 @@ class RevisitPolicy:
     after_s: int
     until_s: int
     interval_s: int
-    #: For this long after the end, a read that still finds no price is repeated sooner than
-    #: `interval_s` (see `next_read`), and the sooner reads are at least `unpriced_first_s` apart.
-    unpriced_window_s: int = UNPRICED_WINDOW_S
+    #: While a read still finds no price it is repeated sooner than `interval_s` (see `next_read`),
+    #: and the sooner reads are at least `unpriced_first_s` apart.
     unpriced_first_s: int = UNPRICED_FIRST_S
 
     def __post_init__(self) -> None:
@@ -32,7 +30,6 @@ class RevisitPolicy:
                 self.after_s,
                 self.until_s,
                 self.interval_s,
-                self.unpriced_window_s,
                 self.unpriced_first_s,
             )
         ):
@@ -41,7 +38,7 @@ class RevisitPolicy:
             raise ValueError(
                 "revisit seconds must be non-negative, with positive window and interval"
             )
-        if self.unpriced_window_s <= 0 or self.unpriced_first_s <= 0:
+        if self.unpriced_first_s <= 0:
             raise ValueError("unpriced revisit seconds must be positive")
         if self.after_s > self.until_s:
             raise ValueError("after_s must not exceed until_s")
@@ -95,7 +92,6 @@ def scheduled_revisit(provider: str) -> RevisitPolicy | None:
         after_s=data["after_s"],
         until_s=data["until_s"],
         interval_s=data["interval_s"],
-        unpriced_window_s=data.get("unpriced_window_s", UNPRICED_WINDOW_S),
         unpriced_first_s=data.get("unpriced_first_s", UNPRICED_FIRST_S),
     )
 

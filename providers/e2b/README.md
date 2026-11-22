@@ -56,6 +56,7 @@ From [`e2b@2026-10-31-015029Z`](../../src/sandbox_provider_pricing/providers/e2b
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 6 of 6 sandboxes had a known cost 31 to 115 s after the destroy call returned (median 93 s). No figure changed while it was watched after that.
 - 2026-10-11: [Billing boundary against E2B lifecycle events](evidence/2026-10-11-billing-boundary.md). On five sandboxes the created and killed events fell inside the matching create and destroy calls, including a cold large image; it did not compare against a billed figure or test pause.
 
 ## Price versions

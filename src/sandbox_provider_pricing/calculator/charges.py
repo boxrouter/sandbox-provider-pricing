@@ -11,6 +11,7 @@ from typing import Any
 
 from sandbox_provider_pricing._util import decimal_text
 from sandbox_provider_pricing.calculator.findings import (
+    KNOWN_SOURCES,
     Findings,
     fact_source,
     uncertainty,
@@ -18,6 +19,7 @@ from sandbox_provider_pricing.calculator.findings import (
 )
 from sandbox_provider_pricing.calculator.quantities import (
     BASES,
+    RATE_TIME_SECONDS,
     TIME_RESOURCES,
     active_cpu_seconds,
     base_unit_seconds,
@@ -33,6 +35,7 @@ from sandbox_provider_pricing.calculator.quantities import (
     usage_size,
 )
 from sandbox_provider_pricing.calculator.spans import (
+    CREATIONS_PER_MILLION,
     ZERO,
     Span,
     as_decimal,
@@ -65,7 +68,10 @@ def price_usage(
 ) -> list[Charge]:
     intervals = usage.get("intervals", [])
     charges = []
+    metered = _metered_quantities(usage, price_class, findings)
     for what in TIME_RESOURCES:
+        if what in metered:
+            continue
         meter = (price_class.get("meter") or {}).get(what)
         segmented = (
             meter and meter.get("basis") != "active" and any("size" in item for item in intervals)
@@ -73,15 +79,90 @@ def price_usage(
         price_time = _time_segments if segmented else _time_charge
         charges.append(price_time(what, usage, price_class, multiplier, findings))
     charges.append(_machine_charge(usage, price_class, multiplier, findings))
-    charges.append(_creation_charge(usage, price_class, multiplier, findings))
-    charges.append(_egress_charge(usage, price_class, multiplier, findings))
+    if "creation" not in metered:
+        charges.append(_creation_charge(usage, price_class, multiplier, findings))
+    if "egress" not in metered:
+        charges.append(_egress_charge(usage, price_class, multiplier, findings))
     price_storage = (
         _snapshot_segments
         if any("snapshot_storage" in item for item in intervals)
         else _snapshot_storage_charge
     )
-    charges.append(price_storage(usage, price_class, version, multiplier, findings))
+    if "snapshot_storage" not in metered:
+        charges.append(price_storage(usage, price_class, version, multiplier, findings))
+    for what, quantity in metered.items():
+        rate = find_rate(price_class, what)
+        if rate is not None:
+            charges.append(_charge(what, rate, Span.exact(quantity), multiplier, ["provider"]))
     return [charge for charge in charges if charge is not None]
+
+
+#: The rate each spec price item is priced by when the provider meters it (`usage` cost lines).
+METERED_RATES = {
+    "cpu": "cpu",
+    "memory": "memory",
+    "disk": "disk",
+    "create": "creation",
+    "egress": "egress",
+    "snapshot": "snapshot_storage",
+}
+
+
+def _metered_quantities(
+    usage: Document, price_class: Document, findings: Findings
+) -> dict[str, Decimal]:
+    """The provider's metered quantities, summed per rate and stated in the rate's own unit.
+
+    An item or unit the price version cannot price is a gap, so the cost is unknown rather than
+    leaving the quantity out.
+    """
+    totals: dict[str, Decimal] = {}
+    for line in usage.get("metered") or []:
+        what = METERED_RATES.get(line["item"])
+        rate = None if what is None else find_rate(price_class, what)
+        quantity = None if what is None or rate is None else _in_unit(line, what, rate)
+        if what is None or rate is None or quantity is None or line["source"] not in KNOWN_SOURCES:
+            findings.gap(
+                f"The price version cannot price {line['quantity']} {line['unit']} of "
+                f"{line['item']}.",
+                "no_rate",
+                line["item"],
+            )
+            continue
+        totals[what] = totals.get(what, Decimal(0)) + quantity
+    return totals
+
+
+#: The unit each time resource's quantity is stated in by its usage lines (the spec's base units).
+BASE_UNITS = {"cpu": "vcpu", "memory": "gib", "disk": "gib"}
+
+
+def _in_unit(line: Document, what: str, rate: Document) -> Decimal | None:
+    """A metered line's quantity in a rate's unit, or None when the two are not convertible.
+
+    Units differ in time (second, hour, 730-hour month). A count (`each`) is stated in millions
+    where the rate is per million. A rate that states `size_per_unit` says how many base units
+    (vCPUs, GiB) the provider's own size unit (a core, a GB) covers, so a quantity in the base unit
+    converts by it. Without that statement, GB and GiB are different sizes and never convert into
+    each other.
+    """
+    per = rate["per"]
+    unit = str(line["unit"]).replace("_", "-")
+    quantity = Decimal(line["quantity"])
+    if unit == per:
+        return quantity
+    if unit == "each" and per == "million-creations":
+        return quantity / CREATIONS_PER_MILLION
+    have, _, have_time = unit.rpartition("-")
+    want, _, want_time = per.rpartition("-")
+    if not have or have_time not in RATE_TIME_SECONDS or want_time not in RATE_TIME_SECONDS:
+        return None
+    if have != want:
+        size_per_unit = rate.get("size_per_unit")
+        if size_per_unit is None or have != BASE_UNITS.get(what):
+            return None
+        quantity /= Decimal(size_per_unit)
+    return quantity * RATE_TIME_SECONDS[have_time] / RATE_TIME_SECONDS[want_time]
 
 
 def _snapshot_storage_charge(
