@@ -11,6 +11,7 @@ revisit:
   after_s: 600
   until_s: 604800
   interval_s: 3600
+  # no final_after_s: our own watch of ended sandboxes stops at about 1,722 s, short of Modal's declared 4,500 s (cost-first-known, 2026-11-22)
   rationale: Costs were known 607 to 716 s after the end in 6 of 6 sandboxes (2026-11-22; 59 to 315 s after Modal's own finished_at in 325 on 2026-10-23), so the first read waits 600 s. The hourly cadence and 7-day stop are chosen defaults.
   unverified_default: false
 reported_at_list_price:

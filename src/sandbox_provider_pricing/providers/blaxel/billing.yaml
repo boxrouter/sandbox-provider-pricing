@@ -10,6 +10,7 @@ revisit:
   after_s: 600
   until_s: 604800
   interval_s: 3600
+  final_after_s: 930  # the provider's declared cost_final_within_seconds (900) plus the spec's 30 s grace
   rationale: We watched costs stay unchanged for 30 minutes only, and how long Blaxel keeps them, or when they are final, is not verified, so retries stop after 7 days.
   unverified_default: true
 reported_at_list_price:

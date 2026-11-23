@@ -10,6 +10,7 @@ revisit:
   after_s: 600
   until_s: 604800
   interval_s: 900
+  # no final_after_s: our own watch of ended sandboxes stops at about 2,000 s, short of boxd's declared 3,600 s (cost-first-known, 2026-11-22)
   rationale: Costs were known 661 to 799 s after the end in 4 of 4 sandboxes and did not change in the next 20 minutes (2026-11-22), so the first read waits 600 s. The SDK says metering can lag about 25 minutes; the 15-minute cadence and 7-day stop are chosen defaults.
   unverified_default: false
 reported_at_list_price:

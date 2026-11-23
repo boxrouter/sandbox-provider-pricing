@@ -10,6 +10,7 @@ revisit:
   after_s: 15
   until_s: 604800
   interval_s: 3600
+  final_after_s: 330  # the provider's declared cost_final_within_seconds (300) plus the spec's 30 s grace
   rationale: E2B's events API keeps events for 7 days by default, so retries stop before they expire.
   unverified_default: false
 reported_at_list_price:

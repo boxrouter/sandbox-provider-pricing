@@ -27,9 +27,9 @@
     "interval_s": 1800,
     "next_read_at": "2026-11-11T22:29:02.420979Z"
   },
-  "final": false,
+  "final": true,
   "versions": {
-    "package": "0.17.3",
+    "package": "0.17.9",
     "rules": 1,
     "prices": "agent37@2026-11-12"
   },

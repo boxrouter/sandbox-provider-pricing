@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from sandbox_provider_pricing import price
+from sandbox_provider_pricing.revisit import scheduled_revisit
 
 ROOT = Path(__file__).resolve().parents[1] / "providers"
 #: The Blaxel fixture's destroy returns at this time.
@@ -128,3 +129,38 @@ def test_the_old_adapter_readings_are_still_read() -> None:
         (ROOT / "blaxel" / "fixtures" / "core-cost-report" / "evidence.json").read_text()
     )
     assert price(old)["label"] == "reported"
+
+
+FINAL_AFTER_S = 930  # Blaxel's declared 900 s plus the spec's 30 s grace (`billing.yaml`)
+
+
+def test_a_provider_reported_final_cost_read_after_its_declared_time_is_final() -> None:
+    """The reads stop once the provider says the cost is final and a read after its declared time
+    found it so, instead of waiting out the 7-day window."""
+    lines = [_line("reported", amount="0.0010")]
+    early = price(_evidence(lines, read_after_s=FINAL_AFTER_S - 1))
+    assert (early["label"], early["final"]) == ("reported", False)
+    assert early["revisit"] is not None
+    late = price(_evidence(lines, read_after_s=FINAL_AFTER_S))
+    assert (late["label"], late["final"]) == ("reported", True)
+    assert late["total"] == early["total"]  # the figure does not change when it becomes final
+
+
+def test_a_cost_the_adapter_still_calls_accruing_is_not_final_however_late() -> None:
+    result = price(_evidence([_line("reported", amount="0.0010")], read_after_s=99999, final=False))
+    assert (result["label"], result["final"]) == ("unknown", False)
+
+
+def test_an_unknown_cost_is_not_final_even_when_the_report_says_final() -> None:
+    """A report pricing cannot use (it covers only part of the sandbox) leaves the cost unknown,
+    and an unknown cost keeps being read."""
+    short = _line("reported", amount="0.0010", interval_end=_text(END - timedelta(minutes=10)))
+    result = price(_evidence([short], read_after_s=99999))
+    assert (result["label"], result["final"]) == ("unknown", False)
+
+
+def test_a_provider_without_a_final_after_keeps_reading_until_its_window_closes() -> None:
+    daytona, blaxel = scheduled_revisit("daytona"), scheduled_revisit("blaxel")
+    assert daytona is not None and blaxel is not None
+    assert daytona.final_after_s is None  # later reads were seen to raise it
+    assert blaxel.final_after_s == FINAL_AFTER_S

@@ -31,9 +31,9 @@
     "interval_s": 3600,
     "next_read_at": "2026-10-19T21:00:00Z"
   },
-  "final": false,
+  "final": true,
   "versions": {
-    "package": "0.14.0",
+    "package": "0.17.9",
     "rules": 2,
     "prices": "blaxel@2026-11-07-122300Z"
   },

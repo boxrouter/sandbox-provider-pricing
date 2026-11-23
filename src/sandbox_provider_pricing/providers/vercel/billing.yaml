@@ -11,6 +11,7 @@ revisit:
   after_s: 120
   until_s: 604800
   interval_s: 3600
+  final_after_s: 150  # the provider's declared cost_final_within_seconds (120) plus the spec's 30 s grace
   rationale: Costs were known 5 to 85 s after the end in 5 of 5 sandboxes (2026-11-22), so a first read at 120 s finds them. Vercel documents neither how late records arrive nor how long they are kept, so the 7-day stop is a chosen default.
   unverified_default: false
 reported_at_list_price:

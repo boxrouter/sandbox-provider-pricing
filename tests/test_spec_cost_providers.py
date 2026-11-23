@@ -99,11 +99,8 @@ def _modal() -> dict[str, Any]:
 
 
 def _superserve() -> dict[str, Any]:
-    start, end = "2026-11-13T09:13:55.565760Z", "2026-11-13T09:14:26.771243Z"
-    lines = [
-        _line("usage", "cpu", start, end, quantity="62.410966", unit="vcpu_second"),
-        _line("usage", "memory", start, end, quantity="124.821932", unit="gib_second"),
-    ]
+    start, end = "2026-11-13T09:13:55.565760Z", "2026-11-13T09:14:56.900000Z"
+    lines = [_line("reported", "compute", start, end, amount="0.001435452218")]
     return _with_lines(_fixture("superserve"), lines, "2026-11-13T09:15:00Z")
 
 
@@ -124,7 +121,7 @@ CASES: dict[str, tuple[Callable[[], dict[str, Any]], str, str]] = {
     "boat": (_boat, "reported", "provider_reported"),
     "daytona": (_daytona, "reported", "provider_reported"),
     "modal": (_modal, "reported", "provider_reported"),
-    "superserve": (_superserve, "calculated", "list_price_usage"),
+    "superserve": (_superserve, "reported", "provider_reported"),
     "vercel": (_vercel, "calculated", "list_price_usage"),
 }
 

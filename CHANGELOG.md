@@ -8,6 +8,15 @@ releases are made.
 
 ### Changed
 
+- A known cost is `final` as soon as the provider's own cost report says it is final and was read at or after
+  the sandbox's end plus the provider's `revisit.final_after_s` (its declared `cost_final_within_seconds` plus
+  the spec's 30 s grace), not only when the whole revisit window has closed. Reads then stop: a hourly-read
+  provider went from 168 reads a sandbox over seven days to about 2 to 3. `final_after_s` is optional in
+  `billing.yaml` and the schema; agent37, Blaxel, E2B and Vercel set it, where our own watch of ended sandboxes covers
+  the provider's declared time; Modal, boxd and Superserve (a watch that stops short of the declared time, or none),
+  Daytona (later reads were seen to raise it) and Boat (its window is 15 minutes) do not, and keep the window rule.
+  The figure itself does not change: `final` only ends the reads. 0.17.10.
+
 - `next_read` backs off for as long as a price is unknown: the next read comes after half the sandbox's age (at
   least `unpriced_first_s`), never later than the provider's cadence. The fixed `unpriced_window_s` (1800 s) is gone
   from `RevisitPolicy`, `billing.yaml` and the schema: after it, a record that landed late waited a whole `interval_s`.

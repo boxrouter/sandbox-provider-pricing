@@ -22,6 +22,12 @@ class RevisitPolicy:
     #: While a read still finds no price it is repeated sooner than `interval_s` (see `next_read`),
     #: and the sooner reads are at least `unpriced_first_s` apart.
     unpriced_first_s: int = UNPRICED_FIRST_S
+    #: How long after the end a provider-reported cost is read as final: a report that says it is
+    #: final, read this long after the sandbox ended, ends the reads at once instead of waiting out
+    #: `until_s`. The provider's own `cost_final_within_seconds` plus the spec's 30 s grace. None:
+    #: only the window's close makes a cost final (a provider whose later reads were seen to change
+    #: it, or one that states nothing).
+    final_after_s: int | None = None
 
     def __post_init__(self) -> None:
         if any(
@@ -40,6 +46,12 @@ class RevisitPolicy:
             )
         if self.unpriced_first_s <= 0:
             raise ValueError("unpriced revisit seconds must be positive")
+        if self.final_after_s is not None and (
+            not isinstance(self.final_after_s, int)
+            or isinstance(self.final_after_s, bool)
+            or not 0 < self.final_after_s <= self.until_s
+        ):
+            raise ValueError("final_after_s must be a positive integer within the window")
         if self.after_s > self.until_s:
             raise ValueError("after_s must not exceed until_s")
 
@@ -93,6 +105,7 @@ def scheduled_revisit(provider: str) -> RevisitPolicy | None:
         until_s=data["until_s"],
         interval_s=data["interval_s"],
         unpriced_first_s=data.get("unpriced_first_s", UNPRICED_FIRST_S),
+        final_after_s=data.get("final_after_s"),
     )
 
 

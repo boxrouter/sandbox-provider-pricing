@@ -8820,7 +8820,7 @@
       "basis": "allocated CPU and memory",
       "billing_mode": "allocated",
       "billing_rules": {
-        "best_cost_label": "calculated",
+        "best_cost_label": "reported",
         "billed_on": {
           "answer": "$0.000014 per vCPU-second and $0.0000045 per GiB-second of the memory the sandbox holds, while it runs. Storage on retained data is a separate resource that Superserve tracks but does not bill: a sandbox paused 11 min 18 s with 1 GiB written added no storage charge.",
           "sources": [
@@ -8868,10 +8868,9 @@
           ]
         },
         "per_sandbox_data": {
-          "answer": "No cost or usage. The audit log (GET /activity) has a started, paused, resumed, idle_paused, timeout_paused, deleted or auto_deleted row for each lifecycle change, with no size or cost. The first read returned each row within 0.771 s, and rows were readable at 21 days. Without a limit it returns only the newest 200 rows.",
+          "answer": "Yes. GET /billing/usage/summary and /billing/usage/details report one sandbox's compute usage and gross compute cost per billing period through a stated cutoff. The figure settled at the delete on every measured sandbox; shared storage is never allocated and is unbilled. The audit log (GET /activity) still holds the lifecycle times.",
           "sources": [
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing",
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#retention"
+            "providers/superserve/evidence/2026-11-22-usage-api.md#verdict"
           ]
         },
         "rounding": {
@@ -8911,8 +8910,7 @@
             "https://www.superserve.ai/pricing/"
           ],
           "per_sandbox_data": [
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#event-lag-separate-from-billing",
-            "providers/superserve/evidence/2026-11-13-billing-boundary.md#retention"
+            "providers/superserve/evidence/2026-11-22-usage-api.md#verdict"
           ],
           "rounding": [
             "https://www.superserve.ai/pricing/",

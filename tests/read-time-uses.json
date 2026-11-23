@@ -145,6 +145,16 @@
     ]
   },
   {
+    "file": "src/sandbox_provider_pricing/price.py",
+    "function": "_final_by_report",
+    "kind": "bounded comparison",
+    "offset": "revisit.final_after_s (strict comparison covered by margin)",
+    "uses": [
+      "Name:read_at_text",
+      "Name:read_at_text"
+    ]
+  },
+  {
     "file": "src/sandbox_provider_pricing/read_time.py",
     "function": "<module>",
     "kind": "copied verbatim",

@@ -101,6 +101,11 @@
               "type": "integer",
               "minimum": 1
             },
+            "final_after_s": {
+              "description": "Seconds after the sandbox's end from which a provider cost report that says it is final, and was read at or after that time, makes the cost final and ends the reads before `until_s`. The provider's own cost_final_within_seconds plus the spec's 30 s grace. Absent: only the window's close makes the cost final.",
+              "type": "integer",
+              "minimum": 1
+            },
             "rationale": {
               "type": "string",
               "minLength": 1,

@@ -26,6 +26,7 @@ from sandbox_provider_pricing.usage import (
     _observation_values,
     call_returns,
     provider_record_size,
+    read_core_report,
     sandbox_end,
     sandbox_start,
     utc_text,
@@ -198,6 +199,8 @@ def _result(
             held_back_by=[],
             basis="provider_reported",
         )
+    if not result["final"] and result["label"] != "unknown":
+        result["final"] = _final_by_report(evidence, schedule_end)
     return result
 
 
@@ -303,6 +306,27 @@ def _finality(evidence: Document, ended: datetime | None, as_of: str) -> bool:
         return evidence["sandbox_made"]["value"] is False
     policy = scheduled_revisit(str(evidence["provider"]))
     return policy is not None and not policy.may_change(ended, as_of=parse_time(as_of))
+
+
+def _final_by_report(evidence: Document, ended: datetime | None) -> bool:
+    """Whether the provider itself says this known cost is final, so no later read is due.
+
+    The provider's cost report must be available and not marked `final: false` (the adapter marks
+    an accruing cost so), and must have been read at or after the sandbox's end plus the policy's
+    `final_after_s` (the provider's own `cost_final_within_seconds` and the spec's grace). Without
+    that statement in the policy, or without such a read, only the window's close makes a cost
+    final.
+    """
+    policy = None if ended is None else scheduled_revisit(str(evidence["provider"]))
+    if ended is None or policy is None or policy.final_after_s is None:
+        return False
+    found = read_core_report(evidence, "cost")
+    if found is None:
+        return False
+    report, read_at_text = found
+    if report.get("status") != "available" or report.get("final") is False:
+        return False
+    return parse_time(read_at_text) >= ended + timedelta(seconds=policy.final_after_s)
 
 
 def _basis_text(version: Document) -> str:

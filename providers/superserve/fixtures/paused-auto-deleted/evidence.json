@@ -75,5 +75,44 @@
   "last_seen_alive": null,
   "noticed_gone": null,
   "provider_records": [],
-  "measured": {}
+  "measured": {},
+  "provider_reports": {
+    "read_times": {
+      "cost": "2026-11-13T09:19:23.342000Z"
+    },
+    "cost": {
+      "status": "available",
+      "reason": null,
+      "final": true,
+      "readings": [
+        {
+          "amount": "0.001427012",
+          "currency": "USD",
+          "meter": "machine",
+          "interval_start": "2026-10-23T17:14:50Z",
+          "interval_end": "2026-11-23T17:14:50Z",
+          "scope": "sandbox",
+          "source": "reported"
+        }
+      ],
+      "records": [
+        {
+          "source": "Superserve usage API",
+          "read_at": "2026-11-13T09:19:23.342000Z",
+          "body": {
+            "sandbox_id": "superserve-sandbox-redacted",
+            "period_status": "open",
+            "as_of": "2026-11-13T09:19:23.342000Z",
+            "usage_through": "2026-11-13T09:19:18.342000Z",
+            "gross_compute_cost_usd": "0.001427012",
+            "cost_basis": "provisional_current_catalog",
+            "team_has_corrections": false,
+            "storage_cost_attribution": "unavailable_shared",
+            "period_start": "2026-10-23T17:14:50Z",
+            "period_end": "2026-11-23T17:14:50Z"
+          }
+        }
+      ]
+    }
+  }
 }

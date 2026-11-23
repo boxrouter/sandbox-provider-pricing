@@ -10,6 +10,7 @@ revisit:
   after_s: 60
   until_s: 604800
   interval_s: 1800
+  final_after_s: 330  # the provider's declared cost_final_within_seconds (300) plus the spec's 30 s grace
   rationale: Costs were known 30 to 115 s after the end in 6 of 6 sandboxes (2026-11-22; 1 s and 60 s on 2026-11-11 and 11-13), so the first read waits 60 s and later reads back off. The 30-minute cadence and 7-day stop are chosen defaults.
   unverified_default: false
 reported_at_list_price:
