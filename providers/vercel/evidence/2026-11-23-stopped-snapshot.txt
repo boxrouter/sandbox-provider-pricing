@@ -13,6 +13,8 @@ The totals include CPU and allocated memory only. See pricing for other charges 
 Source: https://vercel.com/docs/sandbox/concepts/persistent-sandboxes
 Verbatim excerpts:
 
+Persistent sandboxes automatically save their filesystem state when stopped and restore it when resumed.
+
 When you stop a persistent sandbox, Vercel automatically snapshots the filesystem.
 
 Each automatic snapshot consumes Snapshot Storage, which is billed separately from compute.

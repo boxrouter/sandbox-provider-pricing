@@ -8,6 +8,9 @@ releases are made.
 
 ### Changed
 
+- Vercel's paused note no longer says memory is not kept (no Vercel page says so): it ends at the snapshot storage rate,
+  backed by the persistence page ("Persistent sandboxes automatically save their filesystem state when stopped"). 0.17.16.
+
 - Vercel's paused note says what a stopped sandbox is billed: CPU and memory are not billed, and the saved filesystem
   snapshot is billed separately as Snapshot Storage at $0.08 per GB-month; the paused price stays $0. The idle and
   paused billing rule quotes the pages (evidence `providers/vercel/evidence/2026-11-23-stopped-snapshot.txt`). The

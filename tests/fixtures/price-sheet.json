@@ -9923,7 +9923,7 @@
             "low": 0.0424,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -9979,7 +9979,7 @@
             "low": 0.0848,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10035,7 +10035,7 @@
             "low": 0.1696,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10091,7 +10091,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10147,7 +10147,7 @@
             "low": 0.0848,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10203,7 +10203,7 @@
             "low": 0.0848,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10259,7 +10259,7 @@
             "low": 0.1696,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10315,7 +10315,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10371,7 +10371,7 @@
             "low": 0.1696,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10427,7 +10427,7 @@
             "low": 0.1696,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10483,7 +10483,7 @@
             "low": 0.1696,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10539,7 +10539,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10595,7 +10595,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10651,7 +10651,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10707,7 +10707,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,
@@ -10763,7 +10763,7 @@
             "low": 0.3392,
             "source_url": "https://vercel.com/docs/sandbox/pricing"
           },
-          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.",
+          "paused_note": "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.",
           "paused_per_hour_usd": {
             "checked_at": "2026-10-20",
             "high": 0.0,

@@ -142,7 +142,7 @@ price_sheet:
   benchmark_region: {value: iad1, source_url: https://vercel.com/docs/sandbox/concepts/regions}
   states:
     idle: {rule: memory, note: Only memory is billed while idle., source_url: https://vercel.com/docs/sandbox/pricing}
-    paused: {rule: none, note: 'Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.', source_url: https://vercel.com/docs/sandbox/concepts/persistent-sandboxes}
+    paused: {rule: none, note: 'Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month.', source_url: https://vercel.com/docs/sandbox/concepts/persistent-sandboxes}
   class_overrides: {}
   storage:
     - {kind: image, status: unpublished, source_url: https://vercel.com/docs/sandbox/pricing}

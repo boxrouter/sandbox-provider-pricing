@@ -230,7 +230,7 @@ def test_vercel_paused_is_free_and_its_note_names_the_snapshot_storage_rate() ->
     assert config["paused_per_hour_usd"]["high"] == 0
     assert config["paused_note"] == (
         "Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, "
-        "billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept."
+        "billed separately as Snapshot Storage at $0.08 per GB-month."
     )
     snapshot = next(row for row in entry["storage"] if row["kind"] == "snapshot")
     assert (snapshot["status"], snapshot["source_usd"], snapshot["source_per"]) == (
@@ -242,6 +242,7 @@ def test_vercel_paused_is_free_and_its_note_names_the_snapshot_storage_rate() ->
     stopped = (ROOT / "providers/vercel/evidence/2026-11-23-stopped-snapshot.txt").read_text()
     for quote in (
         "| Stopped | no CPU, no memory | $0.00 | $0.00 |",
+        "Persistent sandboxes automatically save their filesystem state when stopped",
         "When you stop a persistent sandbox, Vercel automatically snapshots the filesystem.",
         "Each automatic snapshot consumes Snapshot Storage, which is billed separately from "
         "compute.",
