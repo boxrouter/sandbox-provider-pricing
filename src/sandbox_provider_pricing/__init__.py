@@ -17,7 +17,11 @@
 - `lifecycle_quote(version, size, periods)`: a conditional quote for supplied lifecycle demand.
 - `per_hour(version, size)`: the hourly rate of a sandbox that keeps running.
 - `hourly(provider, size)`: that hourly rate with its published basis.
-- `build_price_sheet()`: every provider's hourly rate at a list of (vCPU, GiB) sizes.
+- `build_price_sheet()`: every provider's hourly rate at a list of (vCPU, GiB) sizes, each priced
+  as the cheapest shape the provider class sells that is at least that big.
+- `class_shapes(provider, spec_class)` and `is_priced(provider, spec_class, cpu, memory_mib)`: the
+  shapes a provider class sells, and whether a declared shape has a price.
+- `published_sizes()`: the sizes the sheet publishes, each with its label.
 - `billing(provider)`: a provider's billing rules.
 - `revisit(provider)`: a provider's policy for re-reading its records.
 - `seed_versions()`: every bundled price version.
@@ -37,13 +41,14 @@ from sandbox_provider_pricing.evidence import TIME_POINTS
 from sandbox_provider_pricing.explain import explain
 from sandbox_provider_pricing.lifecycle import LifecyclePeriod, LifecycleQuote, lifecycle_quote
 from sandbox_provider_pricing.price import hourly, price, reproduce
-from sandbox_provider_pricing.price_sheet import build_price_sheet
+from sandbox_provider_pricing.price_sheet import build_price_sheet, published_sizes
 from sandbox_provider_pricing.providers import billing
 from sandbox_provider_pricing.read_time import READ_TIME_CONTRACT, READ_TIME_PATHS, settles_after
 from sandbox_provider_pricing.reads import next_read
 from sandbox_provider_pricing.record import merge_reports, record_evidence, region_name
 from sandbox_provider_pricing.reservation import ReservationQuote, reservation_quote
 from sandbox_provider_pricing.revisit import RevisitPolicy, revisit, scheduled_revisit
+from sandbox_provider_pricing.shapes import class_shapes, is_priced
 from sandbox_provider_pricing.types import TimeValue
 from sandbox_provider_pricing.versions import (
     covered_classes,
@@ -64,6 +69,9 @@ __all__ = [
     "TimeValue",
     "billing",
     "build_price_sheet",
+    "class_shapes",
+    "is_priced",
+    "published_sizes",
     "compose",
     "cost",
     "cost_method",

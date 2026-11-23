@@ -23,6 +23,11 @@ def next_read(result: Document, ended_at: datetime, now: datetime) -> datetime |
     policy's time, so the wait grows with the age of the sandbox up to the policy's interval and
     a record that lands late is read soon after it does.
 
+    Where the policy states `final_after_s` (the provider's declared final time plus the spec's
+    grace) and that time is still ahead, the next read is never later than it, known price or
+    not: the read made then is the one that can find the cost final, so a cost known early is
+    settled at the provider's own final time instead of one `interval_s` after its first read.
+
     A composed result (`compose()`) is due when its earliest unfinished part is. `ended_at` is the
     sandbox's canonical end, the same one given to `price()`; both times must carry a zone.
     """
@@ -38,7 +43,12 @@ def next_read(result: Document, ended_at: datetime, now: datetime) -> datetime |
         return None
     planned = parse_time(scheduled["next_read_at"])
     policy = revisit(result["provider"])
-    if result["label"] != "unknown":
-        return planned
-    since_end = now - ended_at
-    return min(planned, now + max(timedelta(seconds=policy.unpriced_first_s), since_end / 2))
+    when = planned
+    if result["label"] == "unknown":
+        since_end = now - ended_at
+        when = min(planned, now + max(timedelta(seconds=policy.unpriced_first_s), since_end / 2))
+    if policy.final_after_s is not None:
+        final_at = ended_at + timedelta(seconds=policy.final_after_s)
+        if now < final_at:
+            when = min(when, final_at)
+    return when

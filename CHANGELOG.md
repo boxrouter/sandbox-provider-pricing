@@ -8,6 +8,42 @@ releases are made.
 
 ### Changed
 
+- Vercel's paused note says what a stopped sandbox is billed: CPU and memory are not billed, and the saved filesystem
+  snapshot is billed separately as Snapshot Storage at $0.08 per GB-month; the paused price stays $0. The idle and
+  paused billing rule quotes the pages (evidence `providers/vercel/evidence/2026-11-23-stopped-snapshot.txt`). The
+  snapshot storage row already carried $0.08 per GB-month from the pricing page. 0.17.15.
+
+- The price sheet builds from this package alone. Each provider's `billing.yaml` records the shapes its spec
+  classes sell under the new `shapes` key (exact shapes or `[low, high]` ranges, each with its source page,
+  checked date and quote; evidence saved under `providers/<id>/evidence/<date>-shapes.txt`), and
+  `build_price_sheet()` prices each size as the cheapest recorded shape that fits it. `build_price_sheet` no
+  longer takes `offered_shapes`, `EVERY_SIZE` is `exact_sizes=True`, and `spp-price-sheet` has no `--shapes`.
+  New: `class_shapes()` and `is_priced()`. Boat records its four sizes (small, default, large, xlarge: 8/16 is
+  $0.072 an hour, 16/32 is $0.200 with the $100 plan), Superserve its published range (1-16 vCPU, 256 MiB-64 GiB by
+  plan), Vercel 1 to 8 vCPU at 2 GiB each (the Pro maximum) and Modal its published minimums with no maximum.
+  Cloud's `scripts/check_priced_shapes.py` fails when a Sandbox Provider Specification declaration lists a shape
+  pricing has no price for. Vercel's idle rule now says what the page states: provisioned memory is billed the
+  whole time the sandbox runs, idle included, and Active CPU only while the CPU works (the sheet already priced
+  idle as memory only; a test pins it). boxd's paused figure is now its standby memory (the machine's memory at the
+  GiB-hour rate, upper end) instead of missing, and a paused rule no longer overwrites the idle CPU and memory
+  parts. 0.17.14.
+
+- Blaxel's first cost read is 120 seconds after the end (was 600): measured at light load, the current hour's metrics bucket
+  is readable 3 to 15 seconds after the destroy and does not change through the hour's close.
+- `next_read` reads a cost again at the provider's final time (the end plus `revisit.final_after_s`) while that
+  time is still ahead, whether the price is known or not. Before, a cost known early waited a whole `interval_s`
+  for the read that could find it final: E2B and Vercel settled about an hour after the end, agent37 about 31
+  minutes and Blaxel about 70, instead of at their declared final times (330, 150, 330 and 930 s). The half-age
+  steps of an unknown price also stop at that time instead of stepping past it. A policy without `final_after_s`
+  is unchanged. 0.17.12.
+
+- The price sheet (schema 2.5.0) prices each size as the cheapest shape the provider class offers that is at
+  least that big, and names it in the new `shape` field (equal to `size` when offered). A size no offered shape
+  fits has the new status `not_offered`, with no price. The offered shapes were an input, `build_price_sheet(offered_shapes=...)`
+  and `spp-price-sheet --shapes`, read from the Sandbox Provider Specification (replaced in 0.17.14). A class with no shapes fails the build, naming it.
+  Before this a provider was priced at every size, offered or not (boxd's 2 vCPU, 4 GiB was a price for a machine it does not sell).
+  `published_sizes()` lists the sizes. 0.17.11.
+
 - A known cost is `final` as soon as the provider's own cost report says it is final and was read at or after
   the sandbox's end plus the provider's `revisit.final_after_s` (its declared `cost_final_within_seconds` plus
   the spec's 30 s grace), not only when the whole revisit window has closed. Reads then stop: a hourly-read

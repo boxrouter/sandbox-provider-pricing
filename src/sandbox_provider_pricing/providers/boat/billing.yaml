@@ -101,6 +101,30 @@ open_questions:
   - question: Does the usage record survive a refused stop, and does resume with a new size change the multiplier mid-life?
     how: Refuse a stop, resume on a different size, and read the record's sandboxType and seconds across the change.
 
+shapes:
+  default:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://docs.boat.dev/machines
+    checked: '2026-11-23'
+    quote: "| `small` | **$0.018** | 2 vCPU | 4 GB | 51 GB |"
+  - cpu: 4
+    memory_mib: 8192
+    source: https://docs.boat.dev/machines
+    checked: '2026-11-23'
+    quote: "| `default` | **$0.036** | 4 vCPU | 8 GB | 51 GB |"
+  - cpu: 8
+    memory_mib: 16384
+    source: https://docs.boat.dev/machines
+    checked: '2026-11-23'
+    quote: "| `large` | **$0.072** | 8 vCPU | 16 GB | 111 GB |"
+    note: "Needs the first payment; the free trial cannot use it."
+  - cpu: 16
+    memory_mib: 32768
+    source: https://docs.boat.dev/machines
+    checked: '2026-11-23'
+    quote: "| `xlarge` * | **$0.200** | 16 vCPU | 32 GB | 251 GB |"
+    note: "Needs the $100 plan or higher."
 price_sheet:
   active_time_priced: {value: false, source_url: https://docs.boat.dev/pricing}
   benchmark_region: {value: null, source_url: https://docs.boat.dev/pricing}

@@ -50,9 +50,9 @@ rules:
     sources: [https://vercel.com/docs/sandbox/pricing]
   idle_and_paused:
     answer: >-
-      Not stated for starting, stopping or stopped sessions. A stopped persistent sandbox keeps
-      a snapshot, billed as snapshot storage; deleting the sandbox does not delete it.
-    sources: [https://vercel.com/docs/sandbox/pricing, https://vercel.com/docs/sandbox/concepts/persistent-sandboxes, https://vercel.com/docs/sandbox/concepts/snapshots]
+      An idle running sandbox bills provisioned memory the whole time and Active CPU only while the CPU
+      works. A stopped sandbox bills no CPU or memory; its filesystem snapshot is billed as snapshot storage.
+    sources: [https://vercel.com/docs/sandbox/pricing, providers/vercel/evidence/2026-11-23-idle-memory.txt, providers/vercel/evidence/2026-11-23-stopped-snapshot.txt, https://vercel.com/docs/sandbox/concepts/persistent-sandboxes, https://vercel.com/docs/sandbox/concepts/snapshots]
   image_pull:
     answer: >-
       Not stated. Creation waits until the sandbox is ready, and restoring an uncached snapshot
@@ -109,12 +109,40 @@ open_questions:
   - question: Why was one data-transfer row charged $0.15 per GB while six others were $0?
     how: Export the charges again with project tags kept to see whether the row belongs to another plan or project.
 
+shapes:
+  default:
+  - cpu: 1
+    memory_mib: 2048
+    source: https://vercel.com/docs/sandbox/pricing
+    checked: '2026-11-23'
+    quote: "1 or an even number of vCPUs between 2 and 32"
+  - cpu: 2
+    memory_mib: 4096
+    source: https://vercel.com/docs/sandbox/pricing
+    checked: '2026-11-23'
+    quote: "1 or an even number of vCPUs between 2 and 32"
+  - cpu: 4
+    memory_mib: 8192
+    source: https://vercel.com/docs/sandbox/pricing
+    checked: '2026-11-23'
+    quote: "1 or an even number of vCPUs between 2 and 32"
+  - cpu: 6
+    memory_mib: 12288
+    source: https://vercel.com/docs/sandbox/pricing
+    checked: '2026-11-23'
+    quote: "| Pro | 8 | 16GB | 15 | 64 GB |"
+  - cpu: 8
+    memory_mib: 16384
+    source: https://vercel.com/docs/sandbox/pricing
+    checked: '2026-11-23'
+    quote: "| Pro | 8 | 16GB | 15 | 64 GB |"
+    note: "Pro plan maximum is 8 vCPUs and 16 GB; Enterprise allows up to 32 vCPUs and 64 GB."
 price_sheet:
   active_time_priced: {value: true, source_url: https://vercel.com/docs/sandbox/pricing}
   benchmark_region: {value: iad1, source_url: https://vercel.com/docs/sandbox/concepts/regions}
   states:
     idle: {rule: memory, note: Only memory is billed while idle., source_url: https://vercel.com/docs/sandbox/pricing}
-    paused: {rule: none, note: Paused usage is not billed., source_url: https://vercel.com/docs/sandbox/pricing}
+    paused: {rule: none, note: 'Stopped (paused): CPU and memory are not billed. The filesystem is saved as a snapshot, billed separately as Snapshot Storage at $0.08 per GB-month; memory is not kept.', source_url: https://vercel.com/docs/sandbox/concepts/persistent-sandboxes}
   class_overrides: {}
   storage:
     - {kind: image, status: unpublished, source_url: https://vercel.com/docs/sandbox/pricing}

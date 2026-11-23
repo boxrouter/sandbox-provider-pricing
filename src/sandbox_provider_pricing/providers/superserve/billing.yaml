@@ -108,6 +108,14 @@ open_questions:
     how: Read the oldest row again after 30, 60 and 90 days.
   - question: Do paused sandboxes, templates and snapshots add a charge beyond storage?
     how: Pause a sandbox for hours and compare the team's usage and charge before and after.
+shapes:
+  default:
+  - cpu: [1, 16]
+    memory_mib: [256, 65536]
+    source: https://docs.superserve.ai/templates/build-spec
+    checked: '2026-11-23'
+    quote: "| Pro max | 16 vCPU | 64 GiB (65536 MiB) |"
+    note: "Plan limits: Free up to 2 vCPU and 4 GiB, Developer up to 4 vCPU and 16 GiB, Pro up to 16 vCPU and 64 GiB; the template fixes the shape."
 price_sheet:
   active_time_priced: {value: false, source_url: https://www.superserve.ai/pricing/}
   benchmark_region: {value: null, source_url: https://docs.superserve.ai/api-key}

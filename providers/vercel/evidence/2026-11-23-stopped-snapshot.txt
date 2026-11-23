@@ -1,0 +1,32 @@
+Provider pages read for what a stopped Vercel sandbox is billed and what it keeps. Retrieved: 2026-11-23.
+The excerpts below are the figures as a page fetch returned them.
+
+Source: https://vercel.com/docs/sandbox
+Verbatim excerpts:
+
+Stop a sandbox when work is done to end CPU and memory charges.
+
+| Stopped | no CPU, no memory | $0.00 | $0.00 |
+
+The totals include CPU and allocated memory only. See pricing for other charges and included usage.
+
+Source: https://vercel.com/docs/sandbox/concepts/persistent-sandboxes
+Verbatim excerpts:
+
+When you stop a persistent sandbox, Vercel automatically snapshots the filesystem.
+
+Each automatic snapshot consumes Snapshot Storage, which is billed separately from compute.
+
+Source: https://vercel.com/docs/sandbox/concepts/snapshots
+Verbatim excerpts:
+
+You can also snapshot a running sandbox at any time by calling `snapshot()`, which captures its current filesystem before stopping the session.
+
+Snapshot storage is billed at the same rate in every region.
+
+Source: https://vercel.com/docs/sandbox/pricing
+Verbatim excerpts:
+
+| Snapshot Storage | 15 GB (lifetime) | $0.08/GB-month | $0.08/GB-month |
+
+Sandbox Creations and Snapshot Storage are billed at the same rate in all regions where Sandbox is available.

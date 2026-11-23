@@ -87,6 +87,21 @@ open_questions:
   - question: Do a GPU sandbox's CPU and memory bill at the Sandbox rate or the standard rate?
     how: Compare the hourly bill of a per-App GPU sandbox with its CPU and memory priced at each rate.
 
+shapes:
+  default:
+  - cpu: [0.125, null]
+    memory_mib: [128, null]
+    source: https://modal.com/pricing
+    checked: '2026-11-23'
+    quote: "Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores,"
+    note: "Modal enforces a maximum at creation but publishes no value; the price per core and per GiB applies to any size."
+  vm:
+  - cpu: [0.125, null]
+    memory_mib: [128, null]
+    source: https://modal.com/pricing
+    checked: '2026-11-23'
+    quote: "Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores,"
+    note: "Modal enforces a maximum at creation but publishes no value; the price per core and per GiB applies to any size."
 price_sheet:
   active_time_priced: {value: false, source_url: https://modal.com/docs/guide/billing}
   benchmark_region: {value: us, source_url: https://modal.com/docs/guide/region-selection}

@@ -44,10 +44,19 @@ the unit and basis differences to look for.
    price watcher. Missing pages or unsupported rates fail before writing anything. `--dry-run`
    lists the proposed files. A new price item or execution class belongs in this sourced version;
    no shared calculator or renderer registration is needed.
-3. Replace unknown billing answers only with source evidence. The revisit policy stays null
+3. Record the shapes each spec class sells under `shapes` in `billing.yaml`, from the provider's
+   own pages: for an exact shape its `cpu` and `memory_mib`, for a range `[low, high]` pairs (a
+   `null` high where the provider publishes no maximum), and for each entry the `source` page, the
+   `checked` date, the `quote` and a `note` for a condition such as a plan. Save the page excerpt
+   at `providers/acme/evidence/<date>-shapes.txt` (a `Source: <url>` line, then the lines the quotes
+   come from); a test checks each quote against it. The price version must price every shape, and
+   a provider that publishes one price per named size keeps those prices as flat `machine` rates
+   that match the shapes. Cloud's `scripts/check_priced_shapes.py` fails when the Sandbox Provider
+   Specification declares a shape that is not recorded and priced here.
+4. Replace unknown billing answers only with source evidence. The revisit policy stays null
    until a schedule is supported; use `unverified_default: true` for an explicitly chosen
    polling policy. The native billing schema and checks apply to generated and existing records.
-4. If the records need provider logic, add `rules.py` to the provider's package, starting from
+5. If the records need provider logic, add `rules.py` to the provider's package, starting from
    `rules/default.py`; it is an ordinary module, `sandbox_provider_pricing.providers.acme.rules`,
    checked with the rest of the package. A provider with no `rules.py` uses the shared default
    rules. Other provider-specific code goes in the same folder, and generic modules load it by
@@ -57,7 +66,7 @@ the unit and basis differences to look for.
    billing-state or storage facts to the shared price display, add a `price_sheet` block to
    `billing.yaml` as described in [Price sheet](price-sheet.md). Without that optional block, the
    provider still appears with unknown display facts.
-5. Add a fixture: `providers/acme/fixtures/<case>/evidence.json`, at the repository root beside the
+6. Add a fixture: `providers/acme/fixtures/<case>/evidence.json`, at the repository root beside the
    provider's page and evidence, is a recorded input to `price()`.
    Then generate its expected result:
 
@@ -66,7 +75,7 @@ the unit and basis differences to look for.
    ```
 
    This writes `result.json` beside each `evidence.json`. Never edit `result.json` by hand.
-6. Generate the provider page and the tables that list every provider, then run the checks:
+7. Generate the provider page and the tables that list every provider, then run the checks:
 
    ```sh
    make docs

@@ -36,7 +36,8 @@ def test_usage_based_sheet_never_presents_a_fixed_per_size_price() -> None:
         hourly = config["running_per_hour_usd"]
         assert hourly["low"] == 0
         assert hourly["high"] > hourly["low"]
-        assert config["paused_per_hour_usd"] is None
+        paused = config["paused_per_hour_usd"]
+        assert paused["low"] == 0 < paused["high"]
     disk = next(item for item in provider["storage"] if item["kind"] == "disk")
     assert disk["status"] == "priced"
 

@@ -5921,7 +5921,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6039,7 +6044,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6157,7 +6167,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6275,7 +6290,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6393,7 +6413,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6511,7 +6536,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6629,7 +6659,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6747,7 +6782,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6865,7 +6905,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6983,7 +7028,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7101,7 +7151,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7219,7 +7274,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7337,7 +7397,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7455,7 +7520,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7573,7 +7643,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7691,7 +7766,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {

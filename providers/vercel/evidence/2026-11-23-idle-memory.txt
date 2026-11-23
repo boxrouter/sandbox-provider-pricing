@@ -1,0 +1,13 @@
+Provider page read for what an idle Vercel sandbox is billed. Retrieved: 2026-11-23.
+The excerpts below are the figures as a page fetch returned them.
+
+Source: https://vercel.com/docs/sandbox/pricing
+Verbatim excerpts:
+
+The amount of time your code actively uses the CPU, measured in hours. Time spent waiting for I/O (such as network requests, database queries, or AI model calls) does not count toward Active CPU.
+
+Active CPU adds up CPU time across the sandbox's vCPUs. For example, assume an idle sandbox with 2 vCPUs averages 1% CPU utilization over 1 hour. It uses 0.02 vCPU-hours (2 vCPUs × 1 hour × 1%). Its 4 GB of provisioned memory counts as 4 GB-hours, including idle time.
+
+The memory allocated to your sandbox (in GB) multiplied by the time it runs (in hours). Each vCPU includes 2 GB of memory.
+
+| Sandbox Provisioned Memory | 420 GB-hours/month | $0.0212/GB-hour | $0.0212/GB-hour |

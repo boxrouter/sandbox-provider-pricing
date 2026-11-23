@@ -97,6 +97,14 @@ open_questions:
   - question: Does the console usage tab show one project or the whole workspace? Is Pro disk above 20 GiB charged?
     how: Run sandboxes in two projects and check the tab; check the Pro disk rate on the pricing and billing pages after a size above 20 GiB is requested.
 
+shapes:
+  default:
+  - cpu: [1, 8]
+    memory_mib: [1024, 8192]
+    source: https://e2b.dev/pricing
+    checked: '2026-11-23'
+    quote: "Sandboxes can be configured with 1 to 8 vCPUs and 1 to 8 GiB of RAM."
+    note: "Pro allows custom CPU and RAM above the Hobby maximum; the page states no larger figure."
 price_sheet:
   active_time_priced: {value: false, source_url: https://docs.e2b.dev/billing}
   benchmark_region: {value: us, source_url: https://e2b.dev/pricing}

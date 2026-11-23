@@ -1,0 +1,14 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://docs.blaxel.ai/api-reference/compute/create-sandbox
+Verbatim excerpts:
+
+Memory allocation in megabytes. Also determines CPU allocation (CPU cores = memory in MB / 2048, e.g., 4096MB = 2 CPUs).
+
+Source: https://docs.blaxel.ai/Sandboxes/Overview
+Verbatim excerpts:
+
+CPU resources are allocated accordingly by Blaxel based on your selected memory allocation and are not charged separately.
+For example, a sandbox with 8 GB memory is allocated 4 CPU cores, while one with 16 GB memory is allocated 6 CPU cores.

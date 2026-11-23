@@ -1,0 +1,15 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://www.agent37.com/docs/agents-api/instance-sizing
+Verbatim excerpts:
+
+| cpu | memory | disk | Price at the default disk |
+| 2 | 4 GB | 2-12 GB | $4.76 per month (the default) |
+| 4 | 8 GB | 2-20 GB | $9.34 per month |
+| 4 | 16 GB | 2-40 GB | $15.48 per month |
+| 4 | 32 GB | 2-80 GB | $27.76 per month |
+A VM instance takes the same four shapes, and its compute is 2.5x the default rate.
+A VM or `performance` instance takes 2-100 GB of disk on every shape, and has one larger shape: 8 vCPU / 64 GB RAM,
+with 48 GB of disk unless you choose another.

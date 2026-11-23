@@ -61,12 +61,34 @@ open_questions:
   how: Obtain a published rate or a provider charge record before adding a price; do not infer that they are free.
 - question: Does current-rate cost_micro remain at historical rates when the public rate card changes?
   how: Compare retained records and their rates across a published rate change; rate mismatches remain unknown.
+shapes:
+  default:
+  - cpu: 1
+    memory_mib: 4096
+    source: https://boxd.sh/pricing
+    checked: '2026-11-23'
+    quote: "1 vCPU · 4 GiB"
+  - cpu: 2
+    memory_mib: 8192
+    source: https://boxd.sh/pricing
+    checked: '2026-11-23'
+    quote: "2 vCPU · 8 GiB"
+  - cpu: 4
+    memory_mib: 16384
+    source: https://boxd.sh/pricing
+    checked: '2026-11-23'
+    quote: "4 vCPU · 16 GiB"
+  - cpu: 8
+    memory_mib: 32768
+    source: https://boxd.sh/pricing
+    checked: '2026-11-23'
+    quote: "8 vCPU · 32 GiB"
 price_sheet:
   active_time_priced: {value: false, source_url: https://boxd.sh/llms-full.txt}
   benchmark_region: {value: eu-fra, source_url: 'https://github.com/boxrouter/sandbox-provider-spec/blob/v0.3.178/providers/boxd/declaration.yaml#L29'}
   states:
     idle: {rule: running, note: 'Actual CPU used, resident RAM and written disk are billed; no fixed idle-size price exists.', source_url: https://boxd.sh/pricing}
-    paused: {rule: unknown, note: Standby or suspend-to-RAM bills resident RAM and written disk; hibernation bills disk only. No allocation-based pause price exists., source_url: https://boxd.sh/pricing}
+    paused: {rule: memory, note: 'Standby (the generic paused state) bills resident RAM and written disk, shown at the upper end with the memory the machine has; hibernation bills disk only. Resident RAM is sampled, so no allocation-based pause price exists.', source_url: https://boxd.sh/pricing}
   class_overrides: {}
   storage:
   - {kind: disk, status: priced, source_url: https://boxd.sh/llms-full.txt, price_version_rate: {resource: disk, per: gib-hour, multiply_by_month_hours: true}}

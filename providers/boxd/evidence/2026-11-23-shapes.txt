@@ -1,0 +1,10 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://boxd.sh/pricing
+Verbatim excerpts:
+
+Calculator, Machine size: 1 vCPU · 4 GiB; 2 vCPU · 8 GiB; 4 vCPU · 16 GiB; 8 vCPU · 32 GiB
+Pay as you go, Size: Up to 8 vCPU · 32 GiB
+Scale, Size: Above 8 vCPU · 32 GiB

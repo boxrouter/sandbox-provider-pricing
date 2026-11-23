@@ -86,6 +86,54 @@ open_questions:
     how: Re-read deleted instances' totals over days; the 2026-11-11 and 2026-11-13 checks read them for an hour after the delete.
   - question: Is GB in the RAM and disk rates 10^9 bytes or a GiB?
     how: Ask Agent37 or compare a reported charge for a size whose GB and GiB figures differ in the micro-dollar.
+shapes:
+  default:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 2 | 4 GB | 2-12 GB | $4.76 per month (the default) |"
+  - cpu: 4
+    memory_mib: 8192
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 8 GB | 2-20 GB | $9.34 per month |"
+  - cpu: 4
+    memory_mib: 16384
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 16 GB | 2-40 GB | $15.48 per month |"
+  - cpu: 4
+    memory_mib: 32768
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 32 GB | 2-80 GB | $27.76 per month |"
+  vm:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 8192
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 16384
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 32768
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 8
+    memory_mib: 65536
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "and has one larger shape: 8 vCPU / 64 GB RAM,"
 price_sheet:
   active_time_priced: {value: false, source_url: https://www.agent37.com/docs/agents-api/billing}
   benchmark_region: {value: us, source_url: https://www.agent37.com/docs/agents-api/instances/create}

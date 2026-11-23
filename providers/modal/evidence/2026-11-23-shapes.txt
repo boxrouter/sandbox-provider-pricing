@@ -1,0 +1,11 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://modal.com/pricing
+Verbatim excerpts:
+
+*minimum of 0.125 cores per container
+*minimum of 128 MiB per container
+Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores,
+Requests exceeding the maximum will be rejected with an InvalidError. (modal.com/docs/guide/resources; the maximum value is not stated)

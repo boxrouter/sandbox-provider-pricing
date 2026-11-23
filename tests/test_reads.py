@@ -38,13 +38,18 @@ def _unpriced(provider: str, now: datetime) -> dict[str, Any]:
 
 def _expected(result: dict[str, Any], now: datetime) -> datetime | None:
     """The rule in one line: the policy's time, or while unknown the sooner of it and half the
-    sandbox's age (at least `unpriced_first_s`) from `now`."""
+    sandbox's age (at least `unpriced_first_s`) from `now`; never later than the end plus
+    `final_after_s` while that is still ahead."""
     next_text = None if result["revisit"] is None else result["revisit"]["next_read_at"]
     if result["final"] or next_text is None:
         return None
     planned = datetime.fromisoformat(next_text.replace("Z", "+00:00"))
-    first = timedelta(seconds=revisit(result["provider"]).unpriced_first_s)
-    return min(planned, now + max(first, (now - ENDED) / 2))
+    policy = revisit(result["provider"])
+    first = timedelta(seconds=policy.unpriced_first_s)
+    due = min(planned, now + max(first, (now - ENDED) / 2))
+    if policy.final_after_s is not None and now < ENDED + timedelta(seconds=policy.final_after_s):
+        due = min(due, ENDED + timedelta(seconds=policy.final_after_s))
+    return due
 
 
 @pytest.mark.parametrize(
@@ -77,10 +82,37 @@ def test_the_soonest_read_is_never_closer_than_the_shortest_wait() -> None:
     assert next_read(_unpriced("e2b", late), ENDED, late) == late + timedelta(seconds=15)
 
 
-def test_a_priced_sandbox_follows_the_policy_alone() -> None:
+def test_a_priced_sandbox_is_read_again_at_the_providers_final_time() -> None:
+    """A cost known before `final_after_s` is read once more at that time, not an `interval_s`
+    after its first read (e2b: 330 s, not 1 h 5 min)."""
     now = ENDED + timedelta(minutes=5)
     result = _unpriced("e2b", now) | {"label": "calculated"}
-    assert next_read(result, ENDED, now) == ENDED + timedelta(minutes=5, hours=1)
+    final_after_s = revisit("e2b").final_after_s
+    assert final_after_s is not None
+    assert next_read(result, ENDED, now) == ENDED + timedelta(seconds=final_after_s)
+
+
+def test_a_priced_sandbox_past_its_final_time_or_without_one_follows_the_policy_alone() -> None:
+    """Once the final time has passed (the read found the cost not yet final), or where the policy
+    states none, the policy's own cadence sets the next read."""
+    late = ENDED + timedelta(minutes=10)
+    known = _unpriced("e2b", late) | {"label": "calculated"}
+    assert next_read(known, ENDED, late) == late + timedelta(seconds=revisit("e2b").interval_s)
+    without = next(name for name in provider_ids() if revisit(name).final_after_s is None)
+    early = ENDED + timedelta(seconds=revisit(without).after_s)
+    result: dict[str, Any] = _unpriced(without, early) | {"label": "reported"}
+    assert next_read(result, ENDED, early) == datetime.fromisoformat(
+        result["revisit"]["next_read_at"].replace("Z", "+00:00")
+    )
+
+
+def test_an_unpriced_ladder_never_steps_past_the_final_time() -> None:
+    """Half the age would jump past `final_after_s`; the read lands on it instead."""
+    final_after_s = revisit("e2b").final_after_s
+    assert final_after_s is not None
+    now = ENDED + timedelta(seconds=final_after_s - 30)
+    result = _unpriced("e2b", now)
+    assert next_read(result, ENDED, now) == ENDED + timedelta(seconds=final_after_s)
 
 
 def test_a_final_result_or_one_without_a_schedule_is_not_read_again() -> None:

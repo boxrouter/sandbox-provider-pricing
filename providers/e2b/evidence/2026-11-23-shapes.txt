@@ -1,0 +1,11 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://e2b.dev/pricing
+Verbatim excerpts:
+
+Sandboxes can be configured with 1 to 8 vCPUs and 1 to 8 GiB of RAM.
+The default sandbox has 2 vCPUs and 4 GiB of RAM.
+Hobby: Up to 8 vCPUs per sandbox.
+Pro: Custom sandbox CPU and RAM.

@@ -1,0 +1,14 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://docs.superserve.ai/templates/build-spec
+Verbatim excerpts:
+
+| Min | 1 vCPU | 256 MiB |
+| Default | 1 vCPU | 1 GiB (1024 MiB) |
+| Free max | 2 vCPU | 4 GiB (4096 MiB) |
+| Developer max | 4 vCPU | 16 GiB (16384 MiB) |
+| Pro max | 16 vCPU | 64 GiB (65536 MiB) |
+Templates specify the VM shape; sandboxes inherit these and cannot override them per-sandbox.
+Limits depend on your team's plan.

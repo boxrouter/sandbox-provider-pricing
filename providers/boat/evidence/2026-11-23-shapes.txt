@@ -1,0 +1,22 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://docs.boat.dev/machines
+Verbatim excerpts:
+
+| Size | Per hour | CPU | RAM | Disk |
+| `small` | **$0.018** | 2 vCPU | 4 GB | 51 GB |
+| `default` | **$0.036** | 4 vCPU | 8 GB | 51 GB |
+| `large` | **$0.072** | 8 vCPU | 16 GB | 111 GB |
+| `xlarge` * | **$0.200** | 16 vCPU | 32 GB | 251 GB |
+`large` needs your first payment. The free trial cannot use it.
+* `xlarge` needs the $100 plan or higher.
+These four sizes are the only sizes.
+boat has no custom size and no size above `xlarge`.
+
+Source: https://docs.boat.dev/pricing
+Verbatim excerpts:
+
+`xlarge` needs the $100 plan or higher.
+Subscribe from Dashboard > Billing, then pass `--type xlarge`.
