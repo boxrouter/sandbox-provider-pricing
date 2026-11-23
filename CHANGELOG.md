@@ -8,6 +8,9 @@ releases are made.
 
 ### Added
 
+- `reservation_quote(..., state="paused")` quotes a paused reservation: only the meters a class bills while
+  paused (their `billed_states`), so a class that bills nothing while paused quotes zero. Cloud funds a managed
+  pause from it. 0.17.18.
 - Beam, priced from its pages of 2026-11-23: Performance-tier sandboxes at $0.05 per vCPU-hour and $0.01 per GiB-hour,
   billed by the millisecond while running (Shared and Spot tiers are recorded as exclusions). Beam documents no
   per-sandbox usage or cost record, so its cost label is unknown and no list-price estimate is made. Storage is not
@@ -19,11 +22,21 @@ releases are made.
   size) through the spec's cost lines; without that record it stays unknown. `READ_TIME_PATHS` now lists
   `steps.usage.*.metered.*.observed_at`: a calculated or usage cost copies the read time there, and the
   read-time contract has to name every such copy.
+  Freestyle's cost reads end 30 s after the end (`final_after_s` 30, window 30 s): its adapter declares a final
+  time of 0 s and its capture is read before the delete, so no later read exists and a longer window only
+  kept the cost `final: false` for 15 minutes. The `best` fixture carries the adapter's `usage` lines. 0.17.20.
 - Sail: a price version (used vCPU, memory and disk per hour, creation fee), a billing record whose cost is Sail's own spend
   figure (`reported`, final 600 s after the end; measured settle 31.7 to 180.3 s over 16 sandboxes) and its evidence.
 
 ### Changed
 
+- The Beam probe script (`providers/beam/evidence/2026-11-23-api-probe/probe_lib.py`) is `ruff format` and `ruff check` clean: the public repository's lint covers it, and the standalone check had stopped on it, so 0.17.21 was never published either. 0.17.22.
+- The Beam probe evidence (`providers/beam/evidence/2026-11-23-api-probe/lifecycle.md`) no longer names internal tooling paths: the public mirror's text gate stopped on them, so 0.17.18 to 0.17.20 were never published. 0.17.21.
+- Blaxel's cost is read once, at its final time: `revisit.after_s` and `final_after_s` are both 150 s (they were
+  120 s and 930 s), from Blaxel's declared `cost_final_within_seconds` of 120 s (sps-provider-blaxel; it was
+  900 s). Live through Cloud on 2026-11-23, every bucket of 40 sandboxes (30 at once) was in the metrics 0 to 7 s
+  after the destroy and never changed. The rationale no longer says a burst's answers stay unusable for an hour:
+  that was the adapter never calling a dropped record's cost final (fixed in sps-provider-blaxel 0.3.7). 0.17.19.
 - Vercel's paused note no longer says memory is not kept (no Vercel page says so): it ends at the snapshot storage rate,
   backed by the persistence page ("Persistent sandboxes automatically save their filesystem state when stopped"). 0.17.16.
 

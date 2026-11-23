@@ -7,11 +7,11 @@ status:
   why_not_higher: Nothing. In our checks Blaxel's per-sandbox cost matched list price, with compute in whole seconds and standby snapshot storage at its listed rate.
   would_raise: Nothing. Until Blaxel's metrics record arrives, the cost is unknown.
 revisit:
-  after_s: 120
+  after_s: 150
   until_s: 604800
   interval_s: 3600
-  final_after_s: 930  # the provider's declared cost_final_within_seconds (900) plus the spec's 30 s grace
-  rationale: "Measured 2026-11-23 at light load: the hour's bucket was readable 3 to 15 s after the destroy and unchanged through the hour's close, so the first read is at 120 s. Under a 330-sandbox burst answers stayed unusable 60 to 70 min. Costs watched unchanged 30 min only; retries stop after 7 days."
+  final_after_s: 150  # the provider's declared cost_final_within_seconds (120) plus the spec's 30 s grace
+  rationale: "One read at the final time. Live through Cloud 2026-11-23, 40 sandboxes (30 at once): buckets in the metrics 0 to 7 s after the destroy, never changed; a deleted sandbox's record kept 16 min or more. 2026-10-20: settled 45 to 113 s after the end. Retries only after a failure, for 7 days."
   unverified_default: true
 reported_at_list_price:
   value: true

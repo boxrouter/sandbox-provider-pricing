@@ -7,10 +7,11 @@ status:
   why_not_higher: Freestyle has no per-VM cost or usage endpoint, so nothing it reports is a dollar figure. The quantities come from its own VM record (totalRunSeconds, createdAt and the allocated size) and are priced at its published list rates.
   would_raise: A per-VM cost or usage API from Freestyle, which its CEO said is planned. Until then the cost is calculated, and without the VM record it is unknown.
 revisit:
-  after_s: 15
-  until_s: 900
-  interval_s: 300
-  rationale: The VM record, which holds the run seconds, is gone the moment the VM is deleted, so no later read can improve the figure captured just before the delete; the short window only covers a capture that failed or was lost, and is a chosen default.
+  after_s: 5
+  until_s: 30
+  interval_s: 10
+  final_after_s: 30  # the provider's declared cost_final_within_seconds (0) plus the spec's 30 s grace
+  rationale: The VM record vanishes with the VM, so the capture taken before the delete is the only figure there will ever be, final when read (declared final time 0 s). No later read can improve it, so the window closes at the declared time plus the spec's 30 s grace; chosen, not measured.
   unverified_default: true
 reported_at_list_price:
   value: false

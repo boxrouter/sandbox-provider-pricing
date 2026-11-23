@@ -5,7 +5,7 @@
 from copy import deepcopy
 from decimal import Decimal
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import pytest
 
@@ -212,3 +212,30 @@ def test_every_provider_latest_version_states_all_its_charges_with_a_source() ->
         for kind, entry in coverage.items():
             where = f"{provider} {kind}"
             assert entry["source"] in urls or (ROOT / entry["source"]).is_file(), where
+
+
+def test_a_paused_quote_prices_only_the_meters_billed_while_paused() -> None:
+    size = {"cpu": 1, "memory_mib": 4096, "disk_mib": 102400}
+    week = 7 * 24 * 3600
+    boxd = latest_version("boxd")
+    paused = reservation_quote(boxd, size, week, creation=False, state="paused")
+    running = reservation_quote(boxd, size, week, creation=False)
+    # Resident RAM and written disk bill in standby, CPU does not: 4 GiB x $0.014 and
+    # 100 GiB x $0.000096 an hour, for 168 hours.
+    assert (paused["status"], paused["ceiling_usd"]) == ("bounded", "11.0208")
+    assert running["status"] == "bounded"
+    assert Decimal(str(running["ceiling_usd"])) > Decimal("11.0208")
+
+
+def test_a_class_that_bills_nothing_while_paused_quotes_zero() -> None:
+    quote = reservation_quote(
+        latest_version("e2b"), {"cpu": 2, "memory_mib": 4096}, 3600, creation=False, state="paused"
+    )
+    assert (quote["status"], quote["ceiling_usd"]) == ("bounded", "0")
+
+
+def test_an_unknown_reservation_state_is_rejected() -> None:
+    with pytest.raises(ValueError, match="^state must be running or paused$"):
+        reservation_quote(
+            latest_version("e2b"), {"cpu": 2, "memory_mib": 4096}, 60, state=cast(Any, "stopped")
+        )

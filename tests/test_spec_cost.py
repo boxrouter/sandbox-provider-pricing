@@ -131,19 +131,23 @@ def test_the_old_adapter_readings_are_still_read() -> None:
     assert price(old)["label"] == "reported"
 
 
-FINAL_AFTER_S = 930  # Blaxel's declared 900 s plus the spec's 30 s grace (`billing.yaml`)
+FINAL_AFTER_S = 150  # Blaxel's declared 120 s plus the spec's 30 s grace (`billing.yaml`)
 
 
 def test_a_provider_reported_final_cost_read_after_its_declared_time_is_final() -> None:
     """The reads stop once the provider says the cost is final and a read after its declared time
-    found it so, instead of waiting out the 7-day window."""
+    found it so, instead of waiting out the 7-day window. Blaxel's first read is that read (its
+    `after_s` equals its `final_after_s`): a read before it counts nothing."""
     lines = [_line("reported", amount="0.0010")]
     early = price(_evidence(lines, read_after_s=FINAL_AFTER_S - 1))
-    assert (early["label"], early["final"]) == ("reported", False)
+    assert (early["label"], early["final"]) == ("unknown", False)
     assert early["revisit"] is not None
     late = price(_evidence(lines, read_after_s=FINAL_AFTER_S))
-    assert (late["label"], late["final"]) == ("reported", True)
-    assert late["total"] == early["total"]  # the figure does not change when it becomes final
+    assert (late["label"], late["final"], late["total"]) == (
+        "reported",
+        True,
+        {"low": "0.0010", "high": "0.0010"},
+    )
 
 
 def test_a_cost_the_adapter_still_calls_accruing_is_not_final_however_late() -> None:

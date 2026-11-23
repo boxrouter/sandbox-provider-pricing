@@ -129,31 +129,37 @@
       "final": true,
       "readings": [
         {
-          "amount": "0.001388800",
+          "amount": null,
           "currency": "USD",
           "meter": "cpu",
           "quantity": "124",
-          "unit": "vcpu-second",
+          "unit": "vcpu_second",
+          "interval_start": null,
+          "interval_end": null,
           "scope": "sandbox",
-          "source": "calculated"
+          "source": "usage"
         },
         {
-          "amount": "0.000888667",
+          "amount": null,
           "currency": "USD",
           "meter": "memory",
           "quantity": "248",
-          "unit": "gib-second",
+          "unit": "gib_second",
+          "interval_start": null,
+          "interval_end": null,
           "scope": "sandbox",
-          "source": "calculated"
+          "source": "usage"
         },
         {
-          "amount": "0.000024891",
+          "amount": null,
           "currency": "USD",
           "meter": "disk",
-          "quantity": "1041.952",
-          "unit": "gib-second",
+          "quantity": "1024",
+          "unit": "gib_second",
+          "interval_start": null,
+          "interval_end": null,
           "scope": "sandbox",
-          "source": "calculated"
+          "source": "usage"
         }
       ],
       "records": [

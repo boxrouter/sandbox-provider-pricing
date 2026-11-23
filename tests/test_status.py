@@ -53,14 +53,14 @@ def test_daytona_retains_the_sum_of_its_reported_period_prices() -> None:
 
 def test_blaxel_early_metrics_read_stays_unknown() -> None:
     evidence = _best_evidence("blaxel")
-    evidence["provider_records"][0]["read_at"] = "2026-10-19T20:01:00Z"
+    evidence["provider_records"][0]["read_at"] = "2026-10-19T20:02:29Z"
 
     result = price(evidence)
 
     assert result["reported"] is None
     assert result["label"] == "unknown"
     assert result["total"] is None
-    assert result["revisit"]["after"] == "2026-10-19T20:02:00Z"
+    assert result["revisit"]["after"] == "2026-10-19T20:02:30Z"
 
 
 def test_daytona_missing_record_stays_unknown() -> None:

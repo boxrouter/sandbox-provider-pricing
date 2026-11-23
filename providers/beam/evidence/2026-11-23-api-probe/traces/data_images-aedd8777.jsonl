@@ -1,0 +1,435 @@
+{"t": 0.638, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 630, "request": "VerifyImageBuildRequest(python_version=<PythonVersion.Python3: 'python3'>, python_packages=[], commands=[], force_rebuild=False, existing_image_uri='ubuntu:24.04', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=False, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='0732b7ac344039c6', valid=True)"}
+{"t": 0.64, "kind": "build-stream-start", "image": "ubuntu-initial"}
+{"t": 0.665, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0247}
+{"t": 0.694, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0535}
+{"t": 0.8, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.159}
+{"t": 1.398, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.7572}
+{"t": 6.726, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 6.0852}
+{"t": 7.932, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 7.2917}
+{"t": 8.033, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 7.3924}
+{"t": 8.536, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 7.8952}
+{"t": 9.038, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.3973}
+{"t": 9.139, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.4981}
+{"t": 9.441, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.8006}
+{"t": 9.542, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.9015}
+{"t": 9.642, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.0019}
+{"t": 9.945, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.3044}
+{"t": 10.046, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.4054}
+{"t": 10.147, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.5062}
+{"t": 10.247, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.6065}
+{"t": 10.694, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.054}
+{"t": 11.153, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.5121}
+{"t": 12.058, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.4174}
+{"t": 12.963, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.323}
+{"t": 13.164, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.5237}
+{"t": 13.365, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.7249}
+{"t": 13.566, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.9254}
+{"t": 13.868, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 13.2272}
+{"t": 14.471, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 13.831}
+{"t": 14.572, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 13.9315}
+{"t": 15.579, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 14.9387}
+{"t": 16.081, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.441}
+{"t": 16.182, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.5414}
+{"t": 16.283, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.6421}
+{"t": 16.383, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.7426}
+{"t": 16.484, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.8437}
+{"t": 16.586, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.946}
+{"t": 16.786, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.1452}
+{"t": 16.887, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.2461}
+{"t": 16.987, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.3467}
+{"t": 17.49, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.8492}
+{"t": 17.692, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.0516}
+{"t": 17.994, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.3536}
+{"t": 18.194, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.5536}
+{"t": 18.294, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.6537}
+{"t": 18.395, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.7541}
+{"t": 18.495, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.8549}
+{"t": 18.597, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.956}
+{"t": 18.797, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.1567}
+{"t": 18.898, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.2579}
+{"t": 18.998, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.3575}
+{"t": 19.204, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.5633}
+{"t": 19.503, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.8628}
+{"t": 19.602, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.9611}
+{"t": 19.702, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.0612}
+{"t": 20.695, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.0546}
+{"t": 20.808, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.1672}
+{"t": 20.909, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.2681}
+{"t": 21.01, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.3692}
+{"t": 21.714, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.0733}
+{"t": 21.814, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.1734}
+{"t": 22.216, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.5755}
+{"t": 22.317, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.6762}
+{"t": 22.417, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.777}
+{"t": 22.517, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.8769}
+{"t": 22.621, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.9808}
+{"t": 22.721, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.0807}
+{"t": 22.82, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.1794}
+{"t": 22.921, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.2805}
+{"t": 23.021, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.3808}
+{"t": 23.122, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.4817}
+{"t": 23.224, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.5837}
+{"t": 23.324, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.6837}
+{"t": 23.425, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.7844}
+{"t": 23.525, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.885}
+{"t": 23.626, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.9855}
+{"t": 23.726, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.0858}
+{"t": 23.827, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.1861}
+{"t": 23.927, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.287}
+{"t": 24.028, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.3872}
+{"t": 24.128, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.4874}
+{"t": 24.229, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.5882}
+{"t": 24.329, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.6888}
+{"t": 24.43, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.7894}
+{"t": 24.53, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.89}
+{"t": 24.631, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.9909}
+{"t": 24.732, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.0911}
+{"t": 24.832, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.1913}
+{"t": 24.932, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.2919}
+{"t": 25.033, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.3922}
+{"t": 25.133, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.493}
+{"t": 25.234, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.5934}
+{"t": 25.335, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.6943}
+{"t": 25.837, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.1968}
+{"t": 25.938, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.2974}
+{"t": 26.039, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.3987}
+{"t": 26.34, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.7}
+{"t": 26.442, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.8013}
+{"t": 26.542, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.9017}
+{"t": 26.743, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.103}
+{"t": 26.844, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.2034}
+{"t": 26.944, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.3039}
+{"t": 27.044, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.4039}
+{"t": 27.145, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.5042}
+{"t": 27.346, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.7052}
+{"t": 27.451, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.8105}
+{"t": 27.549, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.9081}
+{"t": 27.648, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.0077}
+{"t": 27.749, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.1087}
+{"t": 27.849, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.2089}
+{"t": 28.251, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.6105}
+{"t": 28.351, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.7109}
+{"t": 28.452, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.8112}
+{"t": 28.855, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.2144}
+{"t": 29.055, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.4147}
+{"t": 29.156, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.5159}
+{"t": 29.257, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.6162}
+{"t": 29.458, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.8178}
+{"t": 29.559, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.9189}
+{"t": 29.66, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.0199}
+{"t": 29.76, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.12}
+{"t": 29.862, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.2212}
+{"t": 29.962, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.3219}
+{"t": 30.064, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.4239}
+{"t": 30.164, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.5237}
+{"t": 30.265, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.6247}
+{"t": 30.365, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.7249}
+{"t": 30.466, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.8258}
+{"t": 30.567, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.9263}
+{"t": 30.668, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.0272}
+{"t": 30.694, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.054}
+{"t": 30.768, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.1279}
+{"t": 31.372, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.7318}
+{"t": 31.475, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.8349}
+{"t": 31.573, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.9328}
+{"t": 31.674, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.0338}
+{"t": 31.976, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.3359}
+{"t": 32.077, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.4367}
+{"t": 32.178, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.5376}
+{"t": 32.279, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.6381}
+{"t": 32.38, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.7395}
+{"t": 32.481, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.8401}
+{"t": 32.587, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.9467}
+{"t": 32.681, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.0408}
+{"t": 32.781, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.1404}
+{"t": 32.881, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.2408}
+{"t": 32.981, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.3409}
+{"t": 33.081, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.4407}
+{"t": 33.182, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.5417}
+{"t": 33.283, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.6422}
+{"t": 33.384, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.7432}
+{"t": 33.484, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.8437}
+{"t": 33.585, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.9446}
+{"t": 33.685, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.0448}
+{"t": 33.786, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.1458}
+{"t": 33.887, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.2463}
+{"t": 33.988, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.347}
+{"t": 34.188, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.5478}
+{"t": 34.29, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.649}
+{"t": 34.389, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.749}
+{"t": 34.49, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.8498}
+{"t": 34.59, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.9497}
+{"t": 35.193, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 34.553}
+{"t": 35.394, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 34.7538}
+{"t": 37.606, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 36.9658}
+{"t": 40.12, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 39.4798}
+{"t": 40.222, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 39.5811}
+{"t": 40.696, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.056}
+{"t": 40.824, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.1831}
+{"t": 40.924, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.2839}
+{"t": 41.126, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.4853}
+{"t": 41.327, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.687}
+{"t": 41.428, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.7875}
+{"t": 43.438, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 42.7971}
+{"t": 44.041, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 43.4005}
+{"t": 45.952, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.3114}
+{"t": 46.053, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.4129}
+{"t": 46.254, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.6132}
+{"t": 46.355, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.7142}
+{"t": 46.455, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.815}
+{"t": 47.16, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 46.5195}
+{"t": 47.463, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 46.8223}
+{"t": 47.664, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 47.024}
+{"t": 48.972, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 48.3316}
+{"t": 49.174, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 48.5333}
+{"t": 49.375, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 48.7348}
+{"t": 50.695, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 50.0542}
+{"t": 58.419, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 57.7788}
+{"t": 59.325, "kind": "build-stream-event", "image": "ubuntu-initial", "done": false, "success": false, "image_id": "", "elapsed_seconds": 58.6843}
+{"t": 59.394, "kind": "build-stream-event", "image": "ubuntu-initial", "done": true, "success": true, "image_id": "0732b7ac344039c6", "elapsed_seconds": 58.7537}
+{"t": 59.394, "kind": "build-stream-end", "image": "ubuntu-initial", "elapsed_seconds": 58.754}
+{"t": 59.395, "kind": "result", "label": "image-build", "image": "ubuntu:24.04", "phase": "ubuntu-initial", "seconds": 59.3914, "success": true, "image_id": "0732b7ac344039c6", "python_version": "python3", "error": ""}
+{"t": 59.416, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 20, "request": "VerifyImageBuildRequest(python_version='python3', python_packages=[], commands=[], force_rebuild=False, existing_image_uri='ubuntu:24.04', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=True, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='6c00f4998ed44407', valid=True, exists=True)"}
+{"t": 59.49, "kind": "rpc", "method": "/gateway.GatewayService/HeadObject", "ms": 72, "request": "HeadObjectRequest(hash='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', supports_put_headers=True)", "response": "HeadObjectResponse(ok=True, exists=True, object_id='c8385094-f717-45f8-a3d5-a5aaceb798f6', object_metadata=ObjectMetadata(name='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', size=22), use_workspace_storage=True)"}
+{"t": 59.538, "kind": "rpc", "method": "/gateway.GatewayService/GetOrCreateStub", "ms": 40, "request": "GetOrCreateStubRequest(object_id='c8385094-f717-45f8-a3d5-a5aaceb798f6', image_id='6c00f4998ed44407', stub_type='sandbox', name='sandbox', python_version='python3', cpu=1000, memory=512, gpu='', handler='', retries=0, timeout=0, keep_warm_seconds=300, workers=1, max_pending_tasks=100, volumes=[], force_create=True, on_start='', callback_url='', authorized=False, secrets=[], autoscaler=Autoscaler(type='queue_depth', max_containers=1, tasks_per_container=1, min_containers=0), task_policy=TaskPolicy(timeout=3600, max_retries=3, ttl=0), concurrent_requests=1, extra='{}', checkpoint_enabled=False, gpu_count=0, on_deploy='', on_deploy_stub_id='', entrypoint=['tail', '-f', '/dev/null'], ports=[], env=[], app_name='probe-aedd8777', inputs=None, outputs=None, tcp=False, block_network=False, allow_list=None, docker_enabled=False, pool=None, is_service=False, serving=None, disks=[], checkpoint_trigger=None, hostname='', persistent_root=PersistentRoot(), managed_endpoint='', use_vm=False, cpu_tier='')", "response": "GetOrCreateStubResponse(ok=True, stub_id='57772022-e628-498c-9336-b9a35665c651')"}
+{"t": 59.565, "kind": "rpc", "method": "/pod.PodService/CreatePod", "ms": 26, "request": "CreatePodRequest(stub_id='57772022-e628-498c-9336-b9a35665c651', image_id=None, checkpoint_id=None, machine_id=None)", "response": "CreatePodResponse(ok=True, container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4', stub_id='57772022-e628-498c-9336-b9a35665c651', app_id='33b8d5ee-a83f-430b-804b-ceee8d54f389')"}
+{"t": 60.3, "kind": "rpc", "method": "/pod.PodService/SandboxExec", "ms": 734, "request": "PodSandboxExecRequest(container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4', command='sh -c \\'printf \\'\"\\'\"\\'uid=\\'\"\\'\"\\'; id -u; printf \\'\"\\'\"\\'cwd=\\'\"\\'\"\\'; pwd; printf \\'\"\\'\"\\'bash=\\'\"\\'\"\\'; command -v bash || true; printf \\'\"\\'\"\\'python3=\\'\"\\'\"\\'; command -v python3 || true; printf \\'\"\\'\"\\'node=\\'\"\\'\"\\'; command -v node || true; printf \\'\"\\'\"\\'node_version=\\'\"\\'\"\\'; node --version 2>/dev/null || true\\'', cwd='/workspace', env=None, wait=False, secrets=[])", "response": "PodSandboxExecResponse(ok=True, pid=14, exit_code=-1)"}
+{"t": 60.332, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 31, "request": "PodSandboxStatusRequest(container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4', pid=14)", "response": "PodSandboxStatusResponse(ok=True, status='exited')"}
+{"t": 60.359, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 27, "request": "PodSandboxStdoutRequest(container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4', pid=14)", "response": "PodSandboxStdoutResponse(ok=True, stdout='uid=0\\ncwd=/workspace\\nbash=/usr/bin/bash\\npython3=node=node_version=')"}
+{"t": 60.386, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 27, "request": "PodSandboxStdoutRequest(container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4', pid=14)", "response": "PodSandboxStdoutResponse(ok=True)"}
+{"t": 60.386, "kind": "result", "label": "image-runtime", "image": "ubuntu:24.04", "sandbox_id": "sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4", "create_seconds": 0.991, "exit_code": 0, "output": "uid=0\ncwd=/workspace\nbash=/usr/bin/bash\npython3=node=node_version="}
+{"t": 60.43, "kind": "rpc", "method": "/gateway.GatewayService/StopContainer", "ms": 44, "request": "StopContainerRequest(container_id='sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4')", "response": "StopContainerResponse(ok=True)"}
+{"t": 60.451, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 21, "request": "VerifyImageBuildRequest(python_version=<PythonVersion.Python3: 'python3'>, python_packages=[], commands=[], force_rebuild=False, existing_image_uri='ubuntu:24.04', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=False, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='0732b7ac344039c6', valid=True, exists=True)"}
+{"t": 60.451, "kind": "result", "label": "image-build", "image": "ubuntu:24.04", "phase": "ubuntu-warm", "seconds": 0.0212, "success": true, "image_id": "0732b7ac344039c6", "python_version": "python3", "error": ""}
+{"t": 60.474, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 21, "request": "VerifyImageBuildRequest(python_version=<PythonVersion.Python3: 'python3'>, python_packages=[], commands=[], force_rebuild=False, existing_image_uri='ubuntu:24.04', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=True, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='6c00f4998ed44407', valid=True, exists=True)"}
+{"t": 60.517, "kind": "rpc", "method": "/gateway.GatewayService/GetOrCreateStub", "ms": 41, "request": "GetOrCreateStubRequest(object_id='c8385094-f717-45f8-a3d5-a5aaceb798f6', image_id='6c00f4998ed44407', stub_type='sandbox', name='sandbox', python_version=<PythonVersion.Python3: 'python3'>, cpu=1000, memory=512, gpu='', handler='', retries=0, timeout=0, keep_warm_seconds=300, workers=1, max_pending_tasks=100, volumes=[], force_create=True, on_start='', callback_url='', authorized=False, secrets=[], autoscaler=Autoscaler(type='queue_depth', max_containers=1, tasks_per_container=1, min_containers=0), task_policy=TaskPolicy(timeout=3600, max_retries=3, ttl=0), concurrent_requests=1, extra='{}', checkpoint_enabled=False, gpu_count=0, on_deploy='', on_deploy_stub_id='', entrypoint=['tail', '-f', '/dev/null'], ports=[], env=[], app_name='probe-aedd8777', inputs=None, outputs=None, tcp=False, block_network=False, allow_list=None, docker_enabled=False, pool=None, is_service=False, serving=None, disks=[], checkpoint_trigger=None, hostname='', persistent_root=PersistentRoot(), managed_endpoint='', use_vm=False, cpu_tier='')", "response": "GetOrCreateStubResponse(ok=True, stub_id='884f134e-b9b7-4b45-9ab9-64e29987ae50')"}
+{"t": 60.549, "kind": "rpc", "method": "/pod.PodService/CreatePod", "ms": 32, "request": "CreatePodRequest(stub_id='884f134e-b9b7-4b45-9ab9-64e29987ae50', image_id=None, checkpoint_id=None, machine_id=None)", "response": "CreatePodResponse(ok=True, container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda', stub_id='884f134e-b9b7-4b45-9ab9-64e29987ae50', app_id='33b8d5ee-a83f-430b-804b-ceee8d54f389')"}
+{"t": 60.734, "kind": "rpc", "method": "/pod.PodService/SandboxExec", "ms": 184, "request": "PodSandboxExecRequest(container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda', command='sh -c \\'printf \\'\"\\'\"\\'uid=\\'\"\\'\"\\'; id -u; printf \\'\"\\'\"\\'cwd=\\'\"\\'\"\\'; pwd; printf \\'\"\\'\"\\'bash=\\'\"\\'\"\\'; command -v bash || true; printf \\'\"\\'\"\\'python3=\\'\"\\'\"\\'; command -v python3 || true; printf \\'\"\\'\"\\'node=\\'\"\\'\"\\'; command -v node || true; printf \\'\"\\'\"\\'node_version=\\'\"\\'\"\\'; node --version 2>/dev/null || true\\'', cwd='/workspace', env=None, wait=False, secrets=[])", "response": "PodSandboxExecResponse(ok=True, pid=13, exit_code=-1)"}
+{"t": 60.761, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 27, "request": "PodSandboxStatusRequest(container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda', pid=13)", "response": "PodSandboxStatusResponse(ok=True, status='exited')"}
+{"t": 60.787, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 26, "request": "PodSandboxStdoutRequest(container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda', pid=13)", "response": "PodSandboxStdoutResponse(ok=True, stdout='uid=0\\ncwd=/workspace\\nbash=/usr/bin/bash\\npython3=node=node_version=')"}
+{"t": 60.816, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 28, "request": "PodSandboxStdoutRequest(container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda', pid=13)", "response": "PodSandboxStdoutResponse(ok=True)"}
+{"t": 60.816, "kind": "result", "label": "image-runtime", "image": "ubuntu:24.04", "sandbox_id": "sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda", "create_seconds": 0.3641, "exit_code": 0, "output": "uid=0\ncwd=/workspace\nbash=/usr/bin/bash\npython3=node=node_version="}
+{"t": 60.854, "kind": "rpc", "method": "/gateway.GatewayService/StopContainer", "ms": 39, "request": "StopContainerRequest(container_id='sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda')", "response": "StopContainerResponse(ok=True)"}
+{"t": 61.124, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 269, "request": "VerifyImageBuildRequest(python_version=<PythonVersion.Python3: 'python3'>, python_packages=[], commands=[], force_rebuild=False, existing_image_uri='python:3.12-slim', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=False, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='e7e7eccd05da00ea', valid=True)"}
+{"t": 61.125, "kind": "build-stream-start", "image": "python-3.12-slim"}
+{"t": 61.146, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0207}
+{"t": 61.161, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0362}
+{"t": 61.263, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.1377}
+{"t": 61.965, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.8406}
+{"t": 67.294, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 6.1688}
+{"t": 69.003, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 7.878}
+{"t": 69.104, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 7.9788}
+{"t": 69.505, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.3799}
+{"t": 69.605, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.4803}
+{"t": 69.705, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 8.5804}
+{"t": 70.309, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.1839}
+{"t": 70.911, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.7865}
+{"t": 71.012, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 9.8869}
+{"t": 71.165, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.04}
+{"t": 71.515, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.3897}
+{"t": 71.615, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.4898}
+{"t": 71.715, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.5905}
+{"t": 71.917, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.7925}
+{"t": 72.42, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.2955}
+{"t": 72.521, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.3957}
+{"t": 72.621, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.4965}
+{"t": 72.723, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.5977}
+{"t": 72.824, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.6987}
+{"t": 72.924, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.7992}
+{"t": 73.025, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 11.8997}
+{"t": 73.225, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.1005}
+{"t": 73.325, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 12.2005}
+{"t": 75.838, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 14.7135}
+{"t": 75.939, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 14.8142}
+{"t": 76.039, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 14.9146}
+{"t": 76.14, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.0153}
+{"t": 76.241, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.1158}
+{"t": 76.642, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.5175}
+{"t": 76.743, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.6186}
+{"t": 76.844, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.7192}
+{"t": 76.944, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.8196}
+{"t": 77.045, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 15.9202}
+{"t": 77.145, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.0205}
+{"t": 77.246, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.1213}
+{"t": 77.75, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.6256}
+{"t": 77.851, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.7261}
+{"t": 77.951, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.8261}
+{"t": 78.052, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 16.9268}
+{"t": 78.153, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.0285}
+{"t": 78.258, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.1335}
+{"t": 78.364, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.2391}
+{"t": 78.457, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.3319}
+{"t": 78.553, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.4286}
+{"t": 78.654, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.5296}
+{"t": 79.358, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.2332}
+{"t": 79.459, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.3341}
+{"t": 79.86, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.7357}
+{"t": 79.962, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.8367}
+{"t": 80.062, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.937}
+{"t": 80.263, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.1386}
+{"t": 80.364, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.2393}
+{"t": 80.465, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.3398}
+{"t": 80.565, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.4405}
+{"t": 80.666, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.5408}
+{"t": 80.867, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.7423}
+{"t": 80.968, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.843}
+{"t": 81.162, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.0373}
+{"t": 81.874, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.7489}
+{"t": 81.975, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.8502}
+{"t": 82.075, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.9505}
+{"t": 82.377, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.2522}
+{"t": 82.478, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.3528}
+{"t": 82.578, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.4529}
+{"t": 82.678, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.5533}
+{"t": 83.08, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.9553}
+{"t": 83.181, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.0557}
+{"t": 83.281, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.1564}
+{"t": 83.381, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.2563}
+{"t": 83.485, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.3604}
+{"t": 83.581, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.4566}
+{"t": 83.682, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.557}
+{"t": 83.783, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.658}
+{"t": 83.983, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.8583}
+{"t": 84.083, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.9586}
+{"t": 84.284, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.1594}
+{"t": 84.384, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.2593}
+{"t": 84.492, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.367}
+{"t": 84.687, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.5617}
+{"t": 85.291, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.1662}
+{"t": 85.39, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.2653}
+{"t": 85.491, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.3658}
+{"t": 85.894, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 24.7689}
+{"t": 86.397, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.2719}
+{"t": 86.498, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.373}
+{"t": 86.599, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.4738}
+{"t": 86.7, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.5749}
+{"t": 86.801, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.6759}
+{"t": 86.901, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.7765}
+{"t": 87.002, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.8773}
+{"t": 87.103, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.9781}
+{"t": 87.205, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.0799}
+{"t": 87.304, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.1793}
+{"t": 87.407, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.2825}
+{"t": 87.506, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.3808}
+{"t": 87.605, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.4806}
+{"t": 87.707, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.582}
+{"t": 87.807, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.6819}
+{"t": 87.908, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.7829}
+{"t": 88.008, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.8835}
+{"t": 88.109, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.9845}
+{"t": 88.21, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.0855}
+{"t": 88.312, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.1874}
+{"t": 88.412, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.2872}
+{"t": 88.513, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.388}
+{"t": 88.614, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.4887}
+{"t": 88.715, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.5898}
+{"t": 88.816, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.6913}
+{"t": 88.915, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 27.7906}
+{"t": 89.318, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.1933}
+{"t": 89.419, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.294}
+{"t": 89.52, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.3948}
+{"t": 89.62, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.4956}
+{"t": 89.721, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.5964}
+{"t": 89.822, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.6972}
+{"t": 89.923, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.7981}
+{"t": 90.024, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.8987}
+{"t": 90.225, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.0999}
+{"t": 90.325, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.2001}
+{"t": 90.425, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.3006}
+{"t": 90.626, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.5012}
+{"t": 91.028, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.9031}
+{"t": 91.128, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.0032}
+{"t": 91.129, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.0038}
+{"t": 91.162, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.0368}
+{"t": 91.229, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.104}
+{"t": 91.33, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.2048}
+{"t": 91.632, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.5068}
+{"t": 91.732, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.6068}
+{"t": 91.832, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.7069}
+{"t": 93.742, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 32.6173}
+{"t": 94.348, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.2235}
+{"t": 94.648, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.5235}
+{"t": 96.159, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 35.0343}
+{"t": 96.36, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 35.2347}
+{"t": 96.561, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 35.4359}
+{"t": 101.163, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.0377}
+{"t": 105.705, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 44.5797}
+{"t": 106.61, "kind": "build-stream-event", "image": "python-3.12-slim", "done": false, "success": false, "image_id": "", "elapsed_seconds": 45.4856}
+{"t": 106.662, "kind": "build-stream-event", "image": "python-3.12-slim", "done": true, "success": true, "image_id": "e7e7eccd05da00ea", "elapsed_seconds": 45.5374}
+{"t": 106.662, "kind": "build-stream-end", "image": "python-3.12-slim", "elapsed_seconds": 45.5376}
+{"t": 106.663, "kind": "result", "label": "image-build", "image": "python:3.12-slim", "phase": "python-3.12-slim", "seconds": 45.808, "success": true, "image_id": "e7e7eccd05da00ea", "python_version": "python3", "error": ""}
+{"t": 106.762, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 98, "request": "VerifyImageBuildRequest(python_version='python3', python_packages=[], commands=[], force_rebuild=False, existing_image_uri='python:3.12-slim', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=True, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='818e98fe8da7fa19', valid=True, exists=True)"}
+{"t": 106.809, "kind": "rpc", "method": "/gateway.GatewayService/GetOrCreateStub", "ms": 45, "request": "GetOrCreateStubRequest(object_id='c8385094-f717-45f8-a3d5-a5aaceb798f6', image_id='818e98fe8da7fa19', stub_type='sandbox', name='sandbox', python_version='python3', cpu=1000, memory=512, gpu='', handler='', retries=0, timeout=0, keep_warm_seconds=300, workers=1, max_pending_tasks=100, volumes=[], force_create=True, on_start='', callback_url='', authorized=False, secrets=[], autoscaler=Autoscaler(type='queue_depth', max_containers=1, tasks_per_container=1, min_containers=0), task_policy=TaskPolicy(timeout=3600, max_retries=3, ttl=0), concurrent_requests=1, extra='{}', checkpoint_enabled=False, gpu_count=0, on_deploy='', on_deploy_stub_id='', entrypoint=['tail', '-f', '/dev/null'], ports=[], env=[], app_name='probe-aedd8777', inputs=None, outputs=None, tcp=False, block_network=False, allow_list=None, docker_enabled=False, pool=None, is_service=False, serving=None, disks=[], checkpoint_trigger=None, hostname='', persistent_root=PersistentRoot(), managed_endpoint='', use_vm=False, cpu_tier='')", "response": "GetOrCreateStubResponse(ok=True, stub_id='88e5d7d4-b36b-4be0-9417-991f0bba1bc3')"}
+{"t": 106.833, "kind": "rpc", "method": "/pod.PodService/CreatePod", "ms": 24, "request": "CreatePodRequest(stub_id='88e5d7d4-b36b-4be0-9417-991f0bba1bc3', image_id=None, checkpoint_id=None, machine_id=None)", "response": "CreatePodResponse(ok=True, container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8', stub_id='88e5d7d4-b36b-4be0-9417-991f0bba1bc3', app_id='33b8d5ee-a83f-430b-804b-ceee8d54f389')"}
+{"t": 107.021, "kind": "rpc", "method": "/pod.PodService/SandboxExec", "ms": 187, "request": "PodSandboxExecRequest(container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8', command='sh -c \\'printf \\'\"\\'\"\\'uid=\\'\"\\'\"\\'; id -u; printf \\'\"\\'\"\\'cwd=\\'\"\\'\"\\'; pwd; printf \\'\"\\'\"\\'bash=\\'\"\\'\"\\'; command -v bash || true; printf \\'\"\\'\"\\'python3=\\'\"\\'\"\\'; command -v python3 || true; printf \\'\"\\'\"\\'node=\\'\"\\'\"\\'; command -v node || true; printf \\'\"\\'\"\\'node_version=\\'\"\\'\"\\'; node --version 2>/dev/null || true\\'', cwd='/workspace', env=None, wait=False, secrets=[])", "response": "PodSandboxExecResponse(ok=True, pid=15, exit_code=-1)"}
+{"t": 107.052, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 31, "request": "PodSandboxStatusRequest(container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8', pid=15)", "response": "PodSandboxStatusResponse(ok=True, status='exited')"}
+{"t": 107.367, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 315, "request": "PodSandboxStdoutRequest(container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8', pid=15)", "response": "PodSandboxStdoutResponse(ok=True, stdout='uid=0\\ncwd=/workspace\\nbash=/usr/bin/bash\\npython3=/usr/local/bin/python3\\nnode=node_version=')"}
+{"t": 107.393, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 26, "request": "PodSandboxStdoutRequest(container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8', pid=15)", "response": "PodSandboxStdoutResponse(ok=True)"}
+{"t": 107.393, "kind": "result", "label": "image-runtime", "image": "python:3.12-slim", "sandbox_id": "sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8", "create_seconds": 0.7304, "exit_code": 0, "output": "uid=0\ncwd=/workspace\nbash=/usr/bin/bash\npython3=/usr/local/bin/python3\nnode=node_version="}
+{"t": 107.421, "kind": "rpc", "method": "/gateway.GatewayService/StopContainer", "ms": 27, "request": "StopContainerRequest(container_id='sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8')", "response": "StopContainerResponse(ok=True)"}
+{"t": 107.666, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 245, "request": "VerifyImageBuildRequest(python_version=<PythonVersion.Python3: 'python3'>, python_packages=[], commands=[], force_rebuild=False, existing_image_uri='node:20', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=False, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='4c6f88a9f1bb6e42', valid=True)"}
+{"t": 107.667, "kind": "build-stream-start", "image": "node-20"}
+{"t": 107.689, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0215}
+{"t": 107.729, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.0613}
+{"t": 107.832, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 0.1643}
+{"t": 109.14, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 1.473}
+{"t": 114.47, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 6.8023}
+{"t": 117.731, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 10.0636}
+{"t": 125.637, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 17.9694}
+{"t": 125.738, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.0709}
+{"t": 125.838, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.1708}
+{"t": 126.542, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.8742}
+{"t": 126.641, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 18.9741}
+{"t": 126.943, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.2757}
+{"t": 127.246, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.5782}
+{"t": 127.552, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 19.885}
+{"t": 127.731, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.0638}
+{"t": 128.463, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 20.7953}
+{"t": 128.974, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.3064}
+{"t": 129.066, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 21.3989}
+{"t": 129.668, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.0005}
+{"t": 129.769, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.1013}
+{"t": 129.87, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.2029}
+{"t": 129.97, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.3031}
+{"t": 130.072, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.4044}
+{"t": 130.272, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.6047}
+{"t": 130.372, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.7049}
+{"t": 130.474, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.8063}
+{"t": 130.573, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 22.9058}
+{"t": 130.675, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.0081}
+{"t": 130.775, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.1073}
+{"t": 130.977, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.3092}
+{"t": 131.08, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 23.4124}
+{"t": 133.594, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 25.9268}
+{"t": 134.198, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 26.5305}
+{"t": 136.512, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 28.8444}
+{"t": 136.814, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.1466}
+{"t": 137.015, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.3478}
+{"t": 137.116, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.4482}
+{"t": 137.317, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 29.6501}
+{"t": 137.731, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.0637}
+{"t": 138.121, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.4535}
+{"t": 138.522, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 30.8543}
+{"t": 138.925, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 31.2573}
+{"t": 140.738, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.0702}
+{"t": 140.938, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.2707}
+{"t": 141.139, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 33.4714}
+{"t": 147.731, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 40.0637}
+{"t": 154.721, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 47.0537}
+{"t": 155.425, "kind": "build-stream-event", "image": "node-20", "done": false, "success": false, "image_id": "", "elapsed_seconds": 47.7575}
+{"t": 155.431, "kind": "build-stream-event", "image": "node-20", "done": true, "success": true, "image_id": "4c6f88a9f1bb6e42", "elapsed_seconds": 47.7637}
+{"t": 155.431, "kind": "build-stream-end", "image": "node-20", "elapsed_seconds": 47.7639}
+{"t": 155.431, "kind": "result", "label": "image-build", "image": "node:20", "phase": "node-20", "seconds": 48.0101, "success": true, "image_id": "4c6f88a9f1bb6e42", "python_version": "python3", "error": ""}
+{"t": 155.452, "kind": "rpc", "method": "/image.ImageService/VerifyImageBuild", "ms": 20, "request": "VerifyImageBuildRequest(python_version='python3', python_packages=[], commands=[], force_rebuild=False, existing_image_uri='node:20', build_steps=[], env_vars=[], dockerfile='', build_ctx_object='', secrets=[], gpu=<GpuType.NoGPU: ''>, ignore_python=True, image_id='', git_source=GitBuildSource())", "response": "VerifyImageBuildResponse(image_id='c260e1753e90ee2f', valid=True, exists=True)"}
+{"t": 155.493, "kind": "rpc", "method": "/gateway.GatewayService/GetOrCreateStub", "ms": 40, "request": "GetOrCreateStubRequest(object_id='c8385094-f717-45f8-a3d5-a5aaceb798f6', image_id='c260e1753e90ee2f', stub_type='sandbox', name='sandbox', python_version='python3', cpu=1000, memory=512, gpu='', handler='', retries=0, timeout=0, keep_warm_seconds=300, workers=1, max_pending_tasks=100, volumes=[], force_create=True, on_start='', callback_url='', authorized=False, secrets=[], autoscaler=Autoscaler(type='queue_depth', max_containers=1, tasks_per_container=1, min_containers=0), task_policy=TaskPolicy(timeout=3600, max_retries=3, ttl=0), concurrent_requests=1, extra='{}', checkpoint_enabled=False, gpu_count=0, on_deploy='', on_deploy_stub_id='', entrypoint=['tail', '-f', '/dev/null'], ports=[], env=[], app_name='probe-aedd8777', inputs=None, outputs=None, tcp=False, block_network=False, allow_list=None, docker_enabled=False, pool=None, is_service=False, serving=None, disks=[], checkpoint_trigger=None, hostname='', persistent_root=PersistentRoot(), managed_endpoint='', use_vm=False, cpu_tier='')", "response": "GetOrCreateStubResponse(ok=True, stub_id='3b9cfe56-275c-4bc1-873a-1ee0bffd9222')"}
+{"t": 155.518, "kind": "rpc", "method": "/pod.PodService/CreatePod", "ms": 24, "request": "CreatePodRequest(stub_id='3b9cfe56-275c-4bc1-873a-1ee0bffd9222', image_id=None, checkpoint_id=None, machine_id=None)", "response": "CreatePodResponse(ok=True, container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', stub_id='3b9cfe56-275c-4bc1-873a-1ee0bffd9222', app_id='33b8d5ee-a83f-430b-804b-ceee8d54f389')"}
+{"t": 155.731, "kind": "rpc", "method": "/pod.PodService/SandboxExec", "ms": 213, "request": "PodSandboxExecRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', command='sh -c \\'printf \\'\"\\'\"\\'uid=\\'\"\\'\"\\'; id -u; printf \\'\"\\'\"\\'cwd=\\'\"\\'\"\\'; pwd; printf \\'\"\\'\"\\'bash=\\'\"\\'\"\\'; command -v bash || true; printf \\'\"\\'\"\\'python3=\\'\"\\'\"\\'; command -v python3 || true; printf \\'\"\\'\"\\'node=\\'\"\\'\"\\'; command -v node || true; printf \\'\"\\'\"\\'node_version=\\'\"\\'\"\\'; node --version 2>/dev/null || true\\'', cwd='/workspace', env=None, wait=False, secrets=[])", "response": "PodSandboxExecResponse(ok=True, pid=13, exit_code=-1)"}
+{"t": 155.757, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 26, "request": "PodSandboxStatusRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', pid=13)", "response": "PodSandboxStatusResponse(ok=True, status='running', exit_code=-1)"}
+{"t": 155.783, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 27, "request": "PodSandboxStatusRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', pid=13)", "response": "PodSandboxStatusResponse(ok=True, status='running', exit_code=-1)"}
+{"t": 155.922, "kind": "rpc", "method": "/pod.PodService/SandboxStatus", "ms": 38, "request": "PodSandboxStatusRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', pid=13)", "response": "PodSandboxStatusResponse(ok=True, status='exited')"}
+{"t": 156.048, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 26, "request": "PodSandboxStdoutRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', pid=13)", "response": "PodSandboxStdoutResponse(ok=True, stdout='uid=0\\ncwd=/workspace\\nbash=/usr/bin/bash\\npython3=/usr/bin/python3\\nnode=/usr/local/bin/node\\nnode_version=v20.20.2\\n')"}
+{"t": 156.075, "kind": "rpc", "method": "/pod.PodService/SandboxStdout", "ms": 27, "request": "PodSandboxStdoutRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', pid=13)", "response": "PodSandboxStdoutResponse(ok=True)"}
+{"t": 156.075, "kind": "result", "label": "image-runtime", "image": "node:20", "sandbox_id": "sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a", "create_seconds": 0.6433, "exit_code": 0, "output": "uid=0\ncwd=/workspace\nbash=/usr/bin/bash\npython3=/usr/bin/python3\nnode=/usr/local/bin/node\nnode_version=v20.20.2"}
+{"t": 156.098, "kind": "rpc", "method": "/gateway.GatewayService/StopContainer", "ms": 23, "request": "StopContainerRequest(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a')", "response": "StopContainerResponse(ok=True)"}
+{"t": 156.126, "kind": "rpc", "method": "/gateway.GatewayService/ListContainers", "ms": 27, "request": "ListContainersRequest()", "response": "ListContainersResponse(containers=[Container(container_id='sandbox-f924a2f5-998d-405f-a866-628b0b2cd4f8-21b08e90', stub_id='f924a2f5-998d-405f-a866-628b0b2cd4f8', status='RUNNING', scheduled_at=datetime.datetime(2026, 11, 23, 10, 6, 35, tzinfo=datetime.timezone.utc), started_at=datetime.datetime(2026, 11, 23, 10, 6, 35, tzinfo=datetime.timezone.utc), workspace_id='<workspace-id>', worker_id='95406e7e', machine_id='machine-5359ce0c-7781-46ac-919f-904b966d6cc4'), Container(container_id='sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a', stub_id='3b9cfe56-275c-4bc1-873a-1ee0bffd9222', status='STOPPING', scheduled_at=datetime.datetime(2026, 11, 23, 10, 6, 42, tzinfo=datetime.timezone.utc), started_at=datetime.datetime(2026, 11, 23, 10, 6, 42, tzinfo=datetime.timezone.utc), workspace_id='<workspace-id>', worker_id='95406e7e', machine_id='machine-5359ce0c-7781-46ac-919f-904b966d6cc4')], ok=True)"}
+{"t": 156.126, "kind": "cleanup", "run": "aedd8777", "owned_ids": ["sandbox-3b9cfe56-275c-4bc1-873a-1ee0bffd9222-1e6d821a", "sandbox-57772022-e628-498c-9336-b9a35665c651-072b79b4", "sandbox-884f134e-b9b7-4b45-9ab9-64e29987ae50-4cf8cfda", "sandbox-88e5d7d4-b36b-4be0-9417-991f0bba1bc3-2e3835b8"], "own_running": [], "list_ok": true}

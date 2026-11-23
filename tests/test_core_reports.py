@@ -413,8 +413,8 @@ def test_blaxel_core_cost_report_waits_for_revisit_delay() -> None:
             }
         )
 
-    assert (bill(119)["label"], bill(119)["total"]) == ("unknown", None)
-    assert (bill(120)["label"], bill(120)["total"]) == (
+    assert (bill(149)["label"], bill(149)["total"]) == ("unknown", None)
+    assert (bill(150)["label"], bill(150)["total"]) == (
         "reported",
         {"low": "0.1234", "high": "0.1234"},
     )

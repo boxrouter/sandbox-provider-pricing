@@ -42,7 +42,7 @@ class ReservationQuote(TypedDict):
     excluded: list[str]
 
 
-def reservation_quote(  # pylint: disable=too-many-arguments
+def reservation_quote(  # pylint: disable=too-many-arguments,too-many-locals
     version: Document,
     size: Document,
     duration_seconds: int | float | Decimal,
@@ -50,8 +50,12 @@ def reservation_quote(  # pylint: disable=too-many-arguments
     region: str | None = None,
     class_name: str | None = None,
     creation: bool = True,
+    state: Literal["running", "paused"] = "running",
 ) -> ReservationQuote:
-    """Quote one running reservation plus optional creation, at full metered use.
+    """Quote one reservation in `state` plus optional creation, at full metered use.
+
+    A `paused` quote prices only the meters the class bills while paused (their
+    `billed_states`); a class that bills nothing while paused quotes zero.
 
     Egress and retained storage are outside this resource-duration quote. A rate billed on
     the larger of request and use has no finite ceiling from these inputs. The version's
@@ -68,6 +72,8 @@ def reservation_quote(  # pylint: disable=too-many-arguments
         raise ValueError("duration_seconds must be finite and non-negative")
     if not isinstance(creation, bool):
         raise ValueError("creation must be a boolean")
+    if state not in ("running", "paused"):
+        raise ValueError("state must be running or paused")
     price_class = find_class(version, class_name)
     result: ReservationQuote = {
         "kind": "reservation_quote",
@@ -86,7 +92,7 @@ def reservation_quote(  # pylint: disable=too-many-arguments
         return result
     result["excluded"] += _unbounded_charges(version)
     with localcontext(CONTEXT):
-        total, reasons, unbounded = _running_quote(price_class, size, seconds)
+        total, reasons, unbounded = _state_quote(price_class, size, seconds, state)
         result["held_back_by"] = reasons
         unbounded = _state_unbounded_coverage(version, reasons) or unbounded
         if unbounded:
@@ -149,14 +155,14 @@ def _unbounded_charges(version: Document) -> list[str]:
     ]
 
 
-def _running_quote(
-    price_class: Document, size: Document, seconds: Decimal
+def _state_quote(
+    price_class: Document, size: Document, seconds: Decimal, state: str
 ) -> tuple[Decimal, list[str], bool]:
     total, reasons, unbounded = Decimal(0), [], False
     for what in TIME_RESOURCES:
         meter = price_class.get("meter", {}).get(what, {})
         rate = find_rate(price_class, what)
-        if rate is None or "running" not in meter.get("billed_states", []):
+        if rate is None or state not in meter.get("billed_states", []):
             continue
         if meter["basis"] == "larger_of_request_and_use":
             reasons.append(f"{what}: the rate card cannot bound use above the request.")
@@ -178,7 +184,7 @@ def _running_quote(
         total += quantity.low * Decimal(rate["usd"])
     machine = find_rate(price_class, "machine")
     meter = price_class.get("meter", {}).get("machine", {})
-    if machine and "running" in meter.get("billed_states", []):
+    if machine and state in meter.get("billed_states", []):
         entry = machine_rate_for_size(price_class, size)
         if entry is None:
             reasons.append("machine: the resolved size or its rate is missing.")

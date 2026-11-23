@@ -23,6 +23,10 @@ The quote prices one continuous run plus, with `creation=True`, the creation fee
 meter's minimum and increment and the region multiplier, and it assumes full use of every meter
 billed only while in use. Network egress and retained storage are not included.
 
+With `state="paused"`, the quote prices the same duration spent paused instead: only the meters
+whose `billed_states` include `paused`. A class that bills nothing while paused quotes `0`. Pass
+`creation=False` with it, since a pause creates nothing.
+
 Whether anything billable is missing from the quote is the price version's `coverage`: one entry
 per charge kind (`cpu`, `memory`, `disk`, `creation`, `egress`, `snapshot_storage`,
 `image_storage`, `volume_storage`, `requests`), each with a source and one treatment:

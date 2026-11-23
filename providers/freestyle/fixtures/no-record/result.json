@@ -21,14 +21,14 @@
     "Credits and discounts"
   ],
   "revisit": {
-    "after": "2026-11-23T08:49:57.922000Z",
-    "until": "2026-11-23T09:04:42.922000Z",
-    "interval_s": 300,
-    "next_read_at": "2026-11-23T08:49:57.922000Z"
+    "after": "2026-11-23T08:49:47.922000Z",
+    "until": "2026-11-23T08:50:12.922000Z",
+    "interval_s": 10,
+    "next_read_at": "2026-11-23T08:49:47.922000Z"
   },
   "final": false,
   "versions": {
-    "package": "0.17.14",
+    "package": "0.17.19",
     "rules": 1,
     "prices": "freestyle@2026-11-23"
   },

@@ -2,8 +2,8 @@
   "provider": "freestyle",
   "label": "calculated",
   "total": {
-    "low": "0.00230235774222222222222222222222222222222222222222222222222223",
-    "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+    "low": "0.00230192888888888888888888888888888888888888888888888888888889",
+    "high": "0.00230192888888888888888888888888888888888888888888888888888889"
   },
   "lines": [
     {
@@ -24,10 +24,10 @@
     },
     {
       "what": "disk",
-      "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+      "quantity": "0.284444444444444444444444444444444444444444444444444444444444",
       "unit": "gib-hour",
       "rate": "0.000086",
-      "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+      "amount": "0.0000244622222222222222222222222222222222222222222222222222222222",
       "quantity_source": "provider"
     }
   ],
@@ -43,14 +43,14 @@
     "Credits and discounts"
   ],
   "revisit": {
-    "after": "2026-11-23T08:49:57.922000Z",
-    "until": "2026-11-23T09:04:42.922000Z",
-    "interval_s": 300,
-    "next_read_at": "2026-11-23T08:49:57.922000Z"
+    "after": "2026-11-23T08:49:47.922000Z",
+    "until": "2026-11-23T08:50:12.922000Z",
+    "interval_s": 10,
+    "next_read_at": "2026-11-23T08:49:47.922000Z"
   },
   "final": false,
   "versions": {
-    "package": "0.17.14",
+    "package": "0.17.19",
     "rules": 1,
     "prices": "freestyle@2026-11-23"
   },
@@ -182,31 +182,37 @@
             "final": true,
             "readings": [
               {
-                "amount": "0.001388800",
+                "amount": null,
                 "currency": "USD",
                 "meter": "cpu",
                 "quantity": "124",
-                "unit": "vcpu-second",
+                "unit": "vcpu_second",
+                "interval_start": null,
+                "interval_end": null,
                 "scope": "sandbox",
-                "source": "calculated"
+                "source": "usage"
               },
               {
-                "amount": "0.000888667",
+                "amount": null,
                 "currency": "USD",
                 "meter": "memory",
                 "quantity": "248",
-                "unit": "gib-second",
+                "unit": "gib_second",
+                "interval_start": null,
+                "interval_end": null,
                 "scope": "sandbox",
-                "source": "calculated"
+                "source": "usage"
               },
               {
-                "amount": "0.000024891",
+                "amount": null,
                 "currency": "USD",
                 "meter": "disk",
-                "quantity": "1041.952",
-                "unit": "gib-second",
+                "quantity": "1024",
+                "unit": "gib_second",
+                "interval_start": null,
+                "interval_end": null,
                 "scope": "sandbox",
-                "source": "calculated"
+                "source": "usage"
               }
             ],
             "records": [
@@ -313,7 +319,7 @@
           {
             "item": "cpu",
             "quantity": "124",
-            "unit": "vcpu-second",
+            "unit": "vcpu_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
@@ -321,15 +327,15 @@
           {
             "item": "memory",
             "quantity": "248",
-            "unit": "gib-second",
+            "unit": "gib_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
           },
           {
             "item": "disk",
-            "quantity": "1041.952",
-            "unit": "gib-second",
+            "quantity": "1024",
+            "unit": "gib_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
@@ -377,7 +383,7 @@
           {
             "item": "cpu",
             "quantity": "124",
-            "unit": "vcpu-second",
+            "unit": "vcpu_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
@@ -385,15 +391,15 @@
           {
             "item": "memory",
             "quantity": "248",
-            "unit": "gib-second",
+            "unit": "gib_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
           },
           {
             "item": "disk",
-            "quantity": "1041.952",
-            "unit": "gib-second",
+            "quantity": "1024",
+            "unit": "gib_second",
             "source": "provider",
             "observed_at": "2026-11-23T08:49:42.922000Z",
             "how": "Freestyle's metered quantity from its Core cost report."
@@ -405,8 +411,8 @@
       "low": {
         "label": "calculated",
         "total": {
-          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
-          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+          "low": "0.00230192888888888888888888888888888888888888888888888888888889",
+          "high": "0.00230192888888888888888888888888888888888888888888888888888889"
         },
         "lines": [
           {
@@ -427,10 +433,10 @@
           },
           {
             "what": "disk",
-            "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+            "quantity": "0.284444444444444444444444444444444444444444444444444444444444",
             "unit": "gib-hour",
             "rate": "0.000086",
-            "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+            "amount": "0.0000244622222222222222222222222222222222222222222222222222222222",
             "quantity_source": "provider"
           }
         ],
@@ -448,8 +454,8 @@
       "high": {
         "label": "calculated",
         "total": {
-          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
-          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+          "low": "0.00230192888888888888888888888888888888888888888888888888888889",
+          "high": "0.00230192888888888888888888888888888888888888888888888888888889"
         },
         "lines": [
           {
@@ -470,10 +476,10 @@
           },
           {
             "what": "disk",
-            "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+            "quantity": "0.284444444444444444444444444444444444444444444444444444444444",
             "unit": "gib-hour",
             "rate": "0.000086",
-            "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+            "amount": "0.0000244622222222222222222222222222222222222222222222222222222222",
             "quantity_source": "provider"
           }
         ],
