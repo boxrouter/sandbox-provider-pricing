@@ -161,7 +161,8 @@ def _provider_cases(cases: list[JsonObject]) -> None:
 
 def generate() -> JsonObject:
     """Derive every expected answer from price() or the authoritative sheet builder."""
-    sheet = build_price_sheet()
+    # A case prices an exact size, whatever the provider offers: a calculator answers the same.
+    sheet = build_price_sheet(exact_sizes=True)
     cases = _sheet_cases(sheet)
     _provider_cases(cases)
     for case in cases:

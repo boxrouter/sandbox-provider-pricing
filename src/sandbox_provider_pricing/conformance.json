@@ -5921,7 +5921,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6039,7 +6044,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6157,7 +6167,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6275,7 +6290,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6393,7 +6413,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6511,7 +6536,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6629,7 +6659,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6747,7 +6782,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6865,7 +6905,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -6983,7 +7028,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7101,7 +7151,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7219,7 +7274,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7337,7 +7397,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.028,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7455,7 +7520,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.056,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7573,7 +7643,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.112,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -7691,7 +7766,12 @@
       },
       "expected": {
         "status": "priced",
-        "amount": null
+        "amount": {
+          "low": 0.0,
+          "high": 0.224,
+          "source_url": "https://boxd.sh/llms-full.txt",
+          "checked_at": "2026-11-02"
+        }
       }
     },
     {
@@ -17749,10 +17829,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.000717726109",
-          "high": "0.000717726109"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -17787,8 +17867,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -17869,10 +17952,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.000998575456",
-          "high": "0.000998575456"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -17907,8 +17990,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -17989,10 +18075,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.00156027415",
-          "high": "0.00156027415"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18027,8 +18113,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18109,10 +18198,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.002683671538",
-          "high": "0.002683671538"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18147,8 +18236,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18229,10 +18321,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.001154602871",
-          "high": "0.001154602871"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18267,8 +18359,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18349,7 +18444,7 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
           "low": "0.001435452218",
           "high": "0.001435452218"
@@ -18387,8 +18482,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18469,10 +18567,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.001997150912",
-          "high": "0.001997150912"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18507,8 +18605,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18589,10 +18690,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.0031205483",
-          "high": "0.0031205483"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18627,8 +18728,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18709,10 +18813,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.002028356395",
-          "high": "0.002028356395"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18747,8 +18851,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18829,10 +18936,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.002309205742",
-          "high": "0.002309205742"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18867,8 +18974,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -18949,10 +19059,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.002870904436",
-          "high": "0.002870904436"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -18987,8 +19097,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -19069,10 +19182,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.003994301824",
-          "high": "0.003994301824"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -19107,8 +19220,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -19189,10 +19305,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.003775863443",
-          "high": "0.003775863443"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -19227,8 +19343,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -19309,10 +19428,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.00405671279",
-          "high": "0.00405671279"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -19347,8 +19466,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -19429,10 +19551,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.004618411484",
-          "high": "0.004618411484"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -19467,8 +19589,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {
@@ -19549,10 +19674,10 @@
         }
       },
       "expected": {
-        "label": "calculated",
+        "label": "reported",
         "total": {
-          "low": "0.005741808872",
-          "high": "0.005741808872"
+          "low": "0.001435452218",
+          "high": "0.001435452218"
         }
       }
     },
@@ -19587,8 +19712,11 @@
         }
       },
       "expected": {
-        "label": "unknown",
-        "total": null
+        "label": "reported",
+        "total": {
+          "low": "0.001435452218",
+          "high": "0.001435452218"
+        }
       }
     },
     {

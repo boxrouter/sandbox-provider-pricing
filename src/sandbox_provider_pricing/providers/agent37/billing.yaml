@@ -10,8 +10,9 @@ revisit:
   after_s: 60
   until_s: 604800
   interval_s: 1800
-  rationale: Every measured instance's final compute was in the usage report at the first read after its delete (1 s after on 2026-11-11, 60 s after on 2026-11-13), so the first read waits 60 s. The 30-minute cadence and the 7-day window are chosen defaults.
-  unverified_default: true
+  final_after_s: 330  # the provider's declared cost_final_within_seconds (300) plus the spec's 30 s grace
+  rationale: Costs were known 30 to 115 s after the end in 6 of 6 sandboxes (2026-11-22; 1 s and 60 s on 2026-11-11 and 11-13), so the first read waits 60 s and later reads back off. The 30-minute cadence and 7-day stop are chosen defaults.
+  unverified_default: false
 reported_at_list_price:
   value: true
   source: providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#verdict and providers/agent37/evidence/2026-11-13-vm-instance-usage.md#verdict (on three default instances and one VM instance, compute_micros was the billed minutes at the list rates in src/sandbox_provider_pricing/providers/agent37/prices, rounded to a whole micro-dollar)
@@ -68,6 +69,10 @@ rules:
       - https://www.agent37.com/docs/agents-api/billing
       - providers/agent37/evidence/2026-11-11-usage-vs-list-price.md#results
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "6 of 6 sandboxes had a known cost 30 to 115 s after the destroy call returned (median 75 s). No figure changed while it was watched after that."
   - date: '2026-11-11'
     title: Usage report compute against list rates
     file: evidence/2026-11-11-usage-vs-list-price.md
@@ -81,6 +86,54 @@ open_questions:
     how: Re-read deleted instances' totals over days; the 2026-11-11 and 2026-11-13 checks read them for an hour after the delete.
   - question: Is GB in the RAM and disk rates 10^9 bytes or a GiB?
     how: Ask Agent37 or compare a reported charge for a size whose GB and GiB figures differ in the micro-dollar.
+shapes:
+  default:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 2 | 4 GB | 2-12 GB | $4.76 per month (the default) |"
+  - cpu: 4
+    memory_mib: 8192
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 8 GB | 2-20 GB | $9.34 per month |"
+  - cpu: 4
+    memory_mib: 16384
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 16 GB | 2-40 GB | $15.48 per month |"
+  - cpu: 4
+    memory_mib: 32768
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "| 4 | 32 GB | 2-80 GB | $27.76 per month |"
+  vm:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 8192
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 16384
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 4
+    memory_mib: 32768
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "A VM instance takes the same four shapes, and its compute is 2.5x the default rate."
+  - cpu: 8
+    memory_mib: 65536
+    source: https://www.agent37.com/docs/agents-api/instance-sizing
+    checked: '2026-11-23'
+    quote: "and has one larger shape: 8 vCPU / 64 GB RAM,"
 price_sheet:
   active_time_priced: {value: false, source_url: https://www.agent37.com/docs/agents-api/billing}
   benchmark_region: {value: us, source_url: https://www.agent37.com/docs/agents-api/instances/create}

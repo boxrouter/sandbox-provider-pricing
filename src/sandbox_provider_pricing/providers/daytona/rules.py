@@ -11,6 +11,7 @@ from sandbox_provider_pricing.usage import (
     latest_record,
     parse_datetime,
     report_cost,
+    spec_cost,
     waiting_for_record,
 )
 
@@ -26,6 +27,10 @@ def billable(
     **_: object,
 ) -> BillableUsage:
     result = waiting_for_record(evidence, billing, as_of=as_of)
+    # The spec's cost lines first (Daytona's in-process provider). The branch below is for the old
+    # adapter's report and stays until it is removed after the switch.
+    if spec_cost(evidence, billing, result) is not None:
+        return result
     report = core_report(evidence, "cost")
     if report is not None:
         readings = sandbox_cost_readings(report, source=CORE_SOURCE, meter="total")

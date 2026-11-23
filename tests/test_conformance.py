@@ -23,7 +23,7 @@ def test_released_conformance_regenerates_without_changes() -> None:
 
 
 def test_all_released_cases_and_certainty_labels() -> None:
-    sheet = build_price_sheet()
+    sheet = build_price_sheet(exact_sizes=True)
 
     def evaluate(case: Document) -> Document:
         return (

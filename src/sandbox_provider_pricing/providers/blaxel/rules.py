@@ -2,6 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 """Blaxel: the sandbox's hourly cost buckets, from Core's cost report or the metrics API.
 
+The Core report is read first in the spec's cost shape (`spec_cost`). The branch for the old
+adapter's readings (`CORE_SOURCE`) stays until it is removed after the switch.
+
 Blaxel's hourly buckets are not final straight after the sandbox ends, so both sources are read
 only once the billing record's revisit delay has passed.
 """
@@ -18,6 +21,7 @@ from sandbox_provider_pricing.usage import (
     read_core_report,
     report_cost,
     revisit_end,
+    spec_cost,
     waiting_for_record,
 )
 
@@ -33,6 +37,10 @@ def billable(
     **_: object,
 ) -> BillableUsage:
     result = waiting_for_record(evidence, billing, as_of=as_of)
+    # The spec's cost shape first, for every spec provider. Blaxel's finality is unverified
+    # (`billing.yaml`, `unverified_default`), so its own revisit delay applies as before.
+    if spec_cost(evidence, billing, result) is not None:
+        return result
     end = revisit_end(evidence)
     found = read_core_report(evidence, "cost")
     if found is not None and found[0].get("readings"):

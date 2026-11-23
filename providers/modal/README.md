@@ -56,6 +56,7 @@ Region multipliers when a region is chosen: us x1.15, us-west x1.75.
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 6 of 6 sandboxes had a known cost 607 to 716 s after the destroy call returned (median 652 s). No figure changed while it was watched after that.
 - 2026-11-16: [What the cpu argument bills, and what a benchmark box cost](evidence/2026-11-16-cpu-argument-billing.md). A sandbox created with cpu=N is billed N cores at the core rate and shows N CPUs to its guest. 320 benchmark sandboxes of 4 vCPU billed 98% of four cores' price and 157% of two cores'. Whether a size request means a CPU the guest sees or a hardware thread was not settled.
 - 2026-10-24: [Per-sandbox cost through one Modal App per sandbox](evidence/2026-10-23-per-app-bill.md). Each of 325 Apps held one sandbox, and the rows of the six sandboxes that crossed an hour summed correctly. Final values appeared within 315 seconds of the sandbox's end and did not change before the last read. Longer retention was not tested.
 - 2026-10-11: [Billing boundary against the hourly per-App bill](evidence/2026-10-11-hourly-bill-batch.md). 20 cached and 5 cold sandboxes. Image pulls were not billed and billing starts at about create returned. The end edge is unresolved, and the bill is 1.3% below (cached) and 1.5% above (cold) the shortest edge-based total.

@@ -7,7 +7,12 @@ from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
 from sandbox_provider_pricing._util import MIB_PER_GIB, parse_time
-from sandbox_provider_pricing.evidence import core_report, validate_evidence
+from sandbox_provider_pricing.evidence import (
+    core_report,
+    decimal_total,
+    spec_cost_readings,
+    validate_evidence,
+)
 from sandbox_provider_pricing.types import BillableUsage, Document, JsonObject, TimeValue
 from sandbox_provider_pricing.versions import find_class, price_version
 
@@ -15,6 +20,9 @@ STARTS = ("created", "started", "resumed", "billed_start")
 ENDS = ("paused", "stopped", "ended", "billed_end")
 #: How far a cost report's periods, and the gaps between them, may be from the sandbox's own times.
 COVERAGE_EDGE_S = 60
+METERED_WITHOUT_SECONDS = (
+    "No billed seconds for this sandbox: the provider reports its metered quantities instead."
+)
 REPORTED_WITHOUT_SECONDS = (
     "No billed seconds for this sandbox: the provider reports its cost instead."
 )
@@ -248,17 +256,24 @@ def sandbox_end(evidence: Document, usage: BillableUsage) -> TimeValue:
     return end
 
 
-def covers_sandbox(evidence: Document, result: BillableUsage, periods: Sequence[Document]) -> bool:
+def covers_sandbox(
+    evidence: Document,
+    result: BillableUsage,
+    periods: Sequence[Document],
+    *,
+    gaps: bool = True,
+) -> bool:
     """Whether a provider's cost periods leave out none of the sandbox's life.
 
     A figure that leaves part of the sandbox's life out would be a wrong total labelled as the
     provider's, so a rule reports its periods' cost only when this holds; otherwise the cost
     stays unknown until a later read brings the rest. The first period starts within
     `COVERAGE_EDGE_S` of the sandbox's start, the last ends within it of the sandbox's end, and
-    no gap between periods is longer than it. A period without both of its times cannot show
-    coverage. Periods are held back only when the sandbox's own times show they leave something
-    out: with no known start or end there is nothing to compare them with, and a report that
-    prices itself stays reported.
+    no gap between periods is longer than it (unless `gaps` is False: metered usage periods are
+    the sandbox's active runs, and a paused sandbox has none between them). A period without both
+    of its times cannot show coverage. Periods are held back only when the sandbox's own times
+    show they leave something out: with no known start or end there is nothing to compare them
+    with, and a report that prices itself stays reported.
 
     The sandbox's times are its own (`sandbox_start`, `sandbox_end`), never a period's.
     """
@@ -278,7 +293,7 @@ def covers_sandbox(evidence: Document, result: BillableUsage, periods: Sequence[
         return False
     reached = ordered[0][1]
     for begun, stopped in ordered[1:]:
-        if begun > reached + edge:
+        if gaps and begun > reached + edge:
             return False
         reached = max(reached, stopped)
     return reached >= end - edge
@@ -466,4 +481,105 @@ def stored_rates_match(
         or isinstance(reported[field], bool)
         or Decimal(reported[field]) != Decimal(stored[resource]["usd"]) * 1_000_000
         for resource, field in fields.items()
+    )
+
+
+def spec_cost(
+    evidence: Document,
+    billing: Document,
+    result: BillableUsage | None = None,
+    *,
+    as_of: str | None = None,
+) -> BillableUsage | None:
+    """A sandbox's cost as the spec states it, or None when the report is not in the spec's shape.
+
+    The report's readings carry the spec's `source` (`reported`, `calculated` or `usage`) and a
+    `meter` equal to the line's item. Nothing counts before the adapter says the cost is final
+    (the report is marked `final: false` while it is `accruing`) and this provider's own
+    `revisit.after_s` has passed since the sandbox ended; until then the result stays waiting.
+    A report read before the sandbox ended (`cost.capture`, taken just before a destroy of a
+    provider that deletes its cost with the sandbox) has no later read to wait for, so the
+    adapter's `final` is all it needs.
+
+    - `reported`: the sum of the lines, the provider's own money.
+    - `calculated` and `usage`: the lines' quantities and units, priced from the price version
+      the sandbox started under. The adapter's amounts are ignored; only this package calculates.
+    """
+    found = read_core_report(evidence, "cost")
+    readings = None if found is None else spec_cost_readings(found[0])
+    if found is None or readings is None:
+        return None
+    report, read_at_text = found
+    result = waiting_for_record(evidence, billing, as_of=as_of) if result is None else result
+    read_at, end = parse_datetime(read_at_text), revisit_end(evidence)
+    if (
+        report.get("final") is False
+        or end is None
+        or read_at is None
+        or 0 <= (read_at - end).total_seconds() < billing["revisit"]["after_s"]
+    ):
+        return result
+    # A line with no period at all is a fee; every other line must show its whole period.
+    periods = [row for row in readings if row.get("interval_start") or row.get("interval_end")]
+    # Reported and calculated lines are money for stretches of time, so a gap in them is cost
+    # left out. Usage lines state the sandbox's active runs, and a paused sandbox has none.
+    if periods and not covers_sandbox(
+        evidence, result, periods, gaps=readings[0]["source"] != "usage"
+    ):
+        return result
+    if readings[0]["source"] == "reported":
+        how = f"{billing['name']} per-sandbox Core cost report: the sum of its lines."
+        return report_cost(result, decimal_total(row["amount"] for row in readings), how, periods)
+    reported_periods(result, periods)
+    metered = [
+        {
+            "item": row["meter"],
+            "quantity": decimal_total([row["quantity"]]),
+            "unit": row["unit"],
+            "source": "provider",
+            "observed_at": result["low"]["started"]["observed_at"],
+            "how": f"{billing['name']}'s metered quantity from its Core cost report.",
+        }
+        for row in readings
+    ]
+    for usage in (result["low"], result["high"]):
+        usage["metered"] = metered
+        for interval in usage["intervals"]:
+            if interval["seconds"] is None:
+                interval["how"] = METERED_WITHOUT_SECONDS
+    return result
+
+
+def spec_cost_read_before_end(
+    evidence: Document, billing: Document, result: BillableUsage
+) -> BillableUsage:
+    """A provider's still-accruing reported cost, as of its last read before it deleted the record.
+
+    For a provider whose per-sandbox cost goes with the sandbox (its rule says so), a report read
+    while the sandbox still ran is all there will ever be once the sandbox has ended: a read after
+    the delete cannot answer. Cloud takes one such read just before a provider-enforced end. Here
+    it counts when it is the spec's `reported` money for this sandbox, the adapter marked it not
+    final (`accruing`), and it was read no later than the sandbox's known end (`read_before_end`).
+    The figure is labelled with the read's time (`taken_at`): it may fall short of the final usage
+    by the seconds after the read, which are never added or estimated. Anything else returns
+    `result` unchanged.
+    """
+    found = read_core_report(evidence, "cost")
+    if found is None or result.get("reported") is not None:
+        return result
+    report = found[0]
+    readings = spec_cost_readings(report)
+    if readings is None or readings[0]["source"] != "reported" or report.get("final") is not False:
+        return result
+    record = latest_record(evidence, "core.cost")
+    taken_at = None if record is None else read_before_end(evidence, record)
+    if taken_at is None:
+        return result
+    how = (
+        f"{billing['name']}'s last per-sandbox Core cost report, read at {taken_at} before "
+        f"{billing['name']} deleted the sandbox and its record: the sum of its lines as of "
+        "that read."
+    )
+    return report_cost(
+        result, decimal_total(row["amount"] for row in readings), how, taken_at=taken_at
     )

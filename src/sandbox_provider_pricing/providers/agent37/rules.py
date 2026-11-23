@@ -18,6 +18,7 @@ from sandbox_provider_pricing.usage import (
     covers_sandbox,
     latest_record,
     report_cost,
+    spec_cost,
     waiting_for_record,
 )
 
@@ -33,6 +34,10 @@ def billable(
     **_: object,
 ) -> BillableUsage:
     result = waiting_for_record(evidence, billing, as_of=as_of)
+    # The spec's cost lines first (Agent37's in-process provider). The branch below is for the old
+    # adapter's report and stays until it is removed after the switch.
+    if spec_cost(evidence, billing, result) is not None:
+        return result
     report = core_report(evidence, "cost")
     readings = [] if report is None else sandbox_cost_readings(report, source=SOURCE, meter=METER)
     record = latest_record(evidence, SOURCE)

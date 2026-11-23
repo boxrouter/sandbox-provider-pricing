@@ -22,14 +22,14 @@
     "Credits and discounts"
   ],
   "revisit": {
-    "after": "2026-11-02T01:25:01Z",
+    "after": "2026-11-02T01:10:01Z",
     "until": "2026-11-09T01:00:01Z",
     "interval_s": 900,
     "next_read_at": "2026-11-02T01:45:00Z"
   },
   "final": false,
   "versions": {
-    "package": "0.14.0",
+    "package": "0.17.9",
     "rules": 1,
     "prices": "boxd@2026-11-02-082924Z"
   },

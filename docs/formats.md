@@ -14,7 +14,7 @@ decimal strings, never JSON numbers.
 | [`cost`](../schemas/cost.schema.json) | One usage record priced at one price version. | `calculator.cost()` |
 | [`result`](../schemas/result.schema.json) | The full answer for one sandbox, with every step kept. | `price()` |
 | [`cost-method`](../schemas/cost-method.schema.json) | The method behind every cost: the shared rules, and for each provider its billing rules and every price version, with sources. | `cost_method()`, and each release as `cost-method.json` ([cost method](cost-method.md)) |
-| [`price-sheet`](../schemas/price-sheet.schema.json) | Current display prices and billing rules for every provider, each figure with its source and the date it was checked. A size with no published price is `in_development`, never free. | `build_price_sheet()`, and each release as `price-sheet.json` ([price sheet](price-sheet.md)) |
+| [`price-sheet`](../schemas/price-sheet.schema.json) | Current display prices and billing rules for every provider, each figure with its source and the date it was checked. A size is priced as the cheapest offered shape that fits it; a size with no published price is `in_development`, never free, and one no offered shape fits is `not_offered`. | `build_price_sheet()`, and each release as `price-sheet.json` ([price sheet](price-sheet.md)) |
 
 [`examples/`](../examples/) holds a valid price version, usage record and cost, and
 `cost-unknown.json`, a cost with a `null` total.

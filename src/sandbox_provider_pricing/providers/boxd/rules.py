@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: BoxRouter, Inc.
 # SPDX-License-Identifier: Apache-2.0
-"""boxd's complete USD machine usage, checked against the stored list rates."""
+"""boxd's cost: the spec's usage lines priced at the stored rates, or its complete USD machine
+usage record checked against them."""
 
 from collections.abc import Sequence
 from decimal import Decimal
@@ -11,6 +12,7 @@ from sandbox_provider_pricing.usage import (
     latest_record,
     report_cost,
     sandbox_start,
+    spec_cost,
     stored_rates_match,
     utc_text,
     waiting_for_record,
@@ -33,6 +35,17 @@ def billable(
     versions: Sequence[Document] | None = None,
 ) -> BillableUsage:
     result = waiting_for_record(evidence, billing, as_of=as_of)
+    # The spec's cost shape first: the in-process boxd package states quantities (`usage` lines)
+    # and no prices, so this package prices them from the stored rates.
+    if spec_cost(evidence, billing, result) is not None:
+        return result
+    return _from_record(evidence, result, versions)
+
+
+def _from_record(
+    evidence: Evidence, result: BillableUsage, versions: Sequence[Document] | None
+) -> BillableUsage:
+    """boxd's complete usage record, until it is removed after the switch."""
     record = latest_record(evidence, SOURCE)
     if record is None or not isinstance(record["body"], dict):
         return result

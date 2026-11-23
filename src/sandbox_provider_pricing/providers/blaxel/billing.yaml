@@ -7,10 +7,11 @@ status:
   why_not_higher: Nothing. In our checks Blaxel's per-sandbox cost matched list price, with compute in whole seconds and standby snapshot storage at its listed rate.
   would_raise: Nothing. Until Blaxel's metrics record arrives, the cost is unknown.
 revisit:
-  after_s: 600
+  after_s: 120
   until_s: 604800
   interval_s: 3600
-  rationale: We watched costs stay unchanged for 30 minutes only, and how long Blaxel keeps them, or when they are final, is not verified, so retries stop after 7 days.
+  final_after_s: 930  # the provider's declared cost_final_within_seconds (900) plus the spec's 30 s grace
+  rationale: "Measured 2026-11-23 at light load: the hour's bucket was readable 3 to 15 s after the destroy and unchanged through the hour's close, so the first read is at 120 s. Under a 330-sandbox burst answers stayed unusable 60 to 70 min. Costs watched unchanged 30 min only; retries stop after 7 days."
   unverified_default: true
 reported_at_list_price:
   value: true
@@ -73,6 +74,10 @@ rules:
       - providers/blaxel/evidence/2026-10-11-billing-boundary.md#method
       - providers/blaxel/evidence/2026-10-20-standby-and-metrics-lag.md#verdict
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "2 of 2 sandboxes had a known cost 161 to 197 s after the destroy call returned (median 179 s). No figure changed while it was watched after that."
   - date: '2026-10-11'
     title: Billing boundary and standby against per-sandbox metrics
     file: evidence/2026-10-11-billing-boundary.md
@@ -97,6 +102,24 @@ open_questions:
   - question: Is the stored filesystem of an archived sandbox billed?
     how: Archive a sandbox and read its billing dimensions over the following days.
 
+shapes:
+  default:
+  - cpu: 2
+    memory_mib: 4096
+    source: https://docs.blaxel.ai/api-reference/compute/create-sandbox
+    checked: '2026-11-23'
+    quote: "e.g., 4096MB = 2 CPUs"
+  - cpu: 4
+    memory_mib: 8192
+    source: https://docs.blaxel.ai/Sandboxes/Overview
+    checked: '2026-11-23'
+    quote: "a sandbox with 8 GB memory is allocated 4 CPU cores"
+  - cpu: 6
+    memory_mib: 16384
+    source: https://docs.blaxel.ai/Sandboxes/Overview
+    checked: '2026-11-23'
+    quote: "one with 16 GB memory is allocated 6 CPU cores"
+    note: "The create-sandbox reference gives CPU cores = memory in MB / 2048, which is 8 cores at 16 GB; the overview example says 6, and the 6 is recorded."
 price_sheet:
   active_time_priced: {value: true, source_url: https://blaxel.ai/pricing}
   benchmark_region: {value: us-was-1, source_url: https://blaxel.ai/pricing}

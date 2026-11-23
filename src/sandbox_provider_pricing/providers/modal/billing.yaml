@@ -11,8 +11,9 @@ revisit:
   after_s: 600
   until_s: 604800
   interval_s: 3600
-  rationale: Across 325 sandboxes read every 5 minutes, final values appeared 59 to 315 seconds after the sandbox ended, so a first read at 600 seconds leaves a margin. Reading hourly and stopping after 7 days are defaults, because how long rows are kept and when they are final is unknown.
-  unverified_default: true
+  # no final_after_s: our own watch of ended sandboxes stops at about 1,722 s, short of Modal's declared 4,500 s (cost-first-known, 2026-11-22)
+  rationale: Costs were known 607 to 716 s after the end in 6 of 6 sandboxes (2026-11-22; 59 to 315 s after Modal's own finished_at in 325 on 2026-10-23), so the first read waits 600 s. The hourly cadence and 7-day stop are chosen defaults.
+  unverified_default: false
 reported_at_list_price:
   value: true
   source: providers/modal/evidence/2026-10-23-per-app-bill.md#results (in 325 Apps, each row's CPU and memory parts at the published us rates give the same billed duration within 0.05 seconds, and each row total equals its parts within $0.00000001. The bill is 2.22 seconds short of created_at to finished_at; that gap is in the time, not the rates.)
@@ -55,6 +56,10 @@ rules:
     sources: [https://modal.com/docs/guide/billing, providers/modal/evidence/2026-10-23-per-app-bill.md#verdict, providers/modal/evidence/2026-10-23-per-app-bill.md#limits]
 
 checks:
+  - date: '2026-11-22'
+    title: When a finished sandbox's cost is first known
+    file: evidence/2026-11-22-cost-first-known.md
+    result: "6 of 6 sandboxes had a known cost 607 to 716 s after the destroy call returned (median 652 s). No figure changed while it was watched after that."
   - date: '2026-11-16'
     title: What the cpu argument bills, and what a benchmark box cost
     file: evidence/2026-11-16-cpu-argument-billing.md
@@ -82,6 +87,21 @@ open_questions:
   - question: Do a GPU sandbox's CPU and memory bill at the Sandbox rate or the standard rate?
     how: Compare the hourly bill of a per-App GPU sandbox with its CPU and memory priced at each rate.
 
+shapes:
+  default:
+  - cpu: [0.125, null]
+    memory_mib: [128, null]
+    source: https://modal.com/pricing
+    checked: '2026-11-23'
+    quote: "Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores,"
+    note: "Modal enforces a maximum at creation but publishes no value; the price per core and per GiB applies to any size."
+  vm:
+  - cpu: [0.125, null]
+    memory_mib: [128, null]
+    source: https://modal.com/pricing
+    checked: '2026-11-23'
+    quote: "Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores,"
+    note: "Modal enforces a maximum at creation but publishes no value; the price per core and per GiB applies to any size."
 price_sheet:
   active_time_priced: {value: false, source_url: https://modal.com/docs/guide/billing}
   benchmark_region: {value: us, source_url: https://modal.com/docs/guide/region-selection}

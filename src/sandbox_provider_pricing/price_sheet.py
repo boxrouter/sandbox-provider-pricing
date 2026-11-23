@@ -25,6 +25,7 @@ from sandbox_provider_pricing.calculator.quantities import in_rate_unit
 from sandbox_provider_pricing.cost_method import RULES
 from sandbox_provider_pricing.price import _basis_text
 from sandbox_provider_pricing.providers import billing as provider_billing
+from sandbox_provider_pricing.shapes import Shape, class_shapes
 from sandbox_provider_pricing.versions import (
     covered_classes,
     latest_version,
@@ -33,7 +34,7 @@ from sandbox_provider_pricing.versions import (
 )
 
 SCHEMA_ID = "urn:boxrouter:sandbox-provider-pricing:price-sheet"
-SCHEMA_VERSION = "2.4.0"
+SCHEMA_VERSION = "2.5.0"
 
 
 def _page_text(schema: dict[str, Any]) -> dict[str, Any]:
@@ -143,6 +144,7 @@ def validate_price_text(sheet: dict[str, Any]) -> None:
 PUBLISHED_PRICE_CONFIGS = tuple(
     (vcpu, memory_gib) for vcpu in (1, 2, 4, 8) for memory_gib in (2, 4, 8, 16)
 )
+_NOT_OFFERED_REASON = "No size the provider offers is large enough for this configuration."
 _UNKNOWN_STATES = {
     "idle": {
         "rule": "unknown",
@@ -159,10 +161,24 @@ GIB_PER_GB_MONTH = Decimal(2**30) / Decimal(10**9)
 STORAGE_ORDER = {"image": 0, "disk": 1, "snapshot": 2, "volume": 3}
 
 
+def published_sizes() -> list[dict[str, Any]]:
+    """The sizes the sheet publishes, each with its label."""
+    return [_size_label(vcpu, memory_gib) for vcpu, memory_gib in PUBLISHED_PRICE_CONFIGS]
+
+
 def build_price_sheet(
     price_configs: Sequence[tuple[int, int]] = PUBLISHED_PRICE_CONFIGS,
+    *,
+    exact_sizes: bool = False,
 ) -> dict[str, Any]:
-    """Return a deterministic sheet for the requested (vCPU, GiB) sizes."""
+    """Return a deterministic sheet for the requested (vCPU, GiB) sizes.
+
+    A size is priced as the cheapest shape the provider class sells that is at least that big (the
+    class's `shapes` in its billing record; ties go to fewer vCPUs, then less memory), and the
+    config names that shape. A size no shape fits is `not_offered`, with no price. A provider class
+    with no recorded shapes fails the build, naming it. `exact_sizes` prices every requested size
+    exactly, whatever shapes the class sells, for callers that price one exact size.
+    """
     normalized_configs = _validate_price_configs(price_configs)
     versions = seed_versions()
     providers: list[dict[str, Any]] = []
@@ -183,6 +199,7 @@ def build_price_sheet(
                 release_version,
                 normalized_configs,
                 storage_statuses=schema["x-text"]["storage_statuses"],
+                shapes=None if exact_sizes else class_shapes(provider, spec_class),
             )
             for spec_class in covered_classes(default)
         )
@@ -194,7 +211,7 @@ def build_price_sheet(
         "hourly": {"seconds_per_hour": int(SECONDS_PER_HOUR)},
         "excludes": list(schema["properties"]["excludes"]["items"]["enum"]),
         "default_size": _size_label(2, 4),
-        "sizes": [_size_label(vcpu, memory_gib) for vcpu, memory_gib in PUBLISHED_PRICE_CONFIGS],
+        "sizes": published_sizes(),
         "billing_rule_titles": [{"key": key, "title": title} for key, title in RULES],
         "unit_names": {
             per: unit_name(per)
@@ -223,6 +240,7 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
     price_configs: Sequence[tuple[int, int]] = PUBLISHED_PRICE_CONFIGS,
     *,
     storage_statuses: dict[str, Any],
+    shapes: list[Shape] | None,
 ) -> dict[str, Any]:
     # This assembly collects the independent benchmark display fields in one provider record.
     # pylint: disable=too-many-locals
@@ -247,27 +265,27 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
     flat = isinstance((default.get("rates") or {}).get("machine"), dict)
     configs = []
     for vcpu, memory_gib in price_configs:
-        size = {"cpu": vcpu, "memory_mib": memory_gib * 1024}
-        raw = per_hour(price_version, size, region=applied_region)
+        size = {"vcpu": vcpu, "memory_gib": memory_gib}
+        shape, raw = _cheapest_fit(price_version, shapes, (vcpu, memory_gib * 1024), applied_region)
+        if shape is None:
+            configs.append(_unpriced(size, None, "not_offered", _NOT_OFFERED_REASON, notes))
+            continue
+        shape_cpu, shape_mib = shape
         if raw is None:
             configs.append(
-                {
-                    "size": {"vcpu": vcpu, "memory_gib": memory_gib},
-                    "status": "in_development",
-                    "reason": "No hourly list price is published for this configuration.",
-                    **notes,
-                    "running_per_hour_usd": None,
-                    "cpu_per_hour_usd": None,
-                    "memory_per_hour_usd": None,
-                    "idle_per_hour_usd": None,
-                    "paused_per_hour_usd": None,
-                }
+                _unpriced(
+                    size,
+                    shape,
+                    "in_development",
+                    "No hourly list price is published for this configuration.",
+                    notes,
+                )
             )
             continue
-        cpu = per_hour(price_version, {"cpu": vcpu}, region=applied_region)
-        memory = per_hour(price_version, {"memory_mib": memory_gib * 1024}, region=applied_region)
+        cpu = per_hour(price_version, {"cpu": shape_cpu}, region=applied_region)
+        memory = per_hour(price_version, {"memory_mib": shape_mib}, region=applied_region)
         if memory is None and not flat:
-            raise ValueError(f"{provider}: no memory component at {vcpu}x{memory_gib}")
+            raise ValueError(f"{provider}: no memory component at {shape_cpu}x{shape_mib} MiB")
         running = _range(raw)
         cpu_part = None if cpu is None else _range(cpu)
         memory_part = None if memory is None else _range(memory)
@@ -279,17 +297,20 @@ def _provider_sheet(  # pylint: disable=too-many-arguments,too-many-positional-a
                 for end in ("low", "high")
             )
         ):
-            raise ValueError(f"{provider}: CPU and memory do not add up at {vcpu}x{memory_gib}")
+            raise ValueError(
+                f"{provider}: CPU and memory do not add up at {shape_cpu}x{shape_mib} MiB"
+            )
         if (display_facts.get("active_time_priced") or {}).get("value", False):
             running = _upper(running)
             cpu_part = None if cpu_part is None else _upper(cpu_part)
             memory_part = None if memory_part is None else _upper(memory_part)
         idle, paused, idle_cpu, idle_memory = _idle_paused(
-            states, memory_gib, running, (cpu_part, memory_part), price_version
+            states, shape_mib, running, (cpu_part, memory_part), price_version
         )
         configs.append(
             {
-                "size": {"vcpu": vcpu, "memory_gib": memory_gib},
+                "size": size,
+                "shape": _shape_figure(shape),
                 "status": "priced",
                 "reason": None,
                 **notes,
@@ -414,6 +435,82 @@ def _unit_rates(
     return {"cpu_per_vcpu_hour": hourly("cpu"), "memory_per_gib_hour": hourly("memory")}
 
 
+def _fitting(shapes: list[Shape] | None, need: tuple[float, float]) -> list[tuple[float, float]]:
+    """The smallest shape of each offered entry that is at least `need` (vCPU, MiB), smallest first.
+
+    A range offers any size inside it, so the need itself where the need is inside, else the
+    range's low end where that is bigger; a range whose high end is under the need offers none.
+    """
+    if shapes is None:
+        return [need]
+    fits = {
+        (max(need[0], cpu[0]), max(need[1], memory[0]))
+        for cpu, memory in shapes
+        if need[0] <= cpu[1] and need[1] <= memory[1]
+    }
+    return sorted(fits)
+
+
+def _cheapest_fit(
+    price_version: dict[str, Any],
+    shapes: list[Shape] | None,
+    need: tuple[float, float],
+    region: str | None,
+) -> tuple[tuple[float, float] | None, dict[str, str] | None]:
+    """The cheapest shape that fits `need` and its hourly price (ties: fewer vCPUs, then memory).
+
+    No fitting shape gives (None, None). A fitting shape with no published price is only the
+    smallest fitting one, with a price of None, when no fitting shape has one.
+    """
+    fits = _fitting(shapes, need)
+    if not fits:
+        return None, None
+    priced = [
+        (Decimal(raw["high"]), Decimal(raw["low"]), shape, raw)
+        for shape in fits
+        if (
+            raw := per_hour(price_version, {"cpu": shape[0], "memory_mib": shape[1]}, region=region)
+        )
+        is not None
+    ]
+    if not priced:
+        return fits[0], None
+    best = min(priced, key=lambda item: (item[0], item[1], item[2]))
+    return best[2], best[3]
+
+
+def _shape_figure(shape: tuple[float, float]) -> dict[str, float]:
+    """The shape priced, as the sheet prints it: whole numbers stay whole."""
+    cpu, memory_mib = shape
+    memory_gib = memory_mib / 1024
+    return {
+        "vcpu": int(cpu) if cpu == int(cpu) else cpu,
+        "memory_gib": int(memory_gib) if memory_gib == int(memory_gib) else memory_gib,
+    }
+
+
+def _unpriced(
+    size: dict[str, int],
+    shape: tuple[float, float] | None,
+    status: str,
+    reason: str,
+    notes: dict[str, str],
+) -> dict[str, Any]:
+    """A config with no price: `in_development` names its shape, `not_offered` has none."""
+    return {
+        "size": size,
+        "shape": None if shape is None else _shape_figure(shape),
+        "status": status,
+        "reason": reason,
+        **notes,
+        "running_per_hour_usd": None,
+        "cpu_per_hour_usd": None,
+        "memory_per_hour_usd": None,
+        "idle_per_hour_usd": None,
+        "paused_per_hour_usd": None,
+    }
+
+
 def _validate_price_configs(
     price_configs: Sequence[tuple[int, int]],
 ) -> tuple[tuple[int, int], ...]:
@@ -450,7 +547,7 @@ def _size_label(vcpu: int, memory_gib: int) -> dict[str, Any]:
 
 def _idle_paused(
     states: dict[str, dict[str, str]],
-    memory_gib: int,
+    memory_mib: float,
     running: dict[str, float],
     parts: tuple[dict[str, float] | None, dict[str, float] | None],
     version_doc: dict[str, Any],
@@ -473,13 +570,15 @@ def _idle_paused(
             result = running
         elif rule == "active":
             result = _upper(running)
-            idle_cpu = None if cpu is None else _upper(cpu)
-            idle_memory = None if memory is None else _upper(memory)
+            if state == "idle":
+                idle_cpu = None if cpu is None else _upper(cpu)
+                idle_memory = None if memory is None else _upper(memory)
         elif rule == "memory":
-            amount = per_hour(version_doc, {"memory_mib": memory_gib * 1024})
+            amount = per_hour(version_doc, {"memory_mib": memory_mib})
             result = None if amount is None else _range(amount)
-            idle_cpu = {"low": 0.0, "high": 0.0}
-            idle_memory = result
+            if state == "idle":
+                idle_cpu = {"low": 0.0, "high": 0.0}
+                idle_memory = result
         elif rule == "none":
             result = {"low": 0.0, "high": 0.0}
         elif rule == "disk":

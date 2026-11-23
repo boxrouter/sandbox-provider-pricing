@@ -413,8 +413,8 @@ def test_blaxel_core_cost_report_waits_for_revisit_delay() -> None:
             }
         )
 
-    assert (bill(599)["label"], bill(599)["total"]) == ("unknown", None)
-    assert (bill(600)["label"], bill(600)["total"]) == (
+    assert (bill(119)["label"], bill(119)["total"]) == ("unknown", None)
+    assert (bill(120)["label"], bill(120)["total"]) == (
         "reported",
         {"low": "0.1234", "high": "0.1234"},
     )
@@ -453,11 +453,11 @@ def test_core_cost_report_records_reach_the_provider_rule(provider: str, source:
     normalized = normalize_evidence(via_core)
     assert [item for item in normalized["provider_records"] if item["source"] == source] == records
     result = price(via_core)
-    assert (result["label"], result["total"], result["final"]) == (
-        expected["label"],
-        expected["total"],
-        expected["final"],
-    )
+    assert (result["label"], result["total"]) == (expected["label"], expected["total"])
+    # Blaxel's report is available, not accruing, and read after its declared final time
+    # (`final_after_s`), so its reads end; Modal has no `final_after_s` (our watch of its ended
+    # sandboxes stops short of its declared time) and stays open until its window closes.
+    assert result["final"] is (provider == "blaxel")
     assert result["total"] is not None
     unreported = {"read_at": "2026-10-24T06:00:00Z", "cost": {"status": "unknown", "readings": []}}
     assert price(via_core | {"provider_reports": unreported})["total"] is None

@@ -20,6 +20,7 @@ from sandbox_provider_pricing.usage import (
     parse_datetime,
     read_core_report,
     record_reason,
+    spec_cost,
     unavailable,
 )
 
@@ -41,6 +42,12 @@ def billable(
     as_of: str | None = None,
     **_: object,
 ) -> BillableUsage:
+    # The spec's cost lines first (E2B's in-process provider states quantities, which this
+    # package prices). The lifecycle-event branch below is the old adapter's and stays until it
+    # is removed after the switch.
+    spec = spec_cost(evidence, billing, as_of=as_of)
+    if spec is not None:
+        return spec
     given = evidence
     evidence = _core_events(evidence)
     times, executions = _lifecycle_times(evidence)

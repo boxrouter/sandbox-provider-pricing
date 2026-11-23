@@ -47,7 +47,7 @@ From [`boxd@2026-11-02-082924Z`](../../src/sandbox_provider_pricing/providers/bo
 
 ## Our measurements
 
-None yet.
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 4 of 4 sandboxes had a known cost 661 to 799 s after the destroy call returned (median 782 s). No figure changed while it was watched after that.
 
 ## Price versions
 

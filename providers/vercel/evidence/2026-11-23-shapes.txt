@@ -1,0 +1,11 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://vercel.com/docs/sandbox/pricing
+Verbatim excerpts:
+
+You can provision 1 or an even number of vCPUs between 2 and 32 depending on your plan. The default is 2 vCPUs.
+Each vCPU includes 2 GB of memory.
+| Pro | 8 | 16GB | 15 | 64 GB |
+| Enterprise | 32 | 64GB | 15 | 64 GB |

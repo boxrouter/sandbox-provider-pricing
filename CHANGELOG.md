@@ -4,6 +4,89 @@ All notable changes to this package are listed here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and [RELEASE.md](RELEASE.md) says how
 releases are made.
 
+## Unreleased
+
+### Changed
+
+- The price sheet builds from this package alone. Each provider's `billing.yaml` records the shapes its spec
+  classes sell under the new `shapes` key (exact shapes or `[low, high]` ranges, each with its source page,
+  checked date and quote; evidence saved under `providers/<id>/evidence/<date>-shapes.txt`), and
+  `build_price_sheet()` prices each size as the cheapest recorded shape that fits it. `build_price_sheet` no
+  longer takes `offered_shapes`, `EVERY_SIZE` is `exact_sizes=True`, and `spp-price-sheet` has no `--shapes`.
+  New: `class_shapes()` and `is_priced()`. Boat records its four sizes (small, default, large, xlarge: 8/16 is
+  $0.072 an hour, 16/32 is $0.200 with the $100 plan), Superserve its published range (1-16 vCPU, 256 MiB-64 GiB by
+  plan), Vercel 1 to 8 vCPU at 2 GiB each (the Pro maximum) and Modal its published minimums with no maximum.
+  Cloud's `scripts/check_priced_shapes.py` fails when a Sandbox Provider Specification declaration lists a shape
+  pricing has no price for. Vercel's idle rule now says what the page states: provisioned memory is billed the
+  whole time the sandbox runs, idle included, and Active CPU only while the CPU works (the sheet already priced
+  idle as memory only; a test pins it). boxd's paused figure is now its standby memory (the machine's memory at the
+  GiB-hour rate, upper end) instead of missing, and a paused rule no longer overwrites the idle CPU and memory
+  parts. 0.17.14.
+
+- Blaxel's first cost read is 120 seconds after the end (was 600): measured at light load, the current hour's metrics bucket
+  is readable 3 to 15 seconds after the destroy and does not change through the hour's close.
+- `next_read` reads a cost again at the provider's final time (the end plus `revisit.final_after_s`) while that
+  time is still ahead, whether the price is known or not. Before, a cost known early waited a whole `interval_s`
+  for the read that could find it final: E2B and Vercel settled about an hour after the end, agent37 about 31
+  minutes and Blaxel about 70, instead of at their declared final times (330, 150, 330 and 930 s). The half-age
+  steps of an unknown price also stop at that time instead of stepping past it. A policy without `final_after_s`
+  is unchanged. 0.17.12.
+
+- The price sheet (schema 2.5.0) prices each size as the cheapest shape the provider class offers that is at
+  least that big, and names it in the new `shape` field (equal to `size` when offered). A size no offered shape
+  fits has the new status `not_offered`, with no price. The offered shapes were an input, `build_price_sheet(offered_shapes=...)`
+  and `spp-price-sheet --shapes`, read from the Sandbox Provider Specification (replaced in 0.17.14). A class with no shapes fails the build, naming it.
+  Before this a provider was priced at every size, offered or not (boxd's 2 vCPU, 4 GiB was a price for a machine it does not sell).
+  `published_sizes()` lists the sizes. 0.17.11.
+
+- A known cost is `final` as soon as the provider's own cost report says it is final and was read at or after
+  the sandbox's end plus the provider's `revisit.final_after_s` (its declared `cost_final_within_seconds` plus
+  the spec's 30 s grace), not only when the whole revisit window has closed. Reads then stop: a hourly-read
+  provider went from 168 reads a sandbox over seven days to about 2 to 3. `final_after_s` is optional in
+  `billing.yaml` and the schema; agent37, Blaxel, E2B and Vercel set it, where our own watch of ended sandboxes covers
+  the provider's declared time; Modal, boxd and Superserve (a watch that stops short of the declared time, or none),
+  Daytona (later reads were seen to raise it) and Boat (its window is 15 minutes) do not, and keep the window rule.
+  The figure itself does not change: `final` only ends the reads. 0.17.10.
+
+- `next_read` backs off for as long as a price is unknown: the next read comes after half the sandbox's age (at
+  least `unpriced_first_s`), never later than the provider's cadence. The fixed `unpriced_window_s` (1800 s) is gone
+  from `RevisitPolicy`, `billing.yaml` and the schema: after it, a record that landed late waited a whole `interval_s`.
+- Every provider's rules read the spec's cost lines first (`spec_cost`), as boxd and Blaxel's do: Agent37,
+  Boat, Daytona, E2B, Modal, Superserve and Vercel now give the label and total their old records gave
+  from the lines the in-process providers state (`reported` sums, `usage` quantities priced here).
+  Each keeps its old-record branch until the switch removes it. Superserve gains a rules module (its
+  default billed-time rules otherwise). Local states no cost and has no price folder.
+- A `usage` line's `create` count is priced at the creation rate (`each` against `million-creations`),
+  and its creation charge no longer also asks for a creation fact. A quantity in GiB or vCPUs converts to
+  the provider's own size unit only where the rate states `size_per_unit`, as the calculator already
+  does for a size; GB and GiB never convert otherwise.
+- A cost report read before the sandbox ended (`cost.capture`, taken just before a destroy) counts as soon as the
+  adapter says it is final: the provider-delay wait applies only to reads after the end, since a provider that
+  deletes its cost with the sandbox can never be read later.
+- Boat's spec cost report read while the sandbox still ran counts when it was the last read before Boat
+  deleted the sandbox and its record (`spec_cost_read_before_end`), as its old usage record did: Cloud reads
+  just before Boat's own timer ends a sandbox, and no read after the delete can answer. The figure is
+  reported as of that read (`reported.taken_at`). Without it, every Boat sandbox that reached its lifetime
+  priced unknown and its managed hold was released unpaid.
+- Usage lines are a sandbox's active runs, so a pause between two of them is not a gap in the cost
+  (`covers_sandbox(..., gaps=False)`); the first line's start and the last line's end must still reach
+  the sandbox's own. Reported lines still must leave no gap.
+
+### Added
+
+- boxd prices the spec's `usage` lines (vCPU, RAM and disk hours) at its stored rates, so the in-process
+  boxd package keeps no prices (FA-12). The complete USD machine usage record is still read when the
+  report has no spec lines.
+- `spec_cost(evidence, billing)` reads a Core cost report in the spec's cost shape: readings whose
+  `source` is `reported`, `calculated` or `usage` and whose `meter` is the line's item. A `reported`
+  cost is the sum of its lines once the adapter said final (the report is not `final: false`) and
+  the provider's own `revisit.after_s` has passed. A `calculated` or `usage` cost is priced from the
+  lines' quantities and units with the price version's own rates; the adapter's amounts are ignored.
+  The usage document gains an optional `metered` list for those quantities, and the calculator prices
+  each as one cost line. The Blaxel rule calls `spec_cost` first and keeps its branch for the old
+  adapter's readings. Blaxel's finality stays unverified (`unverified_default`), and its labels do
+  not change.
+
 ## 0.17.9 — 2026-11-20
 
 ### Changed

@@ -161,6 +161,7 @@ def test_size_without_a_price_is_marked_in_development(monkeypatch: Any) -> None
         billing,
         package_version,
         storage_statuses=SCHEMA["x-text"]["storage_statuses"],
+        shapes=None,
     )
     largest = result["configs"][-1]
     assert largest["status"] == "in_development"
@@ -182,6 +183,7 @@ def test_a_storage_row_must_name_its_price_version_rates_unit() -> None:
             billing,
             "0",
             storage_statuses=SCHEMA["x-text"]["storage_statuses"],
+            shapes=None,
         )
 
 
@@ -237,7 +239,10 @@ def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:
 
 def test_price_sheet_has_one_entry_per_provider_and_spec_class() -> None:
     """Each entry is keyed by provider and class, with a readable class label."""
-    entries = {(item["id"], item["class"]): item for item in build_price_sheet()["providers"]}
+    entries = {
+        (item["id"], item["class"]): item
+        for item in build_price_sheet(exact_sizes=True)["providers"]
+    }
     assert set(entries) == {
         ("agent37", "default"),
         ("blaxel", "default"),
@@ -277,6 +282,7 @@ def test_class_labels_follow_owner_data_without_inventing_missing_labels() -> No
         billing,
         release_version,
         storage_statuses=SCHEMA["x-text"]["storage_statuses"],
+        shapes=None,
     )
     assert sheet["label"] == "default"
     billing["price_sheet"]["class_overrides"] = {"default": {"label": "Updated owner label"}}
@@ -287,13 +293,17 @@ def test_class_labels_follow_owner_data_without_inventing_missing_labels() -> No
         billing,
         release_version,
         storage_statuses=SCHEMA["x-text"]["storage_statuses"],
+        shapes=None,
     )
     assert sheet["label"] == "Updated owner label"
 
 
 def test_flat_per_size_provider_prices_published_sizes_only() -> None:
     """Boat's bundle gives a running hourly price on its three on-grid sizes and nothing else."""
-    entries = {(item["id"], item["class"]): item for item in build_price_sheet()["providers"]}
+    entries = {
+        (item["id"], item["class"]): item
+        for item in build_price_sheet(exact_sizes=True)["providers"]
+    }
     boat = entries[("boat", "default")]
     priced = {
         (config["size"]["vcpu"], config["size"]["memory_gib"]): config for config in boat["configs"]
@@ -318,7 +328,9 @@ def test_class_billing_rules() -> None:
     entries = {(item["id"], item["class"]): item for item in build_price_sheet()["providers"]}
     daytona_vm = entries[("daytona", "vm")]
     assert daytona_vm["class_rules"]["archive"].startswith("Not supported")
-    assert {c["paused_per_hour_usd"] is not None for c in daytona_vm["configs"]} == {True}
+    priced = [c for c in daytona_vm["configs"] if c["status"] == "priced"]
+    assert priced
+    assert {c["paused_per_hour_usd"] is not None for c in priced} == {True}
     assert "memory is kept" in daytona_vm["configs"][0]["paused_note"]
     assert "512 GiB" in entries[("modal", "vm")]["class_rules"]["disk"]
     assert entries[("modal", "default")]["class_rules"] == {}
@@ -524,8 +536,8 @@ def test_axes_use_compact_quantity_and_rate_units_without_losing_billing_basis()
 def test_every_sheet_provider_carries_typed_billing_mode_and_compute_rate_units() -> None:
     """The sheet projects the typed price-version and billing facts; no consumer infers them."""
     sheet = build_price_sheet()
-    assert sheet["schema_version"] == "2.4.0"
-    assert SCHEMA["properties"]["schema_version"] == {"const": "2.4.0"}
+    assert sheet["schema_version"] == "2.5.0"
+    assert SCHEMA["properties"]["schema_version"] == {"const": "2.5.0"}
     Draft202012Validator(SCHEMA).validate(sheet)
     facts = {
         provider["id"]: (
@@ -617,10 +629,10 @@ def test_unit_rates_add_up_to_every_sized_running_price() -> None:
             running = config["running_per_hour_usd"]
             if running is None:
                 continue
-            size = config["size"]
+            shape = config["shape"]
             total = (
-                size["vcpu"] * (rates["cpu_per_vcpu_hour"] or 0)
-                + size["memory_gib"] * rates["memory_per_gib_hour"]
+                shape["vcpu"] * (rates["cpu_per_vcpu_hour"] or 0)
+                + shape["memory_gib"] * rates["memory_per_gib_hour"]
             )
-            assert total == pytest.approx(running["high"], abs=1e-9), (provider["id"], size)
+            assert total == pytest.approx(running["high"], abs=1e-9), (provider["id"], shape)
     assert with_rates == EXPECTED_PROVIDERS - {"boat"}

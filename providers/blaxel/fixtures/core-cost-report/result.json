@@ -26,14 +26,14 @@
     "Credits and discounts"
   ],
   "revisit": {
-    "after": "2026-10-19T19:49:04Z",
+    "after": "2026-10-19T19:41:04Z",
     "until": "2026-10-26T19:39:04Z",
     "interval_s": 3600,
     "next_read_at": "2026-10-19T21:00:00Z"
   },
-  "final": false,
+  "final": true,
   "versions": {
-    "package": "0.14.0",
+    "package": "0.17.13",
     "rules": 2,
     "prices": "blaxel@2026-11-07-122300Z"
   },

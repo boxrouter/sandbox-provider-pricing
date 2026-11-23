@@ -20,7 +20,7 @@
   ],
   "properties": {
     "$schema": {"const": "urn:boxrouter:sandbox-provider-pricing:price-sheet"},
-    "schema_version": {"const": "2.4.0"},
+    "schema_version": {"const": "2.5.0"},
     "pages": {
       "type": "object",
       "additionalProperties": false,
@@ -471,7 +471,7 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "size", "status", "reason", "idle_note", "paused_note", "running_per_hour_usd", "cpu_per_hour_usd",
+              "size", "shape", "status", "reason", "idle_note", "paused_note", "running_per_hour_usd", "cpu_per_hour_usd",
               "memory_per_hour_usd", "idle_per_hour_usd", "paused_per_hour_usd"
             ],
             "properties": {
@@ -483,7 +483,16 @@
                   "memory_gib": {"type": "integer", "minimum": 1}
                 }
               },
-              "status": {"enum": ["priced", "in_development"]},
+              "shape": {
+                "type": ["object", "null"], "additionalProperties": false,
+                "required": ["vcpu", "memory_gib"],
+                "description": "The shape the figures price: the cheapest shape the provider class offers that is at least `size` (ties: fewer vCPUs, then less memory). The same as `size` when the class offers that size. Null when no offered shape is that big.",
+                "properties": {
+                  "vcpu": {"type": "number", "exclusiveMinimum": 0},
+                  "memory_gib": {"type": "number", "exclusiveMinimum": 0}
+                }
+              },
+              "status": {"enum": ["priced", "in_development", "not_offered"], "description": "`in_development`: the shape has no published price. `not_offered`: no offered shape is at least `size`, so there is no price."},
               "reason": {"type": ["string", "null"]},
               "idle_note": {"type": "string", "minLength": 1},
               "paused_note": {"type": "string", "minLength": 1},

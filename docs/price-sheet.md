@@ -25,6 +25,26 @@ from sandbox_provider_pricing import build_price_sheet
 document = build_price_sheet()
 ```
 
+The sheet needs nothing but this package. Each provider's `billing.yaml` lists under `shapes` what
+each of its spec classes sells: an exact shape (`cpu` and `memory_mib`, each one number) or a range
+(`cpu` and `memory_mib` as `[low, high]`, any size inside it; a `null` high means the provider
+publishes no maximum). Every entry carries the provider page that states it (`source`), the date it
+was read (`checked`), the `quote` that states it as saved under `providers/<id>/evidence/`, and a
+`note` for a condition such as a plan requirement. The price version owns what a shape costs: a
+provider that publishes one price per named size (Boat) keeps those prices as its flat `machine`
+rates, and a test holds the two lists equal. A provider class with no recorded shapes fails the
+build and the error names it. The Sandbox Provider Specification declares what BoxRouter can
+create; Cloud's `scripts/check_priced_shapes.py` fails when a declared shape has no price here, and
+pricing may record more shapes than the specification declares. `exact_sizes=True` prices every
+requested size exactly, for callers that price one exact size (the conformance cases do).
+
+Each size in `configs` is priced as the cheapest shape its class offers that is at least that big
+(vCPUs and memory both at least the size's; ties go to fewer vCPUs, then less memory). The config
+names that shape in `shape`, which equals `size` when the class offers that size. A class that
+accepts any size in a range prices the size itself where it is inside the range. A size no offered
+shape fits has `status` `not_offered`, a `reason`, a null `shape` and no price; a shape with no
+published price is `in_development`.
+
 By default the published sheet covers the Cartesian product of 1, 2, 4 and 8 vCPU with 2, 4, 8
 and 16 GiB of memory. This resource grid is the sheet's consumer-neutral coverage; it is not a
 benchmark requirement. A consumer can choose its own non-empty, unique set of positive integer

@@ -126,7 +126,12 @@ Providers publish some records late. Each provider's `billing.yaml` sets a revis
 after a sandbox ends to make the first read, how often to read again and when to stop. Inside the
 window an `unknown` result means the record has not arrived yet; there is no separate pending
 label. Keep reading inside the window even when the result is already `reported`, because early
-Daytona amounts have come in low.
+Daytona amounts have come in low. A provider whose `billing.yaml` sets `final_after_s` (its own
+declared time for the cost to be final, plus the spec's 30 s) stops sooner: a known cost whose
+provider report says it is final, and was read at or after the end plus `final_after_s`, has
+`final: true`, `revisit.next_read_at` is gone and `next_read` returns `None`. A report the adapter marks
+`final: false` (still accruing), an unknown cost and a provider with no `final_after_s` stay open
+until the window closes.
 
 Pass the sandbox's end time, if you store it, as `price(evidence, ended_at=...)`. It sets `final`
 and `revisit.next_read_at` and changes nothing else. With no known end there is no scheduled
@@ -134,9 +139,9 @@ read. Evidence that the sandbox was never created is final at once.
 
 To schedule reads, ask for the next one. `next_read(result, ended_at, now)` returns the time of the
 next read, or `None` when none is due. It is the provider's cadence, except that while a price is
-still `unknown` shortly after the end it comes sooner: after half the time since the end, at least
-`unpriced_first_s` (default 15) from `now`, for the first `unpriced_window_s` (default 1800) after
-the end. A provider's `revisit` block in `billing.yaml` may set those two numbers.
+still `unknown` it comes sooner: after half the time since the end, at least `unpriced_first_s`
+(default 15) from `now`, and never later than the provider's cadence. A provider's `revisit` block in
+`billing.yaml` may set `unpriced_first_s`.
 
 ```python
 from sandbox_provider_pricing import next_read

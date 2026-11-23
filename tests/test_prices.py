@@ -115,11 +115,12 @@ def test_vercel_egress_correction_applies_from_the_first_version() -> None:
 
 def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
     # Each provider's rules version, and whether it keeps evidence: boat has no measurement yet
-    # (its `checks` is empty and its rules cite only Boat's pages).
+    # (its `checks` is empty and its rules cite only Boat's pages); its evidence is the saved
+    # excerpts of its pages that state its shapes.
     expected = {
         "agent37": (1, True),
         "blaxel": (2, True),
-        "boat": (1, False),
+        "boat": (1, True),
         "boxd": (1, True),
         "daytona": (2, True),
         "e2b": (2, True),

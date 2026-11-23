@@ -32,11 +32,11 @@ From [`vercel@2026-10-20-055631Z`](../../src/sandbox_provider_pricing/providers/
 | Billing starts | Not stated. In five samples the session startedAt fell inside our create call; no bill was compared. [^1][^3] |
 | Billing ends | Not stated. In five samples stoppedAt came before our destroy call and duration equalled stoppedAt minus startedAt; no bill was compared. [^1][^3] |
 | Rounding | Provisioned memory is billed in 1-minute minimum increments. No rule is published for Active CPU. Creations are counted per call. [^1] |
-| Idle and paused | Not stated for starting, stopping or stopped sessions. A stopped persistent sandbox keeps a snapshot, billed as snapshot storage; deleting the sandbox does not delete it. [^1][^4][^5] |
-| Image pull | Not stated. Creation waits until the sandbox is ready, and restoring an uncached snapshot is included in creation time. We did not test cold against cached images. [^5][^6] |
-| Billed separately | Creation $0.60 per million. Network: data sent out and all exposed-port traffic, $0.15 per GB in iad1. Snapshots $0.08 per GB-month. Disk (64 GB) is included. Not stated: GPU. [^1][^7][^8] |
-| Left out | Plan fees and allowances, other regions than iad1, enterprise pricing, taxes, Drives, container registry storage and the snapshot kept after the last stop (30 days after last use by default). [^1][^9][^10] |
-| Per-sandbox data | Usage per session after a clean stop: duration, activeCpuDurationMs, network bytes, sizeBytes for snapshots. No cost per sandbox; charges are per project per day. Not stated: delay or retention. [^8][^11][^12] |
+| Idle and paused | A running sandbox that sits idle bills its provisioned memory for the whole time it runs and Active CPU only while the CPU works. Not stated for starting, stopping or stopped sessions. A stopped persistent sandbox keeps a snapshot, billed as snapshot storage; deleting the sandbox does not delete it. [^1][^4][^5][^6] |
+| Image pull | Not stated. Creation waits until the sandbox is ready, and restoring an uncached snapshot is included in creation time. We did not test cold against cached images. [^6][^7] |
+| Billed separately | Creation $0.60 per million. Network: data sent out and all exposed-port traffic, $0.15 per GB in iad1. Snapshots $0.08 per GB-month. Disk (64 GB) is included. Not stated: GPU. [^1][^8][^9] |
+| Left out | Plan fees and allowances, other regions than iad1, enterprise pricing, taxes, Drives, container registry storage and the snapshot kept after the last stop (30 days after last use by default). [^1][^10][^11] |
+| Per-sandbox data | Usage per session after a clean stop: duration, activeCpuDurationMs, network bytes, sizeBytes for snapshots. No cost per sandbox; charges are per project per day. Not stated: delay or retention. [^9][^12][^13] |
 
 ## Not known yet
 
@@ -59,6 +59,7 @@ From [`vercel@2026-10-20-055631Z`](../../src/sandbox_provider_pricing/providers/
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 5 of 5 sandboxes had a known cost 5 to 85 s after the destroy call returned (median 60 s). No figure changed while it was watched after that.
 - 2026-10-12: [Billing charges export against the price version's rates](evidence/2026-10-12-charges-rates-check.md). 25 of 26 daily charge rows equal quantity times the price version's rate; one small data-transfer row was charged $0.15 per GB, not $0. Checks rates and units only, not billing edges.
 - 2026-10-11: [Session start and stop times against our call edges](evidence/2026-10-11-session-edges.md). In five sessions, startedAt fell inside the create call, stoppedAt preceded the destroy call, and duration equalled stoppedAt minus startedAt. No bill was compared, so the billed memory boundary is unsettled.
 
@@ -73,12 +74,13 @@ This page is generated from [billing.yaml](../../src/sandbox_provider_pricing/pr
 [^1]: [vercel.com/docs/sandbox/pricing](https://vercel.com/docs/sandbox/pricing)
 [^2]: [vercel.com/docs/rest-api/sandboxes/create-a-named-sandbox-1](https://vercel.com/docs/rest-api/sandboxes/create-a-named-sandbox-1)
 [^3]: [2026-10-11-session-edges.md](evidence/2026-10-11-session-edges.md#verdict)
-[^4]: [vercel.com/docs/sandbox/concepts/persistent-sandboxes](https://vercel.com/docs/sandbox/concepts/persistent-sandboxes)
-[^5]: [vercel.com/docs/sandbox/concepts/snapshots](https://vercel.com/docs/sandbox/concepts/snapshots)
-[^6]: [vercel.com/docs/sandbox/concepts/images](https://vercel.com/docs/sandbox/concepts/images)
-[^7]: [2026-10-20-055630Z.yaml](../../src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055630Z.yaml)
-[^8]: [2026-10-12-charges-rates-check.md](evidence/2026-10-12-charges-rates-check.md)
-[^9]: [vercel.com/docs/plans/pro-plan](https://vercel.com/docs/plans/pro-plan)
-[^10]: [vercel.com/docs/container-registry/limits-and-pricing](https://vercel.com/docs/container-registry/limits-and-pricing)
-[^11]: [vercel.com/docs/rest-api/sandboxes/get-a-session](https://vercel.com/docs/rest-api/sandboxes/get-a-session)
-[^12]: [vercel.com/docs/rest-api/billing/list-focus-billing-charges](https://vercel.com/docs/rest-api/billing/list-focus-billing-charges)
+[^4]: [2026-11-23-idle-memory.txt](evidence/2026-11-23-idle-memory.txt)
+[^5]: [vercel.com/docs/sandbox/concepts/persistent-sandboxes](https://vercel.com/docs/sandbox/concepts/persistent-sandboxes)
+[^6]: [vercel.com/docs/sandbox/concepts/snapshots](https://vercel.com/docs/sandbox/concepts/snapshots)
+[^7]: [vercel.com/docs/sandbox/concepts/images](https://vercel.com/docs/sandbox/concepts/images)
+[^8]: [2026-10-20-055630Z.yaml](../../src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055630Z.yaml)
+[^9]: [2026-10-12-charges-rates-check.md](evidence/2026-10-12-charges-rates-check.md)
+[^10]: [vercel.com/docs/plans/pro-plan](https://vercel.com/docs/plans/pro-plan)
+[^11]: [vercel.com/docs/container-registry/limits-and-pricing](https://vercel.com/docs/container-registry/limits-and-pricing)
+[^12]: [vercel.com/docs/rest-api/sandboxes/get-a-session](https://vercel.com/docs/rest-api/sandboxes/get-a-session)
+[^13]: [vercel.com/docs/rest-api/billing/list-focus-billing-charges](https://vercel.com/docs/rest-api/billing/list-focus-billing-charges)

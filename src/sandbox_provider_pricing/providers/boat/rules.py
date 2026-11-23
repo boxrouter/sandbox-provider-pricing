@@ -17,6 +17,8 @@ from sandbox_provider_pricing.usage import (
     latest_record,
     read_before_end,
     report_cost,
+    spec_cost,
+    spec_cost_read_before_end,
     waiting_for_record,
 )
 
@@ -31,6 +33,17 @@ def billable(
     **_: object,
 ) -> BillableUsage:
     result = waiting_for_record(evidence, billing, as_of=as_of)
+    # The spec's cost lines first (Boat's in-process provider). An accruing report still counts
+    # when it was the last read before Boat deleted the sandbox and its record, as the old record
+    # did: Cloud reads just before Boat's own timer ends a sandbox, and no read after can answer.
+    # The branch below is for the old adapter's report and stays until it is removed.
+    if spec_cost(evidence, billing, result) is not None:
+        return spec_cost_read_before_end(evidence, billing, result)
+    return _from_record(evidence, result)
+
+
+def _from_record(evidence: Evidence, result: BillableUsage) -> BillableUsage:
+    """The old adapter's usage record, until it is removed after the switch."""
     record = latest_record(evidence, SOURCE)
     if record is None:
         return result

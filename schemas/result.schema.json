@@ -47,7 +47,7 @@
     },
     "excluded": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "final": {
-      "description": "Whether the operational revisit window is closed or the sandbox was never created; this is not a provider guarantee of irrevocable finality.",
+      "description": "Whether the operational revisit window is closed, the sandbox was never created, or the provider's own cost report said final and was read at or after the provider's declared final time (`revisit.final_after_s`) while the cost is known; this is not a provider guarantee of irrevocable finality.",
       "type": "boolean"
     },
     "revisit": {

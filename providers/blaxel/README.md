@@ -53,6 +53,7 @@ From [`blaxel@2026-11-07-122300Z`](../../src/sandbox_provider_pricing/providers/
 
 ## Our measurements
 
+- 2026-11-22: [When a finished sandbox's cost is first known](evidence/2026-11-22-cost-first-known.md). 2 of 2 sandboxes had a known cost 161 to 197 s after the destroy call returned (median 179 s). No figure changed while it was watched after that.
 - 2026-10-11: [Billing boundary and standby against per-sandbox metrics](evidence/2026-10-11-billing-boundary.md). 25 sandboxes fit create returned to destroy returned, whole seconds truncated, at list rate. 21 rows fit one by one and 4 differed by under 0.7 s. Standby time was billed for less than the sandbox's life. No cold large image was tested, and create sent is not ruled out.
 - 2026-10-20: [Time to standby and metrics lag against per-sandbox metrics](evidence/2026-10-20-standby-and-metrics-lag.md). 8 idle sandboxes were billed compute for 22.7 to 34.8 s after their last command, then standby; standby billed snapshot storage at the listed rate. Each cost was final 45 to 113 s after destroy and then unchanged.
 
