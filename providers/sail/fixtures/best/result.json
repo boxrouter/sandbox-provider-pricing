@@ -1,0 +1,325 @@
+{
+  "provider": "sail",
+  "label": "reported",
+  "total": {
+    "low": "0.000241857",
+    "high": "0.000241857"
+  },
+  "lines": [],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "provider_reported",
+  "reported": {
+    "usd": "0.000241857",
+    "source": "provider",
+    "how": "Sail per-sandbox Core cost report: the sum of its lines."
+  },
+  "excluded": [
+    "Volume storage: $0.000411 per GiB-hour for each hour a volume exists, including while attached Sailboxes sleep. BoxRouter creates no volume.",
+    "Plan fees and included credit are not part of a sandbox cost.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-23T09:11:08.284000Z",
+    "until": "2026-11-30T09:01:08.284000Z",
+    "interval_s": 3600,
+    "next_read_at": "2026-11-23T10:11:18.161000Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.17.15",
+    "rules": 1,
+    "prices": "sail@2026-11-23"
+  },
+  "steps": {
+    "evidence": {
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 1,
+        "memory_mib": 16384,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-23T09:00:07.609Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T09:00:08.969Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-23T09:01:07.625Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T09:01:08.284Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "started",
+          "at": {
+            "value": "2026-11-23T09:00:08Z",
+            "source": "provider",
+            "how": "Sail's GET /sailboxes/{id} created_at (whole seconds)."
+          },
+          "field": "Sail created_at"
+        },
+        {
+          "kind": "ended",
+          "at": {
+            "value": "2026-11-23T09:01:08Z",
+            "source": "provider",
+            "how": "Sail's GET /sailboxes/{id} updated_at of the terminated Sailbox (whole seconds)."
+          },
+          "field": "Sail updated_at"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {},
+      "provider_records": [
+        {
+          "source": "core.cost",
+          "read_at": "2026-11-23T09:11:18.161Z",
+          "body": {
+            "status": "available",
+            "reason": null,
+            "final": true,
+            "readings": [
+              {
+                "amount": "0.000241857",
+                "currency": "USD",
+                "meter": "machine",
+                "interval_start": "2026-11-23T09:00:08Z",
+                "interval_end": "2026-11-23T09:01:08Z",
+                "scope": "sandbox",
+                "source": "reported"
+              }
+            ],
+            "records": [
+              {
+                "source": "Sail spend API",
+                "read_at": "2026-11-23T09:11:18.161Z",
+                "body": {
+                  "sandbox_id": "sail-sandbox-redacted",
+                  "window_from": "2026-11-23T09:00:00Z",
+                  "cost_usd_nanos": 241857,
+                  "running_seconds": 58.000628456,
+                  "vcpu_seconds": 30.303124486,
+                  "memory_gib_seconds": 46.06698763483634,
+                  "state_disk_gib_seconds": 68.16193914198661,
+                  "creation_count": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "Sail spend API",
+          "read_at": "2026-11-23T09:11:18.161Z",
+          "body": {
+            "sandbox_id": "sail-sandbox-redacted",
+            "window_from": "2026-11-23T09:00:00Z",
+            "cost_usd_nanos": 241857,
+            "running_seconds": 58.000628456,
+            "vcpu_seconds": 30.303124486,
+            "memory_gib_seconds": 46.06698763483634,
+            "state_disk_gib_seconds": 68.16193914198661,
+            "creation_count": 0
+          }
+        }
+      ],
+      "provider": "sail",
+      "sandbox_id": "sail-sandbox-redacted"
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-23T09:00:08Z",
+        "source": "provider",
+        "how": "Provider cost report interval_start."
+      },
+      "end": {
+        "value": "2026-11-23T09:01:08Z",
+        "source": "provider",
+        "how": "Provider cost report interval_end."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-23T09:00:08Z",
+      "source": "provider",
+      "how": "The provider's own time: Sail created_at."
+    },
+    "sandbox_end": {
+      "value": "2026-11-23T09:01:08Z",
+      "source": "provider",
+      "how": "The provider's own time: Sail updated_at."
+    },
+    "usage": {
+      "low": {
+        "provider": "sail",
+        "started": {
+          "at": "2026-11-23T09:00:08Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The provider's own time: Sail created_at."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 1,
+          "memory_mib": 16384,
+          "source": "recorded",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T09:11:18.161000Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      },
+      "high": {
+        "provider": "sail",
+        "started": {
+          "at": "2026-11-23T09:00:08Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The provider's own time: Sail created_at."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 1,
+          "memory_mib": 16384,
+          "source": "recorded",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T09:11:18.161000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T09:11:18.161000Z",
+            "how": "No billed seconds for this sandbox: the provider reports its cost instead."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the cpu time used."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the disk size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "creation",
+            "text": "The provider did not report the number of creations."
+          }
+        ],
+        "exclusions": [
+          "Volume storage: $0.000411 per GiB-hour for each hour a volume exists, including while attached Sailboxes sleep. BoxRouter creates no volume.",
+          "Plan fees and included credit are not part of a sandbox cost.",
+          "Credits and discounts"
+        ],
+        "price_version": "sail@2026-11-23",
+        "as_of": "2026-11-23T09:11:18.161000Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "cpu",
+            "text": "The provider did not report the cpu time used."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "disk",
+            "text": "The provider did not report the disk size."
+          },
+          {
+            "code": "unreported_quantity",
+            "resource": "creation",
+            "text": "The provider did not report the number of creations."
+          }
+        ],
+        "exclusions": [
+          "Volume storage: $0.000411 per GiB-hour for each hour a volume exists, including while attached Sailboxes sleep. BoxRouter creates no volume.",
+          "Plan fees and included credit are not part of a sandbox cost.",
+          "Credits and discounts"
+        ],
+        "price_version": "sail@2026-11-23",
+        "as_of": "2026-11-23T09:11:18.161000Z"
+      }
+    }
+  },
+  "as_of": "2026-11-23T09:11:18.161000Z"
+}

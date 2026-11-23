@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Sail
+website: https://docs.sailresearch.com
+rules_version: 1
+status:
+  best_label: reported
+  why_not_higher: Nothing above the provider's own figure exists. A Sailbox's spend record settled within 180.3 s of its end in 16 measured sandboxes and equalled its own usage seconds times its published rates to rounding.
+  would_raise: Nothing. A Sailbox with no spend record is read again until the record is final, then left unknown; list prices are never used to make one.
+revisit:
+  after_s: 600
+  until_s: 604800
+  interval_s: 3600
+  final_after_s: 630  # the provider's declared cost_final_within_seconds (600) plus the spec's 30 s grace
+  rationale: Sail reports usage in batches of about a minute; measured figures stopped moving 31.7 to 180.3 s after the end. The declared 600 s is 3.3 times the longest, so the first read waits for it. No later correction window is stated; 7 days is a chosen default.
+  unverified_default: false
+reported_at_list_price:
+  value: true
+  source: providers/sail/evidence/2026-11-23-cost-vs-spend.md#verdict (the spend API's rates were the published $0.015 per vCPU-hour, $0.008 per GiB-hour of memory and $0.0007 per GiB-hour of disk, and the figure equalled usage times those rates to rounding)
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a negotiated-rate organization's spend figure with its usage times the list rates; the 2026-11-23 measurements were on one list-rate Free plan organization.
+summary: >-
+  Sail's spend API reports each Sailbox's used vCPU seconds, memory GiB seconds and disk GiB seconds and the cost it works out from them at its published rates, as a per-Sailbox record and an account total. The figure is reported in batches of about a minute and settled 31.7 to 180.3 s after the end in measured sandboxes. Without a record the cost is unknown.
+formula: >-
+  Sail's own cost_usd_nanos for the Sailbox, from GET /sailboxes/spend, read after it is final. Check: used vCPU seconds × CPU rate + used memory GiB seconds × memory rate + used disk GiB seconds × disk rate.
+rules:
+  billed_on:
+    answer: >-
+      {rate.cpu} of CPU time the Sailbox's virtual CPUs use, {rate.memory} of physical RAM it holds (including its Linux filesystem cache, capped at its memory limit) and {rate.disk} of NVMe disk it uses, while it runs. A size is a ceiling, not a charge: used CPU, memory and disk are billed, not what is allocated.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md, providers/sail/evidence/2026-11-23-cost-vs-spend.md#verdict]
+  starts:
+    answer: >-
+      Cold-starting time is not billed. Billed running seconds were within 1 s of the time between the create returning and the destroy, except for a first partial batch.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md, providers/sail/evidence/2026-11-23-settle-lag.md#results]
+  ends:
+    answer: >-
+      Billing stops when the Sailbox stops running. Sleeping, paused and checkpointing time is not billed. A terminate ends it at once.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md]
+  rounding:
+    answer: >-
+      Usage is sampled every second and not rounded up to whole minutes; the spend API reports usage seconds with nine decimals and costs in whole billionths of a dollar.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md, providers/sail/evidence/2026-11-23-cost-vs-spend.md#results]
+  idle_and_paused:
+    answer: >-
+      An idle running Sailbox bills the CPU, memory and disk it uses. Sleeping and paused Sailboxes are not billed.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md]
+  image_pull:
+    answer: Not stated; the pricing page says cold-starting time is not billed and does not break out image load time.
+    unknown_how: Compare billed running seconds for a Sailbox from a cold image with one from a cached image at known durations.
+  extra_charges:
+    answer: >-
+      Creation costs {rate.creation} per new Sailbox on the Free plan and is waived on Pro and Enterprise. Volume storage costs $0.000411 per GiB-hour for each hour a volume exists. No egress charge is published.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md]
+  left_out:
+    answer: >-
+      Volume storage (BoxRouter creates no volume), plan fees and credits, and taxes.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md]
+  per_sandbox_data:
+    answer: >-
+      GET /sailboxes/spend with a sailbox_id returns the Sailbox's cost, running, vCPU, memory and disk seconds and creation count in its own units; terminated Sailboxes keep a record. The reads share one rate limit with Sail's other fleet reads and answer 429 with Retry-After when it is exceeded.
+    sources: [https://docs.sailresearch.com/sailboxes-pricing.md, providers/sail/evidence/2026-11-23-settle-lag.md#results]
+checks:
+  - date: '2026-11-23'
+    title: Settle lag of the per-Sailbox spend record
+    file: evidence/2026-11-23-settle-lag.md
+    result: 16 Sailboxes of 3 to 150 s lifetimes each had a spend record that stopped moving 31.7 to 180.3 s after the destroy returned. One organization, one region, the base image, 1 vCPU.
+  - date: '2026-11-23'
+    title: Cost against the spend API and usage times rates
+    file: evidence/2026-11-23-cost-vs-spend.md
+    result: One 60 s Sailbox with a known workload read through the adapter ended with a cost equal to the spend API total and to its usage times the published rates to rounding. One organization, one Sailbox.
+open_questions:
+  - question: Is the creation charge part of cost_usd_nanos on an organization that pays it? The measured organization has creation fees waived and every record showed creation_count 0.
+    how: On an organization that does not waive creation fees, create one Sailbox and compare its cost_usd_nanos with usage times the rates plus the $0.01 creation charge.
+  - question: Can a Sailbox's spend record change after it is final?
+    how: Re-read measured Sailboxes' spend records daily for a week and compare the figures.
+  - question: Is image load or restore time billed?
+    how: Compare billed running seconds for a Sailbox from a cold image with one from a cached image at known durations.
+  - question: Is the account total in the spend API exactly the sum of the per-Sailbox figures?
+    how: Read the account total over a window and the sum of the per-Sailbox breakdown of the same window after both are settled.
+shapes:
+  default:
+  - cpu: [1, 64]
+    memory_mib: [16384, 262144]
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    checked: '2026-11-23'
+    quote: "* **CPU:** 1–64 vCPUs per Sailbox."
+    note: "Limits, not charges: Sail bills used CPU, memory and disk. Memory 16 to 256 GiB, disk 8 to 1024 GiB; limits round up to the next power of two."
+price_sheet:
+  active_time_priced: {value: false, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+  benchmark_region: {value: null, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+  states:
+    idle: {rule: running, note: 'An idle running Sailbox bills the CPU, memory and disk it uses.', source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+    paused: {rule: none, note: 'Sleeping, paused and checkpointing time is not billed.', source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: included, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+    - {kind: snapshot, status: unpublished, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+    - {kind: image, status: unpublished, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}
+    - {kind: volume, status: pending, source_url: https://docs.sailresearch.com/sailboxes-pricing.md}

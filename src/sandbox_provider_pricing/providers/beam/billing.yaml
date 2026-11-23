@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Beam
+website: https://www.beam.cloud
+rules_version: 1
+status:
+  best_label: unknown
+  why_not_higher: Beam documents no per-sandbox usage or cost record (SDK, gateway REST and platform API read 2026-11-23), so there is nothing to compare a sandbox's cost against.
+  would_raise: A per-sandbox usage or cost record from Beam, compared with the published list rates in a recorded run.
+revisit:
+  after_s: 15
+  until_s: 900
+  interval_s: 300
+  rationale: Beam documents no per-sandbox usage or cost record, so no read can improve a cost and none is known; the short window only covers a record that appears later. Nothing was measured.
+  unverified_default: true
+reported_at_list_price:
+  value: null
+  unknown_how: Compare a provider-reported sandbox charge with its list rates.
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported sandbox charge on a discounted account with list
+    rates.
+summary: Billing rules have not been verified. Unknown facts remain unpriced.
+formula: Unknown until the provider's meters and billing boundaries are verified.
+rules:
+  billed_on:
+    answer: '{rate.cpu} and {rate.memory} of the size the sandbox is allocated, while it is running, on the Performance tier (the default for new accounts). Shared and Spot tiers have lower rates and are not priced here.'
+    sources:
+      - https://www.beam.cloud/pricing
+      - https://docs.beam.cloud/v2/resources/pricing-and-billing
+  starts:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  ends:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  rounding:
+    answer: Billed by the millisecond; no minimum or rounding increment is stated.
+    sources:
+      - https://www.beam.cloud/pricing
+  idle_and_paused:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  image_pull:
+    answer: Waiting for a machine to start and pulling the container image are not charged. The billing page states this under serverless compute; it does not repeat it for sandboxes.
+    sources:
+      - https://docs.beam.cloud/v2/resources/pricing-and-billing
+  extra_charges:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  left_out:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+  per_sandbox_data:
+    answer: Unknown; not yet verified.
+    unknown_how: Read the provider's billing documentation and verify its records.
+checks: []
+open_questions: []
+shapes:
+  default:
+  - cpu: [1, null]
+    memory_mib: [1024, null]
+    source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+    checked: '2026-11-23'
+    quote: "Tiered VMs and VM-backed sandboxes require at least **1 vCPU / 1 GiB**."
+    note: "Beam publishes no maximum shape for a Performance sandbox (Shared is capped at 8 vCPU / 16 GiB); the unit of the SDK cpu argument is read from a live run, not from this page."
+price_sheet:
+  active_time_priced: {value: false, source_url: https://www.beam.cloud/pricing}
+  benchmark_region: {value: null, source_url: https://docs.beam.cloud/v2/environment/gpu}
+  states:
+    idle: {rule: running, note: 'A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.', source_url: https://www.beam.cloud/pricing}
+    paused: {rule: none, note: 'Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.', source_url: https://docs.beam.cloud/v2/sandbox/overview}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: unknown, source_url: https://docs.beam.cloud/v2/resources/pricing-and-billing}
+    - {kind: snapshot, status: unknown, source_url: https://docs.beam.cloud/v2/resources/pricing-and-billing}
+    - {kind: image, status: unknown, source_url: https://docs.beam.cloud/v2/resources/pricing-and-billing}
+    - {kind: volume, status: unknown, source_url: https://docs.beam.cloud/v2/resources/pricing-and-billing}

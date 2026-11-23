@@ -59,7 +59,9 @@ def test_fixture_parity_and_result_schema() -> None:
         "boxd": 1,
         "daytona": 5,
         "e2b": 3,
+        "freestyle": 1,
         "modal": 2,
+        "sail": 1,
         "superserve": 6,
         "vercel": 4,
     }

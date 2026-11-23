@@ -18,12 +18,15 @@ ENDED = datetime(2026, 1, 1, tzinfo=UTC)
 def test_every_provider_has_a_complete_policy() -> None:
     expected = {
         "agent37": (60, 604800, 1800),
+        "beam": (15, 900, 300),
         "blaxel": (120, 604800, 3600),
         "boat": (15, 900, 300),
         "boxd": (600, 604800, 900),
         "daytona": (120, 259200, 3600),
         "e2b": (15, 604800, 3600),
+        "freestyle": (15, 900, 300),
         "modal": (600, 604800, 3600),
+        "sail": (600, 604800, 3600),
         "superserve": (5, 604800, 3600),
         "vercel": (120, 604800, 3600),
     }

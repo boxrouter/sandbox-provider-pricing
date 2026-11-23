@@ -1,0 +1,6 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+Tiered VMs and VM-backed sandboxes require at least **1 vCPU / 1 GiB**. Ordinary containers support fractional resources.

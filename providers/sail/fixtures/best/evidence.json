@@ -1,0 +1,107 @@
+{
+  "provider": "sail",
+  "sandbox_id": "sail-sandbox-redacted",
+  "sandbox_made": {
+    "value": true,
+    "source": "recorded",
+    "how": "the create succeeded"
+  },
+  "requested": {
+    "cpu": 1,
+    "memory_mib": 16384,
+    "region": null,
+    "options": {}
+  },
+  "calls": [
+    {
+      "name": "create",
+      "sent_at": {
+        "value": "2026-11-23T09:00:07.609Z",
+        "source": "recorded",
+        "how": "the create request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-23T09:00:08.969Z",
+        "source": "recorded",
+        "how": "the create request returned"
+      },
+      "outcome": "returned"
+    },
+    {
+      "name": "destroy",
+      "sent_at": {
+        "value": "2026-11-23T09:01:07.625Z",
+        "source": "recorded",
+        "how": "the destroy request was sent"
+      },
+      "returned_at": {
+        "value": "2026-11-23T09:01:08.284Z",
+        "source": "recorded",
+        "how": "the destroy request returned"
+      },
+      "outcome": "returned"
+    }
+  ],
+  "provider_times": [
+    {
+      "kind": "started",
+      "at": {
+        "value": "2026-11-23T09:00:08Z",
+        "source": "provider",
+        "how": "Sail's GET /sailboxes/{id} created_at (whole seconds)."
+      },
+      "field": "Sail created_at"
+    },
+    {
+      "kind": "ended",
+      "at": {
+        "value": "2026-11-23T09:01:08Z",
+        "source": "provider",
+        "how": "Sail's GET /sailboxes/{id} updated_at of the terminated Sailbox (whole seconds)."
+      },
+      "field": "Sail updated_at"
+    }
+  ],
+  "last_seen_alive": null,
+  "noticed_gone": null,
+  "provider_records": [],
+  "measured": {},
+  "provider_reports": {
+    "read_times": {
+      "cost": "2026-11-23T09:11:18.161Z"
+    },
+    "read_at": "2026-11-23T09:11:18.161Z",
+    "cost": {
+      "status": "available",
+      "reason": null,
+      "final": true,
+      "readings": [
+        {
+          "amount": "0.000241857",
+          "currency": "USD",
+          "meter": "machine",
+          "interval_start": "2026-11-23T09:00:08Z",
+          "interval_end": "2026-11-23T09:01:08Z",
+          "scope": "sandbox",
+          "source": "reported"
+        }
+      ],
+      "records": [
+        {
+          "source": "Sail spend API",
+          "read_at": "2026-11-23T09:11:18.161Z",
+          "body": {
+            "sandbox_id": "sail-sandbox-redacted",
+            "window_from": "2026-11-23T09:00:00Z",
+            "cost_usd_nanos": 241857,
+            "running_seconds": 58.000628456,
+            "vcpu_seconds": 30.303124486,
+            "memory_gib_seconds": 46.06698763483634,
+            "state_disk_gib_seconds": 68.16193914198661,
+            "creation_count": 0
+          }
+        }
+      ]
+    }
+  }
+}

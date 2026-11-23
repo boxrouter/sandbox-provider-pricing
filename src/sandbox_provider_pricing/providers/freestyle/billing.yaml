@@ -1,0 +1,104 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Freestyle
+website: https://www.freestyle.sh
+rules_version: 1
+status:
+  best_label: calculated
+  why_not_higher: Freestyle has no per-VM cost or usage endpoint, so nothing it reports is a dollar figure. The quantities come from its own VM record (totalRunSeconds, createdAt and the allocated size) and are priced at its published list rates.
+  would_raise: A per-VM cost or usage API from Freestyle, which its CEO said is planned. Until then the cost is calculated, and without the VM record it is unknown.
+revisit:
+  after_s: 15
+  until_s: 900
+  interval_s: 300
+  rationale: The VM record, which holds the run seconds, is gone the moment the VM is deleted, so no later read can improve the figure captured just before the delete; the short window only covers a capture that failed or was lost, and is a chosen default.
+  unverified_default: true
+reported_at_list_price:
+  value: false
+  source: providers/freestyle/evidence/2026-11-23-run-seconds.md#verdict (Freestyle reports no per-VM cost; the cost is calculated from its run seconds at the published rates)
+reported_under_account_rate:
+  value: false
+  source: providers/freestyle/evidence/2026-11-23-run-seconds.md#verdict (Freestyle reports no per-VM cost; the cost is calculated from rates, so no account rate enters it)
+summary: >-
+  Freestyle meters vCPU and memory per second on the amount allocated while a VM runs, and storage on the amount allocated for as long as the VM exists. It reports no cost for a VM. Its VM record reports the seconds the VM has run (credited when a run ends) and the allocated size, and the record goes with the VM. The cost is therefore calculated from those quantities, read after a pause and before the delete, at the published rates. Without the record it is unknown.
+formula: >-
+  vCPU-seconds (totalRunSeconds × allocated vCPUs) × the vCPU rate + GiB-seconds of memory (totalRunSeconds × allocated GiB) × the memory rate + GiB-seconds of storage (createdAt to the read × allocated GiB) × the storage rate, each rate per hour divided by 3,600.
+rules:
+  billed_on:
+    answer: '{rate.cpu} and {rate.memory} of allocated vCPUs and memory while the VM runs, plus {rate.disk} of allocated storage for as long as the VM exists, running or paused. Data transfer across the datacenter boundary is billed per GB.'
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+  starts:
+    answer: >-
+      Not stated. Freestyle's VM record has no started-at field; the seconds of each run are credited to totalRunSeconds when the run ends. Storage is stated to bill for the time the VM is allocated, and the record's createdAt is the only start it gives.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+      - providers/freestyle/evidence/2026-11-23-run-seconds.md#results
+  ends:
+    answer: >-
+      Compute ends when a VM pauses or stops: the pause credits the run to totalRunSeconds at once. Freestyle states no deleted-at time, and the VM record is gone after the delete.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+      - providers/freestyle/evidence/2026-11-23-run-seconds.md#results
+  rounding:
+    answer: >-
+      Metered per second and billed per hour of resource used; no minimum is stated. totalRunSeconds is whole seconds, and its rounding against our wall times varied by under 1 s per run in both directions.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+      - providers/freestyle/evidence/2026-11-23-run-seconds.md#limits
+  idle_and_paused:
+    answer: >-
+      A running VM bills its allocated vCPUs and memory whether or not the guest is busy. A paused VM holds no compute reservation and bills only storage.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+  image_pull:
+    answer: Not stated; not yet measured.
+    unknown_how: Compare the seconds credited to a first create from a large image with a later create from the same image.
+  extra_charges:
+    answer: Data transfer is billed per GB crossing the datacenter boundary in either direction. No creation, snapshot or request charge is published on the pricing page.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+  left_out:
+    answer: Plan fees, the monthly included usage, Enterprise options such as active-CPU pricing, data transfer, snapshots and taxes.
+    sources:
+      - https://www.freestyle.sh/docs/vms/pricing-and-limits
+  per_sandbox_data:
+    answer: >-
+      Partly. GET /v5/vms/{id} reports totalRunSeconds, createdAt and the allocated size, but no cost and no usage endpoint exists. The record is deleted with the VM, so it must be read after a pause and before the delete.
+    sources:
+      - providers/freestyle/evidence/2026-11-23-run-seconds.md#verdict
+checks:
+  - date: '2026-11-23'
+    title: The run-seconds record of a VM
+    file: evidence/2026-11-23-run-seconds.md
+    result: Two VMs on the Free plan, with seven runs of 3 to 31 s. totalRunSeconds read 0 during a first run, was credited at each pause, held through a 13 s pause, and the record answered 404 after the delete. Rounding was not determined. One team, one region, the default size.
+open_questions:
+  - question: Is Freestyle's invoiced charge for a VM equal to the calculated quantities at list rates? The measured account is on the Free plan, which bills nothing.
+    how: On a paid plan, run VMs of known run seconds and compare the invoice lines with the calculated figure.
+  - question: How does Freestyle round a run's seconds into totalRunSeconds? Credits differed from our wall times by under 1 s per run in both directions.
+    how: Run many short VMs with a known start and stop, and compare the credited seconds with the edges of the pause call.
+  - question: Is a VM's storage billed from createdAt, from its first boot, or from its first stop, and until when after a delete? No deleted-at time is stated.
+    how: On a paid plan, compare the invoiced storage hours of a VM kept for a known time with its createdAt and delete times.
+  - question: Do the pausing and starting states bill compute? Only a running VM is described as holding a compute reservation.
+    how: Compare the invoiced vCPU-hours of a VM paused and started repeatedly with totalRunSeconds.
+  - question: Does a resize change the seconds credited before it? The record holds one allocation, so earlier seconds would be priced at the new size.
+    how: Resize a VM between two runs and compare the invoice with the seconds at each size.
+shapes:
+  default:
+  - cpu: [1, 32]
+    memory_mib: [128, 65536]
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    checked: '2026-11-23'
+    quote: "| Max vCPUs per VM | 4 | 8 | 32 |"
+    note: "Per-VM maximums by plan: Free 4 vCPU and 8 GiB, Hobby 8 vCPU and 16 GiB, Pro 32 vCPU and 64 GiB. The page names a 1 vCPU, 128 MiB size as the smallest."
+price_sheet:
+  active_time_priced: {value: false, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+  benchmark_region: {value: null, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+  states:
+    idle: {rule: running, note: 'A running VM bills its allocated vCPUs and memory whether or not the guest is busy.', source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+    paused: {rule: disk, note: 'A paused VM holds no compute reservation, so it bills only for storage while it sleeps.', source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+  class_overrides: {}
+  storage:
+    - {kind: disk, status: priced, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits, price_version_rate: {resource: disk, per: gib-hour, multiply_by_month_hours: true}}
+    - {kind: snapshot, status: unpublished, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+    - {kind: image, status: unpublished, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}
+    - {kind: volume, status: unpublished, source_url: https://www.freestyle.sh/docs/vms/pricing-and-limits}

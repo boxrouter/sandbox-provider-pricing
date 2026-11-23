@@ -2026,6 +2026,1934 @@
       }
     },
     {
+      "id": "beam/default/1x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.07,
+          "high": 0.07,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.07,
+          "high": 0.07,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.09,
+          "high": 0.09,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.09,
+          "high": 0.09,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.13,
+          "high": 0.13,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.13,
+          "high": 0.13,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.21,
+          "high": 0.21,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.21,
+          "high": 0.21,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/1x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/1x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.12,
+          "high": 0.12,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.12,
+          "high": 0.12,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.14,
+          "high": 0.14,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.14,
+          "high": 0.14,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18,
+          "high": 0.18,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18,
+          "high": 0.18,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.26,
+          "high": 0.26,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.26,
+          "high": 0.26,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/2x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/2x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.22,
+          "high": 0.22,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.22,
+          "high": 0.22,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.24,
+          "high": 0.24,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.24,
+          "high": 0.24,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.28,
+          "high": 0.28,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.28,
+          "high": 0.28,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.36,
+          "high": 0.36,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.36,
+          "high": 0.36,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/4x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/4x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.42,
+          "high": 0.42,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.42,
+          "high": 0.42,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.44,
+          "high": 0.44,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.44,
+          "high": 0.44,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.48,
+          "high": 0.48,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.48,
+          "high": 0.48,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.56,
+          "high": 0.56,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.56,
+          "high": 0.56,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://www.beam.cloud/pricing",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "beam/default/8x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/8x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "beam/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "beam/default/storage/image",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "storage": "image"
+      },
+      "expected": {
+        "status": "unknown",
+        "label": "Unknown",
+        "usd": null
+      }
+    },
+    {
+      "id": "beam/default/storage/disk",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "storage": "disk"
+      },
+      "expected": {
+        "status": "unknown",
+        "label": "Unknown",
+        "usd": null
+      }
+    },
+    {
+      "id": "beam/default/storage/snapshot",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "storage": "snapshot"
+      },
+      "expected": {
+        "status": "unknown",
+        "label": "Unknown",
+        "usd": null
+      }
+    },
+    {
+      "id": "beam/default/storage/volume",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "beam",
+        "storage": "volume"
+      },
+      "expected": {
+        "status": "unknown",
+        "label": "Unknown",
+        "usd": null
+      }
+    },
+    {
       "id": "blaxel/default/1x2/running",
       "kind": "hourly",
       "input": {
@@ -13864,6 +15792,1982 @@
       }
     },
     {
+      "id": "freestyle/default/1x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.06612,
+          "high": 0.06612,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.06612,
+          "high": 0.06612,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.09192,
+          "high": 0.09192,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.09192,
+          "high": 0.09192,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.14352,
+          "high": 0.14352,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.14352,
+          "high": 0.14352,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.24672,
+          "high": 0.24672,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.24672,
+          "high": 0.24672,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/1x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.10644,
+          "high": 0.10644,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.10644,
+          "high": 0.10644,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.13224,
+          "high": 0.13224,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.13224,
+          "high": 0.13224,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18384,
+          "high": 0.18384,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18384,
+          "high": 0.18384,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.28704,
+          "high": 0.28704,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.28704,
+          "high": 0.28704,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/2x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18708,
+          "high": 0.18708,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.18708,
+          "high": 0.18708,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.21288,
+          "high": 0.21288,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.21288,
+          "high": 0.21288,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.26448,
+          "high": 0.26448,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.26448,
+          "high": 0.26448,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.36768,
+          "high": 0.36768,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.36768,
+          "high": 0.36768,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/4x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.34836,
+          "high": 0.34836,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.34836,
+          "high": 0.34836,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.37416,
+          "high": 0.37416,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.37416,
+          "high": 0.37416,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.42576,
+          "high": 0.42576,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.42576,
+          "high": 0.42576,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.52896,
+          "high": 0.52896,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.52896,
+          "high": 0.52896,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.00043,
+          "high": 0.00086,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        }
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/8x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "freestyle/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "freestyle/default/storage/image",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "storage": "image"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "freestyle/default/storage/disk",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "storage": "disk"
+      },
+      "expected": {
+        "status": "priced",
+        "label": "Priced",
+        "usd": 0.06278
+      }
+    },
+    {
+      "id": "freestyle/default/storage/snapshot",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "storage": "snapshot"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "freestyle/default/storage/volume",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "freestyle",
+        "storage": "volume"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
       "id": "modal/default/1x2/running",
       "kind": "hourly",
       "input": {
@@ -17749,6 +21653,2030 @@
         "status": "priced",
         "label": "Priced",
         "usd": 0.09
+      }
+    },
+    {
+      "id": "sail/default/1x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.031,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.031,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/1x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.047,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.047,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/1x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.079,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.079,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/1x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.143,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.143,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/1x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/1x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.046,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.046,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/2x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.062,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.062,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/2x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.094,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.094,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/2x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.158,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.158,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/2x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/2x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.076,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.076,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/4x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.092,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.092,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/4x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.124,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.124,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/4x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.188,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.188,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/4x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/4x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.136,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.136,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/8x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.152,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.152,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/8x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.184,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.184,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/8x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.248,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.248,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "checked_at": "2026-11-23"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/8x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sail/default/8x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sail/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "reported",
+        "total": {
+          "low": "0.000241857",
+          "high": "0.000241857"
+        }
+      }
+    },
+    {
+      "id": "sail/default/storage/image",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "storage": "image"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "sail/default/storage/disk",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "storage": "disk"
+      },
+      "expected": {
+        "status": "included",
+        "label": "Included",
+        "usd": null
+      }
+    },
+    {
+      "id": "sail/default/storage/snapshot",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "storage": "snapshot"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
+      "id": "sail/default/storage/volume",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sail",
+        "storage": "volume"
+      },
+      "expected": {
+        "status": "pending",
+        "label": "Pending",
+        "usd": null
       }
     },
     {

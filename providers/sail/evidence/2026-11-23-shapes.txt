@@ -1,0 +1,12 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://docs.sailresearch.com/sailboxes-pricing.md
+Verbatim excerpts:
+
+* **CPU:** 1–64 vCPUs per Sailbox.
+* **Memory:** 16–256 GiB per Sailbox. Requests above 256 GiB are rejected.
+* **Disk:** 8–1024 GiB per Sailbox.
+* Limits round up to the next power of two.
+Limits cap what a workload can use.

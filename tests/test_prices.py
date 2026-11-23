@@ -119,12 +119,15 @@ def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
     # excerpts of its pages that state its shapes.
     expected = {
         "agent37": (1, True),
+        "beam": (1, True),
         "blaxel": (2, True),
         "boat": (1, True),
         "boxd": (1, True),
         "daytona": (2, True),
         "e2b": (2, True),
+        "freestyle": (1, True),
         "modal": (4, True),
+        "sail": (1, True),
         "superserve": (2, True),
         "vercel": (2, True),
     }

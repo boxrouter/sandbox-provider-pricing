@@ -1262,6 +1262,1081 @@
       }
     },
     {
+      "active_time_priced": false,
+      "basis": "allocated CPU and memory",
+      "billing_mode": "allocated",
+      "billing_rules": {
+        "best_cost_label": "unknown",
+        "billed_on": {
+          "answer": "$0.05 per vCPU-hour and $0.01 per GiB-hour of the size the sandbox is allocated, while it is running, on the Performance tier (the default for new accounts). Shared and Spot tiers have lower rates and are not priced here.",
+          "sources": [
+            "https://www.beam.cloud/pricing",
+            "https://docs.beam.cloud/v2/resources/pricing-and-billing"
+          ]
+        },
+        "ends": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        },
+        "extra_charges": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        },
+        "idle_and_paused": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        },
+        "image_pull": {
+          "answer": "Waiting for a machine to start and pulling the container image are not charged. The billing page states this under serverless compute; it does not repeat it for sandboxes.",
+          "sources": [
+            "https://docs.beam.cloud/v2/resources/pricing-and-billing"
+          ]
+        },
+        "left_out": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        },
+        "per_sandbox_data": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        },
+        "rounding": {
+          "answer": "Billed by the millisecond; no minimum or rounding increment is stated.",
+          "sources": [
+            "https://www.beam.cloud/pricing"
+          ]
+        },
+        "sources": {
+          "billed_on": [
+            "https://www.beam.cloud/pricing",
+            "https://docs.beam.cloud/v2/resources/pricing-and-billing"
+          ],
+          "ends": [],
+          "extra_charges": [],
+          "idle_and_paused": [],
+          "image_pull": [
+            "https://docs.beam.cloud/v2/resources/pricing-and-billing"
+          ],
+          "left_out": [],
+          "per_sandbox_data": [],
+          "rounding": [
+            "https://www.beam.cloud/pricing"
+          ],
+          "starts": []
+        },
+        "starts": {
+          "answer": "Unknown; not yet verified.",
+          "unknown_how": "Read the provider's billing documentation and verify its records."
+        }
+      },
+      "billing_rules_source": "src/sandbox_provider_pricing/providers/beam/billing.yaml",
+      "checked_at": "2026-11-23",
+      "class": "default",
+      "class_rules": {},
+      "compute_rates": [
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "vcpu-hour",
+          "resource": "cpu",
+          "size_per_unit": null,
+          "usd": 0.05
+        },
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "gib-hour",
+          "resource": "memory",
+          "size_per_unit": null,
+          "usd": 0.01
+        }
+      ],
+      "configs": [
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.07,
+            "low": 0.07,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.07,
+            "low": 0.07,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.09,
+            "low": 0.09,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.09,
+            "low": 0.09,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.13,
+            "low": 0.13,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.13,
+            "low": 0.13,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.05,
+            "low": 0.05,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.21,
+            "low": 0.21,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.21,
+            "low": 0.21,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.12,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.12,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.14,
+            "low": 0.14,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.14,
+            "low": 0.14,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18,
+            "low": 0.18,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18,
+            "low": 0.18,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.26,
+            "low": 0.26,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.26,
+            "low": 0.26,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.22,
+            "low": 0.22,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.22,
+            "low": 0.22,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.24,
+            "low": 0.24,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.24,
+            "low": 0.24,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.28,
+            "low": 0.28,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.28,
+            "low": 0.28,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.36,
+            "low": 0.36,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.36,
+            "low": 0.36,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.42,
+            "low": 0.42,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.02,
+            "low": 0.02,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.42,
+            "low": 0.42,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.44,
+            "low": 0.44,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04,
+            "low": 0.04,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.44,
+            "low": 0.44,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.48,
+            "low": 0.48,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08,
+            "low": 0.08,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.48,
+            "low": 0.48,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "idle_note": "A running sandbox bills its full allocated vCPU and memory until it is terminated or its TTL (keep_warm_seconds) ends; there is no idle discount.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.56,
+            "low": 0.56,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16,
+            "low": 0.16,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "paused_note": "Beam sandboxes have no pause; a snapshot is the way to keep state. Not applicable.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.56,
+            "low": 0.56,
+            "source_url": "https://www.beam.cloud/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "status": "priced"
+        }
+      ],
+      "display_name": "Beam",
+      "id": "beam",
+      "label": "default",
+      "name": "Beam",
+      "price_version": "beam@2026-11-23",
+      "pricing_release_version": "",
+      "region": null,
+      "region_checked_at": "2026-11-23",
+      "region_multiplier": null,
+      "region_note": null,
+      "region_source_url": "https://docs.beam.cloud/v2/environment/gpu",
+      "source_url": "https://www.beam.cloud/pricing",
+      "storage": [
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "image",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.beam.cloud/v2/resources/pricing-and-billing",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the image storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "disk",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.beam.cloud/v2/resources/pricing-and-billing",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the disk storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "snapshot",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.beam.cloud/v2/resources/pricing-and-billing",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the snapshot storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "volume",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.beam.cloud/v2/resources/pricing-and-billing",
+          "source_usd": null,
+          "status": "unknown",
+          "status_text": {
+            "hover": "The separate price status for the volume storage item is not known.",
+            "word": "Unknown"
+          },
+          "usd": null
+        }
+      ],
+      "unit_rates": {
+        "cpu_per_vcpu_hour": 0.05,
+        "memory_per_gib_hour": 0.01
+      }
+    },
+    {
       "active_time_priced": true,
       "basis": "active time",
       "billing_mode": "active",
@@ -6545,6 +7620,1105 @@
     },
     {
       "active_time_priced": false,
+      "basis": "allocated CPU and memory",
+      "billing_mode": "allocated",
+      "billing_rules": {
+        "best_cost_label": "calculated",
+        "billed_on": {
+          "answer": "$0.04032 per vCPU-hour and $0.0129 per GiB-hour of allocated vCPUs and memory while the VM runs, plus $0.000086 per GiB-hour of allocated storage for as long as the VM exists, running or paused. Data transfer across the datacenter boundary is billed per GB.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ]
+        },
+        "ends": {
+          "answer": "Compute ends when a VM pauses or stops: the pause credits the run to totalRunSeconds at once. Freestyle states no deleted-at time, and the VM record is gone after the delete.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#results"
+          ]
+        },
+        "extra_charges": {
+          "answer": "Data transfer is billed per GB crossing the datacenter boundary in either direction. No creation, snapshot or request charge is published on the pricing page.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ]
+        },
+        "idle_and_paused": {
+          "answer": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy. A paused VM holds no compute reservation and bills only storage.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ]
+        },
+        "image_pull": {
+          "answer": "Not stated; not yet measured.",
+          "unknown_how": "Compare the seconds credited to a first create from a large image with a later create from the same image."
+        },
+        "left_out": {
+          "answer": "Plan fees, the monthly included usage, Enterprise options such as active-CPU pricing, data transfer, snapshots and taxes.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ]
+        },
+        "per_sandbox_data": {
+          "answer": "Partly. GET /v5/vms/{id} reports totalRunSeconds, createdAt and the allocated size, but no cost and no usage endpoint exists. The record is deleted with the VM, so it must be read after a pause and before the delete.",
+          "sources": [
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#verdict"
+          ]
+        },
+        "rounding": {
+          "answer": "Metered per second and billed per hour of resource used; no minimum is stated. totalRunSeconds is whole seconds, and its rounding against our wall times varied by under 1 s per run in both directions.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#limits"
+          ]
+        },
+        "sources": {
+          "billed_on": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ],
+          "ends": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#results"
+          ],
+          "extra_charges": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ],
+          "idle_and_paused": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ],
+          "image_pull": [],
+          "left_out": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          ],
+          "per_sandbox_data": [
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#verdict"
+          ],
+          "rounding": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#limits"
+          ],
+          "starts": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#results"
+          ]
+        },
+        "starts": {
+          "answer": "Not stated. Freestyle's VM record has no started-at field; the seconds of each run are credited to totalRunSeconds when the run ends. Storage is stated to bill for the time the VM is allocated, and the record's createdAt is the only start it gives.",
+          "sources": [
+            "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+            "providers/freestyle/evidence/2026-11-23-run-seconds.md#results"
+          ]
+        }
+      },
+      "billing_rules_source": "src/sandbox_provider_pricing/providers/freestyle/billing.yaml",
+      "checked_at": "2026-11-23",
+      "class": "default",
+      "class_rules": {},
+      "compute_rates": [
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "vcpu-hour",
+          "resource": "cpu",
+          "size_per_unit": null,
+          "usd": 0.04032
+        },
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "gib-hour",
+          "resource": "memory",
+          "size_per_unit": null,
+          "usd": 0.0129
+        }
+      ],
+      "configs": [
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06612,
+            "low": 0.06612,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06612,
+            "low": 0.06612,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.09192,
+            "low": 0.09192,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.09192,
+            "low": 0.09192,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.14352,
+            "low": 0.14352,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.14352,
+            "low": 0.14352,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.04032,
+            "low": 0.04032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.24672,
+            "low": 0.24672,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.24672,
+            "low": 0.24672,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.10644,
+            "low": 0.10644,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.10644,
+            "low": 0.10644,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.13224,
+            "low": 0.13224,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.13224,
+            "low": 0.13224,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18384,
+            "low": 0.18384,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18384,
+            "low": 0.18384,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.08064,
+            "low": 0.08064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.28704,
+            "low": 0.28704,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.28704,
+            "low": 0.28704,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18708,
+            "low": 0.18708,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.18708,
+            "low": 0.18708,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.21288,
+            "low": 0.21288,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.21288,
+            "low": 0.21288,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.26448,
+            "low": 0.26448,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.26448,
+            "low": 0.26448,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.16128,
+            "low": 0.16128,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.36768,
+            "low": 0.36768,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.36768,
+            "low": 0.36768,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.34836,
+            "low": 0.34836,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0258,
+            "low": 0.0258,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.34836,
+            "low": 0.34836,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.37416,
+            "low": 0.37416,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0516,
+            "low": 0.0516,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.37416,
+            "low": 0.37416,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.42576,
+            "low": 0.42576,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.1032,
+            "low": 0.1032,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.42576,
+            "low": 0.42576,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.32256,
+            "low": 0.32256,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "idle_note": "A running VM bills its allocated vCPUs and memory whether or not the guest is busy.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.52896,
+            "low": 0.52896,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.2064,
+            "low": 0.2064,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "paused_note": "A paused VM holds no compute reservation, so it bills only for storage while it sleeps.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.00086,
+            "low": 0.00043,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.52896,
+            "low": 0.52896,
+            "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "status": "priced"
+        }
+      ],
+      "display_name": "Freestyle",
+      "id": "freestyle",
+      "label": "default",
+      "name": "Freestyle",
+      "price_version": "freestyle@2026-11-23",
+      "pricing_release_version": "",
+      "region": null,
+      "region_checked_at": "2026-11-23",
+      "region_multiplier": null,
+      "region_note": null,
+      "region_source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+      "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+      "storage": [
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "image",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the image storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "disk",
+          "per": "gib-month",
+          "source_per": "gib-hour",
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "source_usd": 8.6e-05,
+          "status": "priced",
+          "status_text": {
+            "hover": "A separate price is listed for the disk storage item.",
+            "word": "Priced"
+          },
+          "usd": 0.06278
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "snapshot",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the snapshot storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "volume",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://www.freestyle.sh/docs/vms/pricing-and-limits",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the volume storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        }
+      ],
+      "unit_rates": {
+        "cpu_per_vcpu_hour": 0.04032,
+        "memory_per_gib_hour": 0.0129
+      }
+    },
+    {
+      "active_time_priced": false,
       "basis": "the larger of request and use CPU and memory",
       "billing_mode": "larger_of_request_and_use",
       "billing_rules": {
@@ -8625,6 +10799,1107 @@
       "unit_rates": {
         "cpu_per_vcpu_hour": 0.1631988,
         "memory_per_gib_hour": 0.0276138
+      }
+    },
+    {
+      "active_time_priced": false,
+      "basis": "active CPU and memory",
+      "billing_mode": "active",
+      "billing_rules": {
+        "best_cost_label": "reported",
+        "billed_on": {
+          "answer": "$0.015 per vCPU-hour of CPU time the Sailbox's virtual CPUs use, $0.008 per GiB-hour of physical RAM it holds (including its Linux filesystem cache, capped at its memory limit) and $0.0007 per GiB-hour of NVMe disk it uses, while it runs. A size is a ceiling, not a charge: used CPU, memory and disk are billed, not what is allocated.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-cost-vs-spend.md#verdict"
+          ]
+        },
+        "ends": {
+          "answer": "Billing stops when the Sailbox stops running. Sleeping, paused and checkpointing time is not billed. A terminate ends it at once.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ]
+        },
+        "extra_charges": {
+          "answer": "Creation costs $0.01 per creation per new Sailbox on the Free plan and is waived on Pro and Enterprise. Volume storage costs $0.000411 per GiB-hour for each hour a volume exists. No egress charge is published.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ]
+        },
+        "idle_and_paused": {
+          "answer": "An idle running Sailbox bills the CPU, memory and disk it uses. Sleeping and paused Sailboxes are not billed.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ]
+        },
+        "image_pull": {
+          "answer": "Not stated; the pricing page says cold-starting time is not billed and does not break out image load time.",
+          "unknown_how": "Compare billed running seconds for a Sailbox from a cold image with one from a cached image at known durations."
+        },
+        "left_out": {
+          "answer": "Volume storage (BoxRouter creates no volume), plan fees and credits, and taxes.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ]
+        },
+        "per_sandbox_data": {
+          "answer": "GET /sailboxes/spend with a sailbox_id returns the Sailbox's cost, running, vCPU, memory and disk seconds and creation count in its own units; terminated Sailboxes keep a record. The reads share one rate limit with Sail's other fleet reads and answer 429 with Retry-After when it is exceeded.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-settle-lag.md#results"
+          ]
+        },
+        "rounding": {
+          "answer": "Usage is sampled every second and not rounded up to whole minutes; the spend API reports usage seconds with nine decimals and costs in whole billionths of a dollar.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-cost-vs-spend.md#results"
+          ]
+        },
+        "sources": {
+          "billed_on": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-cost-vs-spend.md#verdict"
+          ],
+          "ends": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ],
+          "extra_charges": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ],
+          "idle_and_paused": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ],
+          "image_pull": [],
+          "left_out": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md"
+          ],
+          "per_sandbox_data": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-settle-lag.md#results"
+          ],
+          "rounding": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-cost-vs-spend.md#results"
+          ],
+          "starts": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-settle-lag.md#results"
+          ]
+        },
+        "starts": {
+          "answer": "Cold-starting time is not billed. Billed running seconds were within 1 s of the time between the create returning and the destroy, except for a first partial batch.",
+          "sources": [
+            "https://docs.sailresearch.com/sailboxes-pricing.md",
+            "providers/sail/evidence/2026-11-23-settle-lag.md#results"
+          ]
+        }
+      },
+      "billing_rules_source": "src/sandbox_provider_pricing/providers/sail/billing.yaml",
+      "checked_at": "2026-11-23",
+      "class": "default",
+      "class_rules": {},
+      "compute_rates": [
+        {
+          "basis": "active",
+          "billed_states": [
+            "running"
+          ],
+          "per": "vcpu-hour",
+          "resource": "cpu",
+          "size_per_unit": null,
+          "usd": 0.015
+        },
+        {
+          "basis": "active",
+          "billed_states": [
+            "running"
+          ],
+          "per": "gib-hour",
+          "resource": "memory",
+          "size_per_unit": null,
+          "usd": 0.008
+        }
+      ],
+      "configs": [
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.015,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.143,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.03,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.158,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.06,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.188,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.12,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "idle_note": "An idle running Sailbox bills the CPU, memory and disk it uses.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.128,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "paused_note": "Sleeping, paused and checkpointing time is not billed.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-23",
+            "high": 0.248,
+            "low": 0.0,
+            "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "status": "priced"
+        }
+      ],
+      "display_name": "Sail",
+      "id": "sail",
+      "label": "default",
+      "name": "Sail",
+      "price_version": "sail@2026-11-23",
+      "pricing_release_version": "",
+      "region": null,
+      "region_checked_at": "2026-11-23",
+      "region_multiplier": null,
+      "region_note": null,
+      "region_source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+      "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+      "storage": [
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "image",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the image storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "disk",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "source_usd": null,
+          "status": "included",
+          "status_text": {
+            "hover": "The disk storage item is listed as included.",
+            "word": "Included"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "snapshot",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the snapshot storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-23",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "volume",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://docs.sailresearch.com/sailboxes-pricing.md",
+          "source_usd": null,
+          "status": "pending",
+          "status_text": {
+            "hover": "The price for the volume storage item is pending.",
+            "word": "Pending"
+          },
+          "usd": null
+        }
+      ],
+      "unit_rates": {
+        "cpu_per_vcpu_hour": 0.015,
+        "memory_per_gib_hour": 0.008
       }
     },
     {

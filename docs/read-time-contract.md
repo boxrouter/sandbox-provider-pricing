@@ -31,6 +31,7 @@ Never replace timestamps throughout the evidence or all strings globally.
 - `steps.usage.*.*.observed_at`
 - `steps.usage.*.intervals.*.observed_at`
 - `steps.usage.*.intervals.*.size.observed_at`
+- `steps.usage.*.metered.*.observed_at`
 
 Record `read_at` values in `steps.evidence` remain input evidence; they are not new read clocks.
 For provider-report input times and their precedence, follow the

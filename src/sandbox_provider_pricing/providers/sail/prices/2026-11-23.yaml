@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: sail
+version: sail@2026-11-23
+effective_from: '2026-11-23T00:00:00Z'
+retrieved_at: '2026-11-23T08:50:00Z'
+sources:
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: Sailboxes charge for actual usage, not reserved capacity.
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: '| Used vCPU/hour (CPU time of the Sailbox''s virtual CPUs) | \$0.015 |'
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: '| Used RAM (GiB)/hour (Physical RAM the Sailbox holds on the host, including
+    its Linux filesystem cache) | \$0.008 |'
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: '| Used NVMe disk (GiB)/hour (Disk space the Sailbox uses) | \$0.0007 |'
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: '| Volume storage (GiB)/hour | \$0.000411 |'
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: '| Sailbox creation | \$0.01 (**waived** for Pro and Enterprise) |'
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: billed while the Sailbox is running. Sleeping, paused, checkpointing, and
+    cold-starting time is not billed.
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: Running usage is sampled every second and reported in roughly one-minute
+    batches. Usage is not rounded up to whole minutes.
+- url: https://docs.sailresearch.com/sailboxes-pricing.md
+  quote: Billed memory includes application memory, guest kernel memory, and the Linux
+    filesystem cache inside the Sailbox.
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.015'
+      per: vcpu-hour
+    memory:
+      usd: '0.008'
+      per: gib-hour
+    disk:
+      usd: '0.0007'
+      per: gib-hour
+    creation:
+      usd: '0.01'
+      per: creation
+  meter:
+    cpu:
+      basis: active
+      billed_states:
+      - running
+    memory:
+      basis: active
+      billed_states:
+      - running
+    disk:
+      basis: active
+      billed_states:
+      - running
+exclusions:
+- 'Volume storage: $0.000411 per GiB-hour for each hour a volume exists, including
+  while attached Sailboxes sleep. BoxRouter creates no volume.'
+- Plan fees and included credit are not part of a sandbox cost.
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: Billed per vCPU-hour of CPU the Sailbox uses while it runs; the size is
+      a ceiling, so the quote is an upper bound.
+  memory:
+    treatment: in_quote
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: Billed per GiB-hour of physical RAM held, including the Linux filesystem
+      cache, capped at the memory limit.
+  disk:
+    treatment: in_quote
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: Billed per GiB-hour of NVMe disk the Sailbox uses while it runs.
+  creation:
+    treatment: in_quote
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: $0.01 per new Sailbox on the Free plan, waived on Pro and Enterprise.
+  egress:
+    treatment: unbounded
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: No network charge is published; unpublished is never free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: No checkpoint storage charge is published; unpublished is never free.
+  image_storage:
+    treatment: unbounded
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: No image storage charge is published; unpublished is never free.
+  volume_storage:
+    treatment: unbounded
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: Volumes are billed per GiB-hour for as long as they exist; BoxRouter creates
+      none.
+  requests:
+    treatment: unbounded
+    source: https://docs.sailresearch.com/sailboxes-pricing.md
+    note: No per-request charge is published; unpublished is never free.
+open_questions:
+- 'Whether the creation charge applies: it is $0.01 per new Sailbox on the Free plan
+  and waived on Pro and Enterprise. The measured account reports creation_fees_waived
+  true and creation_count 0 (providers/sail/evidence/).'
+- 'Network: no egress charge is published; none was seen in the spend API.'

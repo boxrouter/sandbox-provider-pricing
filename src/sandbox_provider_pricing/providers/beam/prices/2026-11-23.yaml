@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: beam
+version: beam@2026-11-23
+effective_from: '2026-11-23T00:00:00Z'
+retrieved_at: '2026-11-23T09:30:00Z'
+sources:
+- url: https://www.beam.cloud/pricing
+  quote: Performance tier. Sandbox and VM prices are for 1 vCPU and 1 GiB of RAM.
+- url: https://www.beam.cloud/pricing
+  quote: "Performance$0.28/hrfor a 4 vCPU \xB7 8 GiB VMNo CPU sharing.Not interrupted.1\
+    \ vCPU$0.05/hr1 GiB RAM$0.01/hr"
+- url: https://www.beam.cloud/pricing
+  quote: "Shared$0.088/hrfor a 4 vCPU \xB7 8 GiB VMShared vCPUs.Not interrupted.Up\
+    \ to 8 vCPU / 16 GiB.1 vCPU$0.011/hr1 GiB RAM$0.0055/hr"
+- url: https://www.beam.cloud/pricing
+  quote: "Spot$0.036/hrfor a 4 vCPU \xB7 8 GiB VMRuns on spare capacity.May be interrupted.Restart\
+    \ interrupted VMs manually.1 vCPU$0.0063/hr1 GiB RAM$0.00135/hr"
+- url: https://www.beam.cloud/pricing
+  quote: You choose a tier for each workload. New accounts default to Performance.
+- url: https://www.beam.cloud/pricing
+  quote: "CPUvCPU$0.05/hr \xB7 per vCPU RAM$0.01/hr \xB7 per GiB Pay by the millisecond,\
+    \ only when the sandbox is running."
+- url: https://www.beam.cloud/pricing
+  quote: A 2 vCPU / 8 GiB sandbox on Performance costs $0.18/hr, or $0.00005 per second.
+- url: https://docs.beam.cloud/v2/resources/pricing-and-billing
+  quote: New accounts default to Performance, and workloads opt into Shared or Spot
+- url: https://docs.beam.cloud/v2/resources/pricing-and-billing
+  quote: A workload keeps its tier's prices from its first run, even if rates change
+    later; a new deployment starts at current rates.
+- url: https://docs.beam.cloud/v2/resources/pricing-and-billing
+  quote: You are not charged for waiting for a machine to start or pulling your container
+    image.
+- url: https://docs.beam.cloud/v2/resources/pricing-and-billing
+  quote: Storage is not billed yet.
+- url: https://docs.beam.cloud/v2/resources/pricing-and-billing
+  quote: This will use the same usage credits as compute and cover retained VM disk,
+    volume, and snapshot data, including while compute is stopped.
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.05'
+      per: vcpu-hour
+    memory:
+      usd: '0.01'
+      per: gib-hour
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+exclusions:
+- 'CPU tiers: the page sells three CPU tiers for sandboxes. This version prices Performance
+  (the default for new accounts, no CPU sharing): $0.05 per vCPU-hour and $0.01 per
+  GiB-hour. Shared is $0.011 and $0.0055, Spot is $0.0063 and $0.00135 (Spot may be
+  interrupted). A sandbox asks for a tier when it is made; a workload keeps the tier
+  prices of its first run. None of the tier choice is offered through the router yet,
+  so Shared and Spot are not priced.'
+- 'Plan fees: the billing page names a $20 per month Developer plan that includes
+  $20 of usage credits; usage is billed at the rates above. Credits are not a price
+  change.'
+- 'GPU sandboxes, on-demand machines, clusters and BYOC: other Beam products with
+  their own prices; not priced here.'
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://www.beam.cloud/pricing
+    note: Billed by the millisecond per allocated vCPU while the sandbox is running;
+      waiting for a machine and pulling the image are not charged.
+  memory:
+    treatment: in_quote
+    source: https://www.beam.cloud/pricing
+    note: Billed by the millisecond per allocated GiB of RAM while the sandbox is
+      running.
+  disk:
+    treatment: unbounded
+    source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+    note: Storage is not billed yet, but the billing page plans $0.0001 per GB-hour
+      with no free allowance; treated as possibly billable, never as free.
+  creation:
+    treatment: unbounded
+    source: https://www.beam.cloud/pricing
+    note: No per-creation fee is published. Not published on the pages checked; treated
+      as possibly billable, never as free.
+  egress:
+    treatment: unbounded
+    source: https://www.beam.cloud/pricing
+    note: No egress charge is published on the pages checked. Not published; treated
+      as possibly billable, never as free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+    note: Snapshot data is not billed yet; the billing page says planned storage pricing
+      will cover snapshot data, so it is treated as possibly billable, never as free.
+  image_storage:
+    treatment: unbounded
+    source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+    note: Storage is not billed yet and shared base images are excluded from the planned
+      charge; custom image storage is not stated. Treated as possibly billable, never
+      as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://docs.beam.cloud/v2/resources/pricing-and-billing
+    note: Volume data is not billed yet; the planned storage charge will cover it.
+      Treated as possibly billable, never as free.
+  requests:
+    treatment: unbounded
+    source: https://www.beam.cloud/pricing
+    note: No per-request charge is published on the pages checked. Not published;
+      treated as possibly billable, never as free.
+open_questions:
+- Whether the SDK `cpu` argument of a sandbox counts vCPUs, cores or millicores. The
+  price page is per vCPU and describes a core as 2 vCPU in other places; the unit
+  the sandbox API takes is read from a live run, not from the price page.
+- 'Whether Beam exposes any per-sandbox usage or cost record: none is documented (SDK,
+  gateway REST and platform API read 2026-11-23). Without one the cost of a sandbox
+  is unknown here; list prices are never used to make one.'
+- 'When the Performance rates took effect: the page carries no date, so effective_from
+  is the day it was read.'
+- 'Whether time before the user code starts, or after terminate is accepted, is billed:
+  the pages say only that waiting for a machine and pulling an image are not charged.'

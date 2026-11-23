@@ -1,0 +1,428 @@
+{
+ "samples": [
+  {
+   "n": 1,
+   "round": 1,
+   "life": 5,
+   "ran_s": 5.6,
+   "create_s": 2.35,
+   "first_record_since_end_s": 91.1,
+   "settled_since_end_s": 91.1,
+   "changes": 0,
+   "final_running_s": 4.999,
+   "final_nanos": 5410,
+   "creation_count": 0,
+   "vcpu_s": 0.191675,
+   "mem": 1.633,
+   "disk": 5.063,
+   "series": [
+    {
+     "since_end_s": 91.1,
+     "cost_nanos": 5410,
+     "running_seconds": 4.999
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "round": 1,
+   "life": 10,
+   "ran_s": 10.7,
+   "create_s": 2.48,
+   "first_record_since_end_s": 65.0,
+   "settled_since_end_s": 159.1,
+   "changes": 1,
+   "final_running_s": 9.996,
+   "final_nanos": 11047,
+   "creation_count": 0,
+   "vcpu_s": 0.256932,
+   "mem": 3.606,
+   "disk": 10.123,
+   "series": [
+    {
+     "since_end_s": 65.0,
+     "cost_nanos": 7723,
+     "running_seconds": 6.995
+    },
+    {
+     "since_end_s": 159.1,
+     "cost_nanos": 11047,
+     "running_seconds": 9.996
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "round": 1,
+   "life": 20,
+   "ran_s": 20.6,
+   "create_s": 2.66,
+   "first_record_since_end_s": 122.9,
+   "settled_since_end_s": 122.9,
+   "changes": 0,
+   "final_running_s": 20.005,
+   "final_nanos": 24672,
+   "creation_count": 0,
+   "vcpu_s": 0.539742,
+   "mem": 8.323,
+   "disk": 20.259,
+   "series": [
+    {
+     "since_end_s": 122.9,
+     "cost_nanos": 24672,
+     "running_seconds": 20.005
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "round": 1,
+   "life": 30,
+   "ran_s": 30.6,
+   "create_s": 2.62,
+   "first_record_since_end_s": 112.9,
+   "settled_since_end_s": 112.9,
+   "changes": 0,
+   "final_running_s": 30.003,
+   "final_nanos": 39228,
+   "creation_count": 0,
+   "vcpu_s": 0.798909,
+   "mem": 13.503,
+   "disk": 30.383,
+   "series": [
+    {
+     "since_end_s": 112.9,
+     "cost_nanos": 39228,
+     "running_seconds": 30.003
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "round": 1,
+   "life": 45,
+   "ran_s": 45.7,
+   "create_s": 3.0,
+   "first_record_since_end_s": 60.8,
+   "settled_since_end_s": 165.6,
+   "changes": 1,
+   "final_running_s": 44.003,
+   "final_nanos": 56663,
+   "creation_count": 0,
+   "vcpu_s": 0.280974,
+   "mem": 21.083,
+   "disk": 44.561,
+   "series": [
+    {
+     "since_end_s": 60.8,
+     "cost_nanos": 5977,
+     "running_seconds": 6.001
+    },
+    {
+     "since_end_s": 165.6,
+     "cost_nanos": 56663,
+     "running_seconds": 44.003
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "round": 1,
+   "life": 60,
+   "ran_s": 60.6,
+   "create_s": 2.39,
+   "first_record_since_end_s": 15.2,
+   "settled_since_end_s": 109.3,
+   "changes": 1,
+   "final_running_s": 60.023,
+   "final_nanos": 80660,
+   "creation_count": 0,
+   "vcpu_s": 0.969145,
+   "mem": 29.176,
+   "disk": 60.785,
+   "series": [
+    {
+     "since_end_s": 15.2,
+     "cost_nanos": 9599,
+     "running_seconds": 7.001
+    },
+    {
+     "since_end_s": 109.3,
+     "cost_nanos": 80660,
+     "running_seconds": 60.023
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "round": 1,
+   "life": 90,
+   "ran_s": 90.7,
+   "create_s": 2.02,
+   "first_record_since_end_s": 53.4,
+   "settled_since_end_s": 158.2,
+   "changes": 1,
+   "final_running_s": 89.819,
+   "final_nanos": 120092,
+   "creation_count": 0,
+   "vcpu_s": 0.365503,
+   "mem": 45.42,
+   "disk": 90.959,
+   "series": [
+    {
+     "since_end_s": 53.4,
+     "cost_nanos": 89225,
+     "running_seconds": 67.817
+    },
+    {
+     "since_end_s": 158.2,
+     "cost_nanos": 120092,
+     "running_seconds": 89.819
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "round": 1,
+   "life": 120,
+   "ran_s": 120.7,
+   "create_s": 2.06,
+   "first_record_since_end_s": -44.6,
+   "settled_since_end_s": 149.1,
+   "changes": 2,
+   "final_running_s": 119.778,
+   "final_nanos": 159676,
+   "creation_count": 0,
+   "vcpu_s": 0.391565,
+   "mem": 60.536,
+   "disk": 121.298,
+   "series": [
+    {
+     "since_end_s": -44.6,
+     "cost_nanos": 7191,
+     "running_seconds": 7.778
+    },
+    {
+     "since_end_s": 49.5,
+     "cost_nanos": 87750,
+     "running_seconds": 67.78
+    },
+    {
+     "since_end_s": 149.1,
+     "cost_nanos": 159676,
+     "running_seconds": 119.778
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "round": 2,
+   "life": 3,
+   "ran_s": 3.8,
+   "create_s": 2.36,
+   "first_record_since_end_s": 96.7,
+   "settled_since_end_s": 96.7,
+   "changes": 0,
+   "final_running_s": 3.002,
+   "final_nanos": 4175,
+   "creation_count": 0,
+   "vcpu_s": 0.328367,
+   "mem": 0.998,
+   "disk": 3.04,
+   "series": [
+    {
+     "since_end_s": 96.7,
+     "cost_nanos": 4175,
+     "running_seconds": 3.002
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "round": 2,
+   "life": 8,
+   "ran_s": 8.7,
+   "create_s": 2.09,
+   "first_record_since_end_s": 71.1,
+   "settled_since_end_s": 71.1,
+   "changes": 0,
+   "final_running_s": 8.004,
+   "final_nanos": 11826,
+   "creation_count": 0,
+   "vcpu_s": 1.008625,
+   "mem": 2.723,
+   "disk": 8.105,
+   "series": [
+    {
+     "since_end_s": 71.1,
+     "cost_nanos": 11826,
+     "running_seconds": 8.004
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "round": 2,
+   "life": 15,
+   "ran_s": 15.7,
+   "create_s": 3.21,
+   "first_record_since_end_s": 31.7,
+   "settled_since_end_s": 31.7,
+   "changes": 0,
+   "final_running_s": 15.001,
+   "final_nanos": 18195,
+   "creation_count": 0,
+   "vcpu_s": 0.456999,
+   "mem": 6.005,
+   "disk": 15.192,
+   "series": [
+    {
+     "since_end_s": 31.7,
+     "cost_nanos": 18195,
+     "running_seconds": 15.001
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "round": 2,
+   "life": 25,
+   "ran_s": 25.6,
+   "create_s": 2.21,
+   "first_record_since_end_s": 164.0,
+   "settled_since_end_s": 164.0,
+   "changes": 0,
+   "final_running_s": 25.0,
+   "final_nanos": 35893,
+   "creation_count": 0,
+   "vcpu_s": 1.604612,
+   "mem": 10.934,
+   "disk": 25.317,
+   "series": [
+    {
+     "since_end_s": 164.0,
+     "cost_nanos": 35893,
+     "running_seconds": 25.0
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "round": 2,
+   "life": 40,
+   "ran_s": 40.6,
+   "create_s": 2.28,
+   "first_record_since_end_s": 80.8,
+   "settled_since_end_s": 180.3,
+   "changes": 1,
+   "final_running_s": 39.999,
+   "final_nanos": 50974,
+   "creation_count": 0,
+   "vcpu_s": 0.667204,
+   "mem": 18.153,
+   "disk": 40.507,
+   "series": [
+    {
+     "since_end_s": 80.8,
+     "cost_nanos": 22000,
+     "running_seconds": 18.014
+    },
+    {
+     "since_end_s": 180.3,
+     "cost_nanos": 50974,
+     "running_seconds": 39.999
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "round": 2,
+   "life": 75,
+   "ran_s": 75.8,
+   "create_s": 2.06,
+   "first_record_since_end_s": 25.0,
+   "settled_since_end_s": 140.1,
+   "changes": 1,
+   "final_running_s": 73.997,
+   "final_nanos": 97466,
+   "creation_count": 0,
+   "vcpu_s": 0.293591,
+   "mem": 36.771,
+   "disk": 74.936,
+   "series": [
+    {
+     "since_end_s": 25.0,
+     "cost_nanos": 20344,
+     "running_seconds": 18.012
+    },
+    {
+     "since_end_s": 140.1,
+     "cost_nanos": 97466,
+     "running_seconds": 73.997
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "round": 2,
+   "life": 100,
+   "ran_s": 100.8,
+   "create_s": 2.57,
+   "first_record_since_end_s": 67.6,
+   "settled_since_end_s": 172.3,
+   "changes": 1,
+   "final_running_s": 100.002,
+   "final_nanos": 134610,
+   "creation_count": 0,
+   "vcpu_s": 1.249292,
+   "mem": 49.396,
+   "disk": 101.271,
+   "series": [
+    {
+     "since_end_s": 67.6,
+     "cost_nanos": 104598,
+     "running_seconds": 78.003
+    },
+    {
+     "since_end_s": 172.3,
+     "cost_nanos": 134610,
+     "running_seconds": 100.002
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "round": 2,
+   "life": 150,
+   "ran_s": 150.5,
+   "create_s": 2.54,
+   "first_record_since_end_s": 17.9,
+   "settled_since_end_s": 122.6,
+   "changes": 1,
+   "final_running_s": 149.875,
+   "final_nanos": 203623,
+   "creation_count": 0,
+   "vcpu_s": 0.775199,
+   "mem": 77.279,
+   "disk": 147.831,
+   "series": [
+    {
+     "since_end_s": 17.9,
+     "cost_nanos": 103741,
+     "running_seconds": 78.004
+    },
+    {
+     "since_end_s": 122.6,
+     "cost_nanos": 203623,
+     "running_seconds": 149.875
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "n": 16,
+  "min_s": 31.7,
+  "median_s": 131.5,
+  "max_s": 180.3
+ }
+}
