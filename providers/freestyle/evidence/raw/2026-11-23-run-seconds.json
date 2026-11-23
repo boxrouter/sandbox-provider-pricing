@@ -1,0 +1,867 @@
+{
+ "probe-1": [
+  {
+   "step": "list-before",
+   "request": "GET /v5/vms",
+   "sent_at": "2026-11-23T08:47:18.846Z",
+   "returned_at": "2026-11-23T08:47:19.069Z",
+   "status": 200,
+   "body": {
+    "totalCount": 0,
+    "runningCount": 0,
+    "vms": []
+   }
+  },
+  {
+   "step": "create",
+   "request": "POST /v5/vms",
+   "sent_at": "2026-11-23T08:47:19.069Z",
+   "returned_at": "2026-11-23T08:47:19.661Z",
+   "status": 201,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:19.608946Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after create",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:47:19.661Z",
+   "returned_at": "2026-11-23T08:47:19.889Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:19.608946Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get +15s",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:47:34.889Z",
+   "returned_at": "2026-11-23T08:47:35.094Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:19.608946Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get +30s running",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:47:50.094Z",
+   "returned_at": "2026-11-23T08:47:50.510Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:19.608946Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "pause",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:47:50.510Z",
+   "returned_at": "2026-11-23T08:47:50.953Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:50.906614Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after pause #1",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:47:50.953Z",
+   "returned_at": "2026-11-23T08:47:51.177Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:50.906614Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after pause #2",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:47:54.178Z",
+   "returned_at": "2026-11-23T08:47:54.380Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:50.906614Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get paused +13s",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:04.381Z",
+   "returned_at": "2026-11-23T08:48:04.605Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:47:50.906614Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "start0",
+   "request": "POST /v5/vms/<vm>/start",
+   "sent_at": "2026-11-23T08:48:04.605Z",
+   "returned_at": "2026-11-23T08:48:05.308Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:05.247064Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after start0",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:05.310Z",
+   "returned_at": "2026-11-23T08:48:05.540Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:05.247064Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "pause0",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:48:07.940Z",
+   "returned_at": "2026-11-23T08:48:08.371Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 34,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:08.322813Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after pause0",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:08.372Z",
+   "returned_at": "2026-11-23T08:48:08.572Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 34,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:08.322813Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "start1",
+   "request": "POST /v5/vms/<vm>/start",
+   "sent_at": "2026-11-23T08:48:08.572Z",
+   "returned_at": "2026-11-23T08:48:09.152Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 34,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:09.093625Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after start1",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:09.152Z",
+   "returned_at": "2026-11-23T08:48:09.355Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 34,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:09.093625Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "pause1",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:48:15.055Z",
+   "returned_at": "2026-11-23T08:48:15.519Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 40,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:15.463888Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after pause1",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:15.519Z",
+   "returned_at": "2026-11-23T08:48:15.743Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 40,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:15.463888Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "start2",
+   "request": "POST /v5/vms/<vm>/start",
+   "sent_at": "2026-11-23T08:48:15.743Z",
+   "returned_at": "2026-11-23T08:48:17.554Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 40,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:17.493093Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after start2",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:17.554Z",
+   "returned_at": "2026-11-23T08:48:17.781Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 40,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:17.493093Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get running (run 3, unpaused)",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:27.082Z",
+   "returned_at": "2026-11-23T08:48:27.305Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 40,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:17.493093Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "pause2",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:48:27.305Z",
+   "returned_at": "2026-11-23T08:48:27.838Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 50,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:27.790792Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get after pause2",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:27.839Z",
+   "returned_at": "2026-11-23T08:48:28.067Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 50,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:27.790792Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "start-final",
+   "request": "POST /v5/vms/<vm>/start",
+   "sent_at": "2026-11-23T08:48:28.067Z",
+   "returned_at": "2026-11-23T08:48:28.606Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 50,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:28.550741Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "get running before delete",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:34.606Z",
+   "returned_at": "2026-11-23T08:48:34.829Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 50,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:47:19.438933Z",
+    "updatedAt": "2026-11-23T08:48:28.550741Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084718"
+    }
+   }
+  },
+  {
+   "step": "delete",
+   "request": "DELETE /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:34.829Z",
+   "returned_at": "2026-11-23T08:48:36.062Z",
+   "status": 204,
+   "body": null
+  },
+  {
+   "step": "get-after-delete",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:48:36.062Z",
+   "returned_at": "2026-11-23T08:48:36.257Z",
+   "status": 404,
+   "body": {
+    "code": "NOT_FOUND",
+    "message": "not found: vm vm-redacted"
+   }
+  },
+  {
+   "step": "list-after",
+   "request": "GET /v5/vms",
+   "sent_at": "2026-11-23T08:48:36.257Z",
+   "returned_at": "2026-11-23T08:48:36.480Z",
+   "status": 200,
+   "body": {
+    "totalCount": 1,
+    "runningCount": 1,
+    "vms": "(other lanes' VMs omitted)"
+   }
+  }
+ ],
+ "probe-2": [
+  {
+   "step": "list-before",
+   "request": "GET /v5/vms",
+   "sent_at": "2026-11-23T08:49:08.864Z",
+   "returned_at": "2026-11-23T08:49:09.104Z",
+   "status": 200,
+   "body": {
+    "totalCount": 2,
+    "runningCount": 0,
+    "vms": "(other lanes' VMs omitted)"
+   }
+  },
+  {
+   "step": "create",
+   "request": "POST /v5/vms",
+   "sent_at": "2026-11-23T08:49:09.105Z",
+   "returned_at": "2026-11-23T08:49:09.696Z",
+   "status": 201,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:09.645726Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "get running +20s",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:29.696Z",
+   "returned_at": "2026-11-23T08:49:29.921Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 0,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:09.645726Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "pause",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:49:29.921Z",
+   "returned_at": "2026-11-23T08:49:30.425Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 20,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:30.374895Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "get after pause",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:30.425Z",
+   "returned_at": "2026-11-23T08:49:30.633Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 20,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:30.374895Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "resume",
+   "request": "POST /v5/vms/<vm>/start",
+   "sent_at": "2026-11-23T08:49:30.633Z",
+   "returned_at": "2026-11-23T08:49:31.108Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 20,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:31.031527Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "get running +10s",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:41.110Z",
+   "returned_at": "2026-11-23T08:49:41.333Z",
+   "status": 200,
+   "body": {
+    "state": "running",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 20,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:31.031527Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "pause2",
+   "request": "POST /v5/vms/<vm>/pause",
+   "sent_at": "2026-11-23T08:49:41.333Z",
+   "returned_at": "2026-11-23T08:49:41.798Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:41.746818Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "capture read (paused)",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:41.798Z",
+   "returned_at": "2026-11-23T08:49:41.998Z",
+   "status": 200,
+   "body": {
+    "state": "paused",
+    "resources": {
+     "cpu": 4,
+     "memory": 8192,
+     "storage": 32768
+    },
+    "totalRunSeconds": 31,
+    "cpuTimeSeconds": null,
+    "createdAt": "2026-11-23T08:49:09.437444Z",
+    "updatedAt": "2026-11-23T08:49:41.746818Z",
+    "lastNetworkActivity": null,
+    "autoDeleteSeconds": 900,
+    "automaticRestart": false,
+    "metadata": {
+     "bx_run": "bxprobe-20261123T084908"
+    }
+   }
+  },
+  {
+   "step": "delete",
+   "request": "DELETE /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:41.999Z",
+   "returned_at": "2026-11-23T08:49:42.922Z",
+   "status": 204,
+   "body": null
+  },
+  {
+   "step": "get-after-delete",
+   "request": "GET /v5/vms/<vm>",
+   "sent_at": "2026-11-23T08:49:42.922Z",
+   "returned_at": "2026-11-23T08:49:43.137Z",
+   "status": 404,
+   "body": {
+    "code": "NOT_FOUND",
+    "message": "not found: vm vm-redacted"
+   }
+  },
+  {
+   "step": "list-after",
+   "request": "GET /v5/vms",
+   "sent_at": "2026-11-23T08:49:43.138Z",
+   "returned_at": "2026-11-23T08:49:43.337Z",
+   "status": 200,
+   "body": {
+    "totalCount": 0,
+    "runningCount": 0,
+    "vms": []
+   }
+  }
+ ]
+}

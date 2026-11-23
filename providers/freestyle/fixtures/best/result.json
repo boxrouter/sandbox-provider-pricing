@@ -1,0 +1,494 @@
+{
+  "provider": "freestyle",
+  "label": "calculated",
+  "total": {
+    "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+    "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+  },
+  "lines": [
+    {
+      "what": "cpu",
+      "quantity": "0.0344444444444444444444444444444444444444444444444444444444444",
+      "unit": "vcpu-hour",
+      "rate": "0.04032",
+      "amount": "0.0013888",
+      "quantity_source": "provider"
+    },
+    {
+      "what": "memory",
+      "quantity": "0.0688888888888888888888888888888888888888888888888888888888889",
+      "unit": "gib-hour",
+      "rate": "0.0129",
+      "amount": "0.000888666666666666666666666666666666666666666666666666666666667",
+      "quantity_source": "provider"
+    },
+    {
+      "what": "disk",
+      "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+      "unit": "gib-hour",
+      "rate": "0.000086",
+      "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+      "quantity_source": "provider"
+    }
+  ],
+  "held_back_by": [],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+    "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+    "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+    "Taxes and the $1 card verification, which is refunded.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-23T08:49:57.922000Z",
+    "until": "2026-11-23T09:04:42.922000Z",
+    "interval_s": 300,
+    "next_read_at": "2026-11-23T08:49:57.922000Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.17.14",
+    "rules": 1,
+    "prices": "freestyle@2026-11-23"
+  },
+  "steps": {
+    "evidence": {
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 4,
+        "memory_mib": 8192,
+        "disk_mib": 32768,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-23T08:49:09.105Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:09.696Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "pause",
+          "sent_at": {
+            "value": "2026-11-23T08:49:29.921Z",
+            "source": "recorded",
+            "how": "the pause request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:30.425Z",
+            "source": "recorded",
+            "how": "the pause request returned"
+          },
+          "outcome": "returned",
+          "keeps": "memory"
+        },
+        {
+          "name": "resume",
+          "sent_at": {
+            "value": "2026-11-23T08:49:30.633Z",
+            "source": "recorded",
+            "how": "the resume request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:31.108Z",
+            "source": "recorded",
+            "how": "the resume request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "pause",
+          "sent_at": {
+            "value": "2026-11-23T08:49:41.333Z",
+            "source": "recorded",
+            "how": "the pause request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:41.798Z",
+            "source": "recorded",
+            "how": "the pause request returned"
+          },
+          "outcome": "returned",
+          "keeps": "memory"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-23T08:49:41.999Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:42.922Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "created",
+          "at": {
+            "value": "2026-11-23T08:49:09.437444Z",
+            "source": "provider",
+            "how": "Freestyle's VM createdAt."
+          },
+          "field": "createdAt"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "measured": {},
+      "provider_records": [
+        {
+          "source": "Freestyle VM record",
+          "read_at": "2026-11-23T08:49:41.998Z",
+          "body": {
+            "id": "freestyle-vm-redacted",
+            "state": "paused",
+            "resources": {
+              "cpu": 4,
+              "memory": 8192,
+              "storage": 32768
+            },
+            "totalRunSeconds": 31,
+            "createdAt": "2026-11-23T08:49:09.437444Z",
+            "updatedAt": "2026-11-23T08:49:41.746818Z"
+          }
+        },
+        {
+          "source": "core.cost",
+          "read_at": "2026-11-23T08:49:41.998Z",
+          "body": {
+            "status": "available",
+            "reason": null,
+            "final": true,
+            "readings": [
+              {
+                "amount": "0.001388800",
+                "currency": "USD",
+                "meter": "cpu",
+                "quantity": "124",
+                "unit": "vcpu-second",
+                "scope": "sandbox",
+                "source": "calculated"
+              },
+              {
+                "amount": "0.000888667",
+                "currency": "USD",
+                "meter": "memory",
+                "quantity": "248",
+                "unit": "gib-second",
+                "scope": "sandbox",
+                "source": "calculated"
+              },
+              {
+                "amount": "0.000024891",
+                "currency": "USD",
+                "meter": "disk",
+                "quantity": "1041.952",
+                "unit": "gib-second",
+                "scope": "sandbox",
+                "source": "calculated"
+              }
+            ],
+            "records": [
+              {
+                "source": "Freestyle VM record",
+                "read_at": "2026-11-23T08:49:41.998Z",
+                "body": {
+                  "id": "freestyle-vm-redacted",
+                  "state": "paused",
+                  "resources": {
+                    "cpu": 4,
+                    "memory": 8192,
+                    "storage": 32768
+                  },
+                  "totalRunSeconds": 31,
+                  "createdAt": "2026-11-23T08:49:09.437444Z",
+                  "updatedAt": "2026-11-23T08:49:41.746818Z"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "Freestyle VM record",
+          "read_at": "2026-11-23T08:49:41.998Z",
+          "body": {
+            "id": "freestyle-vm-redacted",
+            "state": "paused",
+            "resources": {
+              "cpu": 4,
+              "memory": 8192,
+              "storage": 32768
+            },
+            "totalRunSeconds": 31,
+            "createdAt": "2026-11-23T08:49:09.437444Z",
+            "updatedAt": "2026-11-23T08:49:41.746818Z"
+          }
+        }
+      ],
+      "provider": "freestyle",
+      "sandbox_id": "freestyle-vm-redacted"
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-23T08:49:09.437444Z",
+        "source": "provider",
+        "how": "The provider's own time: createdAt."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-23T08:49:09.437444Z",
+      "source": "provider",
+      "how": "The provider's own time: createdAt."
+    },
+    "sandbox_end": {
+      "value": "2026-11-23T08:49:42.922000Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "freestyle",
+        "started": {
+          "at": "2026-11-23T08:49:09.437444Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The provider's own time: createdAt."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 32768,
+          "source": "recorded",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "No billed seconds for this sandbox: the provider reports its metered quantities instead."
+          }
+        ],
+        "metered": [
+          {
+            "item": "cpu",
+            "quantity": "124",
+            "unit": "vcpu-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          },
+          {
+            "item": "memory",
+            "quantity": "248",
+            "unit": "gib-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          },
+          {
+            "item": "disk",
+            "quantity": "1041.952",
+            "unit": "gib-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          }
+        ]
+      },
+      "high": {
+        "provider": "freestyle",
+        "started": {
+          "at": "2026-11-23T08:49:09.437444Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The provider's own time: createdAt."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 32768,
+          "source": "recorded",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "No billed seconds for this sandbox: the provider reports its metered quantities instead."
+          }
+        ],
+        "metered": [
+          {
+            "item": "cpu",
+            "quantity": "124",
+            "unit": "vcpu-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          },
+          {
+            "item": "memory",
+            "quantity": "248",
+            "unit": "gib-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          },
+          {
+            "item": "disk",
+            "quantity": "1041.952",
+            "unit": "gib-second",
+            "source": "provider",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Freestyle's metered quantity from its Core cost report."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "0.0344444444444444444444444444444444444444444444444444444444444",
+            "unit": "vcpu-hour",
+            "rate": "0.04032",
+            "amount": "0.0013888",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "memory",
+            "quantity": "0.0688888888888888888888888888888888888888888888888888888888889",
+            "unit": "gib-hour",
+            "rate": "0.0129",
+            "amount": "0.000888666666666666666666666666666666666666666666666666666666667",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "disk",
+            "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+            "unit": "gib-hour",
+            "rate": "0.000086",
+            "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+            "quantity_source": "provider"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+          "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+          "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+          "Taxes and the $1 card verification, which is refunded.",
+          "Credits and discounts"
+        ],
+        "price_version": "freestyle@2026-11-23",
+        "as_of": "2026-11-23T08:49:42.922000Z"
+      },
+      "high": {
+        "label": "calculated",
+        "total": {
+          "low": "0.00230235774222222222222222222222222222222222222222222222222223",
+          "high": "0.00230235774222222222222222222222222222222222222222222222222223"
+        },
+        "lines": [
+          {
+            "what": "cpu",
+            "quantity": "0.0344444444444444444444444444444444444444444444444444444444444",
+            "unit": "vcpu-hour",
+            "rate": "0.04032",
+            "amount": "0.0013888",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "memory",
+            "quantity": "0.0688888888888888888888888888888888888888888888888888888888889",
+            "unit": "gib-hour",
+            "rate": "0.0129",
+            "amount": "0.000888666666666666666666666666666666666666666666666666666666667",
+            "quantity_source": "provider"
+          },
+          {
+            "what": "disk",
+            "quantity": "0.289431111111111111111111111111111111111111111111111111111111",
+            "unit": "gib-hour",
+            "rate": "0.000086",
+            "amount": "0.0000248910755555555555555555555555555555555555555555555555555555",
+            "quantity_source": "provider"
+          }
+        ],
+        "held_back_by": [],
+        "exclusions": [
+          "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+          "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+          "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+          "Taxes and the $1 card verification, which is refunded.",
+          "Credits and discounts"
+        ],
+        "price_version": "freestyle@2026-11-23",
+        "as_of": "2026-11-23T08:49:42.922000Z"
+      }
+    }
+  },
+  "as_of": "2026-11-23T08:49:42.922000Z"
+}

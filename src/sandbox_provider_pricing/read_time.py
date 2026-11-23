@@ -16,6 +16,7 @@ READ_TIME_PATHS = (
     "steps.usage.*.*.observed_at",
     "steps.usage.*.intervals.*.observed_at",
     "steps.usage.*.intervals.*.size.observed_at",
+    "steps.usage.*.metered.*.observed_at",
 )
 # A full calendar day, the supremum of legal UTC-offset spread (<48h),
 # subsecond precision rounded up, and a separate one-second strict-comparison margin.

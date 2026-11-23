@@ -1,0 +1,10 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-23.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+Verbatim excerpts:
+
+| Max vCPUs per VM | 4 | 8 | 32 |
+| Max memory per VM | 8 GiB | 16 GiB | 64 GiB |
+| `freestyle/busybox` (1 vCPU / 128 MiB / 1 GB) | 10 | 200 | 4,000 |

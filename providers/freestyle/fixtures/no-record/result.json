@@ -1,0 +1,243 @@
+{
+  "provider": "freestyle",
+  "label": "unknown",
+  "total": null,
+  "lines": [],
+  "held_back_by": [
+    {
+      "code": "unreported_quantity",
+      "resource": "time",
+      "text": "The provider did not report the billed time."
+    }
+  ],
+  "currency": "USD",
+  "basis": "list_price_usage",
+  "reported": null,
+  "excluded": [
+    "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+    "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+    "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+    "Taxes and the $1 card verification, which is refunded.",
+    "Credits and discounts"
+  ],
+  "revisit": {
+    "after": "2026-11-23T08:49:57.922000Z",
+    "until": "2026-11-23T09:04:42.922000Z",
+    "interval_s": 300,
+    "next_read_at": "2026-11-23T08:49:57.922000Z"
+  },
+  "final": false,
+  "versions": {
+    "package": "0.17.14",
+    "rules": 1,
+    "prices": "freestyle@2026-11-23"
+  },
+  "steps": {
+    "evidence": {
+      "provider": "freestyle",
+      "sandbox_id": "freestyle-vm-redacted",
+      "sandbox_made": {
+        "value": true,
+        "source": "recorded",
+        "how": "the create succeeded"
+      },
+      "requested": {
+        "cpu": 4,
+        "memory_mib": 8192,
+        "disk_mib": 32768,
+        "region": null,
+        "options": {}
+      },
+      "calls": [
+        {
+          "name": "create",
+          "sent_at": {
+            "value": "2026-11-23T08:49:09.105Z",
+            "source": "recorded",
+            "how": "the create request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:09.696Z",
+            "source": "recorded",
+            "how": "the create request returned"
+          },
+          "outcome": "returned"
+        },
+        {
+          "name": "destroy",
+          "sent_at": {
+            "value": "2026-11-23T08:49:41.999Z",
+            "source": "recorded",
+            "how": "the destroy request was sent"
+          },
+          "returned_at": {
+            "value": "2026-11-23T08:49:42.922Z",
+            "source": "recorded",
+            "how": "the destroy request returned"
+          },
+          "outcome": "returned"
+        }
+      ],
+      "provider_times": [
+        {
+          "kind": "created",
+          "at": {
+            "value": "2026-11-23T08:49:09.437444Z",
+            "source": "provider",
+            "how": "Freestyle's VM createdAt."
+          },
+          "field": "createdAt"
+        }
+      ],
+      "last_seen_alive": null,
+      "noticed_gone": null,
+      "provider_records": [],
+      "measured": {}
+    },
+    "times": {
+      "start": {
+        "value": "2026-11-23T08:49:09.437444Z",
+        "source": "provider",
+        "how": "The provider's own time: createdAt."
+      },
+      "end": {
+        "value": null,
+        "source": "unknown",
+        "how": "Waiting for the provider's lifecycle record."
+      }
+    },
+    "sandbox_start": {
+      "value": "2026-11-23T08:49:09.437444Z",
+      "source": "provider",
+      "how": "The provider's own time: createdAt."
+    },
+    "sandbox_end": {
+      "value": "2026-11-23T08:49:42.922000Z",
+      "source": "recorded",
+      "how": "When the provider's destroy call returned."
+    },
+    "usage": {
+      "low": {
+        "provider": "freestyle",
+        "started": {
+          "at": "2026-11-23T08:49:09.437444Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The provider's own time: createdAt."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 32768,
+          "source": "recorded",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Waiting for Freestyle's per-sandbox provider record."
+          }
+        ]
+      },
+      "high": {
+        "provider": "freestyle",
+        "started": {
+          "at": "2026-11-23T08:49:09.437444Z",
+          "source": "provider",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The provider's own time: createdAt."
+        },
+        "region": {
+          "name": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested region."
+        },
+        "size": {
+          "cpu": 4,
+          "memory_mib": 8192,
+          "disk_mib": 32768,
+          "source": "recorded",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "The requested allocation."
+        },
+        "creations": {
+          "count": null,
+          "source": "unknown",
+          "observed_at": "2026-11-23T08:49:42.922000Z",
+          "how": "No provider creation count."
+        },
+        "intervals": [
+          {
+            "state": "running",
+            "seconds": null,
+            "source": "unknown",
+            "observed_at": "2026-11-23T08:49:42.922000Z",
+            "how": "Waiting for Freestyle's per-sandbox provider record."
+          }
+        ]
+      }
+    },
+    "rated": {
+      "low": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+          "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+          "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+          "Taxes and the $1 card verification, which is refunded.",
+          "Credits and discounts"
+        ],
+        "price_version": "freestyle@2026-11-23",
+        "as_of": "2026-11-23T08:49:42.922000Z"
+      },
+      "high": {
+        "label": "unknown",
+        "total": null,
+        "lines": [],
+        "held_back_by": [
+          {
+            "code": "unreported_quantity",
+            "resource": "time",
+            "text": "The provider did not report the billed time."
+          }
+        ],
+        "exclusions": [
+          "Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully usable as included usage. The usage rates are the same on every plan.",
+          "Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory, 60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500 GB of transfer): an account allowance, not a per-sandbox one, so every rate here is the list price before it.",
+          "Enterprise options: active-CPU pricing, node-based pricing and commitment discounts replace these rates on a negotiated account.",
+          "Taxes and the $1 card verification, which is refunded.",
+          "Credits and discounts"
+        ],
+        "price_version": "freestyle@2026-11-23",
+        "as_of": "2026-11-23T08:49:42.922000Z"
+      }
+    }
+  },
+  "as_of": "2026-11-23T08:49:42.922000Z"
+}

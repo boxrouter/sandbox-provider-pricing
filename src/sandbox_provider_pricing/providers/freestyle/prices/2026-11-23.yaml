@@ -1,0 +1,120 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: freestyle
+version: freestyle@2026-11-23
+effective_from: '2026-11-23T00:00:00Z'
+retrieved_at: '2026-11-23T08:30:00Z'
+supersedes: []
+sources:
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: '| Hour of vCPU | $0.04032 | 200 per month |'
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: '| Hour of GiB memory | $0.0129 | 400 per month |'
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: '| Hour of GiB storage | $0.000086 | 60,000 per month |'
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: '| GB of data transfer | $0.02 | 50 per month |'
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: Compute is metered per second and billed per hour of resource used.
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: vCPU, memory and storage are all billed on the amount allocated to the VM
+    for the time it is allocated
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: A paused VM holds no compute reservation, so it bills only for storage while
+    it sleeps.
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: The free-included amounts reset monthly and apply to every plan.
+- url: https://www.freestyle.sh/docs/vms/pricing-and-limits
+  quote: Traffic between your own VMs inside a VPC is not counted and is never billed.
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.04032'
+      per: vcpu-hour
+    memory:
+      usd: '0.0129'
+      per: gib-hour
+    disk:
+      usd: '0.000086'
+      per: gib-hour
+    egress:
+      usd: '0.02'
+      per: gb
+  meter:
+    cpu:
+      basis: allocated
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+    disk:
+      basis: allocated
+      billed_states:
+      - running
+      - paused
+      - stopped
+exclusions:
+- 'Plan fees: Hobby $50 a month and Pro $500 a month, each a minimum that is fully
+  usable as included usage. The usage rates are the same on every plan.'
+- 'Monthly included usage on every plan (200 vCPU-hours, 400 GiB-hours of memory,
+  60,000 GiB-hours of storage and 50 GB of data transfer; Hobby and Pro include 500
+  GB of transfer): an account allowance, not a per-sandbox one, so every rate here
+  is the list price before it.'
+- 'Enterprise options: active-CPU pricing, node-based pricing and commitment discounts
+  replace these rates on a negotiated account.'
+- Taxes and the $1 card verification, which is refunded.
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: Billed per vCPU-hour of the allocated vCPUs while the VM is running; a paused
+      VM holds no compute reservation.
+  memory:
+    treatment: in_quote
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: Billed per GiB-hour of the allocated memory while the VM is running; a paused
+      VM bills only for storage.
+  disk:
+    treatment: in_quote
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: Billed per GiB-hour of the allocated storage for the time the VM exists,
+      running or paused.
+  creation:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: No per-creation fee is published on the page checked; treated as possibly
+      billable, never as free.
+  egress:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: Data transfer is billed per GB across the datacenter boundary in either
+      direction; no ceiling follows from a size and a duration.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: Snapshots are kept until deleted and the page states no snapshot storage
+      rate; treated as possibly billable, never as free.
+  image_storage:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: The page states no image storage rate; treated as possibly billable, never
+      as free.
+  volume_storage:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: The page states no volume rate; treated as possibly billable, never as free.
+  requests:
+    treatment: unbounded
+    source: https://www.freestyle.sh/docs/vms/pricing-and-limits
+    note: No per-request charge is published on the page checked; treated as possibly
+      billable, never as free.
+open_questions:
+- Rounding and minimums are not stated beyond "metered per second and billed per hour
+  of resource used"; a run's seconds are credited as whole seconds (providers/freestyle/evidence/2026-11-23-run-seconds.md).
+- Whether the pausing and starting states bill compute is not stated; only a running
+  VM is described as holding a compute reservation.
+- Whether a VM's disk bills at its allocated size from creation or from first boot,
+  and for how long after a delete, is not stated.

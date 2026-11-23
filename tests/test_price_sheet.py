@@ -200,11 +200,13 @@ def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:
     sheet = build_price_sheet()
     assert {provider["id"]: provider["name"] for provider in sheet["providers"]} == {
         "agent37": "Agent37",
+        "beam": "Beam",
         "blaxel": "Blaxel",
         "boat": "Boat",
         "boxd": "boxd",
         "daytona": "Daytona",
         "e2b": "E2B",
+        "freestyle": "Freestyle",
         "modal": "Modal",
         "superserve": "Superserve",
         "vercel": "Vercel",
@@ -245,12 +247,14 @@ def test_price_sheet_has_one_entry_per_provider_and_spec_class() -> None:
     }
     assert set(entries) == {
         ("agent37", "default"),
+        ("beam", "default"),
         ("blaxel", "default"),
         ("boat", "default"),
         ("boxd", "default"),
         ("daytona", "container"),
         ("daytona", "vm"),
         ("e2b", "default"),
+        ("freestyle", "default"),
         ("modal", "default"),
         ("modal", "vm"),
         ("superserve", "default"),
@@ -549,11 +553,13 @@ def test_every_sheet_provider_carries_typed_billing_mode_and_compute_rate_units(
     }
     assert facts == {
         "agent37": ("allocated", False, ["cpu", "memory"]),
+        "beam": ("allocated", False, ["cpu", "memory"]),
         "blaxel": ("active", True, ["memory"]),
         "boat": ("allocated", False, ["machine"]),
         "boxd": ("active", False, ["cpu", "memory"]),
         "daytona": ("allocated", False, ["cpu", "memory"]),
         "e2b": ("allocated", False, ["cpu", "memory"]),
+        "freestyle": ("allocated", False, ["cpu", "memory"]),
         "modal": ("larger_of_request_and_use", False, ["cpu", "memory"]),
         "superserve": ("allocated", False, ["cpu", "memory"]),
         "vercel": ("mixed", True, ["cpu", "memory"]),

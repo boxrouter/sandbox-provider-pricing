@@ -122,11 +122,13 @@ SIZE = {"cpu": 2, "memory_mib": 4096, "disk_mib": 10240}
 # What each provider's current coverage implies for a 2 vCPU, 4 GiB, 10 GiB sandbox.
 EXPECTED_STATUS = {
     "agent37": "bounded",
+    "beam": "unbounded",  # storage is not billed yet, but Beam plans to charge it with no allowance
     "blaxel": "bounded",  # the writable filesystem is in billed RAM
     "boat": "bounded",
     "boxd": "bounded",
     "daytona": "bounded",
     "e2b": "bounded",
+    "freestyle": "bounded",
     "modal": "unbounded",  # CPU, memory and disk are charged on request or use
     "superserve": "bounded",  # storage is not billed for sandboxes BoxRouter never keeps paused
     "vercel": "bounded",

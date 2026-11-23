@@ -6,6 +6,20 @@ releases are made.
 
 ## Unreleased
 
+### Added
+
+- Beam, priced from its pages of 2026-11-23: Performance-tier sandboxes at $0.05 per vCPU-hour and $0.01 per GiB-hour,
+  billed by the millisecond while running (Shared and Spot tiers are recorded as exclusions). Beam documents no
+  per-sandbox usage or cost record, so its cost label is unknown and no list-price estimate is made. Storage is not
+  billed yet and is treated as possibly billable. 0.17.17.
+- Freestyle: billing record, price version `freestyle@2026-11-23` (vCPU $0.04032 and memory $0.0129 per
+  GiB an hour while running, storage $0.000086 per GiB an hour while the VM exists, data transfer $0.02 per
+  GB), shapes, and a measured run-seconds check (`providers/freestyle/evidence/2026-11-23-run-seconds.md`).
+  Its cost is `calculated` from the provider's own VM record (`totalRunSeconds`, `createdAt`, the allocated
+  size) through the spec's cost lines; without that record it stays unknown. `READ_TIME_PATHS` now lists
+  `steps.usage.*.metered.*.observed_at`: a calculated or usage cost copies the read time there, and the
+  read-time contract has to name every such copy.
+
 ### Changed
 
 - Vercel's paused note no longer says memory is not kept (no Vercel page says so): it ends at the snapshot storage rate,
