@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=../../../../../schemas/price-version.schema.json
+provider: sandscale
+version: sandscale@2026-11-27
+effective_from: '2026-11-27T20:23:20Z'
+retrieved_at: '2026-11-27T20:23:20Z'
+supersedes: []
+sources:
+- url: https://sandscale.dev/pricing
+  quote: 'On paid plans you choose what happens when your included hours run out:
+    turn usage beyond them on at $0.05 per awake vCPU-hour, add an hour pack of 500
+    awake vCPU-hours for $10, or keep it off and new boxes wait for next month.'
+- url: https://sandscale.dev/pricing
+  quote: One vCPU running for one hour while the box is awake. A box that is paused,
+    or idle between tool calls, does not count. A 2 vCPU agent box open for 10 hours
+    and awake 10% of the time uses 2 awake vCPU-hours.
+- url: https://sandscale.dev/pricing
+  quote: 'Every vCPU comes with 4 GiB of memory, included in the price. Memory above
+    that counts as extra vCPU-hours: 4 GiB-hours of extra memory is 1 vCPU-hour.'
+- url: https://sandscale.dev/pricing
+  quote: 'Burst comes from the same hours and counts only the CPU actually used above
+    the base: a minute at 8 vCPU uses 8 vCPU-minutes.'
+- url: https://sandscale.dev/pricing
+  quote: Pro for one developer $20/mo billed annually or $25/mo billed monthly
+- url: https://sandscale.dev/pricing
+  quote: Team for teams $40/member/mo billed annually, or $48 monthly
+- url: https://sandscale.dev/pricing
+  quote: A monthly or yearly subscription in US dollars, by card through Stripe, with
+    invoices and tax. There are no prepaid credits and no pay as you go.
+- url: https://sandscale.dev/pricing
+  quote: On Free, new boxes wait until next month.
+- url: https://sandscale.dev/pricing
+  quote: 'One allowance covers disks (stopped workspaces included), snapshots, templates
+    and objects: Free 5 GB, Pro 50 GB, Team 100 GB per member, pooled. Above that
+    it is $0.15 per GB-month. The first 10 GB of snapshots and templates is free.'
+classes:
+- name: default
+  default: true
+  rates:
+    cpu:
+      usd: '0.05'
+      per: vcpu-hour
+    memory:
+      usd: '0'
+      per: gib-hour
+  meter:
+    cpu:
+      basis: active
+      billed_states:
+      - running
+    memory:
+      basis: allocated
+      billed_states:
+      - running
+coverage:
+  cpu:
+    treatment: in_quote
+    source: https://sandscale.dev/pricing
+    note: Each vCPU of the box is counted while the box is awake; paused time and
+      idle time between tool calls do not count.
+  memory:
+    treatment: in_quote
+    source: https://sandscale.dev/pricing
+    note: Memory up to 4 GiB per vCPU is included in the vCPU price; memory above
+      that counts as extra vCPU-hours, which this version does not price.
+  disk:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: Disks count toward the account's storage allowance, and storage above it
+      is billed per GB-month to the account; no ceiling follows from a size and a
+      duration.
+  creation:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: No per-creation fee is published on the pricing page; unpublished is never
+      free.
+  egress:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: No egress price is published on the pricing page; unpublished is never free.
+  snapshot_storage:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: Snapshots count toward the account's storage allowance after the first 10
+      GB of snapshots and templates; storage above the allowance is billed to the
+      account.
+  image_storage:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: Templates count toward the account's storage allowance after the first 10
+      GB of snapshots and templates; storage above the allowance is billed to the
+      account.
+  volume_storage:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: No volume price is published on the pricing page; unpublished is never free.
+  requests:
+    treatment: unbounded
+    source: https://sandscale.dev/pricing
+    note: No per-request charge is published on the pricing page; unpublished is never
+      free.
+exclusions:
+- 'Plan fees: Pro $20 a month billed annually or $25 monthly; Team $40 per member
+  a month billed annually or $48 monthly. Free has no fee and no usage beyond its
+  hours.'
+- Each plan's included awake vCPU-hours (Free 100, Pro 1,500, Team 2,000 per member,
+  pooled) are an account allowance, not a per-sandbox rate; the cpu rate applies on
+  Pro and Team only after they are used and usage beyond them is turned on.
+- Hour packs (500 awake vCPU-hours for $10) are an account purchase, not a per-sandbox
+  rate.
+- Storage (disks, snapshots, templates and objects) is an account allowance; storage
+  above it is billed per GB-month for the account and is not priced per sandbox here.
+- Dedicated cores, always-on workspaces and build minutes are optional add-ons and
+  are not priced here.
+open_questions:
+- Memory above 4 GiB per vCPU counts as extra vCPU-hours (4 GiB-hours of extra memory
+  is 1 vCPU-hour). This version prices memory at 0 as included, so a sandbox with
+  more than 4 GiB per vCPU is priced too low; the recorded shapes stay at 4 GiB per
+  vCPU.
+- Burst above a box's base size counts only the CPU used above the base; usage records
+  would need the burst CPU to price it.
+- The pricing page does not state a rounding increment or minimum for awake time,
+  or when awake time starts and ends.
+- Whether a provider usage record gives awake time per sandbox is not stated on the
+  pricing page.

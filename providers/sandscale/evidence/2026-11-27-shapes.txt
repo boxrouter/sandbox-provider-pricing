@@ -1,0 +1,9 @@
+Provider pages read for the shapes the provider sells. Retrieved: 2026-11-27.
+Each page's excerpts below are the figures as a page fetch returned them; the shapes
+in billing.yaml quote these lines.
+
+Source: https://sandscale.dev/pricing
+Verbatim excerpts:
+
+Free runs up to 2 vCPU per box, Pro up to 16 and Team up to 32 on request. Enterprise runs up to 64 vCPU.
+Every vCPU comes with 4 GiB of memory, included in the price. Memory above that counts as extra vCPU-hours: 4 GiB-hours of extra memory is 1 vCPU-hour.

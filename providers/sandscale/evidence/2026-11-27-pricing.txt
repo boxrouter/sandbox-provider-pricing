@@ -1,0 +1,16 @@
+Pricing page read for the price version sandscale@2026-11-27. Retrieved: 2026-11-27 (20:23 UTC).
+Each excerpt below is word for word from the page's visible text as a page fetch returned it;
+the price version quotes these lines.
+
+Source: https://sandscale.dev/pricing
+Verbatim excerpts:
+
+On paid plans you choose what happens when your included hours run out: turn usage beyond them on at $0.05 per awake vCPU-hour, add an hour pack of 500 awake vCPU-hours for $10, or keep it off and new boxes wait for next month.
+One vCPU running for one hour while the box is awake. A box that is paused, or idle between tool calls, does not count. A 2 vCPU agent box open for 10 hours and awake 10% of the time uses 2 awake vCPU-hours.
+Every vCPU comes with 4 GiB of memory, included in the price. Memory above that counts as extra vCPU-hours: 4 GiB-hours of extra memory is 1 vCPU-hour.
+Burst comes from the same hours and counts only the CPU actually used above the base: a minute at 8 vCPU uses 8 vCPU-minutes.
+Pro for one developer $20/mo billed annually or $25/mo billed monthly
+Team for teams $40/member/mo billed annually, or $48 monthly
+A monthly or yearly subscription in US dollars, by card through Stripe, with invoices and tax. There are no prepaid credits and no pay as you go.
+On Free, new boxes wait until next month.
+One allowance covers disks (stopped workspaces included), snapshots, templates and objects: Free 5 GB, Pro 50 GB, Team 100 GB per member, pooled. Above that it is $0.15 per GB-month. The first 10 GB of snapshots and templates is free.
