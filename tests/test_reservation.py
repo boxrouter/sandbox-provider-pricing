@@ -131,6 +131,7 @@ EXPECTED_STATUS = {
     "freestyle": "bounded",
     "modal": "unbounded",  # CPU, memory and disk are charged on request or use
     "sail": "bounded",  # cpu, memory, disk in the quote: an upper bound, Sail bills use
+    "sandscale": "unbounded",  # disks draw on an account storage allowance, then per GB-month
     "superserve": "bounded",  # storage is not billed for sandboxes BoxRouter never keeps paused
     "vercel": "bounded",
 }

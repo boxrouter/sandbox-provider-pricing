@@ -11903,6 +11903,1099 @@
       }
     },
     {
+      "active_time_priced": true,
+      "basis": "active time",
+      "billing_mode": "mixed",
+      "billing_rules": {
+        "best_cost_label": "unknown",
+        "billed_on": {
+          "answer": "$0.05 per vCPU-hour for each vCPU of the box while it is awake, on Pro and Team once the included hours are used and usage beyond them is turned on. Memory up to 4 GiB per vCPU is included.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "ends": {
+          "answer": "Not stated on the pricing page.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "extra_charges": {
+          "answer": "Memory above 4 GiB per vCPU counts as extra vCPU-hours (4 GiB-hours of extra memory is 1 vCPU-hour). Storage above the plan allowance is billed to the account.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "idle_and_paused": {
+          "answer": "A box that is paused, or idle between tool calls, does not count toward awake vCPU-hours.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "image_pull": {
+          "answer": "Not stated on the pricing page.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "left_out": {
+          "answer": "Plan fees, included hours, hour packs, account storage and optional add-ons are outside a sandbox's own cost.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "per_sandbox_data": {
+          "answer": "Unknown; the pricing page does not say whether a per-sandbox usage or cost record is available.",
+          "unknown_how": "Read a sandbox's usage through the Sandscale API after a recorded run and compare it with the awake time."
+        },
+        "rounding": {
+          "answer": "Not stated on the pricing page; no increment or minimum is given for awake time.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "sources": {
+          "billed_on": [
+            "https://sandscale.dev/pricing"
+          ],
+          "ends": [
+            "https://sandscale.dev/pricing"
+          ],
+          "extra_charges": [
+            "https://sandscale.dev/pricing"
+          ],
+          "idle_and_paused": [
+            "https://sandscale.dev/pricing"
+          ],
+          "image_pull": [
+            "https://sandscale.dev/pricing"
+          ],
+          "left_out": [
+            "https://sandscale.dev/pricing"
+          ],
+          "per_sandbox_data": [],
+          "rounding": [
+            "https://sandscale.dev/pricing"
+          ],
+          "starts": [
+            "https://sandscale.dev/pricing"
+          ]
+        },
+        "starts": {
+          "answer": "Not stated on the pricing page.",
+          "sources": [
+            "https://sandscale.dev/pricing"
+          ]
+        }
+      },
+      "billing_rules_source": "src/sandbox_provider_pricing/providers/sandscale/billing.yaml",
+      "checked_at": "2026-11-27",
+      "class": "default",
+      "class_rules": {},
+      "compute_rates": [
+        {
+          "basis": "active",
+          "billed_states": [
+            "running"
+          ],
+          "per": "vcpu-hour",
+          "resource": "cpu",
+          "size_per_unit": null,
+          "usd": 0.05
+        },
+        {
+          "basis": "allocated",
+          "billed_states": [
+            "running"
+          ],
+          "per": "gib-hour",
+          "resource": "memory",
+          "size_per_unit": null,
+          "usd": 0.0
+        }
+      ],
+      "configs": [
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 1
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.1,
+            "low": 0.1,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 2
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.2,
+            "low": 0.2,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 4
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 32,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 2,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 32,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 4,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 32,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 8,
+            "vcpu": 8
+          },
+          "status": "priced"
+        },
+        {
+          "cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_cpu_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "idle_note": "A box that is idle between tool calls does not count toward awake vCPU-hours.",
+          "idle_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "memory_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "paused_note": "A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.",
+          "paused_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.0,
+            "low": 0.0,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "reason": null,
+          "running_per_hour_usd": {
+            "checked_at": "2026-11-27",
+            "high": 0.4,
+            "low": 0.4,
+            "source_url": "https://sandscale.dev/pricing"
+          },
+          "shape": {
+            "memory_gib": 32,
+            "vcpu": 8
+          },
+          "size": {
+            "memory_gib": 16,
+            "vcpu": 8
+          },
+          "status": "priced"
+        }
+      ],
+      "display_name": "Sandscale",
+      "id": "sandscale",
+      "label": "default",
+      "name": "Sandscale",
+      "price_version": "sandscale@2026-11-27",
+      "pricing_release_version": "",
+      "region": "us",
+      "region_checked_at": "2026-11-27",
+      "region_multiplier": null,
+      "region_note": null,
+      "region_source_url": "https://sandscale.dev/pricing",
+      "source_url": "https://sandscale.dev/pricing",
+      "storage": [
+        {
+          "checked_at": "2026-11-27",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "image",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://sandscale.dev/pricing",
+          "source_usd": null,
+          "status": "included",
+          "status_text": {
+            "hover": "The image storage item is listed as included.",
+            "word": "Included"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-27",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "disk",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://sandscale.dev/pricing",
+          "source_usd": null,
+          "status": "included",
+          "status_text": {
+            "hover": "The disk storage item is listed as included.",
+            "word": "Included"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-27",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "snapshot",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://sandscale.dev/pricing",
+          "source_usd": null,
+          "status": "included",
+          "status_text": {
+            "hover": "The snapshot storage item is listed as included.",
+            "word": "Included"
+          },
+          "usd": null
+        },
+        {
+          "checked_at": "2026-11-27",
+          "included_gb": null,
+          "included_unit": null,
+          "kind": "volume",
+          "per": null,
+          "source_per": null,
+          "source_url": "https://sandscale.dev/pricing",
+          "source_usd": null,
+          "status": "unpublished",
+          "status_text": {
+            "hover": "No separate price is listed for the volume storage item.",
+            "word": "Unpublished"
+          },
+          "usd": null
+        }
+      ],
+      "unit_rates": {
+        "cpu_per_vcpu_hour": 0.05,
+        "memory_per_gib_hour": 0.0
+      }
+    },
+    {
       "active_time_priced": false,
       "basis": "allocated CPU and memory",
       "billing_mode": "allocated",
