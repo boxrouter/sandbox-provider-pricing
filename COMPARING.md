@@ -78,6 +78,7 @@ cost of any sandbox. `make docs` regenerates the table.
 | Freestyle | 0.13224 | CPU and memory as requested | [`freestyle@2026-11-23`](src/sandbox_provider_pricing/providers/freestyle/prices/2026-11-23.yaml) |
 | Modal | at least 0.379872 | CPU and memory at the larger of request and use | [`modal@2026-11-05-065702Z`](src/sandbox_provider_pricing/providers/modal/prices/2026-11-05-065702Z.yaml) |
 | Sail | 0 to 0.062 | CPU and memory only while in use | [`sail@2026-11-23`](src/sandbox_provider_pricing/providers/sail/prices/2026-11-23.yaml) |
+| Sandscale | 0 to 0.1 | CPU only while in use, memory as requested | [`sandscale@2026-11-27`](src/sandbox_provider_pricing/providers/sandscale/prices/2026-11-27.yaml) |
 | Superserve | 0.1656 | CPU and memory as requested | [`superserve@2026-11-13-141358Z`](src/sandbox_provider_pricing/providers/superserve/prices/2026-11-13-141358Z.yaml) |
 | Vercel | 0.0848 to 0.3408 | CPU only while in use, memory as requested | [`vercel@2026-10-20-055631Z`](src/sandbox_provider_pricing/providers/vercel/prices/2026-10-20-055631Z.yaml) |
 <!-- /generated:hourly -->

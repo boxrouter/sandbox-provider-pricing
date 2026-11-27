@@ -209,6 +209,7 @@ def test_price_sheet_uses_display_names_and_one_storage_unit() -> None:
         "freestyle": "Freestyle",
         "modal": "Modal",
         "sail": "Sail",
+        "sandscale": "Sandscale",
         "superserve": "Superserve",
         "vercel": "Vercel",
     }
@@ -259,6 +260,7 @@ def test_price_sheet_has_one_entry_per_provider_and_spec_class() -> None:
         ("modal", "default"),
         ("modal", "vm"),
         ("sail", "default"),
+        ("sandscale", "default"),
         ("superserve", "default"),
         ("vercel", "default"),
     }
@@ -564,6 +566,7 @@ def test_every_sheet_provider_carries_typed_billing_mode_and_compute_rate_units(
         "freestyle": ("allocated", False, ["cpu", "memory"]),
         "modal": ("larger_of_request_and_use", False, ["cpu", "memory"]),
         "sail": ("active", False, ["cpu", "memory"]),
+        "sandscale": ("mixed", True, ["cpu", "memory"]),
         "superserve": ("allocated", False, ["cpu", "memory"]),
         "vercel": ("mixed", True, ["cpu", "memory"]),
     }

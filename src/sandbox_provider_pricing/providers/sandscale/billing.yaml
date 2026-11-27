@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=../../../../schemas/billing.schema.json
+name: Sandscale
+website: https://sandscale.dev
+rules_version: 1
+status:
+  best_label: unknown
+  why_not_higher: Only the pricing page has been read (2026-11-27); no per-sandbox usage or cost record from Sandscale has been compared with the list rate.
+  would_raise: A recorded run whose per-sandbox awake time or charge from Sandscale is compared with the published rate.
+revisit: null
+reported_at_list_price:
+  value: null
+  unknown_how: Compare a provider-reported sandbox charge with its list rates.
+reported_under_account_rate:
+  value: null
+  unknown_how: Compare a reported sandbox charge on a discounted account with list
+    rates.
+summary: Plans include monthly awake vCPU-hours; on Pro and Team, use beyond them can be billed per awake vCPU-hour. Memory up to 4 GiB per vCPU is included.
+formula: vCPUs of the box times its awake hours, at the cpu rate, once a paid plan's included hours are used and usage beyond them is on.
+rules:
+  billed_on:
+    answer: '{rate.cpu} for each vCPU of the box while it is awake, on Pro and Team once the included hours are used and usage beyond them is turned on. Memory up to 4 GiB per vCPU is included.'
+    sources:
+      - https://sandscale.dev/pricing
+  starts:
+    answer: Not stated on the pricing page.
+    sources:
+      - https://sandscale.dev/pricing
+  ends:
+    answer: Not stated on the pricing page.
+    sources:
+      - https://sandscale.dev/pricing
+  rounding:
+    answer: Not stated on the pricing page; no increment or minimum is given for awake time.
+    sources:
+      - https://sandscale.dev/pricing
+  idle_and_paused:
+    answer: A box that is paused, or idle between tool calls, does not count toward awake vCPU-hours.
+    sources:
+      - https://sandscale.dev/pricing
+  image_pull:
+    answer: Not stated on the pricing page.
+    sources:
+      - https://sandscale.dev/pricing
+  extra_charges:
+    answer: Memory above 4 GiB per vCPU counts as extra vCPU-hours (4 GiB-hours of extra memory is 1 vCPU-hour). Storage above the plan allowance is billed to the account.
+    sources:
+      - https://sandscale.dev/pricing
+  left_out:
+    answer: Plan fees, included hours, hour packs, account storage and optional add-ons are outside a sandbox's own cost.
+    sources:
+      - https://sandscale.dev/pricing
+  per_sandbox_data:
+    answer: Unknown; the pricing page does not say whether a per-sandbox usage or cost record is available.
+    unknown_how: Read a sandbox's usage through the Sandscale API after a recorded run and compare it with the awake time.
+checks: []
+open_questions:
+  - question: What does a sandbox with more than 4 GiB of memory per vCPU cost?
+    how: The pricing page counts 4 GiB-hours of extra memory as 1 vCPU-hour; a memory rate, or a recorded run with extra memory, would price it.
+  - question: What does burst above a box's base size cost per sandbox?
+    how: Burst counts only the CPU used above the base; a usage record with burst CPU would be needed to price it.
+shapes:
+  default:
+  - cpu: 2
+    memory_mib: 8192
+    source: https://sandscale.dev/pricing
+    checked: '2026-11-27'
+    quote: "Free runs up to 2 vCPU per box, Pro up to 16 and Team up to 32 on request. Enterprise runs up to 64 vCPU."
+    note: 'Free maximum, at the included 4 GiB per vCPU ("Every vCPU comes with 4 GiB of memory, included in the price.").'
+  - cpu: 4
+    memory_mib: 16384
+    source: https://sandscale.dev/pricing
+    checked: '2026-11-27'
+    quote: "Free runs up to 2 vCPU per box, Pro up to 16 and Team up to 32 on request. Enterprise runs up to 64 vCPU."
+    note: 'Pro and Team. The page states maximums, not a list of sizes; 4 vCPU is inside the range up to 16, at the included 4 GiB per vCPU.'
+  - cpu: 8
+    memory_mib: 32768
+    source: https://sandscale.dev/pricing
+    checked: '2026-11-27'
+    quote: "Free runs up to 2 vCPU per box, Pro up to 16 and Team up to 32 on request. Enterprise runs up to 64 vCPU."
+    note: 'Pro and Team. The page states maximums, not a list of sizes; 8 vCPU is inside the range up to 16, at the included 4 GiB per vCPU.'
+  - cpu: 16
+    memory_mib: 65536
+    source: https://sandscale.dev/pricing
+    checked: '2026-11-27'
+    quote: "Free runs up to 2 vCPU per box, Pro up to 16 and Team up to 32 on request. Enterprise runs up to 64 vCPU."
+    note: 'Pro and Team maximum (Team up to 32 on request), at the included 4 GiB per vCPU.'
+price_sheet:
+  active_time_priced: {value: true, source_url: https://sandscale.dev/pricing}
+  benchmark_region: {value: us, source_url: https://sandscale.dev/pricing}
+  states:
+    idle: {rule: none, note: 'A box that is idle between tool calls does not count toward awake vCPU-hours.', source_url: https://sandscale.dev/pricing}
+    paused: {rule: none, note: 'A paused box does not count toward awake vCPU-hours. Its disk counts toward the account storage allowance.', source_url: https://sandscale.dev/pricing}
+  class_overrides: {}
+  storage:
+    - {kind: image, status: included, source_url: https://sandscale.dev/pricing}
+    - {kind: disk, status: included, source_url: https://sandscale.dev/pricing}
+    - {kind: snapshot, status: included, source_url: https://sandscale.dev/pricing}
+    - {kind: volume, status: unpublished, source_url: https://sandscale.dev/pricing}

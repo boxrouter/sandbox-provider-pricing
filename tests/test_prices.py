@@ -128,6 +128,7 @@ def test_billing_rules_do_not_expose_call_clock_boundaries() -> None:
         "freestyle": (1, True),
         "modal": (4, True),
         "sail": (1, True),
+        "sandscale": (1, True),
         "superserve": (2, True),
         "vercel": (2, True),
     }

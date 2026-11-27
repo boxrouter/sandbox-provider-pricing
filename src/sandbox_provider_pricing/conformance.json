@@ -23680,6 +23680,1934 @@
       }
     },
     {
+      "id": "sandscale/default/1x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.05,
+          "high": 0.05,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.05,
+          "high": 0.05,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.05,
+          "high": 0.05,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.05,
+          "high": 0.05,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 1,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/1x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 1,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.1,
+          "high": 0.1,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.1,
+          "high": 0.1,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.1,
+          "high": 0.1,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.1,
+          "high": 0.1,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 2,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/2x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 2,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.2,
+          "high": 0.2,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.2,
+          "high": 0.2,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.2,
+          "high": 0.2,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.2,
+          "high": 0.2,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 4,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/4x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 4,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.4,
+          "high": 0.4,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 2
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x2/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 2048,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.4,
+          "high": 0.4,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 4
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x4/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 4096,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.4,
+          "high": 0.4,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 8
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x8/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 8192,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/running",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "running_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.4,
+          "high": 0.4,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/idle",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "idle_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/paused",
+      "kind": "hourly",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "size": {
+          "vcpu": 8,
+          "memory_gib": 16
+        },
+        "field": "paused_per_hour_usd"
+      },
+      "expected": {
+        "status": "priced",
+        "amount": {
+          "low": 0.0,
+          "high": 0.0,
+          "source_url": "https://sandscale.dev/pricing",
+          "checked_at": "2026-11-27"
+        }
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/recorded",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/missing-records",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "default",
+          "provider_records": [],
+          "provider_times": [],
+          "provider_reports": {}
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/8x16/unknown-class",
+      "kind": "price",
+      "input": {
+        "fixture": "sandscale/fixtures/best/evidence.json",
+        "set": {
+          "requested/cpu": 8,
+          "requested/memory_mib": 16384,
+          "requested/class": "unpublished-conformance-class"
+        }
+      },
+      "expected": {
+        "label": "unknown",
+        "total": null
+      }
+    },
+    {
+      "id": "sandscale/default/storage/image",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "storage": "image"
+      },
+      "expected": {
+        "status": "included",
+        "label": "Included",
+        "usd": null
+      }
+    },
+    {
+      "id": "sandscale/default/storage/disk",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "storage": "disk"
+      },
+      "expected": {
+        "status": "included",
+        "label": "Included",
+        "usd": null
+      }
+    },
+    {
+      "id": "sandscale/default/storage/snapshot",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "storage": "snapshot"
+      },
+      "expected": {
+        "status": "included",
+        "label": "Included",
+        "usd": null
+      }
+    },
+    {
+      "id": "sandscale/default/storage/volume",
+      "kind": "storage",
+      "input": {
+        "class": "default",
+        "provider": "sandscale",
+        "storage": "volume"
+      },
+      "expected": {
+        "status": "unpublished",
+        "label": "Unpublished",
+        "usd": null
+      }
+    },
+    {
       "id": "superserve/default/1x2/running",
       "kind": "hourly",
       "input": {
